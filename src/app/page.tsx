@@ -234,6 +234,34 @@ export default function Home() {
               </div>
             </Link>
 
+            {/* Opportunity Hunter Pro - PAID */}
+            <a href="https://buy.govcongiants.org/checkout/buy/1ba3745a-da20-4635-9601-a258a4a3171a" target="_blank" rel="noopener noreferrer" className="block bg-white border border-gray-200 rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg hover:border-amber-500 cursor-pointer">
+              <div className="h-48 bg-gradient-to-br from-amber-500 to-orange-600 relative overflow-hidden">
+                <Image src="/images/products/opportunity-hunter/opp scout home page.png" alt="Opportunity Hunter Pro" fill className="object-cover object-top" />
+              </div>
+              <div className="p-6">
+                <span className="inline-block bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">PRO</span>
+                <h3 className="text-xl font-bold mb-2 text-gray-900">Opportunity Hunter Pro</h3>
+                <p className="text-gray-500 text-sm mb-4">Advanced opportunity intelligence with unlimited searches, priority data, and premium features.</p>
+                <ul className="text-sm mb-5 space-y-1">
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-amber-500 font-bold">✓</span> Everything in Free, plus:</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-amber-500 font-bold">✓</span> Unlimited Searches</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-amber-500 font-bold">✓</span> Advanced Filters</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-amber-500 font-bold">✓</span> Export to CSV</li>
+                </ul>
+                <div className="flex justify-between items-center pt-4 border-t border-gray-200">
+                  <div>
+                    <div className="text-sm text-gray-400 line-through">$97/mo</div>
+                    <div className="text-2xl font-bold text-blue-800">$49</div>
+                    <div className="text-xs text-gray-500">one-time</div>
+                  </div>
+                  <span className="px-5 py-2 bg-amber-500 text-white rounded-md font-semibold text-sm">
+                    Get Pro
+                  </span>
+                </div>
+              </div>
+            </a>
+
             {/* SBLO Directory - FREE PDF */}
             <Link href="/sblo-directory" className="block bg-white border border-gray-200 rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg hover:border-emerald-500 cursor-pointer">
               <div className="h-48 bg-gradient-to-br from-emerald-500 to-teal-500 relative overflow-hidden">
