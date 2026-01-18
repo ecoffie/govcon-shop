@@ -24,9 +24,10 @@ const nextConfig: NextConfig = {
   experimental: {
     // Use React Compiler if available
   },
-  // Redirects for legacy URLs
+  // Redirects for legacy URLs and checkout shortcuts
   async redirects() {
     return [
+      // Legacy URL redirects
       {
         source: '/opportunity-scout.html',
         destination: '/opportunity-hunter',
@@ -36,6 +37,47 @@ const nextConfig: NextConfig = {
         source: '/opportunity-scout',
         destination: '/opportunity-hunter',
         permanent: true,
+      },
+      // Checkout shortcut redirects
+      {
+        source: '/buy/opportunity-hunter',
+        destination: 'https://buy.govcongiants.org/checkout/buy/1ba3745a-da20-4635-9601-a258a4a3171a',
+        permanent: false,
+      },
+      {
+        source: '/buy/database',
+        destination: 'https://buy.govcongiants.org/checkout/buy/0beda92c-6328-40c3-9d4b-8c246f8d0a34',
+        permanent: false,
+      },
+      {
+        source: '/buy/ai-content',
+        destination: 'https://buy.govcongiants.org/checkout/buy/11d36efa-5d16-4ebe-92ca-179c79cb5990',
+        permanent: false,
+      },
+      {
+        source: '/buy/recompete',
+        destination: 'https://buy.govcongiants.org/checkout/buy/00757b65-ead6-457b-a27b-4b3f81b63d7d',
+        permanent: false,
+      },
+      {
+        source: '/buy/market-assassin',
+        destination: 'https://buy.govcongiants.org/checkout/buy/1dcb791b-e1a1-4500-a4c2-bd255e8124e6',
+        permanent: false,
+      },
+      {
+        source: '/buy/starter-bundle',
+        destination: 'https://buy.govcongiants.org/checkout/buy/9a5bd252-b7a5-4bc5-be50-1d3305dd9069',
+        permanent: false,
+      },
+      {
+        source: '/buy/ultimate-bundle',
+        destination: 'https://buy.govcongiants.org/checkout/buy/9a5bd252-b7a5-4bc5-be50-1d3305dd9069',
+        permanent: false,
+      },
+      {
+        source: '/buy/complete-bundle',
+        destination: 'https://buy.govcongiants.org/checkout/buy/67349828-9e8a-4e1a-bf6f-09b267c4c97e',
+        permanent: false,
       },
     ];
   },
