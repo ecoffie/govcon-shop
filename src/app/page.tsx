@@ -502,13 +502,13 @@ export default function Home() {
                 <div className="text-4xl font-bold text-gray-900">$997</div>
                 <div className="text-sm text-emerald-600 font-medium">One-Time Payment</div>
               </div>
-              <ul className="space-y-3 mb-6 text-sm">
-                <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> <strong>Everything in Starter, plus:</strong></li>
-                <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> Recompete Contracts</li>
-                <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> Prime Lookup</li>
-                <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> Federal Market Assassin</li>
+              <ul className="space-y-3 mb-6 text-sm text-gray-800">
+                <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> <strong>Everything in Starter, plus:</strong></li>
+                <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Recompete Contracts</li>
+                <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Prime Lookup</li>
+                <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Federal Market Assassin</li>
               </ul>
-              <div className="text-center text-sm text-gray-400 mb-4 line-through">$1,138 if bought separately</div>
+              <div className="text-center text-sm text-gray-500 mb-4 line-through">$1,138 if bought separately</div>
               <a href="https://govcongiants.lemonsqueezy.com/checkout/buy/pro-giant-bundle" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-amber-500 text-white text-center rounded-lg font-semibold hover:bg-amber-400 transition-all">
                 Get Pro Giant Bundle
               </a>
