@@ -524,10 +524,10 @@ export default function Home() {
                 <div className="text-sm text-emerald-400 font-medium">One-Time Payment</div>
               </div>
               <ul className="space-y-3 mb-6 text-sm opacity-90">
-                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> <strong>Everything in Pro Giant, plus:</strong></li>
+                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> <strong>Pro version of everything:</strong></li>
+                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Market Assassin Pro</li>
+                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> LinkedIn Content Generator (Full Fix)</li>
                 <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> 1-on-1 Strategy Session</li>
-                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Priority Support</li>
-                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Future Tools Access</li>
               </ul>
               <div className="text-center text-sm opacity-50 mb-4 line-through">$2,000+ value</div>
               <a href="https://buy.govcongiants.org/checkout/buy/67349828-9e8a-4e1a-bf6f-09b267c4c97e" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 text-center rounded-lg font-bold hover:from-amber-300 hover:to-amber-400 transition-all">
