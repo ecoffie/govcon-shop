@@ -481,7 +481,7 @@ export default function Home() {
               <ul className="space-y-3 mb-6 text-sm text-gray-800">
                 <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> Opportunity Hunter Pro</li>
                 <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> Contractor Database</li>
-                <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> AI Content Generator</li>
+                <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> LinkedIn Content Generator (Content Engine)</li>
               </ul>
               <div className="text-center text-sm text-gray-500 mb-4 line-through">$743 if bought separately</div>
               <a href="https://buy.govcongiants.org/checkout/buy/20575f57-30db-4120-9c2f-da7a6302a0fd" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-blue-800 text-white text-center rounded-lg font-semibold hover:bg-blue-700 transition-all">
