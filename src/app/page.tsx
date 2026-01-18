@@ -14,7 +14,7 @@ export default function Home() {
             <ul className="hidden md:flex items-center gap-8">
               <li><a href="#tools" className="text-gray-800 hover:text-blue-800 font-medium text-sm">Tools</a></li>
               <li><a href="#databases" className="text-gray-800 hover:text-blue-800 font-medium text-sm">Databases</a></li>
-              <li><a href="#resources" className="text-gray-800 hover:text-blue-800 font-medium text-sm">Resources</a></li>
+              <li><Link href="/free-resources" className="text-gray-800 hover:text-blue-800 font-medium text-sm">Resources</Link></li>
               <li><Link href="/about" className="text-gray-800 hover:text-blue-800 font-medium text-sm">About</Link></li>
             </ul>
             <div className="flex items-center gap-4">
