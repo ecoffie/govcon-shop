@@ -32,7 +32,7 @@ function getProductIdFromVariant(variantId: number): string {
 function getBundleProducts(productId: string): string[] {
   for (const product of Object.values(PRODUCTS)) {
     if (product.id === productId && 'includes' in product) {
-      return product.includes as string[];
+      return [...product.includes] as string[];
     }
   }
   return [productId];
