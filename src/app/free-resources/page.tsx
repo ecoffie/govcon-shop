@@ -1,6 +1,3 @@
-'use client';
-
-import { useState } from 'react';
 import Link from 'next/link';
 
 interface Resource {
@@ -8,132 +5,86 @@ interface Resource {
   name: string;
   description: string;
   icon: string;
-  file: string;
+  href: string;
   price: string;
 }
 
 const FREE_RESOURCES: Resource[] = [
   {
-    id: 'sblo-list',
-    name: 'SBLO Contact List',
-    description: 'Directory of Small Business Liaison Officers across federal agencies. Direct contacts for small business outreach.',
+    id: 'sblo-directory',
+    name: 'SBLO Contact Directory',
+    description: 'Small Business Liaison Officers (SBLO) at federal agencies and prime contractors. 76+ agencies covered.',
     icon: '📋',
-    file: '/resources/sblo-contact-list.pdf',
-    price: '$47',
+    href: '/sblo-directory',
+    price: '$997',
   },
   {
     id: 'december-spend',
     name: 'December Spend Forecast',
-    description: 'Year-end government spending predictions and Q4 opportunity analysis. Know where the money is going.',
+    description: 'Capitalize on year-end government spending. Agency budgets, hot categories, and positioning strategies.',
     icon: '💰',
-    file: '/resources/december-spend-forecast.pdf',
+    href: '/december-spend',
+    price: '$1,297',
+  },
+  {
+    id: 'ai-prompts',
+    name: '75+ AI Prompts for GovCon',
+    description: 'Ready-to-use AI prompts to accelerate your federal contracting business. Works with ChatGPT, Claude & more.',
+    icon: '🤖',
+    href: '/ai-prompts',
+    price: '$797',
+  },
+  {
+    id: 'action-plan-2026',
+    name: '2026 GovCon Action Plan',
+    description: 'Your step-by-step roadmap to winning federal contracts in 2026. Month-by-month milestones.',
+    icon: '📅',
+    href: '/action-plan-2026',
+    price: '$497',
+  },
+  {
+    id: 'guides-templates',
+    name: 'GovCon Guides & Templates',
+    description: 'Comprehensive guides and ready-to-use templates for federal contracting success.',
+    icon: '📄',
+    href: '/guides-templates',
     price: '$97',
   },
   {
-    id: 'capability-template',
-    name: 'Capability Statement Template',
-    description: 'Professional one-page capability statement template ready to customize for your business.',
-    icon: '📄',
-    file: '/templates/capability-statement-template.pdf',
-    price: '$29',
+    id: 'tier2-directory',
+    name: 'Tier-2 Supplier Directory',
+    description: 'Access Tier-2 supplier contacts and vendor registration portals at major prime contractors.',
+    icon: '🏢',
+    href: '/tier2-directory',
+    price: '$697',
   },
   {
-    id: 'email-scripts',
-    name: 'SBLO Email Scripts',
-    description: 'Ready-to-use email templates for reaching out to Small Business Liaison Officers and contracting officers.',
-    icon: '✉️',
-    file: '/templates/email-scripts-sblo.pdf',
-    price: '$37',
+    id: 'expiring-contracts-csv',
+    name: 'Free Expiring Contracts CSV',
+    description: 'Sample of expiring federal contracts data. Import into Excel, Sheets, or your CRM.',
+    icon: '📊',
+    href: '/expiring-contracts-csv',
+    price: '$697',
   },
   {
-    id: 'proposal-checklist',
-    name: 'Proposal Response Checklist',
-    description: 'Comprehensive checklist to ensure your proposal responses are complete and compliant.',
-    icon: '✅',
-    file: '/templates/proposal-checklist.pdf',
-    price: '$19',
+    id: 'tribal-list',
+    name: 'Tribal Contractor List',
+    description: '500+ Native American-owned federal contractors for teaming and subcontracting opportunities.',
+    icon: '🤝',
+    href: '/tribal-list',
+    price: '$297',
+  },
+  {
+    id: 'opportunity-hunter',
+    name: 'Opportunity Hunter',
+    description: 'Find out which government buyers buy what you sell. Identify your ideal federal customers in minutes.',
+    icon: '🎯',
+    href: '/opportunity-hunter',
+    price: '$97/mo',
   },
 ];
 
 export default function FreeResourcesPage() {
-  const [selectedResource, setSelectedResource] = useState<Resource | null>(null);
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState('');
-  const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
-  const [showSuccess, setShowSuccess] = useState(false);
-
-  const handleResourceClick = (resource: Resource) => {
-    // Check if user already has access (stored in localStorage)
-    const accessedResources = JSON.parse(localStorage.getItem('accessed_resources') || '[]');
-    if (accessedResources.includes(resource.id)) {
-      // Already has access, allow download
-      setDownloadUrl(resource.file);
-      setSelectedResource(resource);
-      setShowSuccess(true);
-    } else {
-      // Show email capture form
-      setSelectedResource(resource);
-      setDownloadUrl(null);
-      setShowSuccess(false);
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!email.trim()) {
-      setError('Email is required');
-      return;
-    }
-
-    if (!selectedResource) return;
-
-    setIsSubmitting(true);
-    setError('');
-
-    try {
-      const response = await fetch('/api/capture-lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: email.trim().toLowerCase(),
-          name: name.trim() || undefined,
-          resourceId: selectedResource.id,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        // Store access in localStorage
-        const accessedResources = JSON.parse(localStorage.getItem('accessed_resources') || '[]');
-        if (!accessedResources.includes(selectedResource.id)) {
-          accessedResources.push(selectedResource.id);
-          localStorage.setItem('accessed_resources', JSON.stringify(accessedResources));
-        }
-        localStorage.setItem('lead_email', email.trim().toLowerCase());
-
-        setDownloadUrl(data.resource.file);
-        setShowSuccess(true);
-      } else {
-        setError(data.error || 'Something went wrong. Please try again.');
-      }
-    } catch {
-      setError('Failed to process request. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const closeModal = () => {
-    setSelectedResource(null);
-    setDownloadUrl(null);
-    setShowSuccess(false);
-    setError('');
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Header */}
@@ -143,6 +94,12 @@ export default function FreeResourcesPage() {
             <Link href="/" className="flex items-center gap-2">
               <span className="text-xl font-bold text-blue-700">GovCon</span>
               <span className="text-xl font-bold text-amber-500">Giants</span>
+            </Link>
+            <Link
+              href="/"
+              className="px-4 py-2 bg-blue-800 text-white rounded-lg font-semibold text-sm hover:bg-blue-700"
+            >
+              View All Tools
             </Link>
           </div>
         </div>
@@ -163,41 +120,28 @@ export default function FreeResourcesPage() {
 
         {/* Resources Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {FREE_RESOURCES.map((resource) => {
-            const accessedResources = typeof window !== 'undefined'
-              ? JSON.parse(localStorage.getItem('accessed_resources') || '[]')
-              : [];
-            const hasAccess = accessedResources.includes(resource.id);
-
-            return (
-              <div
-                key={resource.id}
-                className="bg-white rounded-xl shadow-lg p-6 border-2 border-slate-200 hover:border-green-400 hover:shadow-xl transition-all cursor-pointer"
-                onClick={() => handleResourceClick(resource)}
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-3">
-                    <span className="text-3xl">{resource.icon}</span>
-                    <h3 className="text-lg font-bold text-gray-900">{resource.name}</h3>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-sm text-gray-400 line-through">{resource.price}</span>
-                    <span className="block text-green-600 font-bold">FREE</span>
-                  </div>
+          {FREE_RESOURCES.map((resource) => (
+            <Link
+              key={resource.id}
+              href={resource.href}
+              className="bg-white rounded-xl shadow-lg p-6 border-2 border-slate-200 hover:border-green-400 hover:shadow-xl transition-all block"
+            >
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl">{resource.icon}</span>
+                  <h3 className="text-lg font-bold text-gray-900">{resource.name}</h3>
                 </div>
-                <p className="text-sm text-gray-600 mb-4">{resource.description}</p>
-                <button
-                  className={`w-full px-4 py-2 rounded-lg font-medium transition-colors ${
-                    hasAccess
-                      ? 'bg-green-100 text-green-700 hover:bg-green-200'
-                      : 'bg-green-500 text-white hover:bg-green-600'
-                  }`}
-                >
-                  {hasAccess ? '✓ Download Again' : 'Get Free Access'}
-                </button>
+                <div className="text-right">
+                  <span className="text-sm text-gray-400 line-through">{resource.price}</span>
+                  <span className="block text-green-600 font-bold">FREE</span>
+                </div>
               </div>
-            );
-          })}
+              <p className="text-sm text-gray-600 mb-4">{resource.description}</p>
+              <span className="block w-full px-4 py-2 rounded-lg font-medium text-center bg-green-500 text-white hover:bg-green-600 transition-colors">
+                Get Free Access
+              </span>
+            </Link>
+          ))}
         </div>
 
         {/* Upgrade CTA */}
@@ -218,108 +162,6 @@ export default function FreeResourcesPage() {
           </div>
         </div>
       </main>
-
-      {/* Email Capture Modal */}
-      {selectedResource && !showSuccess && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">{selectedResource.icon}</span>
-                <h3 className="text-lg font-bold text-gray-900">{selectedResource.name}</h3>
-              </div>
-              <button
-                onClick={closeModal}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-
-            <p className="text-gray-600 mb-6">
-              Enter your email to get instant access to this resource.
-            </p>
-
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your@email.com"
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-900"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Name (optional)
-                </label>
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Your name"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-900"
-                />
-              </div>
-
-              {error && (
-                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-2 rounded-lg text-sm">
-                  {error}
-                </div>
-              )}
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg transition-colors disabled:opacity-50"
-              >
-                {isSubmitting ? 'Processing...' : 'Get Free Access'}
-              </button>
-
-              <p className="text-xs text-gray-500 text-center">
-                By submitting, you agree to receive occasional emails from GovCon Giants.
-                Unsubscribe anytime.
-              </p>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* Download Success Modal */}
-      {selectedResource && showSuccess && downloadUrl && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 text-center">
-            <div className="text-5xl mb-4">🎉</div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Access Granted!</h3>
-            <p className="text-gray-600 mb-6">
-              Your download for <strong>{selectedResource.name}</strong> is ready.
-            </p>
-
-            <a
-              href={downloadUrl}
-              download
-              className="block w-full px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg transition-colors mb-4"
-            >
-              Download Now
-            </a>
-
-            <button
-              onClick={closeModal}
-              className="text-gray-500 hover:text-gray-700 text-sm"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* Footer */}
       <footer className="mt-12 py-8 text-center text-gray-600">
