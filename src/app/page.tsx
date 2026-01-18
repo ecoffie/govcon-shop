@@ -505,8 +505,7 @@ export default function Home() {
               <ul className="space-y-3 mb-6 text-sm text-gray-800">
                 <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> <strong>Everything in Starter, plus:</strong></li>
                 <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Recompete Contracts</li>
-                <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Prime Lookup</li>
-                <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Federal Market Assassin</li>
+                <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Market Assassin Standard</li>
               </ul>
               <div className="text-center text-sm text-gray-500 mb-4 line-through">$1,437 if bought separately</div>
               <a href="https://buy.govcongiants.org/checkout/buy/9a5bd252-b7a5-4bc5-be50-1d3305dd9069" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-amber-500 text-white text-center rounded-lg font-semibold hover:bg-amber-400 transition-all">
