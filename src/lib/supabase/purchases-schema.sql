@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS purchases (
   license_key TEXT,
   amount_paid INTEGER DEFAULT 0,
   status TEXT DEFAULT 'completed' CHECK (status IN ('completed', 'refunded', 'pending')),
+  activated_at TIMESTAMP WITH TIME ZONE,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
