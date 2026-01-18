@@ -206,61 +206,32 @@ export default function Home() {
               </div>
             </Link>
 
-            {/* Opportunity Hunter - FREE */}
-            <Link href="/opportunity-hunter" className="block bg-white border border-gray-200 rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg hover:border-emerald-500 cursor-pointer">
-              <div className="h-48 bg-gradient-to-br from-blue-600 to-blue-800 relative overflow-hidden">
-                <Image src="/images/products/opportunity-hunter/opp scout home page.png" alt="Opportunity Hunter" fill className="object-cover object-top" />
-              </div>
-              <div className="p-6">
-                <span className="inline-block bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">FREE</span>
-                <h3 className="text-xl font-bold mb-2 text-gray-900">Opportunity Hunter</h3>
-                <p className="text-gray-500 text-sm mb-4">Find out which government buyers buy what you sell. Identify your ideal federal customers in minutes.</p>
-                <ul className="text-sm mb-5 space-y-1">
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Agency Spending Analysis</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Prime Contractor Matching</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> NAICS-Based Targeting</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Historical Spend Data</li>
-                </ul>
-                <div className="flex justify-between items-center pt-4 border-t border-gray-200">
-                  <div>
-                    <div className="text-sm text-gray-400 line-through">$97/mo value</div>
-                    <div className="text-2xl font-bold text-blue-800">FREE</div>
-                    <div className="text-xs text-gray-500">No credit card</div>
-                  </div>
-                  <span className="px-5 py-2 bg-blue-800 text-white rounded-md font-semibold text-sm">
-                    Start Free
-                  </span>
-                </div>
-              </div>
-            </Link>
-
-            {/* Opportunity Hunter Pro - PAID */}
-            <a href="https://buy.govcongiants.org/checkout/buy/1ba3745a-da20-4635-9601-a258a4a3171a" target="_blank" rel="noopener noreferrer" className="block bg-white border border-gray-200 rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg hover:border-amber-500 cursor-pointer">
+            {/* Opportunity Hunter Pro - with Free option */}
+            <Link href="/opportunity-hunter" className="block bg-white border border-gray-200 rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg hover:border-amber-500 cursor-pointer">
               <div className="h-48 bg-gradient-to-br from-amber-500 to-orange-600 relative overflow-hidden">
                 <Image src="/images/products/opportunity-hunter/opp scout home page.png" alt="Opportunity Hunter Pro" fill className="object-cover object-top" />
               </div>
               <div className="p-6">
-                <span className="inline-block bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">PRO</span>
-                <h3 className="text-xl font-bold mb-2 text-gray-900">Opportunity Hunter Pro</h3>
-                <p className="text-gray-500 text-sm mb-4">Advanced opportunity intelligence with unlimited searches, priority data, and premium features.</p>
+                <span className="inline-block bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">FREE + PRO</span>
+                <h3 className="text-xl font-bold mb-2 text-gray-900">Opportunity Hunter</h3>
+                <p className="text-gray-500 text-sm mb-4">Find government buyers for your services. Free version available, Pro unlocks unlimited features.</p>
                 <ul className="text-sm mb-5 space-y-1">
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-amber-500 font-bold">✓</span> Everything in Free, plus:</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-amber-500 font-bold">✓</span> Unlimited Searches</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-amber-500 font-bold">✓</span> Advanced Filters</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-amber-500 font-bold">✓</span> Export to CSV</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Agency Spending Analysis</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Prime Contractor Matching</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-amber-500 font-bold">✓</span> Unlimited Searches (Pro)</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-amber-500 font-bold">✓</span> Export to CSV (Pro)</li>
                 </ul>
                 <div className="flex justify-between items-center pt-4 border-t border-gray-200">
                   <div>
-                    <div className="text-sm text-gray-400 line-through">$97/mo</div>
-                    <div className="text-2xl font-bold text-blue-800">$49</div>
-                    <div className="text-xs text-gray-500">one-time</div>
+                    <div className="text-2xl font-bold text-emerald-600">FREE</div>
+                    <div className="text-xs text-gray-500">or $49 for Pro</div>
                   </div>
                   <span className="px-5 py-2 bg-amber-500 text-white rounded-md font-semibold text-sm">
-                    Get Pro
+                    Get Started
                   </span>
                 </div>
               </div>
-            </a>
+            </Link>
 
             {/* SBLO Directory - FREE PDF */}
             <Link href="/sblo-directory" className="block bg-white border border-gray-200 rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg hover:border-emerald-500 cursor-pointer">
