@@ -478,12 +478,12 @@ export default function Home() {
                 <div className="text-4xl font-bold text-gray-900">$497</div>
                 <div className="text-sm text-emerald-600 font-medium">One-Time Payment</div>
               </div>
-              <ul className="space-y-3 mb-6 text-sm">
-                <li className="flex items-center gap-2"><span className="text-emerald-500">✓</span> Opportunity Hunter (FREE)</li>
-                <li className="flex items-center gap-2"><span className="text-emerald-500">✓</span> Contractor Database</li>
-                <li className="flex items-center gap-2"><span className="text-emerald-500">✓</span> AI Content Generator</li>
+              <ul className="space-y-3 mb-6 text-sm text-gray-800">
+                <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> Opportunity Hunter (FREE)</li>
+                <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> Contractor Database</li>
+                <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> AI Content Generator</li>
               </ul>
-              <div className="text-center text-sm text-gray-400 mb-4 line-through">$494 if bought separately</div>
+              <div className="text-center text-sm text-gray-500 mb-4 line-through">$494 if bought separately</div>
               <a href="https://govcongiants.lemonsqueezy.com/checkout/buy/starter-bundle" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-blue-800 text-white text-center rounded-lg font-semibold hover:bg-blue-700 transition-all">
                 Get Starter Bundle
               </a>
