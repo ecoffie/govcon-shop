@@ -77,10 +77,16 @@ function SuccessContent() {
 
           <div className="space-y-4">
             <Link
+              href="/activate"
+              className="block w-full px-6 py-3 bg-gradient-to-r from-blue-800 to-purple-600 hover:shadow-lg text-white font-bold rounded-lg transition-all text-center"
+            >
+              Activate Your License
+            </Link>
+            <Link
               href="/"
               className="block w-full px-6 py-3 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold rounded-lg transition-colors text-center"
             >
-              Access Your Tools
+              Back to Store
             </Link>
             <p className="text-sm text-gray-500">
               Need help? Contact us at{' '}
