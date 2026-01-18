@@ -66,7 +66,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/buy/starter-bundle',
-        destination: 'https://buy.govcongiants.org/checkout/buy/9a5bd252-b7a5-4bc5-be50-1d3305dd9069',
+        destination: 'https://buy.govcongiants.org/checkout/buy/20575f57-30db-4120-9c2f-da7a6302a0fd',
         permanent: false,
       },
       {

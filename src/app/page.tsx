@@ -475,7 +475,7 @@ export default function Home() {
                 <h3 className="text-2xl font-bold text-gray-900">Starter Bundle</h3>
               </div>
               <div className="text-center mb-6">
-                <div className="text-4xl font-bold text-gray-900">$497</div>
+                <div className="text-4xl font-bold text-gray-900">$697</div>
                 <div className="text-sm text-emerald-600 font-medium">One-Time Payment</div>
               </div>
               <ul className="space-y-3 mb-6 text-sm text-gray-800">
@@ -483,8 +483,8 @@ export default function Home() {
                 <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> Contractor Database</li>
                 <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> AI Content Generator</li>
               </ul>
-              <div className="text-center text-sm text-gray-500 mb-4 line-through">$494 if bought separately</div>
-              <a href="https://buy.govcongiants.org/checkout/buy/9a5bd252-b7a5-4bc5-be50-1d3305dd9069" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-blue-800 text-white text-center rounded-lg font-semibold hover:bg-blue-700 transition-all">
+              <div className="text-center text-sm text-gray-500 mb-4 line-through">$894 if bought separately</div>
+              <a href="https://buy.govcongiants.org/checkout/buy/20575f57-30db-4120-9c2f-da7a6302a0fd" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-blue-800 text-white text-center rounded-lg font-semibold hover:bg-blue-700 transition-all">
                 Get Starter Bundle
               </a>
             </div>
