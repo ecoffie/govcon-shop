@@ -27,12 +27,19 @@ CREATE TABLE IF NOT EXISTS leads (
   company TEXT,
   source TEXT, -- which resource they signed up for
   resources_accessed TEXT[] DEFAULT '{}', -- array of resource IDs they've accessed
+  email_verified BOOLEAN DEFAULT FALSE,
+  verification_token TEXT,
+  verification_sent_at TIMESTAMP WITH TIME ZONE,
+  verified_at TIMESTAMP WITH TIME ZONE,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
 -- Index for email lookups
 CREATE INDEX IF NOT EXISTS idx_leads_email ON leads(email);
+
+-- Index for verification token lookups
+CREATE INDEX IF NOT EXISTS idx_leads_verification_token ON leads(verification_token);
 
 -- Row Level Security (RLS) Policies
 
