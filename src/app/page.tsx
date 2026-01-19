@@ -33,10 +33,10 @@ export default function Home() {
       <section className="bg-gradient-to-r from-blue-800 to-purple-600 text-white py-20 px-6 text-center">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
-            Discover Tools for Federal Contractors
+            Stop Losing Contracts to Better-Prepared Competitors
           </h1>
           <p className="text-xl mb-8 opacity-95">
-            Access powerful databases, guides, and resources to grow your government contracting business. Everything you need in one place.
+            The contractors winning federal deals aren&apos;t smarter than you—they just have better intel. Get the same market intelligence, teaming connections, and BD tools that top performers use.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <a href="#tools" className="px-8 py-4 bg-white text-blue-800 rounded-lg font-bold text-lg hover:shadow-xl transition-all hover:-translate-y-0.5">
@@ -102,12 +102,12 @@ export default function Home() {
               <div className="p-6">
                 <span className="inline-block bg-red-600 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">FLAGSHIP</span>
                 <h3 className="text-xl font-bold mb-2 text-gray-900">Federal Market Assassin</h3>
-                <p className="text-gray-500 text-sm mb-4">Enter 5 inputs. Select target agencies. Get 8 comprehensive strategic reports instantly. The ultimate GovCon intelligence system.</p>
+                <p className="text-gray-500 text-sm mb-4">Stop guessing which agencies to target. Get the same intel $50K consultants charge for—in 5 minutes.</p>
                 <ul className="text-sm mb-5 space-y-1">
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> 8 Strategic Reports</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Agency Spending Analysis</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Subcontracting Opportunities</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> OSBP Contacts Directory</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Know where the money is spent</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Find decision makers first</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Identify teaming partners</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Save weeks of research</li>
                 </ul>
                 <div className="flex justify-between items-center pt-4 border-t border-gray-200">
                   <div>
@@ -129,13 +129,13 @@ export default function Home() {
               </div>
               <div className="p-6">
                 <span className="inline-block bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">PREMIUM</span>
-                <h3 className="text-xl font-bold mb-2 text-gray-900">LinkedIn Content Creator</h3>
-                <p className="text-gray-500 text-sm mb-4">Create LinkedIn posts that resonate with government buyers. GovCon-tuned AI trained on 146 viral posts.</p>
+                <h3 className="text-xl font-bold mb-2 text-gray-900">GovCon Content Generator</h3>
+                <p className="text-gray-500 text-sm mb-4">Stop staring at blank screens. Stop sounding like every other contractor. Generate posts that actually get engagement.</p>
                 <ul className="text-sm mb-5 space-y-1">
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Generate 10 Posts Per Click</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> 175 Federal Agencies</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> GovCon-Tuned AI Model</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> GEO Boost Optimization</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Sound like a GovCon expert</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Save 5+ hours per week</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Get found by AI search engines</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> 10 posts with one click</li>
                 </ul>
                 <div className="flex justify-between items-center pt-4 border-t border-gray-200">
                   <div>
@@ -158,12 +158,12 @@ export default function Home() {
               <div className="p-6">
                 <span className="inline-block bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">PREMIUM</span>
                 <h3 className="text-xl font-bold mb-2 text-gray-900">Interactive SBLO & Subcontractor Database</h3>
-                <p className="text-gray-500 text-sm mb-4">Interactive searchable version of your Prime/Tier-2/SBLO directories. Pro tier adds AI teaming match + exports. Massive upgrade from free PDFs.</p>
+                <p className="text-gray-500 text-sm mb-4">Stop cold-calling primes who don&apos;t team. Find the ones who need your certs and get direct SBLO contact info.</p>
                 <ul className="text-sm mb-5 space-y-1">
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> 3,500+ Federal Contractors</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> SBLO Contact Info</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Teaming Partner Finder</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Vendor Portal Links</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Skip the gatekeepers</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Find primes who need you</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Save 20+ hours of research</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Start outreach today</li>
                 </ul>
                 <div className="flex justify-between items-center pt-4 border-t border-gray-200">
                   <div>
@@ -186,12 +186,12 @@ export default function Home() {
               <div className="p-6">
                 <span className="inline-block bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">PREMIUM</span>
                 <h3 className="text-xl font-bold mb-2 text-gray-900">Expiring Contracts Database</h3>
-                <p className="text-gray-500 text-sm mb-4">Track expiring federal contracts. Get ahead of competition with incumbent contractor details.</p>
+                <p className="text-gray-500 text-sm mb-4">Stop fighting 50 bidders on new contracts. Recompetes are easier—be first in line when $221B gets rebid.</p>
                 <ul className="text-sm mb-5 space-y-1">
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Contracts Expiring 12 Months</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Prime Contractor Details</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> NAICS Code Filtering</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Historical Performance Data</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Win with less competition</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Contact primes early</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Plan your pipeline ahead</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Focus on winnable deals</li>
                 </ul>
                 <div className="flex justify-between items-center pt-4 border-t border-gray-200">
                   <div>
@@ -214,11 +214,11 @@ export default function Home() {
               <div className="p-6">
                 <span className="inline-block bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">FREE + PRO</span>
                 <h3 className="text-xl font-bold mb-2 text-gray-900">Opportunity Hunter</h3>
-                <p className="text-gray-500 text-sm mb-4">Find government buyers for your services. Free version available, Pro unlocks unlimited features.</p>
+                <p className="text-gray-500 text-sm mb-4">Stop guessing who buys what you sell. Find the exact agencies spending money in your NAICS codes.</p>
                 <ul className="text-sm mb-5 space-y-1">
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Agency Spending Analysis</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Prime Contractor Matching</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-amber-500 font-bold">✓</span> Unlimited Searches (Pro)</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Find your ideal buyers</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> See who&apos;s spending money</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-amber-500 font-bold">✓</span> Unlimited searches (Pro)</li>
                   <li className="flex items-center gap-2 text-gray-700"><span className="text-amber-500 font-bold">✓</span> Export to CSV (Pro)</li>
                 </ul>
                 <div className="flex justify-between items-center pt-4 border-t border-gray-200">
@@ -233,14 +233,14 @@ export default function Home() {
               </div>
             </Link>
 
-            {/* SBLO Directory - FREE PDF */}
+            {/* SBLO Contact List - FREE SAMPLE */}
             <Link href="/sblo-directory" className="block bg-white border border-gray-200 rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg hover:border-emerald-500 cursor-pointer">
               <div className="h-48 bg-gradient-to-br from-emerald-500 to-teal-500 relative overflow-hidden">
-                <Image src="/images/products/sblo-directory/main page prime.png" alt="SBLO Directory" fill className="object-cover object-top" />
+                <Image src="/images/products/sblo-directory/main page prime.png" alt="SBLO Contact List" fill className="object-cover object-top" />
               </div>
               <div className="p-6">
-                <span className="inline-block bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">FREE PDF</span>
-                <h3 className="text-xl font-bold mb-2 text-gray-900">SBLO Contact Directory</h3>
+                <span className="inline-block bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">FREE SAMPLE</span>
+                <h3 className="text-xl font-bold mb-2 text-gray-900">SBLO Contact List</h3>
                 <p className="text-gray-500 text-sm mb-4">Small Business Liaison Officers (SBLO) at federal agencies and prime contractors.</p>
                 <ul className="text-sm mb-5 space-y-1">
                   <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> 76+ Agencies Covered</li>
@@ -373,14 +373,14 @@ export default function Home() {
               </div>
             </Link>
 
-            {/* Tier-2 Supplier Directory - FREE */}
+            {/* Tier-2 Supplier List - FREE SAMPLE */}
             <Link href="/tier2-directory" className="block bg-white border border-gray-200 rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg hover:border-emerald-500 cursor-pointer">
               <div className="h-48 bg-gradient-to-br from-purple-600 to-violet-600 relative overflow-hidden">
-                <Image src="/images/products/tier2-directory/tier 2 main.png" alt="Tier-2 Directory" fill className="object-cover object-top" />
+                <Image src="/images/products/tier2-directory/tier 2 main.png" alt="Tier-2 Supplier List" fill className="object-cover object-top" />
               </div>
               <div className="p-6">
-                <span className="inline-block bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">FREE PDF</span>
-                <h3 className="text-xl font-bold mb-2 text-gray-900">Tier-2 Supplier Directory</h3>
+                <span className="inline-block bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">FREE SAMPLE</span>
+                <h3 className="text-xl font-bold mb-2 text-gray-900">Tier-2 Supplier List</h3>
                 <p className="text-gray-500 text-sm mb-4">Access Tier-2 supplier contacts and vendor registration portals at major prime contractors.</p>
                 <ul className="text-sm mb-5 space-y-1">
                   <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> 50+ Prime Contractors</li>

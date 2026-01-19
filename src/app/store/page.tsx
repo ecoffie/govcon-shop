@@ -484,7 +484,7 @@ export default function Home() {
                 <li className="flex items-center gap-2"><span className="text-emerald-500">✓</span> AI Content Generator</li>
               </ul>
               <div className="text-center text-sm text-gray-400 mb-4 line-through">$494 if bought separately</div>
-              <a href="https://govcongiants.lemonsqueezy.com/checkout/buy/starter-bundle" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-blue-800 text-white text-center rounded-lg font-semibold hover:bg-blue-700 transition-all">
+              <a href="https://buy.govcongiants.org/checkout/buy/20575f57-30db-4120-9c2f-da7a6302a0fd" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-blue-800 text-white text-center rounded-lg font-semibold hover:bg-blue-700 transition-all">
                 Get Starter Bundle
               </a>
             </div>
@@ -509,7 +509,7 @@ export default function Home() {
                 <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> Federal Market Assassin</li>
               </ul>
               <div className="text-center text-sm text-gray-400 mb-4 line-through">$1,138 if bought separately</div>
-              <a href="https://govcongiants.lemonsqueezy.com/checkout/buy/pro-giant-bundle" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-amber-500 text-white text-center rounded-lg font-semibold hover:bg-amber-400 transition-all">
+              <a href="https://buy.govcongiants.org/checkout/buy/9a5bd252-b7a5-4bc5-be50-1d3305dd9069" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-amber-500 text-white text-center rounded-lg font-semibold hover:bg-amber-400 transition-all">
                 Get Pro Giant Bundle
               </a>
             </div>
@@ -531,7 +531,7 @@ export default function Home() {
                 <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Future Tools Access</li>
               </ul>
               <div className="text-center text-sm opacity-50 mb-4 line-through">$2,000+ value</div>
-              <a href="https://govcongiants.lemonsqueezy.com/checkout/buy/ultimate-giant-bundle" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 text-center rounded-lg font-bold hover:from-amber-300 hover:to-amber-400 transition-all">
+              <a href="https://buy.govcongiants.org/checkout/buy/67349828-9e8a-4e1a-bf6f-09b267c4c97e" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 text-center rounded-lg font-bold hover:from-amber-300 hover:to-amber-400 transition-all">
                 Get Ultimate Giant
               </a>
             </div>

@@ -3,21 +3,21 @@ import ProductPageAppSumo from '@/components/ProductPageAppSumo';
 export default function AIContentPage() {
   return (
     <ProductPageAppSumo
-      title="LinkedIn Content Creator"
+      title="GovCon Content Generator"
       tagline="Create LinkedIn posts that resonate with government buyers"
-      description="Stop staring at blank screens wondering what to post. The AI Content Generator creates LinkedIn posts specifically designed to resonate with government buyers and contracting officers. Our custom fine-tuned model was trained on 146 viral GovCon posts, so it writes in the authentic voice of successful GovCon thought leaders."
+      description="Stop staring at blank screens wondering what to post. Stop sounding like every other contractor on LinkedIn. Stop wasting hours trying to figure out what government buyers want to hear. The GovCon Content Generator creates LinkedIn posts specifically designed to resonate with government buyers and contracting officers. Our custom fine-tuned model was trained on 146 viral GovCon posts, so it writes in the authentic voice of successful GovCon thought leaders—not generic AI slop that gets ignored."
       primaryColor="#7c3aed"
       gradientFrom="#7c3aed"
       gradientTo="#a855f7"
       price="$197"
       originalPrice="$588/year"
-      checkoutUrl="https://govcongiants.lemonsqueezy.com/checkout/buy/ai-content-generator"
+      checkoutUrl="https://buy.govcongiants.org/checkout/buy/11d36efa-5d16-4ebe-92ca-179c79cb5990"
       pricingTiers={[
         {
           name: 'Content Engine',
           price: '$197',
           originalPrice: '$588/year',
-          checkoutUrl: 'https://govcongiants.lemonsqueezy.com/checkout/buy/ai-content-generator',
+          checkoutUrl: 'https://buy.govcongiants.org/checkout/buy/11d36efa-5d16-4ebe-92ca-179c79cb5990',
           description: 'Text-only LinkedIn post generation',
           features: [
             'Lifetime access',
@@ -32,7 +32,7 @@ export default function AIContentPage() {
           name: 'Full Fix',
           price: '$397',
           originalPrice: '$1,176/year',
-          checkoutUrl: 'https://govcongiants.lemonsqueezy.com/checkout/buy/ai-content-generator-full',
+          checkoutUrl: 'https://buy.govcongiants.org/checkout/buy/63f21b6d-18d3-40eb-8a79-f4b795a8bfef?enabled=1227185',
           description: 'Text + graphics & carousel generation',
           features: [
             'Everything in Content Engine, plus:',
@@ -87,11 +87,11 @@ export default function AIContentPage() {
         },
       ]}
       tldr={[
-        'Generate 10 LinkedIn posts with one click',
-        '175 federal agencies to target',
-        'GovCon-tuned AI model (trained on 146 viral posts)',
-        'GEO Boost for AI search engine optimization',
-        'Diverse content styles tailored to your target agencies',
+        'Stop staring at blank screens—generate 10 posts with one click',
+        'Sound like a GovCon expert, not a generic AI bot',
+        'Target 175 federal agencies with agency-specific messaging',
+        'Get found by AI search engines (ChatGPT, Perplexity) with GEO Boost',
+        'Save 5+ hours per week on content creation',
       ]}
       glanceItems={[
         { label: 'Output', value: '10 LinkedIn posts per generation' },
@@ -110,22 +110,22 @@ export default function AIContentPage() {
       ]}
       features={[
         {
-          icon: 'AI',
+          icon: '🤖',
           title: 'GovCon-Tuned AI Model',
           description: 'Our custom fine-tuned model was trained specifically on high-performing government contracting LinkedIn content. It writes in the authentic voice of successful GovCon thought leaders.',
         },
         {
-          icon: 'GEO',
+          icon: '🚀',
           title: 'GEO Boost (Generative Engine Optimization)',
           description: 'Optimize your content for AI search engines like ChatGPT and Perplexity. Uses question-answer format, clear structure, and authoritative sources to appear in AI-generated responses.',
         },
         {
-          icon: '10x',
+          icon: '⚡',
           title: 'Generate 10 Posts at Once',
           description: "Get a diverse mix of content styles tailored to your target agencies. One click gives you a week's worth of content.",
         },
         {
-          icon: 'AGY',
+          icon: '🎯',
           title: 'Agency-Specific Targeting',
           description: 'Select from 175 federal agencies across Navy, Army, Air Force, DoD-wide, and civilian categories. Content is tailored to resonate with your specific target buyers.',
         },
@@ -133,13 +133,15 @@ export default function AIContentPage() {
       benefits={[
         'Lifetime access (one-time payment)',
         'Generate 10 posts per click',
-        '175 federal agencies',
-        'GovCon-tuned AI model',
-        'GEO Boost optimization',
+        '175 federal agencies to target',
+        'GovCon-tuned AI (trained on 146 viral posts)',
+        'GEO Boost for AI search visibility',
+        'Stop sounding like every other contractor',
+        'Save 5+ hours per week',
         'All future updates included',
       ]}
-      highlightTitle="Trained on 146 Viral GovCon Posts"
-      highlightText="This isn't generic AI content. Our model studied what actually works in the GovCon LinkedIn space - the hooks, the storytelling, the CTAs that drive engagement. The result? Content that sounds like it came from a seasoned GovCon professional, not a robot."
+      highlightTitle="Stop Blending In. Start Standing Out."
+      highlightText="Most contractors post the same boring content: 'We're excited to announce...' or 'Proud to share...' That's why they get ignored. Our model was trained on 146 viral GovCon posts—the hooks that stop the scroll, the storytelling that builds trust, and the CTAs that actually get responses. The result? Content that sounds like a seasoned GovCon thought leader, not another forgettable vendor."
       reviews={[
         {
           name: 'James R.',

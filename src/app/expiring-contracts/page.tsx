@@ -4,14 +4,14 @@ export default function ExpiringContractsPage() {
   return (
     <ProductPageAppSumo
       title="Expiring Contracts Forecast"
-      tagline="Track $221B+ in expiring federal contracts and get ahead of recompete opportunities"
-      description="When contracts expire, they get recompeted—and thats your window of opportunity. The Expiring Contracts Forecast shows you exactly which contracts are ending, when primes are building their teams, and where to focus your BD efforts. Stop chasing dead ends and start targeting real opportunities."
+      tagline="Be first in line when $221B in contracts get rebid."
+      description="Stop chasing new contracts where you have no past performance. Stop competing against 50 other bidders. Recompetes are the easiest path to federal contracts—the government already knows they need the service, and the prime already proved it works. The only question is: will you be on the team when they rebid? This database tells you exactly which contracts are expiring, who the prime is, and when to reach out—months before your competitors even know the opportunity exists."
       primaryColor="#0891b2"
       gradientFrom="#0891b2"
       gradientTo="#06b6d4"
       price="$397"
       originalPrice="$997/month"
-      checkoutUrl="https://govcongiants.lemonsqueezy.com/checkout/buy/expiring-contracts"
+      checkoutUrl="https://buy.govcongiants.org/checkout/buy/00757b65-ead6-457b-a27b-4b3f81b63d7d"
       videoTitle="Expiring Contracts Forecast Demo"
       videoSubtitle="See how to find recompete opportunities 3-6 months early"
       screenshots={[
@@ -56,11 +56,11 @@ export default function ExpiringContractsPage() {
         },
       ]}
       tldr={[
-        'Access $221B+ in expiring contract data with monthly updates',
-        'Get prime contractor details before they start building teams',
-        'Filter by NAICS code, agency, and contract value',
-        'Identify recompete opportunities 3-6 months in advance',
-        'Export to CSV for your CRM',
+        'Stop competing against 50 bidders on new contracts',
+        'Get on recompete teams before they\'re formed',
+        'Contact primes 3-6 months before they start looking',
+        'Focus only on contracts in your NAICS codes',
+        'Win easier—recompetes have less competition',
       ]}
       glanceItems={[
         { label: 'Contract Value', value: '$221B+ tracked' },
@@ -100,16 +100,17 @@ export default function ExpiringContractsPage() {
         },
       ]}
       benefits={[
-        'Lifetime access to database',
-        '$221B+ contract data',
-        'Historical data included',
-        'NAICS code filtering',
-        'Export to CSV',
-        'Prime contractor details',
-        'All future updates',
+        'Win contracts with less competition',
+        'Be first to contact primes building teams',
+        'Stop wasting time on long-shot opportunities',
+        'Focus your BD on contracts you can actually win',
+        'Know exactly when to reach out',
+        'Plan your pipeline months in advance',
+        'Lifetime access (one-time payment)',
+        'Monthly updates included',
       ]}
-      highlightTitle="Recompetes Are the Easiest Path to Federal Contracts"
-      highlightText="New contracts are competitive. But recompetes? The government already knows they need the service. The prime already proved it works. Your job is simply to be on the team when they rebid. This database tells you exactly when that window opens."
+      highlightTitle="Why Fight for New Contracts When You Can Walk Into Recompetes?"
+      highlightText="New contracts are a bloodbath—50+ bidders, no past performance advantage, months of proposal work for a 2% win rate. But recompetes? The incumbent has to rebuild their team anyway. The government already approved the budget. Your only job is to be in the room when the prime starts looking for subs. This database tells you exactly when that window opens—months before anyone else knows."
       reviews={[
         {
           name: 'David K.',

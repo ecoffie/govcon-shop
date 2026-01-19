@@ -3,16 +3,56 @@ import ProductPageAppSumo from '@/components/ProductPageAppSumo';
 export default function Tier2DirectoryPage() {
   return (
     <ProductPageAppSumo
-      title="Tier-2 Supplier Directory"
+      title="Tier-2 Supplier List"
       tagline="Access comprehensive Tier-2 supplier contacts with vendor registration portals"
-      description="Tier-2 subcontracting is where many small businesses find their first federal contracts. This directory gives you direct access to supplier contacts and registration portals, so you can get on prime contractors supplier lists faster. Stop searching for how to become a supplier - get direct links to register."
+      description="Tier-2 subcontracting is where many small businesses find their first federal contracts. This list gives you direct access to supplier contacts and registration portals, so you can get on prime contractors supplier lists faster. Stop searching for how to become a supplier - get direct links to register."
       primaryColor="#8b5cf6"
       gradientFrom="#8b5cf6"
       gradientTo="#a855f7"
       price="FREE"
       originalPrice="$697 value"
       checkoutUrl="/free-resources"
-      videoTitle="Tier-2 Supplier Directory"
+      pricingTiers={[
+        {
+          name: 'Free Sample',
+          price: 'FREE',
+          originalPrice: '$697 value',
+          checkoutUrl: '/free-resources',
+          description: '50+ prime contractor contacts & portal links',
+          features: [
+            '50+ prime contractors',
+            'Vendor portal links',
+            'Supplier contacts',
+            'NAICS code organized',
+            'Instant PDF download',
+          ],
+        },
+        {
+          name: 'Full Database',
+          price: '$497',
+          originalPrice: '$997 value',
+          checkoutUrl: 'https://govcongiants.lemonsqueezy.com/checkout/buy/contractor-database',
+          description: '3,500+ contractors vs 50+ in free list',
+          features: [
+            '3,500+ prime contractors',
+            'Contract history & values',
+            'NAICS code filtering',
+            'Agency-specific searches',
+            'Export to CSV',
+            'Teaming partner search',
+            'All future updates',
+          ],
+        },
+      ]}
+      upgradeProduct={{
+        title: 'Full Contractor Database',
+        description: 'Go from 50+ contacts to 3,500+ prime contractors with contract history, NAICS codes, and direct contact information.',
+        price: '$497',
+        originalPrice: '$997',
+        checkoutUrl: 'https://govcongiants.lemonsqueezy.com/checkout/buy/contractor-database',
+        linkUrl: '/contractor-database-product',
+      }}
+      videoTitle="Tier-2 Supplier List"
       videoSubtitle="Direct links to vendor registration portals"
       screenshots={[
         '/images/products/tier2-directory/tier 2 main.png',
@@ -57,11 +97,11 @@ export default function Tier2DirectoryPage() {
       ]}
       categoriesTitle="Prime Contractors Included"
       categories={[
-        { title: 'Lockheed Martin', highlight: true },
-        { title: 'Raytheon', highlight: true },
-        { title: 'Northrop Grumman', highlight: true },
-        { title: 'General Dynamics', highlight: true },
-        { title: 'Booz Allen Hamilton', highlight: true },
+        { title: 'Mid-Size Defense Primes', highlight: true },
+        { title: 'IT Services Contractors', highlight: true },
+        { title: 'Engineering Firms', highlight: true },
+        { title: 'Construction Primes', highlight: true },
+        { title: 'Professional Services', highlight: true },
         { title: '50+ More Primes', highlight: true },
       ]}
       features={[

@@ -3,17 +3,58 @@ import ProductPageAppSumo from '@/components/ProductPageAppSumo';
 export default function SBLODirectoryPage() {
   return (
     <ProductPageAppSumo
-      title="SBLO Contact Directory"
+      title="SBLO Contact List"
       tagline="Direct contacts to Small Business Liaison Officers at federal agencies and prime contractors"
-      description="Stop wasting time hunting for SBLO contacts. This comprehensive directory gives you direct access to Small Business Liaison Officers across 76+ federal agencies and major prime contractors. Get names, emails, phone numbers, and office locations so you can start building relationships today."
+      description="Stop wasting time hunting for SBLO contacts. This list gives you direct access to 225 Small Business Liaison Officers across 76+ federal agencies and major prime contractors. Get names, emails, phone numbers, and office locations so you can start building relationships today."
       primaryColor="#059669"
       gradientFrom="#059669"
       gradientTo="#10b981"
       price="FREE"
       originalPrice="$997 value"
       checkoutUrl="/free-resources"
-      videoTitle="SBLO Contact Directory"
-      videoSubtitle="76+ agencies with direct contact information"
+      pricingTiers={[
+        {
+          name: 'Free Sample',
+          price: 'FREE',
+          originalPrice: '$997 value',
+          checkoutUrl: '/free-resources',
+          description: '225 SBLO contacts for 76+ federal agencies',
+          features: [
+            '225 SBLO contacts',
+            'Instant PDF download',
+            '76+ federal agencies',
+            'Direct email addresses',
+            'Phone numbers included',
+            'Prime contractor contacts',
+          ],
+        },
+        {
+          name: 'Full Database',
+          price: '$497',
+          originalPrice: '$997 value',
+          checkoutUrl: 'https://govcongiants.lemonsqueezy.com/checkout/buy/contractor-database',
+          description: '3,500+ contractors vs 225 in free list',
+          features: [
+            '3,500+ prime contractors',
+            'Contract history & values',
+            'NAICS code filtering',
+            'Agency-specific searches',
+            'Export to CSV',
+            'Teaming partner search',
+            'All future updates',
+          ],
+        },
+      ]}
+      upgradeProduct={{
+        title: 'Full Contractor Database',
+        description: 'Go from 225 contacts to 3,500+ prime contractors with contract history, NAICS codes, and direct contact information.',
+        price: '$497',
+        originalPrice: '$997',
+        checkoutUrl: 'https://govcongiants.lemonsqueezy.com/checkout/buy/contractor-database',
+        linkUrl: '/contractor-database-product',
+      }}
+      videoTitle="SBLO Contact List"
+      videoSubtitle="225 contacts across 76+ agencies"
       screenshots={[
         '/images/products/sblo-directory/main page prime.png',
         '/images/products/sblo-directory/prime examples.png',

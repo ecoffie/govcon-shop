@@ -4,20 +4,20 @@ export default function MarketAssassinProductPage() {
   return (
     <ProductPageAppSumo
       title="Federal Market Assassin"
-      tagline="Enter 5 inputs. Select agencies. Get 8 strategic reports instantly."
-      description="Stop spending weeks on market research. Federal Market Assassin generates comprehensive market reports from just 5 core inputs—your certification status, ZIP code, PSC code, NAICS codes, and target agencies. Select your target agencies and instantly receive 8 strategic reports: Market Analytics, Government Buyers, Subcontracting Opportunities, IDV Contracts, Similar Awards, Tribal Contracting, and OSBP Contacts. Everything you need to dominate your market."
+      tagline="Stop guessing. Start winning. Get the intel your competitors don't have."
+      description="Stop spending weeks on market research that leads nowhere. Stop guessing which agencies to target. Stop losing to competitors who somehow always know more than you. Federal Market Assassin gives you the same market intelligence that $50K/year consultants charge for—in under 5 minutes. Enter 5 inputs, select your agencies, and instantly get 8 strategic reports that tell you exactly where to focus, who to contact, and how to win."
       primaryColor="#dc2626"
       gradientFrom="#dc2626"
       gradientTo="#991b1b"
       price="$297"
       originalPrice="$997 value"
-      checkoutUrl="https://govcongiants.lemonsqueezy.com/checkout/buy/market-assassin-standard"
+      checkoutUrl="https://buy.govcongiants.org/checkout/buy/1dcb791b-e1a1-4500-a4c2-bd255e8124e6"
       pricingTiers={[
         {
           name: 'Standard',
           price: '$297',
           originalPrice: '$997 value',
-          checkoutUrl: 'https://govcongiants.lemonsqueezy.com/checkout/buy/market-assassin-standard',
+          checkoutUrl: 'https://buy.govcongiants.org/checkout/buy/1dcb791b-e1a1-4500-a4c2-bd255e8124e6?enabled=1227284',
           description: 'Core 4 reports for essential market intelligence',
           features: [
             'Lifetime access',
@@ -33,7 +33,7 @@ export default function MarketAssassinProductPage() {
           name: 'Premium',
           price: '$497',
           originalPrice: '$1,997 value',
-          checkoutUrl: 'https://govcongiants.lemonsqueezy.com/checkout/buy/market-assassin-premium',
+          checkoutUrl: 'https://buy.govcongiants.org/checkout/buy/8ed4e356-497d-46f5-9674-cd48d3469fb9?enabled=1227287',
           description: 'Full 8 reports + unlimited generations & enhanced depth',
           features: [
             'Everything in Standard, plus:',
@@ -103,11 +103,11 @@ export default function MarketAssassinProductPage() {
         },
       ]}
       tldr={[
-        'Enter 5 inputs: Certification, ZIP, PSC, NAICS, Target Agencies',
-        'Select from 20+ federal agencies to target',
-        'Get 8 comprehensive strategic reports instantly',
-        'Market Analytics with spending trends and forecasts',
-        'Export to HTML, PDF, or JSON for your team',
+        'Stop wasting weeks on manual research—get answers in 5 minutes',
+        'Know exactly which agencies spend money in your NAICS codes',
+        'Find the decision makers and their contact information',
+        'Identify teaming partners with subcontracting goals',
+        'Time your outreach perfectly with spending trend data',
       ]}
       glanceItems={[
         { label: 'Reports Generated', value: '8 comprehensive reports' },
@@ -149,19 +149,17 @@ export default function MarketAssassinProductPage() {
         },
       ]}
       benefits={[
-        'Lifetime access',
-        '8 comprehensive reports',
-        'Market Analytics Dashboard',
-        'Government Buyers Report',
-        'Subcontracting Opportunities',
-        'IDV Contracts Analysis',
-        'Similar Awards Report',
-        'OSBP Contacts Directory',
-        'Export to HTML/PDF/JSON',
-        'All future updates',
+        'Stop guessing which agencies to target',
+        'Know exactly where the money is being spent',
+        'Find decision makers before your competitors do',
+        'Identify teaming partners who need your certs',
+        'Time your outreach for Q4 spending surges',
+        'Save weeks of manual research',
+        'Lifetime access (one-time payment)',
+        'All future updates included',
       ]}
-      highlightTitle="Weeks of Research in Minutes"
-      highlightText="Most contractors spend weeks compiling market research, hunting for contacts, and building target lists. Federal Market Assassin does it all in under 5 minutes. Enter your inputs, select your agencies, and get everything you need to build your BD strategy."
+      highlightTitle="Your Competitors Are Already Using This Intel"
+      highlightText="The contractors winning contracts aren't smarter than you—they just have better intelligence. They know which agencies are spending, who the decision makers are, and when to reach out. Federal Market Assassin levels the playing field. In 5 minutes, you'll have the same intel that used to require a $50K/year consultant or weeks of manual research."
       reviews={[
         {
           name: 'David K.',

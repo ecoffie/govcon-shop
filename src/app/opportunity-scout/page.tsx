@@ -1158,7 +1158,7 @@ export default function OpportunityScoutPage() {
               <div className="border-t border-gray-200 pt-4">
                 <h3 className="font-semibold text-gray-900 mb-3">New customer?</h3>
                 <a
-                  href="https://buy.stripe.com/00wcN60ke97c5d384UfnO0i"
+                  href="https://buy.govcongiants.org/checkout/buy/1ba3745a-da20-4635-9601-a258a4a3171a"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full py-3 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black font-bold rounded-lg text-center transition"

@@ -4,8 +4,8 @@ export default function ContractorDatabasePage() {
   return (
     <ProductPageAppSumo
       title="Interactive SBLO & Subcontractor Database"
-      tagline="Search 3,500+ federal contractors for teaming opportunities"
-      description="Stop wasting hours searching for teaming partners. The Federal Contractor Database gives you instant access to over 3,500 verified federal prime contractors, complete with contact information, contract history, SBLO contacts, and supplier portal links. Find the perfect teaming partner in minutes, not days."
+      tagline="Stop chasing primes who don't need you. Find the ones who do."
+      description="Stop wasting months cold-calling companies that don't team, don't have subcontracting goals, or aren't even winning contracts anymore. Stop getting ignored by gatekeepers. The Federal Contractor Database shows you exactly which primes need small business subs, who their SBLO contact is, and how to reach them directly. Find your next teaming partner in minutes, not months."
       primaryColor="#4f46e5"
       gradientFrom="#4f46e5"
       gradientTo="#7c3aed"
@@ -56,11 +56,11 @@ export default function ContractorDatabasePage() {
         },
       ]}
       tldr={[
-        '3,500+ verified federal prime contractors',
-        '800+ SBLO contacts with emails',
-        '115+ supplier portal links',
-        '$430B+ in contract data',
-        'Export to CSV for your CRM',
+        'Stop cold-calling companies that don\'t team',
+        'Find primes who actually need your certifications',
+        'Skip gatekeepers—get direct SBLO email addresses',
+        'Register on supplier portals before competitors',
+        'Export to CSV and start outreach the same day',
       ]}
       glanceItems={[
         { label: 'Contractors', value: '3,500+ primes' },
@@ -100,17 +100,17 @@ export default function ContractorDatabasePage() {
         },
       ]}
       benefits={[
+        'Stop wasting time on dead-end outreach',
+        'Find primes who need your specific certs',
+        'Skip gatekeepers with direct SBLO contacts',
+        'Get on vendor lists before your competitors',
+        'Save 20+ hours of manual research',
+        'Start your outreach campaign today',
         'Lifetime access (one-time payment)',
-        '3,500+ federal prime contractors',
-        '800+ SBLO contacts with emails',
-        '115+ supplier portal links',
-        '$430B+ in contract data',
-        'Advanced search & filtering',
-        'CSV export included',
         'All future updates included',
       ]}
-      highlightTitle="Stop Cold Calling the Wrong Companies"
-      highlightText="Most contractors waste months reaching out to companies that dont team, dont have subcontracting goals, or arent even active anymore. Our database shows you exactly who is winning contracts, who needs small business subs, and how to reach them."
+      highlightTitle="Your Perfect Teaming Partner Is Already Looking for You"
+      highlightText="Large primes have subcontracting goals they MUST meet. They need small businesses with your certifications. But they can't find you—and you can't find them. This database connects you directly to the SBLO (Small Business Liaison Officer) at 800+ companies who are actively looking for subs. Stop waiting to be found. Start reaching out to the right people."
       reviews={[
         {
           name: 'David K.',
