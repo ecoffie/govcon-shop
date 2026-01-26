@@ -13,13 +13,93 @@ interface Resource {
   value: string;
 }
 
+// Resource download card with tracking
+function ResourceCard({ resource, email }: { resource: Resource; email: string }) {
+  const [downloading, setDownloading] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleDownload = async () => {
+    setDownloading(true);
+    setError('');
+
+    try {
+      const response = await fetch(
+        `/api/download-resource?resource=${resource.id}&email=${encodeURIComponent(email)}`
+      );
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Download failed');
+      }
+
+      // Get the content type and create download
+      const contentType = response.headers.get('content-type') || '';
+      const blob = await response.blob();
+
+      // Create download link
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+
+      // Determine filename based on content type
+      if (contentType.includes('pdf')) {
+        a.download = `${resource.id}.pdf`;
+      } else if (contentType.includes('csv')) {
+        a.download = `${resource.id}.csv`;
+      } else if (contentType.includes('html')) {
+        // For HTML, open in new tab instead of download
+        window.open(url, '_blank');
+        setDownloading(false);
+        return;
+      } else {
+        a.download = resource.id;
+      }
+
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Download failed');
+    } finally {
+      setDownloading(false);
+    }
+  };
+
+  return (
+    <div className="bg-white rounded-xl shadow-lg p-6 border-2 border-slate-200 hover:border-green-400 hover:shadow-xl transition-all">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-3">
+          <span className="text-3xl">{resource.icon}</span>
+          <h3 className="text-lg font-bold text-gray-900">{resource.name}</h3>
+        </div>
+        <div className="text-right">
+          <span className="text-sm text-gray-400 line-through">{resource.value}</span>
+          <span className="block text-green-600 font-bold">FREE</span>
+        </div>
+      </div>
+      <p className="text-sm text-gray-600 mb-4">{resource.description}</p>
+      <button
+        onClick={handleDownload}
+        disabled={downloading}
+        className="block w-full px-4 py-2 rounded-lg font-medium text-center bg-green-500 text-white hover:bg-green-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {downloading ? 'Downloading...' : 'Download Now'}
+      </button>
+      {error && (
+        <p className="text-red-500 text-xs mt-2 text-center">{error}</p>
+      )}
+    </div>
+  );
+}
+
 const ALL_FREE_RESOURCES: Resource[] = [
   {
     id: 'sblo-list',
     name: 'SBLO Contact List',
     description: '225 Small Business Liaison Officers across 76+ federal agencies with direct emails and phone numbers.',
     icon: '📋',
-    downloadUrl: '/resources/sblo-contact-list.html',
+    downloadUrl: '', // Will be generated with email
     value: '$997',
   },
   {
@@ -27,7 +107,7 @@ const ALL_FREE_RESOURCES: Resource[] = [
     name: 'Tier-2 Supplier Directory',
     description: '50+ prime contractor supplier contacts with vendor registration portal links.',
     icon: '🏢',
-    downloadUrl: '/resources/tier2-supplier-directory.html',
+    downloadUrl: '',
     value: '$697',
   },
   {
@@ -35,7 +115,7 @@ const ALL_FREE_RESOURCES: Resource[] = [
     name: '75+ AI Prompts for GovCon',
     description: 'Ready-to-use AI prompts to accelerate your federal contracting business.',
     icon: '🤖',
-    downloadUrl: '/resources/ai-prompts-govcon.html',
+    downloadUrl: '',
     value: '$797',
   },
   {
@@ -43,7 +123,7 @@ const ALL_FREE_RESOURCES: Resource[] = [
     name: '2026 GovCon Action Plan',
     description: 'Your step-by-step roadmap to winning federal contracts in 2026.',
     icon: '📅',
-    downloadUrl: '/resources/action-plan-2026.html',
+    downloadUrl: '',
     value: '$497',
   },
   {
@@ -51,7 +131,7 @@ const ALL_FREE_RESOURCES: Resource[] = [
     name: 'December Spend Forecast',
     description: 'Year-end government spending predictions with hot agencies and categories.',
     icon: '💰',
-    downloadUrl: '/resources/december-spend-forecast.html',
+    downloadUrl: '',
     value: '$1,297',
   },
   {
@@ -59,7 +139,7 @@ const ALL_FREE_RESOURCES: Resource[] = [
     name: 'GovCon Guides & Templates',
     description: 'Comprehensive guides and ready-to-use templates for federal contracting success.',
     icon: '📄',
-    downloadUrl: '/resources/govcon-guides-templates.html',
+    downloadUrl: '',
     value: '$97',
   },
   {
@@ -67,7 +147,7 @@ const ALL_FREE_RESOURCES: Resource[] = [
     name: 'Expiring Contracts CSV',
     description: 'Sample of expiring federal contracts data for import into Excel or your CRM.',
     icon: '📊',
-    downloadUrl: '/resources/expiring-contracts-sample.csv',
+    downloadUrl: '',
     value: '$697',
   },
   {
@@ -75,7 +155,7 @@ const ALL_FREE_RESOURCES: Resource[] = [
     name: 'Tribal Contractor List',
     description: '500+ Native American-owned federal contractors for teaming opportunities.',
     icon: '🤝',
-    downloadUrl: '/resources/tribal-contractor-list.html',
+    downloadUrl: '',
     value: '$297',
   },
 ];
@@ -246,30 +326,11 @@ export default function AllFreeResourcesPage() {
         {/* Resources Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {ALL_FREE_RESOURCES.map((resource) => (
-            <div
+            <ResourceCard
               key={resource.id}
-              className="bg-white rounded-xl shadow-lg p-6 border-2 border-slate-200 hover:border-green-400 hover:shadow-xl transition-all"
-            >
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-3">
-                  <span className="text-3xl">{resource.icon}</span>
-                  <h3 className="text-lg font-bold text-gray-900">{resource.name}</h3>
-                </div>
-                <div className="text-right">
-                  <span className="text-sm text-gray-400 line-through">{resource.value}</span>
-                  <span className="block text-green-600 font-bold">FREE</span>
-                </div>
-              </div>
-              <p className="text-sm text-gray-600 mb-4">{resource.description}</p>
-              <a
-                href={resource.downloadUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full px-4 py-2 rounded-lg font-medium text-center bg-green-500 text-white hover:bg-green-600 transition-colors"
-              >
-                Download Now
-              </a>
-            </div>
+              resource={resource}
+              email={email}
+            />
           ))}
         </div>
 

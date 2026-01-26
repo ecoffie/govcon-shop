@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSupabase } from '@/lib/supabase/client';
 import { sendFreeResourceVerificationEmail } from '@/lib/send-email';
+import { checkRateLimit, getClientIp, RATE_LIMITS } from '@/lib/rate-limit';
 import crypto from 'crypto';
 
 // Generate a secure verification token
@@ -10,6 +11,31 @@ function generateVerificationToken(): string {
 
 export async function POST(request: NextRequest) {
   try {
+    const clientIp = getClientIp(request);
+
+    // Rate limit by IP first
+    const ipRateLimit = checkRateLimit(
+      `verification:ip:${clientIp}`,
+      RATE_LIMITS.verification
+    );
+
+    if (!ipRateLimit.success) {
+      console.log(`Rate limit exceeded for IP: ${clientIp}`);
+      return NextResponse.json(
+        {
+          error: 'Too many verification requests. Please try again later.',
+          retryAfter: ipRateLimit.resetIn
+        },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': String(ipRateLimit.resetIn),
+            'X-RateLimit-Remaining': '0',
+          }
+        }
+      );
+    }
+
     const { email, source } = await request.json();
 
     if (!email) {
@@ -29,6 +55,29 @@ export async function POST(request: NextRequest) {
     }
 
     const normalizedEmail = email.toLowerCase().trim();
+
+    // Rate limit by email
+    const emailRateLimit = checkRateLimit(
+      `verification:email:${normalizedEmail}`,
+      RATE_LIMITS.verificationPerEmail
+    );
+
+    if (!emailRateLimit.success) {
+      console.log(`Rate limit exceeded for email: ${normalizedEmail}`);
+      return NextResponse.json(
+        {
+          error: 'Too many verification requests for this email. Please check your inbox or try again later.',
+          retryAfter: emailRateLimit.resetIn
+        },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': String(emailRateLimit.resetIn),
+          }
+        }
+      );
+    }
+
     const supabase = getSupabase();
 
     if (!supabase) {
@@ -71,6 +120,7 @@ export async function POST(request: NextRequest) {
           verification_token: verificationToken,
           verification_sent_at: new Date().toISOString(),
           source: source || existingLead.source,
+          last_ip: clientIp,
         })
         .eq('email', normalizedEmail);
 
@@ -90,6 +140,8 @@ export async function POST(request: NextRequest) {
         verification_sent_at: new Date().toISOString(),
         email_verified: false,
         resources_accessed: [],
+        signup_ip: clientIp,
+        last_ip: clientIp,
       });
 
       if (insertError) {
