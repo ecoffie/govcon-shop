@@ -478,12 +478,12 @@ export default function Home() {
                 <div className="text-sm text-emerald-600 font-medium">One-Time Payment</div>
               </div>
               <ul className="space-y-3 mb-6 text-sm text-gray-800">
-                <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> Opportunity Hunter Pro</li>
-                <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> Contractor Database</li>
-                <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> LinkedIn Content Generator (Content Engine)</li>
+                <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> Opportunity Hunter Pro ($49)</li>
+                <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> Recompete Contracts Tracker ($397)</li>
+                <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> Federal Contractor Database ($497)</li>
               </ul>
-              <div className="text-center text-sm text-gray-500 mb-4 line-through">$743 if bought separately</div>
-              <a href="https://buy.govcongiants.org/checkout/buy/20575f57-30db-4120-9c2f-da7a6302a0fd" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-blue-800 text-white text-center rounded-lg font-semibold hover:bg-blue-700 transition-all">
+              <div className="text-center text-sm text-gray-500 mb-4 line-through">$943 if bought separately</div>
+              <a href="https://buy.stripe.com/8wM28s1oi83c34VcMRfnO0b" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-blue-800 text-white text-center rounded-lg font-semibold hover:bg-blue-700 transition-all">
                 Get Starter Bundle
               </a>
             </div>
@@ -502,12 +502,13 @@ export default function Home() {
                 <div className="text-sm text-emerald-600 font-medium">One-Time Payment</div>
               </div>
               <ul className="space-y-3 mb-6 text-sm text-gray-800">
-                <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> <strong>Everything in Starter, plus:</strong></li>
-                <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Recompete Contracts</li>
-                <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Market Assassin Standard</li>
+                <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Federal Contractor Database ($497)</li>
+                <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Recompete Contracts Tracker ($397)</li>
+                <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Market Assassin Standard ($297)</li>
+                <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> GovCon Content Generator ($197)</li>
               </ul>
-              <div className="text-center text-sm text-gray-500 mb-4 line-through">$1,437 if bought separately</div>
-              <a href="https://buy.govcongiants.org/checkout/buy/9a5bd252-b7a5-4bc5-be50-1d3305dd9069" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-amber-500 text-white text-center rounded-lg font-semibold hover:bg-amber-400 transition-all">
+              <div className="text-center text-sm text-gray-500 mb-4 line-through">$1,388 if bought separately</div>
+              <a href="https://buy.stripe.com/fZedRa3wq83c20R4glfnO0c" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-amber-500 text-white text-center rounded-lg font-semibold hover:bg-amber-400 transition-all">
                 Get Pro Giant Bundle
               </a>
             </div>
@@ -523,13 +524,14 @@ export default function Home() {
                 <div className="text-sm text-emerald-400 font-medium">One-Time Payment</div>
               </div>
               <ul className="space-y-3 mb-6 text-sm opacity-90">
-                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> <strong>Pro version of everything:</strong></li>
-                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Market Assassin Pro</li>
-                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> LinkedIn Content Generator (Full Fix)</li>
-                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> 1-on-1 Strategy Session</li>
+                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> <strong>Premium version of everything:</strong></li>
+                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Market Assassin Premium ($497)</li>
+                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Content Generator Full Fix ($397)</li>
+                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Federal Contractor Database ($497)</li>
+                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Recompete Contracts Tracker ($397)</li>
               </ul>
-              <div className="text-center text-sm opacity-50 mb-4 line-through">$2,000+ value</div>
-              <a href="https://buy.govcongiants.org/checkout/buy/67349828-9e8a-4e1a-bf6f-09b267c4c97e" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 text-center rounded-lg font-bold hover:from-amber-300 hover:to-amber-400 transition-all">
+              <div className="text-center text-sm opacity-50 mb-4 line-through">$1,788 if bought separately</div>
+              <a href="https://buy.stripe.com/4gMaF03wq97gfRH14afnO0d" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 text-center rounded-lg font-bold hover:from-amber-300 hover:to-amber-400 transition-all">
                 Get Ultimate Giant
               </a>
             </div>
