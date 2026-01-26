@@ -41,42 +41,42 @@ const nextConfig: NextConfig = {
       // Checkout shortcut redirects
       {
         source: '/buy/opportunity-hunter',
-        destination: 'https://buy.govcongiants.org/checkout/buy/1ba3745a-da20-4635-9601-a258a4a3171a',
+        destination: 'https://buy.stripe.com/3cs8wSgnjfvA20RcMQ',
         permanent: false,
       },
       {
         source: '/buy/database',
-        destination: 'https://buy.govcongiants.org/checkout/buy/0beda92c-6328-40c3-9d4b-8c246f8d0a34',
+        destination: 'https://buy.stripe.com/eVqdRafZfejs7lcaEJ',
         permanent: false,
       },
       {
         source: '/buy/ai-content',
-        destination: 'https://buy.govcongiants.org/checkout/buy/11d36efa-5d16-4ebe-92ca-179c79cb5990',
+        destination: 'https://buy.stripe.com/6oUbJ6b356Zg5d33ch',
         permanent: false,
       },
       {
         source: '/buy/recompete',
-        destination: 'https://buy.govcongiants.org/checkout/buy/00757b65-ead6-457b-a27b-4b3f81b63d7d',
+        destination: 'https://buy.stripe.com/3cs14ognjbfk20R28d',
         permanent: false,
       },
       {
         source: '/buy/market-assassin',
-        destination: 'https://buy.govcongiants.org/checkout/buy/1dcb791b-e1a1-4500-a4c2-bd255e8124e6',
+        destination: 'https://buy.stripe.com/3cI3cw9UOdns34V84UfnO0j',
         permanent: false,
       },
       {
         source: '/buy/starter-bundle',
-        destination: 'https://buy.govcongiants.org/checkout/buy/20575f57-30db-4120-9c2f-da7a6302a0fd',
+        destination: 'https://buy.stripe.com/8wM28s1oi83c34VcMRfnO0b',
         permanent: false,
       },
       {
         source: '/buy/ultimate-bundle',
-        destination: 'https://buy.govcongiants.org/checkout/buy/9a5bd252-b7a5-4bc5-be50-1d3305dd9069',
+        destination: 'https://buy.stripe.com/fZedRa3wq83c20R4glfnO0c',
         permanent: false,
       },
       {
         source: '/buy/complete-bundle',
-        destination: 'https://buy.govcongiants.org/checkout/buy/67349828-9e8a-4e1a-bf6f-09b267c4c97e',
+        destination: 'https://buy.stripe.com/4gMaF03wq97gfRH14afnO0d',
         permanent: false,
       },
     ];

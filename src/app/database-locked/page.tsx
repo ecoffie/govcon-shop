@@ -58,7 +58,7 @@ export default function DatabaseLockedPage() {
         </div>
 
         <a
-          href="https://buy.govcongiants.org/checkout/buy/0beda92c-6328-40c3-9d4b-8c246f8d0a34"
+          href="https://buy.stripe.com/eVqdRafZfejs7lcaEJ"
           className="inline-block bg-blue-600 hover:bg-blue-700 text-white py-4 px-8 rounded-lg font-bold text-lg mb-4 transition-colors"
         >
           Get Access - $497

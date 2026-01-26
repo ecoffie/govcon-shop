@@ -11,13 +11,13 @@ export default function MarketAssassinProductPage() {
       gradientTo="#991b1b"
       price="$297"
       originalPrice="$997 value"
-      checkoutUrl="https://buy.govcongiants.org/checkout/buy/1dcb791b-e1a1-4500-a4c2-bd255e8124e6"
+      checkoutUrl="https://buy.stripe.com/3cI3cw9UOdns34V84UfnO0j"
       pricingTiers={[
         {
           name: 'Standard',
           price: '$297',
           originalPrice: '$997 value',
-          checkoutUrl: 'https://buy.govcongiants.org/checkout/buy/1dcb791b-e1a1-4500-a4c2-bd255e8124e6?enabled=1227284',
+          checkoutUrl: 'https://buy.stripe.com/3cI3cw9UOdns34V84UfnO0j',
           description: 'Core 4 reports for essential market intelligence',
           features: [
             'Lifetime access',
@@ -33,7 +33,7 @@ export default function MarketAssassinProductPage() {
           name: 'Premium',
           price: '$497',
           originalPrice: '$1,997 value',
-          checkoutUrl: 'https://buy.govcongiants.org/checkout/buy/8ed4e356-497d-46f5-9674-cd48d3469fb9?enabled=1227287',
+          checkoutUrl: 'https://buy.stripe.com/5kQdRaeb497cfRHdpefnO0f',
           description: 'Full 8 reports + unlimited generations & enhanced depth',
           features: [
             'Everything in Standard, plus:',

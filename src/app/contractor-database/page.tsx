@@ -11,7 +11,7 @@ export default function ContractorDatabasePage() {
       gradientTo="#7c3aed"
       price="$497"
       originalPrice="$997/month"
-      checkoutUrl="https://buy.govcongiants.org/checkout/buy/0beda92c-6328-40c3-9d4b-8c246f8d0a34"
+      checkoutUrl="https://buy.stripe.com/eVqdRafZfejs7lcaEJ"
       videoTitle="Federal Contractor Database Demo"
       videoSubtitle="See how to find teaming partners in under 2 minutes"
       screenshots={[

@@ -137,7 +137,7 @@ export default function MarketAssassinLockedPage() {
               </li>
             </ul>
             <a
-              href="https://buy.govcongiants.org/checkout/buy/1dcb791b-e1a1-4500-a4c2-bd255e8124e6?enabled=1227284"
+              href="https://buy.stripe.com/3cI3cw9UOdns34V84UfnO0j"
               className="block w-full text-center bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg font-bold transition-all glow-blue"
             >
               Get Standard
@@ -208,7 +208,7 @@ export default function MarketAssassinLockedPage() {
               </li>
             </ul>
             <a
-              href="https://buy.govcongiants.org/checkout/buy/8ed4e356-497d-46f5-9674-cd48d3469fb9?enabled=1227287"
+              href="https://buy.stripe.com/5kQdRaeb497cfRHdpefnO0f"
               className="block w-full text-center bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black py-3 px-6 rounded-lg font-bold transition-all"
             >
               Get Premium

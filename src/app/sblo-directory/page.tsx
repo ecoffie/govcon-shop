@@ -32,7 +32,7 @@ export default function SBLODirectoryPage() {
           name: 'Full Database',
           price: '$497',
           originalPrice: '$997 value',
-          checkoutUrl: 'https://buy.govcongiants.org/checkout/buy/0beda92c-6328-40c3-9d4b-8c246f8d0a34',
+          checkoutUrl: 'https://buy.stripe.com/eVqdRafZfejs7lcaEJ',
           description: '3,500+ contractors vs 225 in free list',
           features: [
             '3,500+ prime contractors',
@@ -50,7 +50,7 @@ export default function SBLODirectoryPage() {
         description: 'Go from 225 contacts to 3,500+ prime contractors with contract history, NAICS codes, and direct contact information.',
         price: '$497',
         originalPrice: '$997',
-        checkoutUrl: 'https://buy.govcongiants.org/checkout/buy/0beda92c-6328-40c3-9d4b-8c246f8d0a34',
+        checkoutUrl: 'https://buy.stripe.com/eVqdRafZfejs7lcaEJ',
         linkUrl: '/contractor-database-product',
       }}
       videoTitle="SBLO Contact List"

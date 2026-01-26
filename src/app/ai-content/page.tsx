@@ -11,13 +11,13 @@ export default function AIContentPage() {
       gradientTo="#a855f7"
       price="$197"
       originalPrice="$588/year"
-      checkoutUrl="https://buy.govcongiants.org/checkout/buy/11d36efa-5d16-4ebe-92ca-179c79cb5990"
+      checkoutUrl="https://buy.stripe.com/6oUbJ6b356Zg5d33ch"
       pricingTiers={[
         {
           name: 'Content Engine',
           price: '$197',
           originalPrice: '$588/year',
-          checkoutUrl: 'https://buy.govcongiants.org/checkout/buy/11d36efa-5d16-4ebe-92ca-179c79cb5990',
+          checkoutUrl: 'https://buy.stripe.com/6oUbJ6b356Zg5d33ch',
           description: 'Text-only LinkedIn post generation',
           features: [
             'Lifetime access',
@@ -32,7 +32,7 @@ export default function AIContentPage() {
           name: 'Full Fix',
           price: '$397',
           originalPrice: '$1,176/year',
-          checkoutUrl: 'https://buy.govcongiants.org/checkout/buy/63f21b6d-18d3-40eb-8a79-f4b795a8bfef?enabled=1227185',
+          checkoutUrl: 'https://buy.stripe.com/5kQ5kGb3583c34V5ko',
           description: 'Text + graphics & carousel generation',
           features: [
             'Everything in Content Engine, plus:',

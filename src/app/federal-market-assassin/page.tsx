@@ -377,7 +377,7 @@ export default function FederalMarketAssassinPage() {
 
                     {/* Upgrade CTA */}
                     <a
-                      href="https://buy.govcongiants.org/checkout/buy/8ed4e356-497d-46f5-9674-cd48d3469fb9?enabled=1227287"
+                      href="https://buy.stripe.com/5kQdRaeb497cfRHdpefnO0f"
                       className="flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white text-sm font-semibold rounded-lg transition-all glow-amber"
                     >
                       <span>Unlock All 8 Reports</span>
@@ -484,7 +484,7 @@ export default function FederalMarketAssassinPage() {
 
                       {/* Upgrade CTA */}
                       <a
-                        href="https://buy.govcongiants.org/checkout/buy/8ed4e356-497d-46f5-9674-cd48d3469fb9?enabled=1227287"
+                        href="https://buy.stripe.com/5kQdRaeb497cfRHdpefnO0f"
                         className="inline-flex items-center gap-2 mt-2 px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white text-sm font-semibold rounded-lg transition-all glow-amber"
                       >
                         <span>Unlock All 8 Reports</span>
@@ -528,7 +528,7 @@ export default function FederalMarketAssassinPage() {
               </div>
               {tier === 'standard' && (
                 <a
-                  href="https://buy.govcongiants.org/checkout/buy/8ed4e356-497d-46f5-9674-cd48d3469fb9?enabled=1227287"
+                  href="https://buy.stripe.com/5kQdRaeb497cfRHdpefnO0f"
                   className="ml-2 px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-black text-sm font-bold rounded-full hover:from-amber-400 hover:to-orange-400 transition-all"
                 >
                   Upgrade

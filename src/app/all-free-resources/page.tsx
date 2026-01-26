@@ -283,7 +283,7 @@ export default function AllFreeResourcesPage() {
               </p>
             </div>
             <Link
-              href="https://buy.govcongiants.org/checkout/buy/0beda92c-6328-40c3-9d4b-8c246f8d0a34"
+              href="https://buy.stripe.com/eVqdRafZfejs7lcaEJ"
               className="px-8 py-3 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold rounded-lg transition-colors whitespace-nowrap"
             >
               Get Full Database - $497
