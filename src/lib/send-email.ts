@@ -347,6 +347,166 @@ export async function sendAccessCodeEmail({
 }
 
 // Email for Opportunity Hunter Pro access
+interface SendUltimateBundleEmailParams {
+  to: string;
+  customerName?: string;
+}
+
+// Email for Ultimate Giant Bundle purchase
+export async function sendUltimateBundleEmail({
+  to,
+  customerName,
+}: SendUltimateBundleEmailParams): Promise<boolean> {
+  const htmlContent = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+  <div style="background: linear-gradient(135deg, #1f2937 0%, #111827 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+    <h1 style="color: #fbbf24; margin: 0; font-size: 28px;">GovCon Giants</h1>
+    <p style="color: #f59e0b; margin: 10px 0 0 0; font-size: 18px; font-weight: bold;">ULTIMATE GIANT BUNDLE</p>
+  </div>
+
+  <div style="background: #ffffff; padding: 30px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 10px 10px;">
+    <div style="text-align: center; margin-bottom: 20px;">
+      <span style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #1f2937; padding: 8px 20px; border-radius: 20px; font-weight: bold; font-size: 14px;">WELCOME TO THE ULTIMATE TIER</span>
+    </div>
+
+    <h2 style="color: #1f2937; margin-top: 0; text-align: center;">Congratulations on Your Purchase!</h2>
+
+    <p>Hi${customerName ? ` ${customerName}` : ''},</p>
+
+    <p>Thank you for investing in your GovCon success! You now have <strong>lifetime access</strong> to our complete suite of tools:</p>
+
+    <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b; border-radius: 12px; padding: 20px; margin: 25px 0;">
+      <h3 style="color: #92400e; margin: 0 0 15px 0; text-align: center;">Your Ultimate Bundle Includes:</h3>
+      <ul style="color: #78350f; margin: 0; padding-left: 20px;">
+        <li><strong>Federal Market Assassin Premium</strong> - 8 Strategic Reports ($497 value)</li>
+        <li><strong>AI Content Generator (Full Fix)</strong> - Unlimited LinkedIn Posts ($397 value)</li>
+        <li><strong>Federal Contractor Database</strong> - 3,500+ Contractors ($497 value)</li>
+        <li><strong>Recompete Contracts Tracker</strong> - Expiring Contracts ($397 value)</li>
+        <li><strong>Opportunity Hunter Pro</strong> - Agency Matching ($49 value)</li>
+        <li><strong>1-on-1 Strategy Session</strong> - Personal Consultation</li>
+        <li><strong>Priority Support</strong> - Direct Access to Our Team</li>
+        <li><strong>Future Tools Access</strong> - All New Releases Included</li>
+      </ul>
+    </div>
+
+    <h3 style="color: #1f2937;">How to Access Your Tools:</h3>
+
+    <div style="background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px; padding: 15px; margin: 15px 0;">
+      <p style="margin: 0; color: #166534;"><strong>1. Federal Market Assassin Premium</strong></p>
+      <p style="margin: 5px 0 0 0; color: #15803d;">Visit <a href="https://shop.govcongiants.org/market-assassin" style="color: #166534;">shop.govcongiants.org/market-assassin</a> and click "I Have Access"</p>
+    </div>
+
+    <div style="background: #eff6ff; border: 1px solid #93c5fd; border-radius: 8px; padding: 15px; margin: 15px 0;">
+      <p style="margin: 0; color: #1e40af;"><strong>2. AI Content Generator</strong></p>
+      <p style="margin: 5px 0 0 0; color: #3b82f6;">Visit <a href="https://shop.govcongiants.org/ai-content" style="color: #1e40af;">shop.govcongiants.org/ai-content</a> and enter your email</p>
+    </div>
+
+    <div style="background: #fdf4ff; border: 1px solid #e879f9; border-radius: 8px; padding: 15px; margin: 15px 0;">
+      <p style="margin: 0; color: #86198f;"><strong>3. Federal Contractor Database</strong></p>
+      <p style="margin: 5px 0 0 0; color: #a855f7;">Visit <a href="https://shop.govcongiants.org/contractor-database" style="color: #86198f;">shop.govcongiants.org/contractor-database</a></p>
+    </div>
+
+    <div style="background: #ecfeff; border: 1px solid #67e8f9; border-radius: 8px; padding: 15px; margin: 15px 0;">
+      <p style="margin: 0; color: #0e7490;"><strong>4. Recompete Contracts</strong></p>
+      <p style="margin: 5px 0 0 0; color: #06b6d4;">Visit <a href="https://shop.govcongiants.org/recompete" style="color: #0e7490;">shop.govcongiants.org/recompete</a></p>
+    </div>
+
+    <div style="background: #fef3c7; border: 1px solid #fcd34d; border-radius: 8px; padding: 15px; margin: 15px 0;">
+      <p style="margin: 0; color: #92400e;"><strong>5. Opportunity Hunter Pro</strong></p>
+      <p style="margin: 5px 0 0 0; color: #d97706;">Visit <a href="https://shop.govcongiants.org/opportunity-hunter" style="color: #92400e;">shop.govcongiants.org/opportunity-hunter</a></p>
+    </div>
+
+    <div style="background: linear-gradient(135deg, #1f2937 0%, #374151 100%); border-radius: 12px; padding: 20px; margin: 25px 0; text-align: center;">
+      <h3 style="color: #fbbf24; margin: 0 0 10px 0;">Schedule Your Strategy Session</h3>
+      <p style="color: #e5e7eb; margin: 0 0 15px 0;">As an Ultimate Giant member, you get a 1-on-1 call with our team.</p>
+      <a href="mailto:hello@govconedu.com?subject=Ultimate%20Giant%20Strategy%20Session" style="display: inline-block; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #1f2937; padding: 12px 30px; text-decoration: none; border-radius: 8px; font-weight: bold;">Book Your Call</a>
+    </div>
+
+    <p style="background: #f3f4f6; border-radius: 8px; padding: 15px; color: #4b5563;">
+      <strong>Your registered email:</strong> ${to}<br>
+      <span style="font-size: 14px;">Use this email to access all your tools.</span>
+    </p>
+
+    <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
+
+    <p style="color: #6b7280; font-size: 12px; text-align: center;">
+      Save this email - it contains links to all your tools!<br>
+      Questions? Reply to this email or contact hello@govconedu.com
+    </p>
+
+    <p style="text-align: center; color: #9ca3af; font-size: 12px;">
+      &copy; ${new Date().getFullYear()} GovCon Giants. All rights reserved.
+    </p>
+  </div>
+</body>
+</html>
+`;
+
+  try {
+    await transporter.sendMail({
+      from: `"GovCon Giants" <${process.env.SMTP_USER || 'hello@govconedu.com'}>`,
+      to,
+      subject: 'Welcome to Ultimate Giant Bundle - Your Access is Ready! | GovCon Giants',
+      html: htmlContent,
+      text: `Welcome to the Ultimate Giant Bundle!
+
+Hi${customerName ? ` ${customerName}` : ''},
+
+Thank you for investing in your GovCon success! You now have lifetime access to our complete suite of tools:
+
+YOUR ULTIMATE BUNDLE INCLUDES:
+- Federal Market Assassin Premium - 8 Strategic Reports ($497 value)
+- AI Content Generator (Full Fix) - Unlimited LinkedIn Posts ($397 value)
+- Federal Contractor Database - 3,500+ Contractors ($497 value)
+- Recompete Contracts Tracker - Expiring Contracts ($397 value)
+- Opportunity Hunter Pro - Agency Matching ($49 value)
+- 1-on-1 Strategy Session - Personal Consultation
+- Priority Support - Direct Access to Our Team
+- Future Tools Access - All New Releases Included
+
+HOW TO ACCESS YOUR TOOLS:
+
+1. Federal Market Assassin Premium
+   Visit: https://shop.govcongiants.org/market-assassin
+
+2. AI Content Generator
+   Visit: https://shop.govcongiants.org/ai-content
+
+3. Federal Contractor Database
+   Visit: https://shop.govcongiants.org/contractor-database
+
+4. Recompete Contracts
+   Visit: https://shop.govcongiants.org/recompete
+
+5. Opportunity Hunter Pro
+   Visit: https://shop.govcongiants.org/opportunity-hunter
+
+STRATEGY SESSION:
+Reply to this email to schedule your 1-on-1 strategy session!
+
+Your registered email: ${to}
+Use this email to access all your tools.
+
+Save this email - it contains links to all your tools!
+Questions? Reply to this email or contact hello@govconedu.com
+
+- GovCon Giants Team`,
+    });
+
+    console.log(\`✅ Ultimate Bundle email sent to \${to}\`);
+    return true;
+  } catch (error) {
+    console.error('❌ Failed to send Ultimate Bundle email:', error);
+    return false;
+  }
+}
+
 export async function sendOpportunityHunterProEmail({
   to,
   customerName,

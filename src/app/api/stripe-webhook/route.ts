@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { createAccessCode, createDatabaseToken, grantOpportunityHunterProAccess, grantMarketAssassinAccess } from '@/lib/access-codes';
-import { sendAccessCodeEmail, sendDatabaseAccessEmail, sendOpportunityHunterProEmail } from '@/lib/send-email';
+import { sendAccessCodeEmail, sendDatabaseAccessEmail, sendOpportunityHunterProEmail, sendUltimateBundleEmail } from '@/lib/send-email';
 
 // Webhook secrets from environment
 const liveWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET || '';
@@ -30,6 +30,11 @@ const MARKET_ASSASSIN_STANDARD_PRODUCT_IDS: string[] = [
 // Product IDs for Market Assassin Premium ($497)
 const MARKET_ASSASSIN_PREMIUM_PRODUCT_IDS: string[] = [
   'prod_TiOjPpnyLnO3eb', // Live product
+];
+
+// Product IDs for Ultimate Giant Bundle ($1,497 / $1,000 promo)
+const ULTIMATE_BUNDLE_PRODUCT_IDS: string[] = [
+  'prod_TrU0CviMWdDTnj', // Live product
 ];
 
 // Lazy-load Stripe to avoid build-time errors
@@ -161,6 +166,7 @@ export async function POST(request: NextRequest) {
     const hasOpportunityScoutPro = OPPORTUNITY_SCOUT_PRO_PRODUCT_IDS.includes(purchasedProductId || '');
     const hasMarketAssassinStandard = MARKET_ASSASSIN_STANDARD_PRODUCT_IDS.includes(purchasedProductId || '');
     const hasMarketAssassinPremium = MARKET_ASSASSIN_PREMIUM_PRODUCT_IDS.includes(purchasedProductId || '');
+    const hasUltimateBundle = ULTIMATE_BUNDLE_PRODUCT_IDS.includes(purchasedProductId || '');
 
     console.log('Product matching:', {
       hasMarketAssassinProduct,
@@ -168,6 +174,7 @@ export async function POST(request: NextRequest) {
       hasOpportunityScoutPro,
       hasMarketAssassinStandard,
       hasMarketAssassinPremium,
+      hasUltimateBundle,
     });
 
     const customerEmail = session.customer_email || session.customer_details?.email;
@@ -176,6 +183,29 @@ export async function POST(request: NextRequest) {
     if (!customerEmail) {
       console.error('No customer email found in checkout session');
       return NextResponse.json({ error: 'No customer email' }, { status: 400 });
+    }
+
+    // Handle Ultimate Giant Bundle purchase
+    if (hasUltimateBundle) {
+      console.log(`Processing Ultimate Giant Bundle purchase for: ${customerEmail}`);
+
+      // Grant access to all included products
+      await grantMarketAssassinAccess(customerEmail, 'premium', customerName || undefined);
+      await grantOpportunityHunterProAccess(customerEmail, customerName || undefined);
+      // TODO: Add grants for other bundle products (Content Generator, Database, Recompete) if needed
+
+      const emailSent = await sendUltimateBundleEmail({
+        to: customerEmail,
+        customerName: customerName || undefined,
+      });
+
+      console.log(`Ultimate Giant Bundle - Email sent: ${emailSent}`);
+
+      return NextResponse.json({
+        success: true,
+        message: 'Ultimate Giant Bundle access granted and email sent',
+        product: 'ultimate-giant-bundle',
+      });
     }
 
     // Handle Opportunity Hunter Pro purchase

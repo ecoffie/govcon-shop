@@ -484,7 +484,7 @@ export default function Home() {
                 <li className="flex items-center gap-2"><span className="text-emerald-500">✓</span> AI Content Generator</li>
               </ul>
               <div className="text-center text-sm text-gray-400 mb-4 line-through">$494 if bought separately</div>
-              <a href="https://buy.stripe.com/8wM28s1oi83c34VcMRfnO0b" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-blue-800 text-white text-center rounded-lg font-semibold hover:bg-blue-700 transition-all">
+              <a href="https://buy.stripe.com/6oU9AUeb46Z46h70CsfnO0s" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-blue-800 text-white text-center rounded-lg font-semibold hover:bg-blue-700 transition-all">
                 Get Starter Bundle
               </a>
             </div>
@@ -509,20 +509,25 @@ export default function Home() {
                 <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> Federal Market Assassin</li>
               </ul>
               <div className="text-center text-sm text-gray-400 mb-4 line-through">$1,138 if bought separately</div>
-              <a href="https://buy.stripe.com/fZedRa3wq83c20R4glfnO0c" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-amber-500 text-white text-center rounded-lg font-semibold hover:bg-amber-400 transition-all">
+              <a href="https://buy.stripe.com/dRm7sMaYS0AG0WN5WMfnO0q" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-amber-500 text-white text-center rounded-lg font-semibold hover:bg-amber-400 transition-all">
                 Get Pro Giant Bundle
               </a>
             </div>
 
             {/* Ultimate Giant Bundle */}
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl border border-gray-700 p-6 text-white transition-all hover:-translate-y-1 hover:shadow-xl">
-              <div className="text-center mb-6">
+            <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl border-2 border-red-500 p-6 text-white transition-all hover:-translate-y-1 hover:shadow-xl relative">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                <span className="bg-red-500 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg animate-pulse">72 HOUR SALE</span>
+              </div>
+              <div className="text-center mb-6 pt-2">
                 <span className="inline-block bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 px-3 py-1 rounded-full text-sm font-semibold mb-3">ULTIMATE</span>
                 <h3 className="text-2xl font-bold text-white">Ultimate Giant</h3>
               </div>
               <div className="text-center mb-6">
-                <div className="text-4xl font-bold text-amber-400">$1,497</div>
+                <div className="text-lg text-gray-400 line-through">$1,497</div>
+                <div className="text-4xl font-bold text-amber-400">$1,000</div>
                 <div className="text-sm text-emerald-400 font-medium">One-Time Payment</div>
+                <div className="text-xs text-red-400 mt-1 font-semibold">Save $497 - Limited Time!</div>
               </div>
               <ul className="space-y-3 mb-6 text-sm opacity-90">
                 <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> <strong>Everything in Pro Giant, plus:</strong></li>
@@ -531,7 +536,7 @@ export default function Home() {
                 <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Future Tools Access</li>
               </ul>
               <div className="text-center text-sm opacity-50 mb-4 line-through">$2,000+ value</div>
-              <a href="https://buy.stripe.com/4gMaF03wq97gfRH14afnO0d" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 text-center rounded-lg font-bold hover:from-amber-300 hover:to-amber-400 transition-all">
+              <a href="https://buy.stripe.com/aFacN6d700AGfRHfxmfnO0r" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 text-center rounded-lg font-bold hover:from-amber-300 hover:to-amber-400 transition-all">
                 Get Ultimate Giant
               </a>
             </div>
