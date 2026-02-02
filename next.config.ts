@@ -66,17 +66,17 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/buy/starter-bundle',
-        destination: 'https://buy.stripe.com/8wM28s1oi83c34VcMRfnO0b',
+        destination: 'https://buy.stripe.com/6oU9AUeb46Z46h70CsfnO0s',
+        permanent: false,
+      },
+      {
+        source: '/buy/pro-giant-bundle',
+        destination: 'https://buy.stripe.com/dRm7sMaYS0AG0WN5WMfnO0q',
         permanent: false,
       },
       {
         source: '/buy/ultimate-bundle',
-        destination: 'https://buy.stripe.com/fZedRa3wq83c20R4glfnO0c',
-        permanent: false,
-      },
-      {
-        source: '/buy/complete-bundle',
-        destination: 'https://buy.stripe.com/4gMaF03wq97gfRH14afnO0d',
+        destination: 'https://buy.stripe.com/aFacN6d700AGfRHfxmfnO0r',
         permanent: false,
       },
     ];

@@ -90,8 +90,6 @@ export default function UltimateBundlePage() {
         'VIP priority support',
         'Early access to new features',
         'All future product updates included',
-        'GovCon Giants VIP community access',
-        'Quarterly strategy webinar access',
       ]}
       highlightTitle="For Contractors Who Refuse to Compromise"
       highlightText="The Ultimate Bundle includes every tool at its highest tier. You get Market Assassin Premium with all 8 reports and unlimited generations. You get the Full Fix Content Generator with advanced AI capabilities. You get every database, every tracker, every tool we offer. This is for contractors who understand that having the best intelligence and tools is the difference between winning and losing contracts worth hundreds of thousands—or millions—of dollars."

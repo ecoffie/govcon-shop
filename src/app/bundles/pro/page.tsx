@@ -86,7 +86,6 @@ export default function ProBundlePage() {
       bonuses={[
         'Priority email support',
         'Access to future product updates',
-        'GovCon Giants community access',
       ]}
       highlightTitle="Why Pro Contractors Choose This Bundle"
       highlightText="The Pro Giant Bundle is our most popular package because it gives you everything you need to compete at a higher level. Use Market Assassin to understand your target agencies, the Contractor Database to find teaming partners, Recompete Tracker to identify opportunities early, and the AI Content Generator to build your brand. This is the complete GovCon toolkit."

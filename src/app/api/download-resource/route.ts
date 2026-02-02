@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSupabase } from '@/lib/supabase/client';
 import { checkRateLimit, getClientIp, RATE_LIMITS } from '@/lib/rate-limit';
-import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
+import { PDFDocument, rgb, StandardFonts, degrees } from 'pdf-lib';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -182,7 +182,7 @@ export async function GET(request: NextRequest) {
       // For PDFs, add watermark
       if (resource.type === 'pdf') {
         const watermarkedPdf = await watermarkPdf(fileContent, normalizedEmail);
-        return new NextResponse(watermarkedPdf, {
+        return new NextResponse(Buffer.from(watermarkedPdf), {
           headers: {
             'Content-Type': 'application/pdf',
             'Content-Disposition': `attachment; filename="${resource.file}-${normalizedEmail.split('@')[0]}.pdf"`,
@@ -329,7 +329,7 @@ async function watermarkPdf(pdfBuffer: Buffer, email: string): Promise<Uint8Arra
       size: 24,
       font: helveticaFont,
       color: rgb(0.95, 0.95, 0.95),
-      rotate: { type: 'degrees' as const, angle: 45 },
+      rotate: degrees(45),
     });
   }
 
