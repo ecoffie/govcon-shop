@@ -483,9 +483,9 @@ export default function Home() {
                 <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> Federal Contractor Database ($497)</li>
               </ul>
               <div className="text-center text-sm text-gray-500 mb-4 line-through">$943 if bought separately</div>
-              <a href="https://buy.stripe.com/8wM28s1oi83c34VcMRfnO0b" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-blue-800 text-white text-center rounded-lg font-semibold hover:bg-blue-700 transition-all">
+              <Link href="/bundles/starter" className="block w-full py-3 bg-blue-800 text-white text-center rounded-lg font-semibold hover:bg-blue-700 transition-all">
                 Get Starter Bundle
-              </a>
+              </Link>
             </div>
 
             {/* Pro Giant Bundle - Featured */}
@@ -508,9 +508,9 @@ export default function Home() {
                 <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> GovCon Content Generator ($197)</li>
               </ul>
               <div className="text-center text-sm text-gray-500 mb-4 line-through">$1,388 if bought separately</div>
-              <a href="https://buy.stripe.com/fZedRa3wq83c20R4glfnO0c" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-amber-500 text-white text-center rounded-lg font-semibold hover:bg-amber-400 transition-all">
+              <Link href="/bundles/pro" className="block w-full py-3 bg-amber-500 text-white text-center rounded-lg font-semibold hover:bg-amber-400 transition-all">
                 Get Pro Giant Bundle
-              </a>
+              </Link>
             </div>
 
             {/* Ultimate Giant Bundle */}
@@ -531,9 +531,9 @@ export default function Home() {
                 <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Recompete Contracts Tracker ($397)</li>
               </ul>
               <div className="text-center text-sm opacity-50 mb-4 line-through">$1,788 if bought separately</div>
-              <a href="https://buy.stripe.com/4gMaF03wq97gfRH14afnO0d" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 text-center rounded-lg font-bold hover:from-amber-300 hover:to-amber-400 transition-all">
+              <Link href="/bundles/ultimate" className="block w-full py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 text-center rounded-lg font-bold hover:from-amber-300 hover:to-amber-400 transition-all">
                 Get Ultimate Giant
-              </a>
+              </Link>
             </div>
           </div>
         </div>

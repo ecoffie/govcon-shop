@@ -499,7 +499,7 @@ Questions? Reply to this email or contact hello@govconedu.com
 - GovCon Giants Team`,
     });
 
-    console.log(\`✅ Ultimate Bundle email sent to \${to}\`);
+    console.log(`✅ Ultimate Bundle email sent to ${to}`);
     return true;
   } catch (error) {
     console.error('❌ Failed to send Ultimate Bundle email:', error);
