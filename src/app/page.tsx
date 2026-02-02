@@ -460,6 +460,99 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Databases Section */}
+      <section className="py-20 px-6 bg-gradient-to-b from-gray-50 to-white" id="databases">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <span className="inline-block bg-indigo-100 text-indigo-800 px-4 py-1 rounded-full text-sm font-semibold mb-4">DATABASES</span>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Powerful Data at Your Fingertips</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Access comprehensive databases to find teaming partners, track expiring contracts, and identify opportunities.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Federal Contractor Database */}
+            <Link href="/contractor-database" className="group bg-white rounded-2xl border-2 border-gray-200 overflow-hidden transition-all hover:shadow-xl hover:border-indigo-500">
+              <div className="h-48 bg-gradient-to-br from-indigo-500 to-purple-600 relative overflow-hidden">
+                <Image src="/images/products/contractor-database/main home page.png" alt="Federal Contractor Database" fill className="object-cover object-top group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="inline-block bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-semibold">3,500+ CONTRACTORS</span>
+                  <span className="text-2xl font-bold text-indigo-600">$497</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Federal Contractor Database</h3>
+                <p className="text-gray-600 text-sm mb-4">Interactive searchable database with SBLO contacts, vendor portals, and AI-powered teaming partner finder.</p>
+                <ul className="space-y-2 mb-4">
+                  <li className="flex items-center gap-2 text-sm text-gray-700">
+                    <span className="text-indigo-500 font-bold">✓</span> SBLO Contact Information
+                  </li>
+                  <li className="flex items-center gap-2 text-sm text-gray-700">
+                    <span className="text-indigo-500 font-bold">✓</span> Teaming Partner Finder
+                  </li>
+                  <li className="flex items-center gap-2 text-sm text-gray-700">
+                    <span className="text-indigo-500 font-bold">✓</span> Vendor Portal Links
+                  </li>
+                  <li className="flex items-center gap-2 text-sm text-gray-700">
+                    <span className="text-indigo-500 font-bold">✓</span> Export Capabilities
+                  </li>
+                </ul>
+                <span className="inline-flex items-center text-indigo-600 font-semibold text-sm group-hover:gap-2 transition-all">
+                  View Database <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </span>
+              </div>
+            </Link>
+
+            {/* Recompete Contracts Tracker */}
+            <Link href="/expiring-contracts" className="group bg-white rounded-2xl border-2 border-gray-200 overflow-hidden transition-all hover:shadow-xl hover:border-cyan-500">
+              <div className="h-48 bg-gradient-to-br from-cyan-500 to-blue-600 relative overflow-hidden">
+                <Image src="/images/products/expiring-contracts/home page expiring contracts.png" alt="Recompete Contracts Tracker" fill className="object-cover object-top group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="inline-block bg-cyan-100 text-cyan-800 px-3 py-1 rounded-full text-xs font-semibold">$221B IN CONTRACTS</span>
+                  <span className="text-2xl font-bold text-cyan-600">$397</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Recompete Contracts Tracker</h3>
+                <p className="text-gray-600 text-sm mb-4">Track expiring federal contracts and get ahead of the competition. Know when contracts are up for rebid.</p>
+                <ul className="space-y-2 mb-4">
+                  <li className="flex items-center gap-2 text-sm text-gray-700">
+                    <span className="text-cyan-500 font-bold">✓</span> Contracts Expiring 12 Months
+                  </li>
+                  <li className="flex items-center gap-2 text-sm text-gray-700">
+                    <span className="text-cyan-500 font-bold">✓</span> Prime Contractor Details
+                  </li>
+                  <li className="flex items-center gap-2 text-sm text-gray-700">
+                    <span className="text-cyan-500 font-bold">✓</span> NAICS Code Filtering
+                  </li>
+                  <li className="flex items-center gap-2 text-sm text-gray-700">
+                    <span className="text-cyan-500 font-bold">✓</span> Export to CSV
+                  </li>
+                </ul>
+                <span className="inline-flex items-center text-cyan-600 font-semibold text-sm group-hover:gap-2 transition-all">
+                  View Tracker <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </span>
+              </div>
+            </Link>
+          </div>
+
+          {/* Free Database Samples CTA */}
+          <div className="mt-12 text-center">
+            <p className="text-gray-500 mb-4">Want to try before you buy?</p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link href="/sblo-directory" className="px-6 py-3 bg-gray-100 text-gray-800 rounded-lg font-medium hover:bg-gray-200 transition-all">
+                Free SBLO Directory
+              </Link>
+              <Link href="/tier2-directory" className="px-6 py-3 bg-gray-100 text-gray-800 rounded-lg font-medium hover:bg-gray-200 transition-all">
+                Free Tier-2 Directory
+              </Link>
+              <Link href="/expiring-contracts-csv" className="px-6 py-3 bg-gray-100 text-gray-800 rounded-lg font-medium hover:bg-gray-200 transition-all">
+                Free Contracts CSV
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Bundle Section */}
       <section className="py-20 px-6 bg-gray-50" id="bundles">
         <div className="max-w-7xl mx-auto">
