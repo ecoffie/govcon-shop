@@ -120,114 +120,158 @@ export default function FreeResourcesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      {/* Header */}
-      <nav className="bg-white border-b border-gray-200 sticky top-0 z-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center gap-2">
-              <span className="text-xl font-bold text-blue-700">GovCon</span>
-              <span className="text-xl font-bold text-amber-500">Giants</span>
+    <div className="min-h-screen bg-white">
+      {/* Header - Matching Homepage */}
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+        <div className="max-w-7xl mx-auto px-6">
+          <nav className="flex items-center justify-between h-16">
+            <Link href="/" className="text-2xl font-bold text-blue-800 flex items-center gap-2">
+              <span>🚀</span> GovCon Giants
             </Link>
-            <Link
-              href="/"
-              className="px-4 py-2 bg-blue-800 text-white rounded-lg font-semibold text-sm hover:bg-blue-700"
-            >
-              View All Tools
-            </Link>
-          </div>
+            <ul className="hidden md:flex items-center gap-8">
+              <li><Link href="/#tools" className="text-gray-800 hover:text-blue-800 font-medium text-sm">Tools</Link></li>
+              <li><Link href="/#databases" className="text-gray-800 hover:text-blue-800 font-medium text-sm">Databases</Link></li>
+              <li><Link href="/free-resources" className="text-blue-800 font-medium text-sm">Resources</Link></li>
+              <li><Link href="/about" className="text-gray-800 hover:text-blue-800 font-medium text-sm">About</Link></li>
+            </ul>
+            <div className="flex items-center gap-4">
+              <Link href="/activate" className="px-4 py-2 text-gray-800 border border-gray-200 rounded-lg font-semibold text-sm hover:bg-gray-50">
+                Activate License
+              </Link>
+              <Link href="/opportunity-hunter" className="px-5 py-2 bg-gradient-to-r from-blue-800 to-purple-600 text-white rounded-lg font-semibold text-sm hover:shadow-lg transition-all hover:-translate-y-0.5">
+                Get Started
+              </Link>
+            </div>
+          </nav>
         </div>
-      </nav>
+      </header>
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Hero */}
-        <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl shadow-2xl p-8 text-white mb-12">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="text-4xl">🎁</span>
-            <h1 className="text-3xl font-bold">Free GovCon Resources</h1>
-          </div>
-          <p className="text-lg opacity-95 mb-6">
-            Get instant access to $5,376+ worth of government contracting resources.
-            Just verify your email once to unlock everything!
+      {/* Hero Section - Matching Homepage Style */}
+      <section className="bg-gradient-to-r from-emerald-600 to-teal-500 text-white py-20 px-6 text-center">
+        <div className="max-w-3xl mx-auto">
+          <span className="text-5xl mb-4 inline-block">🎁</span>
+          <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
+            Free GovCon Resources
+          </h1>
+          <p className="text-xl mb-8 opacity-95">
+            Get instant access to $5,376+ worth of government contracting resources. Just verify your email once to unlock everything!
           </p>
-          <button
-            onClick={handleGetAccess}
-            className="px-8 py-4 bg-white text-green-700 font-bold rounded-lg text-lg hover:bg-green-50 transition-colors"
-          >
-            Get Free Access Now
-          </button>
+          <div className="flex gap-4 justify-center flex-wrap">
+            <button
+              onClick={handleGetAccess}
+              className="px-8 py-4 bg-white text-emerald-700 rounded-lg font-bold text-lg hover:shadow-xl transition-all hover:-translate-y-0.5"
+            >
+              Get Free Access Now
+            </button>
+            <Link href="/all-free-resources" className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg font-bold text-lg hover:bg-white/10 transition-all">
+              Already Verified?
+            </Link>
+          </div>
         </div>
+      </section>
+
+      <main className="max-w-7xl mx-auto px-6 py-16">
 
         {/* Resources Grid */}
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">What You&apos;ll Get:</h2>
+        <div className="text-center mb-12">
+          <span className="inline-block bg-emerald-100 text-emerald-800 px-4 py-1 rounded-full text-sm font-semibold mb-4">8 FREE RESOURCES</span>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">What You&apos;ll Get:</h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">Everything you need to jumpstart your government contracting journey</p>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {FREE_RESOURCES.map((resource) => (
             <div
               key={resource.id}
               onClick={handleGetAccess}
-              className="bg-white rounded-xl shadow-lg p-6 border-2 border-slate-200 hover:border-green-400 hover:shadow-xl transition-all cursor-pointer"
+              className="bg-white rounded-xl p-6 border border-gray-200 hover:border-emerald-500 hover:shadow-lg transition-all cursor-pointer hover:-translate-y-1"
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="text-3xl">{resource.icon}</span>
+                <span className="text-4xl">{resource.icon}</span>
                 <div className="text-right">
                   <span className="text-sm text-gray-400 line-through">{resource.price}</span>
-                  <span className="block text-green-600 font-bold">FREE</span>
+                  <span className="block text-emerald-600 font-bold text-lg">FREE</span>
                 </div>
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">{resource.name}</h3>
-              <p className="text-sm text-gray-600">{resource.description}</p>
+              <p className="text-sm text-gray-500">{resource.description}</p>
             </div>
           ))}
         </div>
 
-        {/* Total Value */}
-        <div className="mt-8 text-center p-6 bg-green-50 rounded-xl border-2 border-green-200">
-          <p className="text-green-800 font-semibold text-lg">
-            <span className="text-3xl">$5,376+</span> Total Value - <span className="text-green-600 font-bold">100% FREE</span>
+        {/* Total Value CTA */}
+        <div className="mt-16 text-center p-10 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl border-2 border-emerald-200">
+          <p className="text-emerald-800 font-semibold text-xl mb-2">
+            Total Value: <span className="text-4xl font-bold">$5,376+</span>
           </p>
+          <p className="text-emerald-700 text-lg mb-6">Yours absolutely FREE when you verify your email</p>
           <button
             onClick={handleGetAccess}
-            className="mt-4 px-8 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 transition-colors"
+            className="px-10 py-4 bg-gradient-to-r from-emerald-600 to-teal-500 text-white font-bold rounded-lg text-lg hover:shadow-xl transition-all hover:-translate-y-0.5"
           >
             Unlock All Resources
           </button>
         </div>
 
-        {/* Already Verified */}
-        <div className="mt-8 text-center">
-          <p className="text-gray-500 mb-2">Already verified your email?</p>
-          <Link
-            href="/all-free-resources"
-            className="text-green-600 font-semibold hover:underline"
-          >
-            Access Your Resources
-          </Link>
-        </div>
-
-        {/* Upgrade CTA */}
-        <div className="mt-12 bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl shadow-xl p-8 text-white">
-          <div className="flex flex-col md:flex-row items-center gap-6">
+        {/* Upgrade CTA - Matching Homepage Bundle Style */}
+        <div className="mt-16 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-8 text-white">
+          <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="flex-1">
+              <span className="inline-block bg-amber-500 text-gray-900 px-3 py-1 rounded-full text-sm font-bold mb-3">UPGRADE</span>
               <h2 className="text-2xl font-bold mb-2">Want the Full Contractor Database?</h2>
               <p className="opacity-90">
                 Get 3,500+ federal contractors with contract history, NAICS codes, and direct contact information.
               </p>
             </div>
             <Link
-              href="https://buy.stripe.com/eVqdRafZfejs7lcaEJ"
-              className="px-8 py-3 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold rounded-lg transition-colors whitespace-nowrap"
+              href="/contractor-database"
+              className="px-8 py-4 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 font-bold rounded-lg transition-all hover:shadow-xl hover:-translate-y-0.5 whitespace-nowrap"
             >
-              Get Full Database - $497
+              View Full Database - $497
             </Link>
           </div>
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="mt-12 py-8 text-center text-gray-600">
-        <p className="text-sm">
-          &copy; {new Date().getFullYear()} GovCon Giants. All rights reserved.
-        </p>
+      {/* Footer - Matching Homepage */}
+      <footer className="bg-gray-900 text-white py-16 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-10">
+            <div>
+              <h4 className="font-bold mb-4 text-white">Products</h4>
+              <ul className="space-y-3 text-sm">
+                <li><Link href="/#tools" className="text-gray-400 hover:text-white">All Tools</Link></li>
+                <li><Link href="/#databases" className="text-gray-400 hover:text-white">Databases</Link></li>
+                <li><Link href="/#bundles" className="text-gray-400 hover:text-white">Bundles</Link></li>
+                <li><Link href="/free-resources" className="text-gray-400 hover:text-white">Free Resources</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4 text-white">Resources</h4>
+              <ul className="space-y-3 text-sm">
+                <li><Link href="/free-resources" className="text-gray-400 hover:text-white">Free PDFs</Link></li>
+                <li><Link href="/opportunity-hunter" className="text-gray-400 hover:text-white">Opportunity Hunter</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4 text-white">Company</h4>
+              <ul className="space-y-3 text-sm">
+                <li><Link href="/about" className="text-gray-400 hover:text-white">About Us</Link></li>
+                <li><a href="mailto:service@govcongiant.com" className="text-gray-400 hover:text-white">Contact</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4 text-white">Legal</h4>
+              <ul className="space-y-3 text-sm">
+                <li><a href="#" className="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white">Terms of Service</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="text-center pt-10 border-t border-gray-800 text-gray-500 text-sm">
+            <p>&copy; {new Date().getFullYear()} GovCon Giants. All rights reserved.</p>
+          </div>
+        </div>
       </footer>
 
       {/* Email Modal */}

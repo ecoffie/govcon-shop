@@ -189,100 +189,152 @@ export async function POST(request: NextRequest) {
     if (hasUltimateBundle) {
       console.log(`Processing Ultimate Giant Bundle purchase for: ${customerEmail}`);
 
-      // Grant access to all included products
-      await grantMarketAssassinAccess(customerEmail, 'premium', customerName || undefined);
-      await grantOpportunityHunterProAccess(customerEmail, customerName || undefined);
-      // TODO: Add grants for other bundle products (Content Generator, Database, Recompete) if needed
+      try {
+        // Grant access to all included products
+        console.log('Granting Market Assassin Premium access...');
+        await grantMarketAssassinAccess(customerEmail, 'premium', customerName || undefined);
+        console.log('Market Assassin Premium access granted');
 
-      const emailSent = await sendUltimateBundleEmail({
-        to: customerEmail,
-        customerName: customerName || undefined,
-      });
+        console.log('Granting Opportunity Hunter Pro access...');
+        await grantOpportunityHunterProAccess(customerEmail, customerName || undefined);
+        console.log('Opportunity Hunter Pro access granted');
 
-      console.log(`Ultimate Giant Bundle - Email sent: ${emailSent}`);
+        // TODO: Add grants for other bundle products (Content Generator, Database, Recompete) if needed
 
-      return NextResponse.json({
-        success: true,
-        message: 'Ultimate Giant Bundle access granted and email sent',
-        product: 'ultimate-giant-bundle',
-      });
+        console.log('Sending Ultimate Bundle email...');
+        const emailSent = await sendUltimateBundleEmail({
+          to: customerEmail,
+          customerName: customerName || undefined,
+        });
+
+        console.log(`Ultimate Giant Bundle - Email sent: ${emailSent}`);
+
+        return NextResponse.json({
+          success: true,
+          message: 'Ultimate Giant Bundle access granted and email sent',
+          product: 'ultimate-giant-bundle',
+        });
+      } catch (error) {
+        console.error('Error processing Ultimate Giant Bundle:', error);
+        return NextResponse.json({
+          error: 'Failed to process Ultimate Giant Bundle',
+          details: error instanceof Error ? error.message : 'Unknown error',
+          email: customerEmail,
+        }, { status: 500 });
+      }
     }
 
     // Handle Opportunity Hunter Pro purchase
     if (hasOpportunityScoutPro) {
       console.log(`Processing Opportunity Hunter Pro purchase for: ${customerEmail}`);
 
-      await grantOpportunityHunterProAccess(customerEmail, customerName || undefined);
+      try {
+        await grantOpportunityHunterProAccess(customerEmail, customerName || undefined);
 
-      const emailSent = await sendOpportunityHunterProEmail({
-        to: customerEmail,
-        customerName: customerName || undefined,
-      });
+        const emailSent = await sendOpportunityHunterProEmail({
+          to: customerEmail,
+          customerName: customerName || undefined,
+        });
 
-      console.log(`Opportunity Hunter Pro - Email sent: ${emailSent}`);
+        console.log(`Opportunity Hunter Pro - Email sent: ${emailSent}`);
 
-      return NextResponse.json({
-        success: true,
-        message: 'Opportunity Hunter Pro access granted and email sent',
-        product: 'opportunity-scout-pro',
-      });
+        return NextResponse.json({
+          success: true,
+          message: 'Opportunity Hunter Pro access granted and email sent',
+          product: 'opportunity-scout-pro',
+        });
+      } catch (error) {
+        console.error('Error processing Opportunity Hunter Pro:', error);
+        return NextResponse.json({
+          error: 'Failed to process Opportunity Hunter Pro',
+          details: error instanceof Error ? error.message : 'Unknown error',
+          email: customerEmail,
+        }, { status: 500 });
+      }
     }
 
     // Handle Market Assassin Standard purchase ($297)
     if (hasMarketAssassinStandard) {
       console.log(`Processing Market Assassin Standard purchase for: ${customerEmail}`);
 
-      await grantMarketAssassinAccess(customerEmail, 'standard', customerName || undefined);
+      try {
+        await grantMarketAssassinAccess(customerEmail, 'standard', customerName || undefined);
 
-      console.log(`Market Assassin Standard access granted to ${customerEmail}`);
+        console.log(`Market Assassin Standard access granted to ${customerEmail}`);
 
-      return NextResponse.json({
-        success: true,
-        message: 'Market Assassin Standard access granted',
-        product: 'market-assassin-standard',
-        tier: 'standard',
-      });
+        return NextResponse.json({
+          success: true,
+          message: 'Market Assassin Standard access granted',
+          product: 'market-assassin-standard',
+          tier: 'standard',
+        });
+      } catch (error) {
+        console.error('Error processing Market Assassin Standard:', error);
+        return NextResponse.json({
+          error: 'Failed to process Market Assassin Standard',
+          details: error instanceof Error ? error.message : 'Unknown error',
+          email: customerEmail,
+        }, { status: 500 });
+      }
     }
 
     // Handle Market Assassin Premium purchase ($497)
     if (hasMarketAssassinPremium) {
       console.log(`Processing Market Assassin Premium purchase for: ${customerEmail}`);
 
-      await grantMarketAssassinAccess(customerEmail, 'premium', customerName || undefined);
+      try {
+        await grantMarketAssassinAccess(customerEmail, 'premium', customerName || undefined);
 
-      console.log(`Market Assassin Premium access granted to ${customerEmail}`);
+        console.log(`Market Assassin Premium access granted to ${customerEmail}`);
 
-      return NextResponse.json({
-        success: true,
-        message: 'Market Assassin Premium access granted',
-        product: 'market-assassin-premium',
-        tier: 'premium',
-      });
+        return NextResponse.json({
+          success: true,
+          message: 'Market Assassin Premium access granted',
+          product: 'market-assassin-premium',
+          tier: 'premium',
+        });
+      } catch (error) {
+        console.error('Error processing Market Assassin Premium:', error);
+        return NextResponse.json({
+          error: 'Failed to process Market Assassin Premium',
+          details: error instanceof Error ? error.message : 'Unknown error',
+          email: customerEmail,
+        }, { status: 500 });
+      }
     }
 
     // Handle Federal Contractor Database purchase
     if (hasDatabaseProduct) {
       console.log(`Processing Federal Contractor Database purchase for: ${customerEmail}`);
 
-      const dbToken = await createDatabaseToken(customerEmail, customerName || undefined);
-      const accessLink = `https://tools.govcongiants.org/api/database-access/${dbToken.token}`;
+      try {
+        const dbToken = await createDatabaseToken(customerEmail, customerName || undefined);
+        const accessLink = `https://tools.govcongiants.org/api/database-access/${dbToken.token}`;
 
-      console.log(`Database access token created: ${dbToken.token}`);
+        console.log(`Database access token created: ${dbToken.token}`);
 
-      const emailSent = await sendDatabaseAccessEmail({
-        to: customerEmail,
-        customerName: customerName || undefined,
-        accessLink,
-      });
+        const emailSent = await sendDatabaseAccessEmail({
+          to: customerEmail,
+          customerName: customerName || undefined,
+          accessLink,
+        });
 
-      console.log(`Database access email sent: ${emailSent}`);
+        console.log(`Database access email sent: ${emailSent}`);
 
-      return NextResponse.json({
-        success: true,
-        message: 'Database access email sent',
-        product: 'federal-contractor-database',
-        token: dbToken.token,
-      });
+        return NextResponse.json({
+          success: true,
+          message: 'Database access email sent',
+          product: 'federal-contractor-database',
+          token: dbToken.token,
+        });
+      } catch (error) {
+        console.error('Error processing Federal Contractor Database:', error);
+        return NextResponse.json({
+          error: 'Failed to process Federal Contractor Database',
+          details: error instanceof Error ? error.message : 'Unknown error',
+          email: customerEmail,
+        }, { status: 500 });
+      }
     }
 
     // Handle Market Assassin purchase (legacy)

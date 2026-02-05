@@ -1,11 +1,23 @@
 # GovCon Shop - Claude Project Context
 
+## Quick Identifier
+**This is the LIVE PRODUCTION shop at shop.govcongiants.org**
+
+When user says: "live shop", "production", "shop.govcongiants", "the real site"
+→ This is the project. **Handle with care - this is live!**
+
+---
+
+## IMPORTANT: No Framer
+**This project does NOT use Framer.** Do not use any Framer MCP tools (mcp__framer-mcp__*) for this project. This is a pure Next.js/React codebase.
+
+---
+
 ## Project Overview
-**Name:** GovCon Shop
-**URL:** https://shop.govcongiants.org
-**Repository:** https://github.com/ecoffie/govcon-shop
-**Framework:** Next.js 16.1.1 with Turbopack
-**Deployment:** Vercel (auto-deploys from main branch)
+**Name:** GovCon Shop (Production)
+**Purpose:** Live production shop for GovCon Giants tools
+**Live URL:** shop.govcongiants.org
+**Framework:** Next.js 16 with Turbopack
 **Database:** Supabase
 **Payments:** Stripe
 
@@ -14,132 +26,121 @@
 /Users/ericcoffie/govcon-shop
 ```
 
-**Note:** There is also a separate project at `/Users/ericcoffie/Market Assasin/market-assassin` - this is NOT the live shop. Always work in `/Users/ericcoffie/govcon-shop` for shop.govcongiants.org changes.
+---
 
-## Tech Stack
-- **Frontend:** Next.js 16, React, TypeScript, Tailwind CSS
-- **Backend:** Next.js API Routes
-- **Database:** Supabase (PostgreSQL)
-- **Auth:** Supabase Auth + Custom license/access tokens
-- **Payments:** Stripe (payment links + webhooks)
-- **Email:** Resend
-- **Hosting:** Vercel
+## Related Projects
 
-## Key Directories
-```
-src/
-├── app/                    # Next.js App Router pages
-│   ├── bundles/           # Bundle landing pages (starter, pro, ultimate)
-│   ├── api/               # API routes
-│   ├── market-assassin/   # Market Assassin tool
-│   ├── contractor-database/ # Contractor database tool
-│   ├── expiring-contracts/ # Recompete contracts tracker
-│   ├── opportunity-hunter/ # Free opportunity finder
-│   ├── ai-content/        # Content generator tool
-│   └── ...
-├── components/            # Reusable React components
-│   └── BundleProductPage.tsx  # Bundle landing page template
-└── lib/                   # Utilities, Supabase client, etc.
-    ├── send-email.ts      # Email templates and sending
-    └── supabase/          # Supabase client and schemas
-```
-
-## Products & Pricing
-
-### Individual Products
-| Product | Price | Stripe Product |
-|---------|-------|----------------|
-| Opportunity Hunter Pro | $49 | One-time |
-| AI Content Generator | $197 | One-time |
-| Market Assassin Standard | $297 | One-time |
-| Recompete Contracts Tracker | $397 | One-time |
-| Federal Contractor Database | $497 | One-time |
-| Market Assassin Premium | $497 | One-time |
-| Content Generator Full Fix | $397 | One-time |
-
-### Bundles
-| Bundle | Price | Original Value | Savings | Products Included |
-|--------|-------|----------------|---------|-------------------|
-| Starter Bundle | $697 | $943 | $246 | Opportunity Hunter Pro, Recompete Tracker, Contractor Database |
-| Pro Giant Bundle | $997 | $1,388 | $391 | Contractor Database, Recompete Tracker, Market Assassin Standard, Content Generator |
-| Ultimate Giant | $1,497 | $1,788 | $291 | Market Assassin Premium, Content Generator Full Fix, Contractor Database, Recompete Tracker |
-
-### Stripe Payment Links
-- Starter Bundle: `https://buy.stripe.com/6oU9AUeb46Z46h70CsfnO0s`
-- Pro Giant Bundle: `https://buy.stripe.com/dRm7sMaYS0AG0WN5WMfnO0q`
-- Ultimate Giant: `https://buy.stripe.com/aFacN6d700AGfRHfxmfnO0r`
-
-## Bundle Landing Pages
-Created: February 2, 2026
-
-Each bundle has a dedicated landing page at `/bundles/{slug}`:
-- `/bundles/starter` - GovCon Starter Bundle
-- `/bundles/pro` - Pro Giant Bundle
-- `/bundles/ultimate` - Ultimate Giant Bundle
-
-Features:
-- Hero with pricing and included products preview
-- Trust badges (Lifetime Access, 30-Day Refund, Secure Checkout, Instant Access)
-- "Perfect For You If..." section
-- Detailed product breakdowns with features
-- Savings calculator
-- Customer reviews
-- CTA to Stripe checkout
-
-Component: `src/components/BundleProductPage.tsx`
-
-## Access Control System
-- Products are gated by access tokens stored in Supabase
-- Stripe webhook grants access on successful purchase
-- License activation page at `/activate`
-- Admin panel at `/admin` for manual access grants
-
-## Important Files
-- `src/app/page.tsx` - Homepage with bundle section
-- `src/app/store/page.tsx` - Store page (alternative layout)
-- `src/lib/send-email.ts` - All email templates
-- `src/app/api/stripe-webhook/route.ts` - Handles purchases
-- `src/middleware.ts` - Route protection (deprecated, moving to proxy)
-
-## Deployment Commands
-```bash
-# Deploy to production
-cd /Users/ericcoffie/govcon-shop
-vercel --prod
-
-# Or push to main for auto-deploy
-git add -A && git commit -m "message" && git push origin main
-```
-
-## Common Tasks
-
-### Adding a new product page
-1. Create page in `src/app/{product-name}/page.tsx`
-2. Add Stripe payment link
-3. Update webhook to grant access
-4. Add email template in `send-email.ts`
-
-### Updating bundle content
-Edit files in `src/app/bundles/{starter|pro|ultimate}/page.tsx`
-
-### Checking deployment status
-```bash
-cd /Users/ericcoffie/govcon-shop && vercel ls
-```
-
-## Recent Changes Log
-
-### February 2, 2026
-- Added bundle landing pages (`/bundles/starter`, `/bundles/pro`, `/bundles/ultimate`)
-- Created `BundleProductPage.tsx` reusable component
-- Updated homepage bundle buttons to link to landing pages instead of direct Stripe checkout
-- Removed community access bonuses (not included in bundles)
+| Project | Location | Purpose |
+|---------|----------|---------|
+| **GovCon Funnels** | `/Users/ericcoffie/govcon-funnels` | Marketing site (govcongiants.org) |
+| **Market Assassin** | `/Users/ericcoffie/Market Assasin/market-assassin` | Dev/staging environment |
+| **GovCon Shop** | This project | **LIVE production shop** |
 
 ---
 
-## Notes for Claude
-- Always work in `/Users/ericcoffie/govcon-shop` for this project
-- Run `vercel --prod` after pushing for faster deploys (don't wait for GitHub webhook)
-- The homepage is `src/app/page.tsx`, NOT `src/app/store/page.tsx`
-- Stripe webhooks handle access grants automatically
-- Test builds locally with `npm run build` before pushing
+## Tech Stack
+- **Frontend:** Next.js 16, React 19, TypeScript, Tailwind CSS
+- **Backend:** Next.js API Routes
+- **Database:** Supabase (PostgreSQL)
+- **Auth:** Supabase Auth + License keys
+- **Payments:** Stripe (webhooks + payment links)
+- **Email:** SMTP (hello@govconedu.com)
+
+---
+
+## Products & Pricing
+
+### Premium Tools
+| Product | Price |
+|---------|-------|
+| Market Assassin Standard | $297 |
+| Market Assassin Premium | $497 |
+| Content Generator | $197 |
+| Content Generator Full Fix | $397 |
+| Contractor Database | $497 |
+| Recompete Tracker | $397 |
+| Opportunity Hunter Pro | $49 |
+
+### Bundles
+| Bundle | Price | Savings |
+|--------|-------|---------|
+| Starter | $697 | $246 |
+| Pro Giant | $997 | $391 |
+| Ultimate | $1,497 | $291 |
+
+---
+
+## Key Pages
+
+### Tools (Premium)
+| Route | Tool |
+|-------|------|
+| `/market-assassin` | Federal Market Assassin |
+| `/content-generator` | GovCon Content Generator |
+| `/contractor-database` | Federal Contractor Database |
+| `/expiring-contracts` | Recompete Contracts Tracker |
+| `/opportunity-hunter` | Opportunity Hunter |
+| `/planner` | Action Planner Dashboard |
+
+### Free Resources
+| Route | Resource |
+|-------|----------|
+| `/free-resources` | All free resources hub |
+| `/sblo-directory` | SBLO Contact List PDF |
+| `/december-spend` | December Spend Forecast |
+| `/ai-prompts` | 75+ AI Prompts PDF |
+| `/action-plan-2026` | 2026 Action Plan |
+| `/guides-templates` | Guides & Templates |
+| `/tribal-list` | Tribal Contractor List |
+| `/expiring-contracts-csv` | Free Contracts CSV |
+
+### Other Pages
+| Route | Purpose |
+|-------|---------|
+| `/` | Homepage (product showcase) |
+| `/store` | Shop page |
+| `/bundles/starter` | Starter bundle landing |
+| `/bundles/pro` | Pro Giant bundle landing |
+| `/bundles/ultimate` | Ultimate bundle landing |
+| `/activate` | License activation |
+| `/admin` | Admin panel |
+
+---
+
+## Key Files
+
+| File | Purpose |
+|------|---------|
+| `/src/lib/products.ts` | Product config & Stripe URLs |
+| `/src/app/api/stripe-webhook/route.ts` | Payment webhook |
+| `/src/lib/supabase/user-profiles.ts` | User & access management |
+| `/src/lib/send-email.ts` | Email templates |
+| `/src/app/page.tsx` | Homepage |
+
+---
+
+## Development
+
+### Run Dev Server
+```bash
+cd /Users/ericcoffie/govcon-shop
+npm run dev
+```
+
+### Build for Production
+```bash
+npm run build
+```
+
+---
+
+## Production Warnings
+
+1. **This is LIVE** - Changes affect real customers
+2. **Test in Market Assassin first** - Use dev environment for testing
+3. **Don't break webhooks** - Stripe payments depend on them
+4. **Backup before major changes** - Database has real customer data
+
+---
+
+*Last Updated: February 4, 2026*
