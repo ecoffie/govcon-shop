@@ -158,7 +158,7 @@ npm run build
 | Opportunity Hunter Pro $49 | `00wcN60ke97c5d384UfnO0i` |
 | Starter Bundle $697 | `6oU9AUeb46Z46h70CsfnO0s` |
 | Pro Bundle $997 | `dRm7sMaYS0AG0WN5WMfnO0q` |
-| Ultimate Bundle $1,497 | `aFacN6d700AGfRHfxmfnO0r` |
+| Ultimate Bundle $1,497 | `6oU3cwff897ceND84UfnO0t` |
 
 ---
 

@@ -531,7 +531,7 @@ export default function Home() {
                 <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Recompete Contracts Tracker <span className="text-gray-400">($397)</span></li>
               </ul>
               <div className="text-center text-sm opacity-50 mb-4 line-through">$1,788 if bought separately</div>
-              <a href="https://buy.stripe.com/aFacN6d700AGfRHfxmfnO0r" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 text-center rounded-lg font-bold hover:from-amber-300 hover:to-amber-400 transition-all">
+              <a href="https://buy.stripe.com/6oU3cwff897ceND84UfnO0t" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 text-center rounded-lg font-bold hover:from-amber-300 hover:to-amber-400 transition-all">
                 Get Ultimate Bundle — Save $291
               </a>
             </div>

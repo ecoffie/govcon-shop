@@ -11,7 +11,7 @@ export default function UltimateBundlePage() {
       gradientTo="#374151"
       price={1497}
       originalPrice={1788}
-      checkoutUrl="https://buy.stripe.com/aFacN6d700AGfRHfxmfnO0r"
+      checkoutUrl="https://buy.stripe.com/6oU3cwff897ceND84UfnO0t"
       badge="BEST VALUE - EVERYTHING INCLUDED"
       includedProducts={[
         {

@@ -76,7 +76,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/buy/ultimate-bundle',
-        destination: 'https://buy.stripe.com/aFacN6d700AGfRHfxmfnO0r',
+        destination: 'https://buy.stripe.com/6oU3cwff897ceND84UfnO0t',
         permanent: false,
       },
     ];
