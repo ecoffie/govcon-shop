@@ -58,7 +58,7 @@ export default function DatabaseLockedPage() {
         </div>
 
         <a
-          href="https://buy.stripe.com/eVqdRafZfejs7lcaEJ"
+          href="https://buy.stripe.com/4gMaEY3wqcjo6h70CsfnO0g"
           className="inline-block bg-blue-600 hover:bg-blue-700 text-white py-4 px-8 rounded-lg font-bold text-lg mb-4 transition-colors"
         >
           Get Access - $497

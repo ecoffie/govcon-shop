@@ -41,22 +41,22 @@ const nextConfig: NextConfig = {
       // Checkout shortcut redirects
       {
         source: '/buy/opportunity-hunter',
-        destination: 'https://buy.stripe.com/3cs8wSgnjfvA20RcMQ',
+        destination: 'https://buy.stripe.com/00wcN60ke97c5d384UfnO0i',
         permanent: false,
       },
       {
         source: '/buy/database',
-        destination: 'https://buy.stripe.com/eVqdRafZfejs7lcaEJ',
+        destination: 'https://buy.stripe.com/4gMaEY3wqcjo6h70CsfnO0g',
         permanent: false,
       },
       {
         source: '/buy/ai-content',
-        destination: 'https://buy.stripe.com/6oUbJ6b356Zg5d33ch',
+        destination: 'https://buy.stripe.com/dRmcN64Au6Z4axn84UfnO0m',
         permanent: false,
       },
       {
         source: '/buy/recompete',
-        destination: 'https://buy.stripe.com/3cs14ognjbfk20R28d',
+        destination: 'https://buy.stripe.com/7sYfZi9UOdnsaxnbh6fnO0k',
         permanent: false,
       },
       {

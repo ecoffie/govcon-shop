@@ -344,7 +344,7 @@ export default function AllFreeResourcesPage() {
               </p>
             </div>
             <Link
-              href="https://buy.stripe.com/eVqdRafZfejs7lcaEJ"
+              href="https://buy.stripe.com/4gMaEY3wqcjo6h70CsfnO0g"
               className="px-8 py-3 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold rounded-lg transition-colors whitespace-nowrap"
             >
               Get Full Database - $497

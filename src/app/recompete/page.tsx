@@ -127,7 +127,7 @@ export default function RecompeteLockedPage() {
         </div>
 
         <a
-          href="https://buy.stripe.com/3cs14ognjbfk20R28d"
+          href="https://buy.stripe.com/7sYfZi9UOdnsaxnbh6fnO0k"
           className="inline-block bg-amber-600 hover:bg-amber-700 text-white py-4 px-8 rounded-lg font-bold text-lg mb-4 transition-colors"
         >
           Get Access - $397
