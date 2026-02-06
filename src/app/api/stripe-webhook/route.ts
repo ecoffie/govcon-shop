@@ -13,93 +13,53 @@ import {
   sendOpportunityHunterProEmail,
   sendUltimateBundleEmail,
 } from '@/lib/send-email';
-import { STRIPE_TO_PRODUCT_ID, getBundleIncludes, getProductName } from '@/lib/products';
+import { getOrCreateProfile, updateAccessFlags } from '@/lib/supabase/user-profiles';
+import { STRIPE_TO_PRODUCT_ID, getProductName, getBundleIncludes } from '@/lib/products';
 
-// Webhook secrets from environment
+// Webhook secrets
 const liveWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET || '';
 const testWebhookSecret = process.env.STRIPE_TEST_WEBHOOK_SECRET || '';
 
-// Initialize Supabase with service role for webhook writes
+// Supabase admin client for recording purchases
 function getSupabase() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) return null;
-  return createClient(url, key);
+  return createClient(url, key, { auth: { persistSession: false } });
 }
 
-// Lazy-load Stripe to avoid build-time errors
-function getStripe(testMode: boolean = false) {
+function getStripe(testMode = false) {
   const liveKey = process.env.STRIPE_SECRET_KEY || '';
   const testKey = process.env.STRIPE_TEST_SECRET_KEY || '';
   return new Stripe(testMode ? testKey : liveKey);
 }
 
-// Simple in-memory idempotency check
 const processedEvents = new Set<string>();
 
-// Record purchase in Supabase
-async function recordPurchase(params: {
-  email: string;
-  productId: string;
-  productName: string;
-  orderId: string;
-  amountPaid: number;
-}) {
-  const supabase = getSupabase();
-  if (!supabase) {
-    console.warn('Supabase not configured — skipping purchase record');
-    return;
-  }
-
-  const { error } = await supabase.from('purchases').insert({
-    user_email: params.email.toLowerCase(),
-    product_id: params.productId,
-    product_name: params.productName,
-    order_id: params.orderId,
-    amount_paid: params.amountPaid,
-    status: 'completed',
-    created_at: new Date().toISOString(),
-  });
-
-  if (error) {
-    console.error('Failed to record purchase in Supabase:', error);
-  } else {
-    console.log(`✅ Purchase recorded in Supabase: ${params.productId} for ${params.email}`);
-  }
-}
-
-// Grant access for a single product (Vercel KV)
-async function grantProductAccess(productId: string, email: string, customerName?: string) {
+// Grant Vercel KV access for a single product (fast tool gating)
+async function grantKVAccess(productId: string, email: string, customerName?: string) {
   switch (productId) {
     case 'contractor-database': {
       const dbToken = await createDatabaseToken(email, customerName);
       const accessLink = `https://tools.govcongiants.org/api/database-access/${dbToken.token}`;
       await sendDatabaseAccessEmail({ to: email, customerName, accessLink });
-      console.log(`✅ Database access granted to ${email}`);
       break;
     }
     case 'opportunity-hunter-pro':
       await grantOpportunityHunterProAccess(email, customerName);
-      console.log(`✅ Opportunity Hunter Pro access granted to ${email}`);
       break;
     case 'market-assassin-standard':
       await grantMarketAssassinAccess(email, 'standard', customerName);
-      console.log(`✅ Market Assassin Standard access granted to ${email}`);
       break;
     case 'market-assassin-premium':
       await grantMarketAssassinAccess(email, 'premium', customerName);
-      console.log(`✅ Market Assassin Premium access granted to ${email}`);
       break;
     case 'ai-content-generator':
       await grantContentGeneratorAccess(email, 'content-engine', customerName);
-      console.log(`✅ Content Generator access granted to ${email}`);
       break;
     case 'recompete-contracts':
       await grantRecompeteAccess(email, customerName);
-      console.log(`✅ Recompete access granted to ${email}`);
       break;
-    default:
-      console.log(`No KV access handler for product: ${productId}`);
   }
 }
 
@@ -110,14 +70,12 @@ export async function POST(request: NextRequest) {
   const signature = request.headers.get('stripe-signature');
 
   if (!signature) {
-    console.error('No Stripe signature found');
     return NextResponse.json({ error: 'No signature' }, { status: 400 });
   }
 
   let event: Stripe.Event;
   let isTestMode = false;
 
-  // Try live secret first, then test secret
   try {
     const stripe = getStripe(false);
     event = stripe.webhooks.constructEvent(rawBody, signature, liveWebhookSecret);
@@ -132,7 +90,7 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  // Idempotency check
+  // Idempotency
   if (processedEvents.has(event.id)) {
     return NextResponse.json({ received: true, duplicate: true });
   }
@@ -151,14 +109,18 @@ export async function POST(request: NextRequest) {
     const customerEmail = session.customer_email || session.customer_details?.email;
     const customerName = session.customer_details?.name || undefined;
 
+    // Read Stripe metadata (set on payment links)
+    const tier = session.metadata?.tier;
+    const bundle = session.metadata?.bundle;
+
     if (!customerEmail) {
       console.error('No customer email in checkout session');
       return NextResponse.json({ error: 'No customer email' }, { status: 400 });
     }
 
-    console.log(`Checkout completed: ${customerEmail} | Amount: ${session.amount_total} ${session.currency}`);
+    console.log(`Checkout: ${customerEmail} | tier: ${tier} | bundle: ${bundle} | amount: ${session.amount_total}`);
 
-    // Get line items to identify the product
+    // Get line items for Stripe product ID
     const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
       expand: ['data.price.product'],
     });
@@ -170,61 +132,83 @@ export async function POST(request: NextRequest) {
       if (pid) stripeProductId = pid;
     });
 
-    // Resolve Stripe product ID to our product ID
+    // Resolve to our product ID
     const productId = stripeProductId ? STRIPE_TO_PRODUCT_ID[stripeProductId] : null;
-
-    if (!productId) {
-      console.log(`Unknown Stripe product: ${stripeProductId}`);
-      return NextResponse.json({ received: true, message: 'Unknown product' });
-    }
 
     console.log(`Product: ${productId} (Stripe: ${stripeProductId})`);
 
-    // Check if this is a bundle
-    const bundleIncludes = getBundleIncludes(productId);
-    const isBundlePurchase = bundleIncludes.length > 0;
+    // ─── 1. Record purchase in Supabase ───
+    const supabase = getSupabase();
+    if (supabase) {
+      // Check for duplicate
+      const { data: existing } = await supabase
+        .from('purchases')
+        .select('id')
+        .eq('order_id', session.id)
+        .limit(1);
 
-    // 1. Record purchase in Supabase
-    await recordPurchase({
-      email: customerEmail,
-      productId,
-      productName: getProductName(productId),
-      orderId: session.id,
-      amountPaid: session.amount_total || 0,
-    });
-
-    // 2. Grant access via Vercel KV
-    if (isBundlePurchase) {
-      // Grant access to each product in the bundle
-      for (const includedProductId of bundleIncludes) {
-        await grantProductAccess(includedProductId, customerEmail, customerName);
+      if (existing && existing.length > 0) {
+        console.log('Session already recorded, skipping');
+        return NextResponse.json({ received: true, duplicate: true });
       }
 
-      // Send bundle-specific email
-      if (productId === 'ultimate-govcon-bundle') {
-        await sendUltimateBundleEmail({ to: customerEmail, customerName });
-      }
-      // TODO: Add email templates for starter and pro bundles
+      const { error: insertError } = await supabase.from('purchases').insert({
+        user_email: customerEmail.toLowerCase(),
+        product_id: productId || stripeProductId || 'unknown',
+        product_name: lineItems.data[0]?.description || getProductName(productId || ''),
+        order_id: session.id,
+        amount_paid: session.amount_total || 0,
+        status: 'completed',
+      });
 
-      console.log(`✅ Bundle ${productId} fully processed for ${customerEmail}`);
-    } else {
-      // Single product purchase
-      await grantProductAccess(productId, customerEmail, customerName);
-
-      // Send product-specific email (database and opp hunter emails sent inside grantProductAccess)
-      if (productId === 'opportunity-hunter-pro') {
-        await sendOpportunityHunterProEmail({ to: customerEmail, customerName });
+      if (insertError) {
+        console.error('Failed to record purchase:', insertError);
+      } else {
+        console.log(`✅ Purchase recorded in Supabase`);
       }
     }
+
+    // ─── 2. Update user_profiles access flags (Supabase) ───
+    if (tier || bundle) {
+      await getOrCreateProfile(customerEmail, customerName);
+      const flags = await updateAccessFlags(customerEmail, tier, bundle);
+      console.log('✅ user_profiles updated:', Object.keys(flags));
+    }
+
+    // ─── 3. Grant Vercel KV access (fast tool gating) ───
+    if (productId) {
+      const bundleIncludes = getBundleIncludes(productId);
+
+      if (bundleIncludes.length > 0) {
+        // Bundle: grant KV access for each included product
+        for (const included of bundleIncludes) {
+          await grantKVAccess(included, customerEmail, customerName);
+        }
+
+        // Send bundle email
+        if (productId === 'ultimate-govcon-bundle') {
+          await sendUltimateBundleEmail({ to: customerEmail, customerName });
+        }
+      } else {
+        // Single product
+        await grantKVAccess(productId, customerEmail, customerName);
+
+        if (productId === 'opportunity-hunter-pro') {
+          await sendOpportunityHunterProEmail({ to: customerEmail, customerName });
+        }
+      }
+    }
+
+    console.log(`✅ Fully processed: ${productId || 'unknown'} for ${customerEmail}`);
 
     return NextResponse.json({
       success: true,
       product: productId,
-      bundle: isBundlePurchase,
+      tier,
+      bundle,
       email: customerEmail,
     });
   }
 
-  // Return 200 for other events
   return NextResponse.json({ received: true });
 }

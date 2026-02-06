@@ -62,11 +62,11 @@ function SuccessContent() {
             <ol className="space-y-3 text-gray-700">
               <li className="flex items-start gap-3">
                 <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
-                <span>Check your email for your receipt and license key</span>
+                <span>Check your email for your receipt and access details</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
-                <span>Use your purchase email or license key to access your tools</span>
+                <span>Go to the Activate page and enter your purchase email to access your tools</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
@@ -80,7 +80,7 @@ function SuccessContent() {
               href="/activate"
               className="block w-full px-6 py-3 bg-gradient-to-r from-blue-800 to-purple-600 hover:shadow-lg text-white font-bold rounded-lg transition-all text-center"
             >
-              Activate Your License
+              Access Your Tools
             </Link>
             <Link
               href="/"

@@ -1,13 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
-import { getProductName, getBundleIncludes } from '@/lib/products';
+import { getProfileByEmail } from '@/lib/supabase/user-profiles';
 
-function getSupabase() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  if (!url || !key) return null;
-  return createClient(url, key);
-}
+// Map access flags to friendly product names
+const ACCESS_FLAG_NAMES: Record<string, string> = {
+  access_hunter_pro: 'Opportunity Hunter Pro',
+  access_content_standard: 'GovCon Content Generator',
+  access_content_full_fix: 'GovCon Content Generator (Full Fix)',
+  access_assassin_standard: 'Federal Market Assassin (Standard)',
+  access_assassin_premium: 'Federal Market Assassin (Premium)',
+  access_recompete: 'Recompete Contracts Tracker',
+  access_contractor_db: 'Federal Contractor Database',
+};
 
 export async function POST(request: NextRequest) {
   try {
@@ -20,59 +23,43 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const supabase = getSupabase();
-    if (!supabase) {
-      return NextResponse.json(
-        { error: 'Database not configured' },
-        { status: 500 }
-      );
-    }
-
     const normalizedEmail = email.trim().toLowerCase();
 
-    // Look up all completed purchases for this email
-    const { data: purchases, error } = await supabase
-      .from('purchases')
-      .select('product_id, product_name, created_at')
-      .eq('user_email', normalizedEmail)
-      .eq('status', 'completed');
+    // Look up user profile with access flags
+    const profile = await getProfileByEmail(normalizedEmail);
 
-    if (error) {
-      console.error('Error looking up purchases:', error);
+    if (!profile) {
       return NextResponse.json(
-        { error: 'Failed to look up purchases' },
-        { status: 500 }
-      );
-    }
-
-    if (!purchases || purchases.length === 0) {
-      return NextResponse.json(
-        { error: 'No purchases found for this email. Please use the same email you used at checkout.' },
+        { error: 'No account found for this email. Please use the same email you used at checkout.' },
         { status: 404 }
       );
     }
 
-    // Build list of accessible products (expand bundles)
-    const productSet = new Set<string>();
+    // Collect all products this user has access to
+    const products: string[] = [];
 
-    for (const purchase of purchases) {
-      productSet.add(purchase.product_id);
-
-      // If it's a bundle, add included products
-      const bundleIncludes = getBundleIncludes(purchase.product_id);
-      for (const included of bundleIncludes) {
-        productSet.add(included);
+    for (const [flag, name] of Object.entries(ACCESS_FLAG_NAMES)) {
+      if (profile[flag as keyof typeof profile] === true) {
+        // Skip standard if they have premium (avoid showing both)
+        if (flag === 'access_assassin_standard' && profile.access_assassin_premium) continue;
+        if (flag === 'access_content_standard' && profile.access_content_full_fix) continue;
+        products.push(name);
       }
     }
 
-    // Convert to friendly names
-    const products = Array.from(productSet).map(id => getProductName(id));
+    if (products.length === 0) {
+      return NextResponse.json(
+        { error: 'No active products found for this email. If you just purchased, it may take a moment to activate.' },
+        { status: 404 }
+      );
+    }
 
     return NextResponse.json({
       success: true,
       message: 'Your tools are activated! You have access to the following products.',
       products,
       email: normalizedEmail,
+      licenseKey: profile.license_key || undefined,
     });
 
   } catch (error) {
