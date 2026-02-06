@@ -257,14 +257,14 @@ export default function FreeResourcesPage() {
               <h4 className="font-bold mb-4 text-white">Company</h4>
               <ul className="space-y-3 text-sm">
                 <li><Link href="/about" className="text-gray-400 hover:text-white">About Us</Link></li>
-                <li><a href="mailto:service@govcongiant.com" className="text-gray-400 hover:text-white">Contact</a></li>
+                <li><a href="mailto:service@govcongiants.com" className="text-gray-400 hover:text-white">Contact</a></li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold mb-4 text-white">Legal</h4>
               <ul className="space-y-3 text-sm">
-                <li><a href="#" className="text-gray-400 hover:text-white">Privacy Policy</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white">Terms of Service</a></li>
+                <li><Link href="/privacy-policy" className="text-gray-400 hover:text-white">Privacy Policy</Link></li>
+                <li><Link href="/terms-of-service" className="text-gray-400 hover:text-white">Terms of Service</Link></li>
               </ul>
             </div>
           </div>

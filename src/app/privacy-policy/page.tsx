@@ -116,8 +116,8 @@ export default function PrivacyPolicyPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Contact Us</h2>
             <p className="text-gray-600">
               If you have any questions about this Privacy Policy, please contact us at:{' '}
-              <a href="mailto:service@govcongiant.com" className="text-blue-800 hover:underline">
-                service@govcongiant.com
+              <a href="mailto:service@govcongiants.com" className="text-blue-800 hover:underline">
+                service@govcongiants.com
               </a>
             </p>
           </section>
@@ -155,7 +155,7 @@ export default function PrivacyPolicyPage() {
               <h4 className="font-bold mb-4 text-white">Company</h4>
               <ul className="space-y-3 text-sm">
                 <li><Link href="/about" className="text-gray-400 hover:text-white">About Us</Link></li>
-                <li><a href="mailto:service@govcongiant.com" className="text-gray-400 hover:text-white">Contact</a></li>
+                <li><a href="mailto:service@govcongiants.com" className="text-gray-400 hover:text-white">Contact</a></li>
               </ul>
             </div>
             <div>

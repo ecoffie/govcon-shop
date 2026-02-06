@@ -90,8 +90,8 @@ function SuccessContent() {
             </Link>
             <p className="text-sm text-gray-500">
               Need help? Contact us at{' '}
-              <a href="mailto:service@govcongiant.com" className="text-blue-600 hover:underline">
-                service@govcongiant.com
+              <a href="mailto:service@govcongiants.com" className="text-blue-600 hover:underline">
+                service@govcongiants.com
               </a>
             </p>
           </div>

@@ -13,8 +13,8 @@ export default function Home() {
             </Link>
             <ul className="hidden md:flex items-center gap-8">
               <li><a href="#tools" className="text-gray-800 hover:text-blue-800 font-medium text-sm">Tools</a></li>
-              <li><a href="#databases" className="text-gray-800 hover:text-blue-800 font-medium text-sm">Databases</a></li>
-              <li><a href="#resources" className="text-gray-800 hover:text-blue-800 font-medium text-sm">Resources</a></li>
+              <li><a href="#tools" className="text-gray-800 hover:text-blue-800 font-medium text-sm">Databases</a></li>
+              <li><Link href="/free-resources" className="text-gray-800 hover:text-blue-800 font-medium text-sm">Resources</Link></li>
               <li><Link href="/about" className="text-gray-800 hover:text-blue-800 font-medium text-sm">About</Link></li>
             </ul>
             <div className="flex items-center gap-4">
@@ -55,18 +55,18 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center mb-10 text-gray-900">Browse by Category</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
             {[
-              { icon: "📊", title: "Databases", desc: "Searchable contractor databases" },
-              { icon: "📝", title: "Guides", desc: "Step-by-step tutorials" },
-              { icon: "🔍", title: "Research Tools", desc: "Find opportunities faster" },
-              { icon: "📅", title: "Forecasts", desc: "Contract expiring dates" },
-              { icon: "📋", title: "Templates", desc: "Ready-to-use documents" },
-              { icon: "🎯", title: "Hit Lists", desc: "Targeted company lists" },
+              { icon: "📊", title: "Databases", desc: "Searchable contractor databases", href: "#tools" },
+              { icon: "📝", title: "Guides", desc: "Step-by-step tutorials", href: "/guides-templates" },
+              { icon: "🔍", title: "Research Tools", desc: "Find opportunities faster", href: "/opportunity-hunter" },
+              { icon: "📅", title: "Forecasts", desc: "Contract expiring dates", href: "/expiring-contracts" },
+              { icon: "📋", title: "Templates", desc: "Ready-to-use documents", href: "/guides-templates" },
+              { icon: "🎯", title: "Hit Lists", desc: "Targeted company lists", href: "/december-spend" },
             ].map((cat, i) => (
-              <div key={i} className="bg-white p-6 rounded-xl border border-gray-200 text-center cursor-pointer transition-all hover:-translate-y-1 hover:shadow-lg hover:border-emerald-500">
+              <Link key={i} href={cat.href} className="block bg-white p-6 rounded-xl border border-gray-200 text-center cursor-pointer transition-all hover:-translate-y-1 hover:shadow-lg hover:border-emerald-500">
                 <div className="text-4xl mb-3">{cat.icon}</div>
                 <h3 className="text-lg font-semibold mb-2 text-gray-900">{cat.title}</h3>
                 <p className="text-sm text-gray-500">{cat.desc}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -78,17 +78,23 @@ export default function Home() {
           <div className="flex justify-between items-center mb-10 flex-wrap gap-5">
             <h2 className="text-3xl font-bold text-gray-900">Featured Tools</h2>
             <div className="flex gap-3 flex-wrap">
-              {["All", "Free", "Premium", "New"].map((tab, i) => (
-                <button
-                  key={tab}
+              {[
+                { label: "All", href: "#tools" },
+                { label: "Free", href: "/free-resources" },
+                { label: "Premium", href: "#tools" },
+                { label: "New", href: "#tools" },
+              ].map((tab, i) => (
+                <a
+                  key={tab.label}
+                  href={tab.href}
                   className={`px-4 py-2 rounded-full text-sm font-medium border transition-all ${
                     i === 0
                       ? "bg-blue-800 text-white border-blue-800"
-                      : "bg-gray-50 text-gray-800 border-gray-200 hover:border-blue-800"
+                      : "bg-gray-50 text-gray-800 border-gray-200 hover:border-blue-800 hover:bg-blue-50"
                   }`}
                 >
-                  {tab}
-                </button>
+                  {tab.label}
+                </a>
               ))}
             </div>
           </div>
@@ -547,7 +553,7 @@ export default function Home() {
               <h4 className="font-bold mb-4 text-white">Products</h4>
               <ul className="space-y-3 text-sm">
                 <li><a href="#tools" className="text-gray-400 hover:text-white">All Tools</a></li>
-                <li><a href="#databases" className="text-gray-400 hover:text-white">Databases</a></li>
+                <li><a href="#tools" className="text-gray-400 hover:text-white">Databases</a></li>
                 <li><a href="#bundles" className="text-gray-400 hover:text-white">Bundles</a></li>
                 <li><Link href="/free-resources" className="text-gray-400 hover:text-white">Free Resources</Link></li>
               </ul>
@@ -563,14 +569,14 @@ export default function Home() {
               <h4 className="font-bold mb-4 text-white">Company</h4>
               <ul className="space-y-3 text-sm">
                 <li><Link href="/about" className="text-gray-400 hover:text-white">About Us</Link></li>
-                <li><a href="mailto:service@govcongiant.com" className="text-gray-400 hover:text-white">Contact</a></li>
+                <li><a href="mailto:service@govcongiants.com" className="text-gray-400 hover:text-white">Contact</a></li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold mb-4 text-white">Legal</h4>
               <ul className="space-y-3 text-sm">
-                <li><a href="#" className="text-gray-400 hover:text-white">Privacy Policy</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white">Terms of Service</a></li>
+                <li><Link href="/privacy-policy" className="text-gray-400 hover:text-white">Privacy Policy</Link></li>
+                <li><Link href="/terms-of-service" className="text-gray-400 hover:text-white">Terms of Service</Link></li>
               </ul>
             </div>
           </div>

@@ -55,18 +55,18 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center mb-10 text-gray-900">Browse by Category</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
             {[
-              { icon: "📊", title: "Databases", desc: "Searchable contractor databases" },
-              { icon: "📝", title: "Guides", desc: "Step-by-step tutorials" },
-              { icon: "🔍", title: "Research Tools", desc: "Find opportunities faster" },
-              { icon: "📅", title: "Forecasts", desc: "Contract expiring dates" },
-              { icon: "📋", title: "Templates", desc: "Ready-to-use documents" },
-              { icon: "🎯", title: "Hit Lists", desc: "Targeted company lists" },
+              { icon: "📊", title: "Databases", desc: "Searchable contractor databases", href: "#databases" },
+              { icon: "📝", title: "Guides", desc: "Step-by-step tutorials", href: "/guides-templates" },
+              { icon: "🔍", title: "Research Tools", desc: "Find opportunities faster", href: "/opportunity-hunter" },
+              { icon: "📅", title: "Forecasts", desc: "Contract expiring dates", href: "/expiring-contracts" },
+              { icon: "📋", title: "Templates", desc: "Ready-to-use documents", href: "/guides-templates" },
+              { icon: "🎯", title: "Hit Lists", desc: "Targeted company lists", href: "/december-spend" },
             ].map((cat, i) => (
-              <div key={i} className="bg-white p-6 rounded-xl border border-gray-200 text-center cursor-pointer transition-all hover:-translate-y-1 hover:shadow-lg hover:border-emerald-500">
+              <Link key={i} href={cat.href} className="block bg-white p-6 rounded-xl border border-gray-200 text-center cursor-pointer transition-all hover:-translate-y-1 hover:shadow-lg hover:border-emerald-500">
                 <div className="text-4xl mb-3">{cat.icon}</div>
                 <h3 className="text-lg font-semibold mb-2 text-gray-900">{cat.title}</h3>
                 <p className="text-sm text-gray-500">{cat.desc}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -78,17 +78,23 @@ export default function Home() {
           <div className="flex justify-between items-center mb-10 flex-wrap gap-5">
             <h2 className="text-3xl font-bold text-gray-900">Featured Tools</h2>
             <div className="flex gap-3 flex-wrap">
-              {["All", "Free", "Premium", "New"].map((tab, i) => (
-                <button
-                  key={tab}
+              {[
+                { label: "All", href: "#tools" },
+                { label: "Free", href: "/free-resources" },
+                { label: "Premium", href: "#tools" },
+                { label: "New", href: "#tools" },
+              ].map((tab, i) => (
+                <a
+                  key={tab.label}
+                  href={tab.href}
                   className={`px-4 py-2 rounded-full text-sm font-medium border transition-all ${
                     i === 0
                       ? "bg-blue-800 text-white border-blue-800"
-                      : "bg-gray-50 text-gray-800 border-gray-200 hover:border-blue-800"
+                      : "bg-gray-50 text-gray-800 border-gray-200 hover:border-blue-800 hover:bg-blue-50"
                   }`}
                 >
-                  {tab}
-                </button>
+                  {tab.label}
+                </a>
               ))}
             </div>
           </div>
@@ -576,8 +582,16 @@ export default function Home() {
                 <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> Federal Contractor Database ($497)</li>
               </ul>
               <div className="text-center text-sm text-gray-500 mb-4 line-through">$943 if bought separately</div>
-              <Link href="/bundles/starter" className="block w-full py-3 bg-blue-800 text-white text-center rounded-lg font-semibold hover:bg-blue-700 transition-all">
-                Get Starter Bundle
+              <a
+                href="https://buy.stripe.com/6oU9AUeb46Z46h70CsfnO0s"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full py-3 bg-blue-800 text-white text-center rounded-lg font-semibold hover:bg-blue-700 transition-all mb-2"
+              >
+                Get Starter Bundle — Save $246
+              </a>
+              <Link href="/bundles/starter" className="block w-full py-2 border-2 border-gray-200 text-gray-700 text-center rounded-lg font-semibold hover:border-blue-500 hover:text-blue-600 transition-all">
+                View Details
               </Link>
             </div>
 
@@ -601,8 +615,16 @@ export default function Home() {
                 <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> GovCon Content Generator ($197)</li>
               </ul>
               <div className="text-center text-sm text-gray-500 mb-4 line-through">$1,388 if bought separately</div>
-              <Link href="/bundles/pro" className="block w-full py-3 bg-amber-500 text-white text-center rounded-lg font-semibold hover:bg-amber-400 transition-all">
-                Get Pro Giant Bundle
+              <a
+                href="https://buy.stripe.com/dRm7sMaYS0AG0WN5WMfnO0q"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full py-3 bg-amber-500 text-white text-center rounded-lg font-semibold hover:bg-amber-400 transition-all mb-2"
+              >
+                Get Pro Giant Bundle — Save $391
+              </a>
+              <Link href="/bundles/pro" className="block w-full py-2 border-2 border-gray-200 text-gray-700 text-center rounded-lg font-semibold hover:border-amber-500 hover:text-amber-600 transition-all">
+                View Details
               </Link>
             </div>
 
@@ -624,8 +646,16 @@ export default function Home() {
                 <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Recompete Contracts Tracker ($397)</li>
               </ul>
               <div className="text-center text-sm opacity-50 mb-4 line-through">$1,788 if bought separately</div>
-              <Link href="/bundles/ultimate" className="block w-full py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 text-center rounded-lg font-bold hover:from-amber-300 hover:to-amber-400 transition-all">
-                Get Ultimate Giant
+              <a
+                href="https://buy.stripe.com/6oU3cwff897ceND84UfnO0t"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 text-center rounded-lg font-bold hover:from-amber-300 hover:to-amber-400 transition-all mb-2"
+              >
+                Get Ultimate Giant — Save $291
+              </a>
+              <Link href="/bundles/ultimate" className="block w-full py-2 border-2 border-white/30 text-white text-center rounded-lg font-semibold hover:bg-white/10 transition-all">
+                View Details
               </Link>
             </div>
           </div>
@@ -656,7 +686,7 @@ export default function Home() {
               <h4 className="font-bold mb-4 text-white">Company</h4>
               <ul className="space-y-3 text-sm">
                 <li><Link href="/about" className="text-gray-400 hover:text-white">About Us</Link></li>
-                <li><a href="mailto:service@govcongiant.com" className="text-gray-400 hover:text-white">Contact</a></li>
+                <li><a href="mailto:service@govcongiants.com" className="text-gray-400 hover:text-white">Contact</a></li>
               </ul>
             </div>
             <div>

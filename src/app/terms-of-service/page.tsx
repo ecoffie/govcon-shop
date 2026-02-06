@@ -91,7 +91,7 @@ export default function TermsOfServicePage() {
               We offer a <strong>30-day money-back guarantee</strong> on all products. If you are not satisfied with your purchase, contact us within 30 days of purchase for a full refund.
             </p>
             <p className="text-gray-600">
-              To request a refund, email <a href="mailto:service@govcongiant.com" className="text-blue-800 hover:underline">service@govcongiant.com</a> with your order details.
+              To request a refund, email <a href="mailto:service@govcongiants.com" className="text-blue-800 hover:underline">service@govcongiants.com</a> with your order details.
             </p>
           </section>
 
@@ -148,8 +148,8 @@ export default function TermsOfServicePage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">12. Contact Information</h2>
             <p className="text-gray-600">
               For questions about these Terms of Service, please contact us at:{' '}
-              <a href="mailto:service@govcongiant.com" className="text-blue-800 hover:underline">
-                service@govcongiant.com
+              <a href="mailto:service@govcongiants.com" className="text-blue-800 hover:underline">
+                service@govcongiants.com
               </a>
             </p>
           </section>
@@ -187,7 +187,7 @@ export default function TermsOfServicePage() {
               <h4 className="font-bold mb-4 text-white">Company</h4>
               <ul className="space-y-3 text-sm">
                 <li><Link href="/about" className="text-gray-400 hover:text-white">About Us</Link></li>
-                <li><a href="mailto:service@govcongiant.com" className="text-gray-400 hover:text-white">Contact</a></li>
+                <li><a href="mailto:service@govcongiants.com" className="text-gray-400 hover:text-white">Contact</a></li>
               </ul>
             </div>
             <div>

@@ -147,8 +147,17 @@ export default function AboutPage() {
               <span className="text-2xl">📧</span>
               <div>
                 <p className="text-sm opacity-80">Email</p>
-                <a href="mailto:service@govcongiant.com" className="hover:text-amber-400 transition-colors">
-                  service@govcongiant.com
+                <a href="mailto:service@govcongiants.com" className="hover:text-amber-400 transition-colors">
+                  service@govcongiants.com
+                </a>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">📞</span>
+              <div>
+                <p className="text-sm opacity-80">Phone</p>
+                <a href="tel:786-477-0477" className="hover:text-amber-400 transition-colors">
+                  786-477-0477
                 </a>
               </div>
             </div>
@@ -196,7 +205,7 @@ export default function AboutPage() {
               <h4 className="font-bold mb-4 text-white">Company</h4>
               <ul className="space-y-3 text-sm">
                 <li><Link href="/about" className="text-gray-400 hover:text-white">About Us</Link></li>
-                <li><a href="mailto:service@govcongiant.com" className="text-gray-400 hover:text-white">Contact</a></li>
+                <li><a href="mailto:service@govcongiants.com" className="text-gray-400 hover:text-white">Contact</a></li>
               </ul>
             </div>
             <div>
