@@ -8,6 +8,136 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// ============================================
+// Universal Purchase Confirmation Email
+// ============================================
+
+interface SendPurchaseConfirmationEmailParams {
+  to: string;
+  customerName?: string;
+  productName: string;
+  licenseKey?: string;
+}
+
+// Tool access links by product
+const TOOL_ACCESS_LINKS: Record<string, { url: string; label: string }> = {
+  'market-assassin-standard': { url: 'https://shop.govcongiants.org/federal-market-assassin', label: 'Federal Market Assassin' },
+  'market-assassin-premium': { url: 'https://shop.govcongiants.org/federal-market-assassin', label: 'Federal Market Assassin' },
+  'ai-content-generator': { url: 'https://shop.govcongiants.org/ai-content', label: 'AI Content Generator' },
+  'recompete-contracts': { url: 'https://shop.govcongiants.org/recompete', label: 'Recompete Contracts Tracker' },
+  'contractor-database': { url: 'https://shop.govcongiants.org/contractor-database', label: 'Federal Contractor Database' },
+  'opportunity-hunter-pro': { url: 'https://shop.govcongiants.org/opportunity-hunter', label: 'Opportunity Hunter Pro' },
+};
+
+export async function sendPurchaseConfirmationEmail({
+  to,
+  customerName,
+  productName,
+  licenseKey,
+}: SendPurchaseConfirmationEmailParams): Promise<boolean> {
+  const activateUrl = 'https://shop.govcongiants.org/activate';
+
+  const licenseKeyBlock = licenseKey ? `
+    <div style="background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%); border: 2px solid #3b82f6; border-radius: 12px; padding: 25px; margin: 25px 0; text-align: center;">
+      <p style="margin: 0 0 10px 0; color: #1e40af; font-weight: 600; font-size: 14px;">Your License Key:</p>
+      <div style="font-family: monospace; font-size: 24px; font-weight: bold; color: #1e40af; background: white; padding: 15px 25px; border-radius: 8px; display: inline-block; letter-spacing: 2px; border: 2px dashed #3b82f6;">
+        ${licenseKey}
+      </div>
+      <p style="margin: 15px 0 0 0; color: #64748b; font-size: 13px;">Save this key for your records</p>
+    </div>` : '';
+
+  const htmlContent = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+  <div style="background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+    <h1 style="color: white; margin: 0; font-size: 28px;">GovCon Giants</h1>
+    <p style="color: #c4b5fd; margin: 10px 0 0 0;">Purchase Confirmation</p>
+  </div>
+
+  <div style="background: #ffffff; padding: 30px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 10px 10px;">
+    <h2 style="color: #1e3a8a; margin-top: 0;">Thank You for Your Purchase!</h2>
+
+    <p>Hi${customerName ? ` ${customerName}` : ''},</p>
+
+    <p>Your payment for <strong>${productName}</strong> has been confirmed. You now have <strong>lifetime access</strong>.</p>
+
+    ${licenseKeyBlock}
+
+    <div style="text-align: center; margin: 30px 0;">
+      <a href="${activateUrl}" style="background: linear-gradient(135deg, #3b82f6 0%, #7c3aed 100%); color: white; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block; font-size: 18px;">Access Your Tools</a>
+    </div>
+
+    <div style="background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px; padding: 20px; margin: 25px 0;">
+      <h3 style="color: #166534; margin: 0 0 10px 0;">How to Access:</h3>
+      <ol style="color: #15803d; margin: 0; padding-left: 20px;">
+        <li>Go to <a href="${activateUrl}" style="color: #166534;">${activateUrl}</a></li>
+        <li>Enter your purchase email: <strong>${to}</strong></li>
+        <li>You'll see all your unlocked tools</li>
+      </ol>
+    </div>
+
+    <p style="background: #f3f4f6; border-radius: 8px; padding: 15px; color: #4b5563;">
+      <strong>Your registered email:</strong> ${to}<br>
+      <span style="font-size: 14px;">Use this email to access all your tools.</span>
+    </p>
+
+    <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
+
+    <p style="color: #6b7280; font-size: 12px; text-align: center;">
+      <strong>Keep this email safe!</strong> It's your proof of purchase.<br>
+      Questions? Contact us at <a href="mailto:service@govcongiants.com" style="color: #3b82f6;">service@govcongiants.com</a> or call 786-477-0477
+    </p>
+
+    <p style="text-align: center; color: #9ca3af; font-size: 12px;">
+      &copy; ${new Date().getFullYear()} GovCon Giants. All rights reserved.
+    </p>
+  </div>
+</body>
+</html>
+`;
+
+  try {
+    await transporter.sendMail({
+      from: `"GovCon Giants" <${process.env.SMTP_USER || 'hello@govconedu.com'}>`,
+      to,
+      subject: `Your ${productName} Access is Ready! | GovCon Giants`,
+      html: htmlContent,
+      text: `Thank You for Your Purchase!
+
+Hi${customerName ? ` ${customerName}` : ''},
+
+Your payment for ${productName} has been confirmed. You now have lifetime access.
+${licenseKey ? `\nYour License Key: ${licenseKey}\n` : ''}
+How to Access Your Tools:
+1. Go to ${activateUrl}
+2. Enter your purchase email: ${to}
+3. You'll see all your unlocked tools
+
+Your registered email: ${to}
+
+Keep this email safe! It's your proof of purchase.
+Questions? Contact us at service@govcongiants.com or call 786-477-0477
+
+- GovCon Giants Team`,
+    });
+
+    console.log(`✅ Purchase confirmation email sent to ${to} for ${productName}`);
+    return true;
+  } catch (error) {
+    console.error('❌ Failed to send purchase confirmation email:', error);
+    return false;
+  }
+}
+
+// ============================================
+// Free Resource Verification Email
+// ============================================
+
 interface SendVerificationEmailParams {
   to: string;
   verificationLink: string;

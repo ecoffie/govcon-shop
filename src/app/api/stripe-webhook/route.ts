@@ -9,6 +9,7 @@ import {
   grantRecompeteAccess,
 } from '@/lib/access-codes';
 import {
+  sendPurchaseConfirmationEmail,
   sendDatabaseAccessEmail,
   sendOpportunityHunterProEmail,
   sendUltimateBundleEmail,
@@ -169,8 +170,8 @@ export async function POST(request: NextRequest) {
     }
 
     // ─── 2. Update user_profiles access flags (Supabase) ───
+    const profile = await getOrCreateProfile(customerEmail, customerName);
     if (tier || bundle) {
-      await getOrCreateProfile(customerEmail, customerName);
       const flags = await updateAccessFlags(customerEmail, tier, bundle);
       console.log('✅ user_profiles updated:', Object.keys(flags));
     }
@@ -180,23 +181,32 @@ export async function POST(request: NextRequest) {
       const bundleIncludes = getBundleIncludes(productId);
 
       if (bundleIncludes.length > 0) {
-        // Bundle: grant KV access for each included product
         for (const included of bundleIncludes) {
           await grantKVAccess(included, customerEmail, customerName);
         }
-
-        // Send bundle email
-        if (productId === 'ultimate-govcon-bundle') {
-          await sendUltimateBundleEmail({ to: customerEmail, customerName });
-        }
       } else {
-        // Single product
         await grantKVAccess(productId, customerEmail, customerName);
-
-        if (productId === 'opportunity-hunter-pro') {
-          await sendOpportunityHunterProEmail({ to: customerEmail, customerName });
-        }
       }
+    }
+
+    // ─── 4. Send confirmation email ───
+    const friendlyName = getProductName(productId || '') || lineItems.data[0]?.description || 'GovCon Product';
+
+    // Products with dedicated emails
+    if (productId === 'ultimate-govcon-bundle') {
+      await sendUltimateBundleEmail({ to: customerEmail, customerName });
+    } else if (productId === 'opportunity-hunter-pro') {
+      await sendOpportunityHunterProEmail({ to: customerEmail, customerName });
+    } else if (productId === 'contractor-database') {
+      // Database email already sent inside grantKVAccess (has access link)
+    } else {
+      // All other products: MA Standard/Premium, Content Gen, Recompete, Starter/Pro bundles, upgrades
+      await sendPurchaseConfirmationEmail({
+        to: customerEmail,
+        customerName,
+        productName: friendlyName,
+        licenseKey: profile?.license_key || undefined,
+      });
     }
 
     console.log(`✅ Fully processed: ${productId || 'unknown'} for ${customerEmail}`);
