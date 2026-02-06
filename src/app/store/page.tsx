@@ -475,17 +475,17 @@ export default function Home() {
                 <h3 className="text-2xl font-bold text-gray-900">Starter Bundle</h3>
               </div>
               <div className="text-center mb-6">
-                <div className="text-4xl font-bold text-gray-900">$497</div>
+                <div className="text-4xl font-bold text-gray-900">$697</div>
                 <div className="text-sm text-emerald-600 font-medium">One-Time Payment</div>
               </div>
               <ul className="space-y-3 mb-6 text-sm">
-                <li className="flex items-center gap-2"><span className="text-emerald-500">✓</span> Opportunity Hunter (FREE)</li>
-                <li className="flex items-center gap-2"><span className="text-emerald-500">✓</span> Contractor Database</li>
-                <li className="flex items-center gap-2"><span className="text-emerald-500">✓</span> AI Content Generator</li>
+                <li className="flex items-center gap-2"><span className="text-emerald-500">✓</span> Opportunity Hunter Pro <span className="text-gray-400">($49)</span></li>
+                <li className="flex items-center gap-2"><span className="text-emerald-500">✓</span> Recompete Contracts Tracker <span className="text-gray-400">($397)</span></li>
+                <li className="flex items-center gap-2"><span className="text-emerald-500">✓</span> Federal Contractor Database <span className="text-gray-400">($497)</span></li>
               </ul>
-              <div className="text-center text-sm text-gray-400 mb-4 line-through">$494 if bought separately</div>
+              <div className="text-center text-sm text-gray-400 mb-4 line-through">$943 if bought separately</div>
               <a href="https://buy.stripe.com/6oU9AUeb46Z46h70CsfnO0s" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-blue-800 text-white text-center rounded-lg font-semibold hover:bg-blue-700 transition-all">
-                Get Starter Bundle
+                Get Starter Bundle — Save $246
               </a>
             </div>
 
@@ -503,41 +503,36 @@ export default function Home() {
                 <div className="text-sm text-emerald-600 font-medium">One-Time Payment</div>
               </div>
               <ul className="space-y-3 mb-6 text-sm">
-                <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> <strong>Everything in Starter, plus:</strong></li>
-                <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> Recompete Contracts</li>
-                <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> Prime Lookup</li>
-                <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> Federal Market Assassin</li>
+                <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> Federal Contractor Database <span className="text-gray-400">($497)</span></li>
+                <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> Recompete Contracts Tracker <span className="text-gray-400">($397)</span></li>
+                <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> Market Assassin Standard <span className="text-gray-400">($297)</span></li>
+                <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> AI Content Generator <span className="text-gray-400">($197)</span></li>
               </ul>
-              <div className="text-center text-sm text-gray-400 mb-4 line-through">$1,138 if bought separately</div>
+              <div className="text-center text-sm text-gray-400 mb-4 line-through">$1,388 if bought separately</div>
               <a href="https://buy.stripe.com/dRm7sMaYS0AG0WN5WMfnO0q" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-amber-500 text-white text-center rounded-lg font-semibold hover:bg-amber-400 transition-all">
-                Get Pro Giant Bundle
+                Get Pro Giant Bundle — Save $391
               </a>
             </div>
 
             {/* Ultimate Giant Bundle */}
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl border-2 border-red-500 p-6 text-white transition-all hover:-translate-y-1 hover:shadow-xl relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                <span className="bg-red-500 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg animate-pulse">72 HOUR SALE</span>
-              </div>
-              <div className="text-center mb-6 pt-2">
+            <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl border-2 border-amber-500 p-6 text-white transition-all hover:-translate-y-1 hover:shadow-xl">
+              <div className="text-center mb-6">
                 <span className="inline-block bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 px-3 py-1 rounded-full text-sm font-semibold mb-3">ULTIMATE</span>
-                <h3 className="text-2xl font-bold text-white">Ultimate Giant</h3>
+                <h3 className="text-2xl font-bold text-white">Ultimate Giant Bundle</h3>
               </div>
               <div className="text-center mb-6">
-                <div className="text-lg text-gray-400 line-through">$1,497</div>
-                <div className="text-4xl font-bold text-amber-400">$1,000</div>
+                <div className="text-4xl font-bold text-amber-400">$1,497</div>
                 <div className="text-sm text-emerald-400 font-medium">One-Time Payment</div>
-                <div className="text-xs text-red-400 mt-1 font-semibold">Save $497 - Limited Time!</div>
               </div>
               <ul className="space-y-3 mb-6 text-sm opacity-90">
-                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> <strong>Everything in Pro Giant, plus:</strong></li>
-                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> 1-on-1 Strategy Session</li>
-                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Priority Support</li>
-                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Future Tools Access</li>
+                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Market Assassin Premium <span className="text-gray-400">($497)</span></li>
+                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Content Generator Full Fix <span className="text-gray-400">($397)</span></li>
+                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Federal Contractor Database <span className="text-gray-400">($497)</span></li>
+                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Recompete Contracts Tracker <span className="text-gray-400">($397)</span></li>
               </ul>
-              <div className="text-center text-sm opacity-50 mb-4 line-through">$2,000+ value</div>
+              <div className="text-center text-sm opacity-50 mb-4 line-through">$1,788 if bought separately</div>
               <a href="https://buy.stripe.com/aFacN6d700AGfRHfxmfnO0r" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 text-center rounded-lg font-bold hover:from-amber-300 hover:to-amber-400 transition-all">
-                Get Ultimate Giant
+                Get Ultimate Bundle — Save $291
               </a>
             </div>
           </div>
