@@ -143,4 +143,32 @@ npm run build
 
 ---
 
-*Last Updated: February 4, 2026*
+## Stripe Payment Links (Source of Truth)
+
+**IMPORTANT:** The canonical Stripe payment link URLs live in **Market Assassin** (`/Users/ericcoffie/Projects/market-assassin/src/lib/products.ts`). When updating Stripe links, update market-assassin first, then sync to this project.
+
+| Product | Stripe Link ID (suffix) |
+|---------|------------------------|
+| Content Engine $197 | `dRmcN64Au6Z4axn84UfnO0m` |
+| Content Full Fix $397 | `aFa9AU4Au1EKaxn5WMfnO0n` |
+| Contractor Database $497 | `4gMaEY3wqcjo6h70CsfnO0g` |
+| Recompete Tracker $397 | `7sYfZi9UOdnsaxnbh6fnO0k` |
+| Market Assassin Standard $297 | `3cI3cw9UOdns34V84UfnO0j` |
+| Market Assassin Premium $497 | `5kQdRaeb497cfRHdpefnO0f` |
+| Opportunity Hunter Pro $49 | `00wcN60ke97c5d384UfnO0i` |
+| Starter Bundle $697 | `6oU9AUeb46Z46h70CsfnO0s` |
+| Pro Bundle $997 | `dRm7sMaYS0AG0WN5WMfnO0q` |
+| Ultimate Bundle $1,497 | `aFacN6d700AGfRHfxmfnO0r` |
+
+---
+
+## Recent Work History
+
+### February 6, 2026
+- Fixed all Stripe checkout links — 5 old/dead payment links from LemonSqueezy era replaced with current Stripe links
+- Updated 13 files: ai-content, contractor-database (x2), database-locked, expiring-contracts, opportunity-hunter, opportunity-scout, recompete, sblo-directory, tier2-directory, all-free-resources, tribal HTML, next.config.ts
+- LemonSqueezy fully canceled — all payments now through Stripe directly
+
+---
+
+*Last Updated: February 6, 2026*
