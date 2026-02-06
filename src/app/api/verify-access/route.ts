@@ -1,15 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSupabase } from '@/lib/supabase/client';
-import { PRODUCTS } from '@/lib/lemonsqueezy';
+import { createClient } from '@supabase/supabase-js';
+import { getBundleIncludes, getProductName } from '@/lib/products';
 
-// Check if a user has access to a product
+function getSupabase() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!url || !key) return null;
+  return createClient(url, key);
+}
+
+// Check if a user has access to a specific product
 export async function POST(request: NextRequest) {
   try {
-    const { email, productId, licenseKey } = await request.json();
+    const { email, productId } = await request.json();
 
-    if (!email && !licenseKey) {
+    if (!email) {
       return NextResponse.json(
-        { error: 'Email or license key required' },
+        { error: 'Email required' },
         { status: 400 }
       );
     }
@@ -22,7 +29,6 @@ export async function POST(request: NextRequest) {
     }
 
     const supabase = getSupabase();
-
     if (!supabase) {
       return NextResponse.json(
         { error: 'Database not configured' },
@@ -30,111 +36,48 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check by email
-    if (email) {
-      const { data: purchases, error } = await supabase
-        .from('purchases')
-        .select('*')
-        .eq('user_email', email.toLowerCase())
-        .eq('status', 'completed');
+    const { data: purchases, error } = await supabase
+      .from('purchases')
+      .select('product_id')
+      .eq('user_email', email.toLowerCase())
+      .eq('status', 'completed');
 
-      if (error) {
-        console.error('Error checking access:', error);
-        return NextResponse.json(
-          { error: 'Failed to verify access' },
-          { status: 500 }
-        );
-      }
+    if (error) {
+      console.error('Error checking access:', error);
+      return NextResponse.json(
+        { error: 'Failed to verify access' },
+        { status: 500 }
+      );
+    }
 
-      // Check if user has direct access to the product
-      const hasDirectAccess = purchases?.some(p => p.product_id === productId);
+    if (!purchases || purchases.length === 0) {
+      return NextResponse.json({ hasAccess: false, productId });
+    }
 
-      if (hasDirectAccess) {
-        return NextResponse.json({
-          hasAccess: true,
-          accessType: 'purchase',
-          productId,
-        });
-      }
-
-      // Check if user has access via a bundle
-      const userProductIds = purchases?.map(p => p.product_id) || [];
-
-      for (const [, product] of Object.entries(PRODUCTS)) {
-        if ('includes' in product && product.includes) {
-          const bundleIncludes = product.includes as readonly string[];
-          if (
-            bundleIncludes.includes(productId) &&
-            userProductIds.includes(product.id)
-          ) {
-            return NextResponse.json({
-              hasAccess: true,
-              accessType: 'bundle',
-              bundleId: product.id,
-              productId,
-            });
-          }
-        }
-      }
-
+    // Check direct purchase
+    const hasDirectAccess = purchases.some(p => p.product_id === productId);
+    if (hasDirectAccess) {
       return NextResponse.json({
-        hasAccess: false,
+        hasAccess: true,
+        accessType: 'purchase',
         productId,
       });
     }
 
-    // Check by license key
-    if (licenseKey) {
-      const { data: purchase, error } = await supabase
-        .from('purchases')
-        .select('*')
-        .eq('license_key', licenseKey)
-        .eq('status', 'completed')
-        .single();
-
-      if (error || !purchase) {
-        return NextResponse.json({
-          hasAccess: false,
-          productId,
-        });
-      }
-
-      // Check if this license grants access to the requested product
-      if (purchase.product_id === productId) {
+    // Check bundle access — does any purchased bundle include this product?
+    for (const purchase of purchases) {
+      const bundleIncludes = getBundleIncludes(purchase.product_id);
+      if (bundleIncludes.includes(productId)) {
         return NextResponse.json({
           hasAccess: true,
-          accessType: 'license',
-          email: purchase.user_email,
+          accessType: 'bundle',
+          bundleId: purchase.product_id,
           productId,
         });
       }
-
-      // Check bundle access
-      for (const [, product] of Object.entries(PRODUCTS)) {
-        if ('includes' in product && product.includes) {
-          const bundleIncludes = product.includes as readonly string[];
-          if (
-            bundleIncludes.includes(productId) &&
-            purchase.product_id === product.id
-          ) {
-            return NextResponse.json({
-              hasAccess: true,
-              accessType: 'bundle-license',
-              bundleId: product.id,
-              email: purchase.user_email,
-              productId,
-            });
-          }
-        }
-      }
-
-      return NextResponse.json({
-        hasAccess: false,
-        productId,
-      });
     }
 
-    return NextResponse.json({ hasAccess: false });
+    return NextResponse.json({ hasAccess: false, productId });
   } catch (error) {
     console.error('Access verification error:', error);
     return NextResponse.json(
@@ -158,7 +101,6 @@ export async function GET(request: NextRequest) {
     }
 
     const supabase = getSupabase();
-
     if (!supabase) {
       return NextResponse.json(
         { error: 'Database not configured' },
@@ -168,7 +110,7 @@ export async function GET(request: NextRequest) {
 
     const { data: purchases, error } = await supabase
       .from('purchases')
-      .select('product_id, product_name, created_at, license_key')
+      .select('product_id, product_name, created_at')
       .eq('user_email', email.toLowerCase())
       .eq('status', 'completed');
 
@@ -180,31 +122,22 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Expand bundle products
+    // Expand bundles into individual products
     const accessibleProducts: string[] = [];
 
     for (const purchase of purchases || []) {
       accessibleProducts.push(purchase.product_id);
-
-      // Check if it's a bundle and add included products
-      for (const [, product] of Object.entries(PRODUCTS)) {
-        if (
-          product.id === purchase.product_id &&
-          'includes' in product &&
-          product.includes
-        ) {
-          accessibleProducts.push(...(product.includes as readonly string[]));
-        }
-      }
+      const bundleIncludes = getBundleIncludes(purchase.product_id);
+      accessibleProducts.push(...bundleIncludes);
     }
 
-    // Remove duplicates
     const uniqueProducts = [...new Set(accessibleProducts)];
 
     return NextResponse.json({
       email,
       purchases: purchases || [],
       accessibleProducts: uniqueProducts,
+      productNames: uniqueProducts.map(id => getProductName(id)),
     });
   } catch (error) {
     console.error('Error:', error);
