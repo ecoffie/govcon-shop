@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 
 export default function ActivatePage() {
-  const [licenseKey, setLicenseKey] = useState("");
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -23,19 +22,19 @@ export default function ActivatePage() {
       const response = await fetch("/api/activate-license", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ licenseKey: licenseKey.trim(), email: email.trim().toLowerCase() }),
+        body: JSON.stringify({ email: email.trim().toLowerCase() }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data.error || "Failed to activate license");
+        setError(data.error || "Failed to look up your access");
         return;
       }
 
       setSuccess({
         products: data.products || [],
-        message: data.message || "License activated successfully!",
+        message: data.message || "Your tools are ready!",
       });
     } catch {
       setError("Something went wrong. Please try again.");
@@ -65,16 +64,16 @@ export default function ActivatePage() {
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
                   <span className="text-3xl">🔑</span>
                 </div>
-                <h1 className="text-3xl font-bold text-gray-900 mb-2">Activate Your License</h1>
+                <h1 className="text-3xl font-bold text-gray-900 mb-2">Access Your Tools</h1>
                 <p className="text-gray-600">
-                  Enter your license key and email to unlock your GovCon Giants tools.
+                  Enter the email you used at checkout to view your purchased tools.
                 </p>
               </div>
 
               <form onSubmit={handleActivate} className="space-y-6">
                 <div>
                   <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                    Email Address
+                    Purchase Email
                   </label>
                   <input
                     type="email"
@@ -85,23 +84,7 @@ export default function ActivatePage() {
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder-gray-400"
                   />
-                  <p className="text-xs text-gray-500 mt-1">Use the same email from your purchase</p>
-                </div>
-
-                <div>
-                  <label htmlFor="licenseKey" className="block text-sm font-semibold text-gray-700 mb-2">
-                    License Key
-                  </label>
-                  <input
-                    type="text"
-                    id="licenseKey"
-                    value={licenseKey}
-                    onChange={(e) => setLicenseKey(e.target.value)}
-                    placeholder="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder-gray-400 font-mono"
-                  />
-                  <p className="text-xs text-gray-500 mt-1">Find this in your purchase confirmation email</p>
+                  <p className="text-xs text-gray-500 mt-1">Use the same email from your Stripe checkout</p>
                 </div>
 
                 {error && (
@@ -121,10 +104,10 @@ export default function ActivatePage() {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                       </svg>
-                      Activating...
+                      Looking up...
                     </span>
                   ) : (
-                    "Activate License"
+                    "Look Up My Tools"
                   )}
                 </button>
               </form>
@@ -165,17 +148,17 @@ export default function ActivatePage() {
 
               <div className="space-y-4">
                 <Link
-                  href="/dashboard"
+                  href="/"
                   className="block w-full py-4 bg-gradient-to-r from-blue-800 to-purple-600 text-white rounded-lg font-bold text-lg hover:shadow-lg transition-all text-center"
                 >
-                  Go to Dashboard
+                  Go to Store
                 </Link>
-                <Link
-                  href="/"
+                <button
+                  onClick={() => setSuccess(null)}
                   className="block w-full py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-all text-center"
                 >
-                  Back to Store
-                </Link>
+                  Check Another Email
+                </button>
               </div>
             </div>
           )}
@@ -183,10 +166,10 @@ export default function ActivatePage() {
 
         {/* Help Section */}
         <div className="mt-8 text-center">
-          <h3 className="font-semibold text-gray-900 mb-2">Where do I find my license key?</h3>
+          <h3 className="font-semibold text-gray-900 mb-2">How does this work?</h3>
           <p className="text-gray-600 text-sm">
-            Check your email for your purchase confirmation from GovCon Giants.
-            Your license key is included in that email.
+            When you purchase through Stripe, your access is automatically linked to your email.
+            Just enter the email you used at checkout to see all your tools.
           </p>
         </div>
       </div>
