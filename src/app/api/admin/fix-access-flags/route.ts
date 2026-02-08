@@ -29,7 +29,6 @@ const PRODUCT_FLAGS: Record<string, Record<string, boolean>> = {
   },
 };
 
-// Product ID → KV grants needed
 async function grantKVForProduct(productId: string, email: string) {
   const e = email.toLowerCase();
   switch (productId) {
@@ -37,7 +36,6 @@ async function grantKVForProduct(productId: string, email: string) {
       await kv.set(`recompete:${e}`, { email: e, createdAt: new Date().toISOString() });
       break;
     case 'contractor-database':
-      // Check if already has dbaccess
       if (!(await kv.get(`dbaccess:${e}`))) {
         const token = Math.random().toString(36).slice(2, 26);
         await kv.set(`dbtoken:${token}`, { token, email: e, createdAt: new Date().toISOString() });
@@ -74,8 +72,27 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
+    // Debug: check user_profiles table state
+    const { data: profileCount, error: countError } = await supabase
+      .from('user_profiles')
+      .select('email');
+
+    const debugInfo = {
+      profiles_found: profileCount?.length || 0,
+      profiles_error: countError?.message || null,
+      profile_emails: (profileCount || []).map((p: { email: string }) => p.email).slice(0, 10),
+    };
+
     const testEmails = ['eric@govcongiants.com', 'evankoffdev@gmail.com', 'test@gmail.com'];
-    const results: Array<{ email: string; product: string; flags_set: string[]; kv_fixed: boolean; supabase_error?: string }> = [];
+    const results: Array<{
+      email: string;
+      product: string;
+      flags_set: string[];
+      kv_fixed: boolean;
+      profile_existed: boolean;
+      update_error?: string;
+      updated_rows?: number;
+    }> = [];
 
     for (const purchase of (purchases || [])) {
       const email = purchase.user_email.toLowerCase();
@@ -86,34 +103,73 @@ export async function POST(request: NextRequest) {
       const flags = PRODUCT_FLAGS[productId];
       if (!flags) continue;
 
-      // Upsert profile with flags — creates if missing, updates if exists
-      const { error: upsertError } = await supabase
+      // Step 1: Check if profile exists
+      const { data: existing, error: lookupError } = await supabase
         .from('user_profiles')
-        .upsert(
-          {
+        .select('id, email')
+        .eq('email', email);
+
+      const profileExisted = !!(existing && existing.length > 0);
+
+      // Step 2: If no profile, create one
+      if (!profileExisted) {
+        const { error: insertError } = await supabase
+          .from('user_profiles')
+          .insert({
             email,
             ...flags,
-            access_hunter_pro: flags.access_hunter_pro || false,
-            access_content_standard: flags.access_content_standard || false,
-            access_content_full_fix: flags.access_content_full_fix || false,
-            access_assassin_standard: flags.access_assassin_standard || false,
-            access_assassin_premium: flags.access_assassin_premium || false,
-            access_recompete: flags.access_recompete || false,
-            access_contractor_db: flags.access_contractor_db || false,
             updated_at: new Date().toISOString(),
-          },
-          { onConflict: 'email', ignoreDuplicates: false }
-        );
+          });
 
-      // Fix any missing KV access
+        if (insertError) {
+          results.push({
+            email,
+            product: productId,
+            flags_set: [],
+            kv_fixed: false,
+            profile_existed: false,
+            update_error: `insert: ${insertError.message}`,
+          });
+          continue;
+        }
+      } else {
+        // Step 3: Update existing profile
+        const { data: updated, error: updateError } = await supabase
+          .from('user_profiles')
+          .update({ ...flags, updated_at: new Date().toISOString() })
+          .eq('email', email)
+          .select('id');
+
+        if (updateError) {
+          results.push({
+            email,
+            product: productId,
+            flags_set: [],
+            kv_fixed: false,
+            profile_existed: true,
+            update_error: `update: ${updateError.message}`,
+            updated_rows: 0,
+          });
+          continue;
+        }
+
+        results.push({
+          email,
+          product: productId,
+          flags_set: Object.keys(flags),
+          kv_fixed: false,
+          profile_existed: true,
+          updated_rows: updated?.length || 0,
+        });
+      }
+
+      // Step 4: Fix KV
       let kvFixed = false;
       try {
         await grantKVForProduct(productId, email);
-        // For bundles, grant KV for all included products
         if (productId === 'ultimate-govcon-bundle') {
           await grantKVForProduct('recompete-contracts', email);
           await grantKVForProduct('contractor-database', email);
-          // MA and contentgen should already be granted
         } else if (productId === 'govcon-starter-bundle') {
           await grantKVForProduct('opportunity-hunter-pro', email);
           await grantKVForProduct('recompete-contracts', email);
@@ -124,21 +180,32 @@ export async function POST(request: NextRequest) {
         }
         kvFixed = true;
       } catch {
-        // KV grant failed but Supabase flags still set
+        // KV failed
       }
 
-      results.push({
-        email,
-        product: productId,
-        flags_set: Object.keys(flags),
-        kv_fixed: kvFixed,
-        supabase_error: upsertError?.message,
-      });
+      // Update KV status in the last result
+      const last = results[results.length - 1];
+      if (last && last.email === email) {
+        last.kv_fixed = kvFixed;
+      } else {
+        // Profile was just inserted (no result pushed yet for inserts)
+        results.push({
+          email,
+          product: productId,
+          flags_set: Object.keys(flags),
+          kv_fixed: kvFixed,
+          profile_existed: false,
+        });
+      }
     }
+
+    const updateErrors = results.filter(r => r.update_error);
 
     return NextResponse.json({
       success: true,
       total: results.length,
+      errors: updateErrors.length,
+      debug: debugInfo,
       results,
     });
 
