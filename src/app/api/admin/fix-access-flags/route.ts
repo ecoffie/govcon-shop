@@ -110,75 +110,44 @@ export async function POST(request: NextRequest) {
       const flags = PRODUCT_FLAGS[productId];
       if (!flags) continue;
 
-      // Step 1: Check if profile exists
-      const { data: existing, error: lookupError } = await supabase
-        .from('user_profiles')
-        .select('id, email')
-        .eq('email', email);
+      let profileExisted = false;
+      let supabaseError: string | undefined;
+      let updatedRows: number | undefined;
 
-      const profileExisted = !!(existing && existing.length > 0);
-
-      // Step 2: If no profile, create one with generated user_id
-      if (!profileExisted) {
-        const { error: insertError } = await supabase
+      // Step 1: Try Supabase profile (may fail due to FK constraint — that's OK)
+      try {
+        const { data: existing } = await supabase
           .from('user_profiles')
-          .insert({
-            user_id: generateUUID(),
-            email,
-            ...flags,
-            updated_at: new Date().toISOString(),
-          });
+          .select('id, email')
+          .eq('email', email);
 
-        if (insertError) {
-          results.push({
-            email,
-            product: productId,
-            flags_set: [],
-            kv_fixed: false,
-            profile_existed: false,
-            update_error: `insert: ${insertError.message}`,
-          });
-          continue;
+        profileExisted = !!(existing && existing.length > 0);
+
+        if (profileExisted) {
+          const { data: updated, error: updateError } = await supabase
+            .from('user_profiles')
+            .update({ ...flags, updated_at: new Date().toISOString() })
+            .eq('email', email)
+            .select('id');
+
+          if (updateError) {
+            supabaseError = `update: ${updateError.message}`;
+          } else {
+            updatedRows = updated?.length || 0;
+          }
         }
-      } else {
-        // Step 3: Update existing profile
-        const { data: updated, error: updateError } = await supabase
-          .from('user_profiles')
-          .update({ ...flags, updated_at: new Date().toISOString() })
-          .eq('email', email)
-          .select('id');
-
-        if (updateError) {
-          results.push({
-            email,
-            product: productId,
-            flags_set: [],
-            kv_fixed: false,
-            profile_existed: true,
-            update_error: `update: ${updateError.message}`,
-            updated_rows: 0,
-          });
-          continue;
-        }
-
-        results.push({
-          email,
-          product: productId,
-          flags_set: Object.keys(flags),
-          kv_fixed: false,
-          profile_existed: true,
-          updated_rows: updated?.length || 0,
-        });
+        // Skip insert — FK constraint blocks it for most customers
+      } catch {
+        supabaseError = 'supabase lookup failed';
       }
 
-      // Step 4: Fix KV
+      // Step 2: ALWAYS fix KV (this is the primary access system)
       let kvFixed = false;
       try {
         await grantKVForProduct(productId, email);
         if (productId === 'ultimate-govcon-bundle') {
           await grantKVForProduct('recompete-contracts', email);
           await grantKVForProduct('contractor-database', email);
-          // Content Generator Full Fix for Ultimate Bundle
           const e = email.toLowerCase();
           await kv.set(`contentgen:${e}`, {
             email: e,
@@ -186,7 +155,6 @@ export async function POST(request: NextRequest) {
             createdAt: new Date().toISOString(),
             productId: 'govcon-content-generator',
           });
-          // Market Assassin Premium
           await kv.set(`ma:${e}`, {
             email: e,
             tier: 'premium',
@@ -205,20 +173,15 @@ export async function POST(request: NextRequest) {
         // KV failed
       }
 
-      // Update KV status in the last result
-      const last = results[results.length - 1];
-      if (last && last.email === email) {
-        last.kv_fixed = kvFixed;
-      } else {
-        // Profile was just inserted (no result pushed yet for inserts)
-        results.push({
-          email,
-          product: productId,
-          flags_set: Object.keys(flags),
-          kv_fixed: kvFixed,
-          profile_existed: false,
-        });
-      }
+      results.push({
+        email,
+        product: productId,
+        flags_set: profileExisted && !supabaseError ? Object.keys(flags) : [],
+        kv_fixed: kvFixed,
+        profile_existed: profileExisted,
+        ...(supabaseError ? { update_error: supabaseError } : {}),
+        ...(updatedRows !== undefined ? { updated_rows: updatedRows } : {}),
+      });
     }
 
     const updateErrors = results.filter(r => r.update_error);
