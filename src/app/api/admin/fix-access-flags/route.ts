@@ -75,7 +75,7 @@ export async function POST(request: NextRequest) {
     }
 
     const testEmails = ['eric@govcongiants.com', 'evankoffdev@gmail.com', 'test@gmail.com'];
-    const results: Array<{ email: string; product: string; flags_set: string[]; kv_fixed: boolean }> = [];
+    const results: Array<{ email: string; product: string; flags_set: string[]; kv_fixed: boolean; supabase_error?: string }> = [];
 
     for (const purchase of (purchases || [])) {
       const email = purchase.user_email.toLowerCase();
@@ -86,31 +86,24 @@ export async function POST(request: NextRequest) {
       const flags = PRODUCT_FLAGS[productId];
       if (!flags) continue;
 
-      // Ensure profile exists
-      const { data: existing } = await supabase
+      // Upsert profile with flags — creates if missing, updates if exists
+      const { error: upsertError } = await supabase
         .from('user_profiles')
-        .select('id')
-        .eq('email', email)
-        .single();
-
-      if (!existing) {
-        await supabase.from('user_profiles').insert({
-          email,
-          access_hunter_pro: false,
-          access_content_standard: false,
-          access_content_full_fix: false,
-          access_assassin_standard: false,
-          access_assassin_premium: false,
-          access_recompete: false,
-          access_contractor_db: false,
-        });
-      }
-
-      // Set flags
-      await supabase
-        .from('user_profiles')
-        .update({ ...flags, updated_at: new Date().toISOString() })
-        .eq('email', email);
+        .upsert(
+          {
+            email,
+            ...flags,
+            access_hunter_pro: flags.access_hunter_pro || false,
+            access_content_standard: flags.access_content_standard || false,
+            access_content_full_fix: flags.access_content_full_fix || false,
+            access_assassin_standard: flags.access_assassin_standard || false,
+            access_assassin_premium: flags.access_assassin_premium || false,
+            access_recompete: flags.access_recompete || false,
+            access_contractor_db: flags.access_contractor_db || false,
+            updated_at: new Date().toISOString(),
+          },
+          { onConflict: 'email', ignoreDuplicates: false }
+        );
 
       // Fix any missing KV access
       let kvFixed = false;
@@ -139,6 +132,7 @@ export async function POST(request: NextRequest) {
         product: productId,
         flags_set: Object.keys(flags),
         kv_fixed: kvFixed,
+        supabase_error: upsertError?.message,
       });
     }
 
