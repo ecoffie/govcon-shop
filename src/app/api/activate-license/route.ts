@@ -1,5 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getProfileByEmail } from '@/lib/supabase/user-profiles';
+import {
+  hasOpportunityHunterProAccess,
+  hasContentGeneratorAccess,
+  getContentGeneratorAccess,
+  hasMarketAssassinAccess,
+  getMarketAssassinAccess,
+  hasRecompeteAccess,
+  hasEmailDatabaseAccess,
+} from '@/lib/access-codes';
 
 // Map access flags to friendly product names
 const ACCESS_FLAG_NAMES: Record<string, string> = {
@@ -24,32 +33,58 @@ export async function POST(request: NextRequest) {
     }
 
     const normalizedEmail = email.trim().toLowerCase();
-
-    // Look up user profile with access flags
-    const profile = await getProfileByEmail(normalizedEmail);
-
-    if (!profile) {
-      return NextResponse.json(
-        { error: 'No account found for this email. Please use the same email you used at checkout.' },
-        { status: 404 }
-      );
-    }
-
-    // Collect all products this user has access to
     const products: string[] = [];
 
-    for (const [flag, name] of Object.entries(ACCESS_FLAG_NAMES)) {
-      if (profile[flag as keyof typeof profile] === true) {
-        // Skip standard if they have premium (avoid showing both)
-        if (flag === 'access_assassin_standard' && profile.access_assassin_premium) continue;
-        if (flag === 'access_content_standard' && profile.access_content_full_fix) continue;
-        products.push(name);
+    // Primary: check Supabase user_profiles flags
+    const profile = await getProfileByEmail(normalizedEmail);
+
+    if (profile) {
+      for (const [flag, name] of Object.entries(ACCESS_FLAG_NAMES)) {
+        if (profile[flag as keyof typeof profile] === true) {
+          if (flag === 'access_assassin_standard' && profile.access_assassin_premium) continue;
+          if (flag === 'access_content_standard' && profile.access_content_full_fix) continue;
+          products.push(name);
+        }
       }
+    }
+
+    // Fallback: check Vercel KV access (covers customers without user_profiles rows)
+    if (products.length === 0) {
+      const [ospro, contentgen, ma, recompete, db] = await Promise.all([
+        hasOpportunityHunterProAccess(normalizedEmail),
+        hasContentGeneratorAccess(normalizedEmail),
+        hasMarketAssassinAccess(normalizedEmail),
+        hasRecompeteAccess(normalizedEmail),
+        hasEmailDatabaseAccess(normalizedEmail),
+      ]);
+
+      if (ospro) products.push('Opportunity Hunter Pro');
+
+      if (contentgen) {
+        const cgAccess = await getContentGeneratorAccess(normalizedEmail);
+        if (cgAccess?.tier === 'full-fix') {
+          products.push('GovCon Content Generator (Full Fix)');
+        } else {
+          products.push('GovCon Content Generator');
+        }
+      }
+
+      if (ma) {
+        const maAccess = await getMarketAssassinAccess(normalizedEmail);
+        if (maAccess?.tier === 'premium') {
+          products.push('Federal Market Assassin (Premium)');
+        } else {
+          products.push('Federal Market Assassin (Standard)');
+        }
+      }
+
+      if (recompete) products.push('Recompete Contracts Tracker');
+      if (db) products.push('Federal Contractor Database');
     }
 
     if (products.length === 0) {
       return NextResponse.json(
-        { error: 'No active products found for this email. If you just purchased, it may take a moment to activate.' },
+        { error: 'No account found for this email. Please use the same email you used at checkout.' },
         { status: 404 }
       );
     }
@@ -59,7 +94,6 @@ export async function POST(request: NextRequest) {
       message: 'Your tools are activated! You have access to the following products.',
       products,
       email: normalizedEmail,
-      licenseKey: profile.license_key || undefined,
     });
 
   } catch (error) {
