@@ -234,6 +234,13 @@ npm run build
 
 ## Recent Work History
 
+### February 8, 2026 (Session 5)
+- **Fixed fix-access-flags `continue` bug** — Supabase FK errors were skipping KV updates; only 2/33 customers got fixed. Removed Supabase insert (impossible due to FK), made KV granting unconditional
+- **Fixed Content Generator tier for Ultimate Bundle** — was "Content Engine", now "Full Fix" in KV for all 16 Ultimate Bundle customers
+- **Fixed Market Assassin tier for Ultimate Bundle** — confirmed all 16 show "Premium" in KV
+- **All 33 customers KV-verified** — fix-access-flags ran successfully: 33/33 kv_fixed, 0 errors
+- **Confirmed MA Standard entries are correct** — Standard tier users on admin panel are $99/month students, not Ultimate Bundle customers
+
 ### February 6, 2026 (Session 4)
 - **Cleaned up Supabase `purchases` table** — deleted 39 non-tool records (coaching, consulting, masterminds), kept 35 tool purchases
 - **Fixed 4 legacy Stripe product IDs** — `prod_Tj4VbFiOz1VzyL` → `contractor-database`, `prod_TmMbpcfofGpDZd` → `recompete-contracts`
@@ -272,4 +279,4 @@ npm run build
 
 ---
 
-*Last Updated: February 6, 2026 (Session 4)*
+*Last Updated: February 8, 2026 (Session 5)*
