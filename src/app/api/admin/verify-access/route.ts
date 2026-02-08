@@ -117,11 +117,28 @@ export async function POST(request: NextRequest) {
     const allOk = results.filter(r => r.all_ok);
     const issues = results.filter(r => !r.all_ok);
 
+    // Debug: check total profile count and sample raw profiles
+    const { data: allProfiles, count } = await supabase
+      .from('user_profiles')
+      .select('email, access_hunter_pro, access_content_standard, access_content_full_fix, access_assassin_standard, access_assassin_premium, access_recompete, access_contractor_db', { count: 'exact' });
+
+    // Check for duplicate emails
+    const emailCounts: Record<string, number> = {};
+    for (const p of (allProfiles || [])) {
+      emailCounts[p.email] = (emailCounts[p.email] || 0) + 1;
+    }
+    const duplicates = Object.entries(emailCounts).filter(([, c]) => c > 1);
+
     return NextResponse.json({
       total: results.length,
       all_ok: issues.length === 0,
       passing: allOk.length,
       failing: issues.length,
+      debug: {
+        total_profiles: count,
+        duplicate_emails: duplicates,
+        sample_profiles: (allProfiles || []).slice(0, 5),
+      },
       issues: issues.map(r => ({
         email: r.email,
         product: r.product,
