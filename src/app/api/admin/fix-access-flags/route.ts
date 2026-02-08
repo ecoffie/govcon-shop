@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { kv } from '@vercel/kv';
+import { randomUUID } from 'crypto';
 
 function getSupabase() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -111,11 +112,12 @@ export async function POST(request: NextRequest) {
 
       const profileExisted = !!(existing && existing.length > 0);
 
-      // Step 2: If no profile, create one
+      // Step 2: If no profile, create one with generated user_id
       if (!profileExisted) {
         const { error: insertError } = await supabase
           .from('user_profiles')
           .insert({
+            user_id: randomUUID(),
             email,
             ...flags,
             updated_at: new Date().toISOString(),
