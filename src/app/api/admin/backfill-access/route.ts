@@ -19,7 +19,7 @@ function getSupabase() {
 }
 
 // Grant Vercel KV access for a single product
-async function grantKVAccess(productId: string, email: string, customerName?: string) {
+async function grantKVAccess(productId: string, email: string, customerName?: string, isUltimateBundle?: boolean) {
   switch (productId) {
     case 'contractor-database':
       await createDatabaseToken(email, customerName);
@@ -34,7 +34,8 @@ async function grantKVAccess(productId: string, email: string, customerName?: st
       await grantMarketAssassinAccess(email, 'premium', customerName);
       break;
     case 'ai-content-generator':
-      await grantContentGeneratorAccess(email, 'content-engine', customerName);
+      // Ultimate Bundle gets Full Fix, everything else gets Content Engine
+      await grantContentGeneratorAccess(email, isUltimateBundle ? 'full-fix' : 'content-engine', customerName);
       break;
     case 'recompete-contracts':
       await grantRecompeteAccess(email, customerName);
@@ -154,10 +155,11 @@ export async function POST(request: NextRequest) {
 
             // 3. Grant Vercel KV access
             if (productId) {
+              const isUltimate = productId === 'ultimate-govcon-bundle';
               const bundleIncludes = getBundleIncludes(productId);
               if (bundleIncludes.length > 0) {
                 for (const included of bundleIncludes) {
-                  await grantKVAccess(included, customerEmail, customerName);
+                  await grantKVAccess(included, customerEmail, customerName, isUltimate);
                 }
               } else {
                 await grantKVAccess(productId, customerEmail, customerName);

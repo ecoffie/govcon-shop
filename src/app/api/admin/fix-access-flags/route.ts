@@ -178,6 +178,20 @@ export async function POST(request: NextRequest) {
         if (productId === 'ultimate-govcon-bundle') {
           await grantKVForProduct('recompete-contracts', email);
           await grantKVForProduct('contractor-database', email);
+          // Content Generator Full Fix for Ultimate Bundle
+          const e = email.toLowerCase();
+          await kv.set(`contentgen:${e}`, {
+            email: e,
+            tier: 'full-fix',
+            createdAt: new Date().toISOString(),
+            productId: 'govcon-content-generator',
+          });
+          // Market Assassin Premium
+          await kv.set(`ma:${e}`, {
+            email: e,
+            tier: 'premium',
+            createdAt: new Date().toISOString(),
+          });
         } else if (productId === 'govcon-starter-bundle') {
           await grantKVForProduct('opportunity-hunter-pro', email);
           await grantKVForProduct('recompete-contracts', email);
