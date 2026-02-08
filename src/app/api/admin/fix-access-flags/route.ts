@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { kv } from '@vercel/kv';
-import { randomUUID } from 'crypto';
+function generateUUID(): string {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+    const r = Math.random() * 16 | 0;
+    const v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
 
 function getSupabase() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -117,7 +123,7 @@ export async function POST(request: NextRequest) {
         const { error: insertError } = await supabase
           .from('user_profiles')
           .insert({
-            user_id: randomUUID(),
+            user_id: generateUUID(),
             email,
             ...flags,
             updated_at: new Date().toISOString(),
