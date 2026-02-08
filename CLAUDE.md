@@ -117,7 +117,7 @@ When user says: "live shop", "production", "shop.govcongiants", "the real site"
 | `/src/lib/supabase/user-profiles.ts` | User profiles + boolean access flags |
 | `/src/lib/send-email.ts` | All email templates (5 total) |
 | `/src/app/api/stripe-webhook/route.ts` | Payment webhook (triple-write) |
-| `/src/app/api/activate-license/route.ts` | Email-based tool lookup |
+| `/src/app/api/activate-license/route.ts` | Email-based tool lookup (KV fallback when no Supabase profile) |
 | `/src/app/api/verify-access/route.ts` | Access verification for tools |
 | `/src/app/page.tsx` | Homepage |
 
@@ -206,8 +206,10 @@ npm run build
 5. **LemonSqueezy is GONE** - Fully removed Feb 6, 2026. All payments through Stripe only
 6. **Contact email** - `service@govcongiants.com` (watch for missing 's' typo: `govcongiant.com`)
 7. **Different Supabase databases** - govcon-shop and market-assassin have SEPARATE Supabase instances. They do NOT share `user_profiles` or `purchases` tables
-8. **KV store lives on market-assassin** - Vercel KV is connected to market-assassin's Vercel project. govcon-shop does NOT have KV access (env vars won't work without the Vercel Storage integration). KV backfills must run from tools.govcongiants.org
+8. **KV store now connected to BOTH projects** - Vercel KV `market-assassin-codes` is connected to both market-assassin and govcon-shop via Vercel Storage integration
 9. **Admin password (market-assassin)** - Set as `ADMIN_PASSWORD` env var on Vercel, not a code default
+10. **`user_profiles` table has FK to `auth.users`** - Can't insert profiles without Supabase Auth accounts. Only ~16 profiles exist (test/internal). Most customers have NO profile row — access works via KV fallback in activate-license.
+11. **KV is the primary access system** - Vercel KV keys are what actually gates tools AND what the activate page reads. Supabase `user_profiles` flags are secondary and mostly empty for real customers.
 
 ---
 
@@ -231,6 +233,17 @@ npm run build
 ---
 
 ## Recent Work History
+
+### February 6, 2026 (Session 4)
+- **Cleaned up Supabase `purchases` table** — deleted 39 non-tool records (coaching, consulting, masterminds), kept 35 tool purchases
+- **Fixed 4 legacy Stripe product IDs** — `prod_Tj4VbFiOz1VzyL` → `contractor-database`, `prod_TmMbpcfofGpDZd` → `recompete-contracts`
+- **Created `/api/admin/cleanup-purchases`** — removes non-tool purchase records from Supabase
+- **Created `/api/admin/verify-access`** — checks every customer against both KV and Supabase, reports gaps
+- **Created `/api/admin/fix-access-flags`** — sets Supabase flags + fills KV gaps based on purchases table
+- **Discovered `user_profiles` table has `user_id` FK to `auth.users`** — can't create profiles without Supabase Auth accounts. Only 16 profiles exist (test/internal users). Most customers don't have profiles.
+- **Rewrote `/api/activate-license`** — now checks Vercel KV as fallback when no Supabase profile exists. All 33 customers can see their tools on the activate page.
+- **Fixed Ultimate Bundle email** — Content Generator label updated to "Full Fix" version
+- **Revenue: $18,574** across 33 tool sales (16 Ultimate @ $1,000 promo, 14 Opp Hunter Pro @ $49, 3 Contractor DB @ $497)
 
 ### February 6, 2026 (Session 3)
 - **Backfilled all 74 past Stripe purchases** into Supabase `purchases` table
@@ -259,4 +272,4 @@ npm run build
 
 ---
 
-*Last Updated: February 6, 2026*
+*Last Updated: February 6, 2026 (Session 4)*
