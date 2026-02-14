@@ -23,7 +23,7 @@ interface SendPurchaseConfirmationEmailParams {
 const TOOL_ACCESS_LINKS: Record<string, { url: string; label: string }> = {
   'market-assassin-standard': { url: 'https://shop.govcongiants.org/federal-market-assassin', label: 'Federal Market Assassin' },
   'market-assassin-premium': { url: 'https://shop.govcongiants.org/federal-market-assassin', label: 'Federal Market Assassin' },
-  'ai-content-generator': { url: 'https://shop.govcongiants.org/ai-content', label: 'AI Content Generator' },
+  'ai-content-generator': { url: 'https://shop.govcongiants.org/content-reaper', label: 'Content Reaper' },
   'recompete-contracts': { url: 'https://shop.govcongiants.org/recompete', label: 'Recompete Contracts Tracker' },
   'contractor-database': { url: 'https://shop.govcongiants.org/contractor-database', label: 'Federal Contractor Database' },
   'opportunity-hunter-pro': { url: 'https://shop.govcongiants.org/opportunity-hunter', label: 'Opportunity Hunter Pro' },
@@ -515,7 +515,7 @@ export async function sendUltimateBundleEmail({
       <h3 style="color: #92400e; margin: 0 0 15px 0; text-align: center;">Your Ultimate Bundle Includes:</h3>
       <ul style="color: #78350f; margin: 0; padding-left: 20px;">
         <li><strong>Federal Market Assassin Premium</strong> - 8 Strategic Reports ($497 value)</li>
-        <li><strong>AI Content Generator (Full Fix)</strong> - Unlimited LinkedIn Posts ($397 value)</li>
+        <li><strong>Content Reaper (Full Fix)</strong> - Unlimited LinkedIn Posts ($397 value)</li>
         <li><strong>Federal Contractor Database</strong> - 3,500+ Contractors ($497 value)</li>
         <li><strong>Recompete Contracts Tracker</strong> - Expiring Contracts ($397 value)</li>
         <li><strong>Opportunity Hunter Pro</strong> - Agency Matching ($49 value)</li>
@@ -533,8 +533,8 @@ export async function sendUltimateBundleEmail({
     </div>
 
     <div style="background: #eff6ff; border: 1px solid #93c5fd; border-radius: 8px; padding: 15px; margin: 15px 0;">
-      <p style="margin: 0; color: #1e40af;"><strong>2. AI Content Generator</strong></p>
-      <p style="margin: 5px 0 0 0; color: #3b82f6;">Visit <a href="https://shop.govcongiants.org/ai-content" style="color: #1e40af;">shop.govcongiants.org/ai-content</a> and enter your email</p>
+      <p style="margin: 0; color: #1e40af;"><strong>2. Content Reaper</strong></p>
+      <p style="margin: 5px 0 0 0; color: #3b82f6;">Visit <a href="https://shop.govcongiants.org/content-reaper" style="color: #1e40af;">shop.govcongiants.org/content-reaper</a> and enter your email</p>
     </div>
 
     <div style="background: #fdf4ff; border: 1px solid #e879f9; border-radius: 8px; padding: 15px; margin: 15px 0;">
@@ -592,7 +592,7 @@ Thank you for investing in your GovCon success! You now have lifetime access to 
 
 YOUR ULTIMATE BUNDLE INCLUDES:
 - Federal Market Assassin Premium - 8 Strategic Reports ($497 value)
-- AI Content Generator (Full Fix) - Unlimited LinkedIn Posts ($397 value)
+- Content Reaper (Full Fix) - Unlimited LinkedIn Posts ($397 value)
 - Federal Contractor Database - 3,500+ Contractors ($497 value)
 - Recompete Contracts Tracker - Expiring Contracts ($397 value)
 - Opportunity Hunter Pro - Agency Matching ($49 value)
@@ -605,8 +605,8 @@ HOW TO ACCESS YOUR TOOLS:
 1. Federal Market Assassin Premium
    Visit: https://shop.govcongiants.org/market-assassin
 
-2. AI Content Generator
-   Visit: https://shop.govcongiants.org/ai-content
+2. Content Reaper
+   Visit: https://shop.govcongiants.org/content-reaper
 
 3. Federal Contractor Database
    Visit: https://shop.govcongiants.org/contractor-database

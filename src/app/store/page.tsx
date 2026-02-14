@@ -128,14 +128,14 @@ export default function Home() {
               </div>
             </Link>
 
-            {/* LinkedIn Content Creator */}
-            <Link href="/ai-content" className="block bg-white border border-gray-200 rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg hover:border-emerald-500 cursor-pointer">
+            {/* Content Reaper */}
+            <Link href="/content-reaper" className="block bg-white border border-gray-200 rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg hover:border-emerald-500 cursor-pointer">
               <div className="h-48 bg-gradient-to-br from-purple-600 to-pink-500 relative overflow-hidden">
-                <Image src="/images/products/ai content generator/ai content generator home page.png" alt="LinkedIn Content Creator" fill className="object-cover object-top" />
+                <Image src="/images/products/ai content generator/ai content generator home page.png" alt="Content Reaper" fill className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <span className="inline-block bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">PREMIUM</span>
-                <h3 className="text-xl font-bold mb-2 text-gray-900">LinkedIn Content Creator</h3>
+                <h3 className="text-xl font-bold mb-2 text-gray-900">Content Reaper</h3>
                 <p className="text-gray-500 text-sm mb-4">Create LinkedIn posts that resonate with government buyers. GovCon-tuned AI trained on 146 viral posts.</p>
                 <ul className="text-sm mb-5 space-y-1">
                   <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Generate 10 Posts Per Click</li>
@@ -512,7 +512,7 @@ export default function Home() {
                 <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> Federal Contractor Database <span className="text-gray-400">($497)</span></li>
                 <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> Recompete Contracts Tracker <span className="text-gray-400">($397)</span></li>
                 <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> Market Assassin Standard <span className="text-gray-400">($297)</span></li>
-                <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> AI Content Generator <span className="text-gray-400">($197)</span></li>
+                <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> Content Reaper <span className="text-gray-400">($197)</span></li>
               </ul>
               <div className="text-center text-sm text-gray-400 mb-4 line-through">$1,388 if bought separately</div>
               <a href="https://buy.stripe.com/dRm7sMaYS0AG0WN5WMfnO0q" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-amber-500 text-white text-center rounded-lg font-semibold hover:bg-amber-400 transition-all">
@@ -532,7 +532,7 @@ export default function Home() {
               </div>
               <ul className="space-y-3 mb-6 text-sm opacity-90">
                 <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Market Assassin Premium <span className="text-gray-400">($497)</span></li>
-                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Content Generator Full Fix <span className="text-gray-400">($397)</span></li>
+                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Content Reaper Full Fix <span className="text-gray-400">($397)</span></li>
                 <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Federal Contractor Database <span className="text-gray-400">($497)</span></li>
                 <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Recompete Contracts Tracker <span className="text-gray-400">($397)</span></li>
               </ul>

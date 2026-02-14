@@ -130,13 +130,13 @@ export default function Home() {
             </Link>
 
             {/* LinkedIn Content Creator */}
-            <Link href="/ai-content" className="block bg-white border border-gray-200 rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg hover:border-emerald-500 cursor-pointer">
+            <Link href="/content-reaper" className="block bg-white border border-gray-200 rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg hover:border-emerald-500 cursor-pointer">
               <div className="h-48 bg-gradient-to-br from-purple-600 to-pink-500 relative overflow-hidden">
-                <Image src="/images/products/ai content generator/ai content generator home page.png" alt="LinkedIn Content Creator" fill className="object-cover object-top" />
+                <Image src="/images/products/ai content generator/ai content generator home page.png" alt="Content Reaper" fill className="object-cover object-top" />
               </div>
               <div className="p-6">
                 <span className="inline-block bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">PREMIUM</span>
-                <h3 className="text-xl font-bold mb-2 text-gray-900">GovCon Content Generator</h3>
+                <h3 className="text-xl font-bold mb-2 text-gray-900">Content Reaper</h3>
                 <p className="text-gray-500 text-sm mb-4">Stop staring at blank screens. Stop sounding like every other contractor. Generate posts that actually get engagement.</p>
                 <ul className="text-sm mb-5 space-y-1">
                   <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Sound like a GovCon expert</li>
@@ -613,7 +613,7 @@ export default function Home() {
                 <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Federal Contractor Database ($497)</li>
                 <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Recompete Contracts Tracker ($397)</li>
                 <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Market Assassin Standard ($297)</li>
-                <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> GovCon Content Generator ($197)</li>
+                <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Content Reaper ($197)</li>
               </ul>
               <div className="text-center text-sm text-gray-500 mb-4 line-through">$1,388 if bought separately</div>
               <a
@@ -642,7 +642,7 @@ export default function Home() {
               <ul className="space-y-3 mb-6 text-sm opacity-90">
                 <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> <strong>Premium version of everything:</strong></li>
                 <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Market Assassin Premium ($497)</li>
-                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Content Generator Full Fix ($397)</li>
+                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Content Reaper Full Fix ($397)</li>
                 <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Federal Contractor Database ($497)</li>
                 <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Recompete Contracts Tracker ($397)</li>
               </ul>

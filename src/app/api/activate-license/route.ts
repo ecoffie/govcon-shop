@@ -13,8 +13,8 @@ import {
 // Map access flags to friendly product names
 const ACCESS_FLAG_NAMES: Record<string, string> = {
   access_hunter_pro: 'Opportunity Hunter Pro',
-  access_content_standard: 'GovCon Content Generator',
-  access_content_full_fix: 'GovCon Content Generator (Full Fix)',
+  access_content_standard: 'Content Reaper',
+  access_content_full_fix: 'Content Reaper (Full Fix)',
   access_assassin_standard: 'Federal Market Assassin (Standard)',
   access_assassin_premium: 'Federal Market Assassin (Premium)',
   access_recompete: 'Recompete Contracts Tracker',
@@ -63,9 +63,9 @@ export async function POST(request: NextRequest) {
       if (contentgen) {
         const cgAccess = await getContentGeneratorAccess(normalizedEmail);
         if (cgAccess?.tier === 'full-fix') {
-          products.push('GovCon Content Generator (Full Fix)');
+          products.push('Content Reaper (Full Fix)');
         } else {
-          products.push('GovCon Content Generator');
+          products.push('Content Reaper');
         }
       }
 

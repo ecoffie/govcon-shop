@@ -38,6 +38,12 @@ const nextConfig: NextConfig = {
         destination: '/opportunity-hunter',
         permanent: true,
       },
+      // Content Reaper rebrand redirects
+      {
+        source: '/ai-content',
+        destination: '/content-reaper',
+        permanent: true,
+      },
       // Checkout shortcut redirects
       {
         source: '/buy/opportunity-hunter',

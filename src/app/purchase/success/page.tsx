@@ -16,7 +16,7 @@ function SuccessContent() {
         'contractor-database': 'Contractor Database',
         'recompete-contracts': 'Recompete Contracts',
         'prime-lookup': 'Prime Lookup',
-        'ai-content-generator': 'AI Content Generator',
+        'ai-content-generator': 'Content Reaper',
         'starter-bundle': 'Starter Bundle',
         'pro-bundle': 'Pro Giant Bundle',
         'ultimate-bundle': 'Ultimate Giant Bundle',
@@ -123,7 +123,7 @@ function SuccessContent() {
               href="/ai-content"
               className="px-4 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-center text-sm transition-colors"
             >
-              AI Content Generator
+              Content Reaper
             </Link>
             <Link
               href="/opportunity-hunter"

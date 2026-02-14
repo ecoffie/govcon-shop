@@ -83,7 +83,7 @@ export default function AboutPage() {
             <Link href="/ai-content" className="flex items-start gap-3 p-4 rounded-lg hover:bg-gray-50 transition-colors">
               <span className="text-3xl">🤖</span>
               <div>
-                <h3 className="font-bold text-gray-900">AI Content Generator</h3>
+                <h3 className="font-bold text-gray-900">Content Reaper</h3>
                 <p className="text-sm text-gray-600">Generate LinkedIn posts and GovCon content</p>
               </div>
             </Link>

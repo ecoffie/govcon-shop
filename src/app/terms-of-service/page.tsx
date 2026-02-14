@@ -55,7 +55,7 @@ export default function TermsOfServicePage() {
               <li>Federal Market Assassin - market intelligence reports</li>
               <li>Federal Contractor Database - searchable contractor information</li>
               <li>Recompete Contracts Tracker - expiring contracts data</li>
-              <li>GovCon Content Generator - AI-powered content creation</li>
+              <li>Content Reaper - AI-powered content creation</li>
               <li>Opportunity Hunter - agency discovery tool</li>
               <li>Free resources including PDFs, templates, and guides</li>
             </ul>

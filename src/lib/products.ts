@@ -18,7 +18,7 @@ export const STRIPE_TO_PRODUCT_ID: Record<string, string> = Object.fromEntries(
 export const PRODUCTS = {
   AI_CONTENT_GENERATOR: {
     id: 'ai-content-generator',
-    name: 'AI Content Generator',
+    name: 'Content Reaper',
     price: 197,
   },
   CONTRACTOR_DATABASE: {
@@ -68,7 +68,7 @@ export const PRODUCTS = {
 
 // Product name lookup
 export const PRODUCT_NAMES: Record<string, string> = {
-  'ai-content-generator': 'AI Content Generator',
+  'ai-content-generator': 'Content Reaper',
   'contractor-database': 'Federal Contractor Database',
   'recompete-contracts': 'Recompete Contracts Tracker',
   'market-assassin-standard': 'Federal Market Assassin (Standard)',
