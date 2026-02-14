@@ -47,6 +47,7 @@ export default function MarketAssassinProductPage() {
           ],
         },
       ]}
+      videoUrl="https://youtu.be/cf0U-ZaYikM"
       videoTitle="Federal Market Assassin Demo"
       videoSubtitle="See 8 strategic reports generated in under 2 minutes"
       mainImage="/images/products/market-assassin/home page.png"
