@@ -360,7 +360,7 @@
         .reader-back-bar {
             background: #f8fafc;
             border-bottom: 1px solid #e2e8f0;
-            padding: 10px 30px;
+            padding: 14px 30px;
         }
 
         .reader-back-btn {
@@ -750,7 +750,7 @@
                 font-size: 13px;
             }
             .reader-back-bar {
-                padding: 8px 16px;
+                padding: 10px 16px;
             }
             .filter-bar {
                 padding: 12px 16px;
@@ -765,6 +765,150 @@
             }
             .cta-content h2 {
                 font-size: 24px;
+            }
+        }
+
+        /* ── Reading Progress Bar ── */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #7c3aed);
+            z-index: 300;
+            width: 0%;
+            pointer-events: none;
+        }
+
+        /* ── Breadcrumb Navigation ── */
+        .reader-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .reader-breadcrumb a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .reader-breadcrumb a:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+
+        .reader-breadcrumb .separator {
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        .reader-breadcrumb .current-title {
+            color: #64748b;
+            font-weight: 500;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 400px;
+        }
+
+        /* ── Category Pills in Reader ── */
+        .reader-category-nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .reader-category-pill {
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1.5px solid #e2e8f0;
+            background: white;
+            color: #475569;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .reader-category-pill:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+
+        .reader-category-pill.active {
+            background: #1e3a8a;
+            border-color: #1e3a8a;
+            color: white;
+        }
+
+        /* ── Prev/Next Article Navigation ── */
+        .article-nav {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .article-nav-card {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .article-nav-card:hover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+            transform: translateY(-2px);
+        }
+
+        .article-nav-card.next {
+            text-align: right;
+        }
+
+        .article-nav-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #3b82f6;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .article-nav-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #0f172a;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 640px) {
+            .article-nav {
+                grid-template-columns: 1fr;
+            }
+            .article-nav-card.next {
+                text-align: left;
+            }
+            .reader-breadcrumb .current-title {
+                max-width: 180px;
+            }
+            .reader-category-nav {
+                gap: 6px;
+            }
+            .reader-category-pill {
+                padding: 5px 10px;
+                font-size: 11px;
             }
         }
     </style>
@@ -1209,51 +1353,51 @@
                 <div class="article-content">
                     <!-- Pie Chart: Where Federal Contract Dollars Go -->
                     <div style="text-align:center; margin-bottom:32px;">
-                        <svg viewBox="0 0 440 340" style="max-width:440px; width:100%;" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Pie slices (total=360deg, starting from top/12 o'clock) -->
-                            <!-- Task Orders 55% = 198deg -->
+                        <svg viewBox="0 0 440 440" style="max-width:440px; width:100%;" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Donut chart: Where Federal Contract Dollars Go -->
+                            <!-- Task Orders 55% -->
                             <circle cx="170" cy="170" r="140" fill="none" stroke="#1e40af" stroke-width="140"
                                 stroke-dasharray="879.6 879.6"
                                 stroke-dashoffset="219.9"
                                 transform="rotate(-90 170 170)" />
-                            <!-- Sole Source 30% = 108deg -->
+                            <!-- Sole Source 30% -->
                             <circle cx="170" cy="170" r="140" fill="none" stroke="#3b82f6" stroke-width="140"
                                 stroke-dasharray="263.9 615.8"
                                 stroke-dashoffset="-659.7"
                                 transform="rotate(-90 170 170)" />
-                            <!-- Micropurchases 5% = 18deg -->
+                            <!-- Micropurchases 5% -->
                             <circle cx="170" cy="170" r="140" fill="none" stroke="#93c5fd" stroke-width="140"
                                 stroke-dasharray="44.0 835.7"
                                 stroke-dashoffset="-395.8"
                                 transform="rotate(-90 170 170)" />
-                            <!-- DIBBS 3% = 10.8deg -->
+                            <!-- DIBBS 3% -->
                             <circle cx="170" cy="170" r="140" fill="none" stroke="#bfdbfe" stroke-width="140"
                                 stroke-dasharray="26.4 853.3"
                                 stroke-dashoffset="-351.9"
                                 transform="rotate(-90 170 170)" />
-                            <!-- Niche Sites 2% = 7.2deg -->
+                            <!-- Niche Sites 2% -->
                             <circle cx="170" cy="170" r="140" fill="none" stroke="#dbeafe" stroke-width="140"
                                 stroke-dasharray="17.6 862.1"
                                 stroke-dashoffset="-325.5"
                                 transform="rotate(-90 170 170)" />
-                            <!-- SAM.gov 5% = 18deg (the visible slice) -->
+                            <!-- SAM.gov 5% -->
                             <circle cx="170" cy="170" r="140" fill="none" stroke="#0f172a" stroke-width="140"
                                 stroke-dasharray="44.0 835.7"
                                 stroke-dashoffset="-307.9"
                                 transform="rotate(-90 170 170)" />
                             <!-- Center white circle -->
                             <circle cx="170" cy="170" r="60" fill="white" />
-                            <text x="170" y="165" text-anchor="middle" fill="#0f172a" font-size="13" font-weight="700" font-family="Inter,sans-serif">Only ~5%</text>
-                            <text x="170" y="182" text-anchor="middle" fill="#64748b" font-size="11" font-family="Inter,sans-serif">on SAM.gov</text>
-                            <!-- Legend -->
-                            <rect x="10" y="318" width="12" height="12" rx="2" fill="#1e40af" />
-                            <text x="26" y="329" fill="#334155" font-size="11" font-family="Inter,sans-serif">Task Orders (55%)</text>
-                            <rect x="145" y="318" width="12" height="12" rx="2" fill="#3b82f6" />
-                            <text x="161" y="329" fill="#334155" font-size="11" font-family="Inter,sans-serif">Sole Source (30%)</text>
-                            <rect x="275" y="318" width="12" height="12" rx="2" fill="#93c5fd" />
-                            <text x="291" y="329" fill="#334155" font-size="11" font-family="Inter,sans-serif">Other (10%)</text>
-                            <rect x="370" y="318" width="12" height="12" rx="2" fill="#0f172a" />
-                            <text x="386" y="329" fill="#334155" font-size="11" font-family="Inter,sans-serif">SAM (5%)</text>
+                            <text x="170" y="165" text-anchor="middle" fill="#0f172a" font-size="14" font-weight="700" font-family="Inter,sans-serif">Only ~5%</text>
+                            <text x="170" y="183" text-anchor="middle" fill="#64748b" font-size="12" font-family="Inter,sans-serif">on SAM.gov</text>
+                            <!-- Legend - vertical stack for readability -->
+                            <rect x="40" y="330" width="14" height="14" rx="3" fill="#1e40af" />
+                            <text x="62" y="342" fill="#334155" font-size="13" font-weight="600" font-family="Inter,sans-serif">Task Orders on Contract Vehicles &mdash; 55%</text>
+                            <rect x="40" y="358" width="14" height="14" rx="3" fill="#3b82f6" />
+                            <text x="62" y="370" fill="#334155" font-size="13" font-weight="600" font-family="Inter,sans-serif">Sole Source Awards &mdash; 30%</text>
+                            <rect x="40" y="386" width="14" height="14" rx="3" fill="#93c5fd" />
+                            <text x="62" y="398" fill="#334155" font-size="13" font-weight="600" font-family="Inter,sans-serif">Micropurchases, DIBBS &amp; Other &mdash; 10%</text>
+                            <rect x="40" y="414" width="14" height="14" rx="3" fill="#0f172a" />
+                            <text x="62" y="426" fill="#334155" font-size="13" font-weight="600" font-family="Inter,sans-serif">Posted on SAM.gov &mdash; 5%</text>
                         </svg>
                         <p style="font-size:12px; color:#94a3b8; margin-top:8px;">Source: HigherGov analysis of federal award data, FY2023</p>
                     </div>
@@ -1654,6 +1798,7 @@
 
 <!-- Article Reader Overlay -->
 <div class="article-reader-overlay" id="articleReader">
+    <div class="reading-progress" id="readingProgress"></div>
     <nav class="reader-nav">
         <a href="/" class="nav-logo">GovCon <span>Giants</span></a>
         <div class="nav-links">
@@ -1664,7 +1809,20 @@
         </div>
     </nav>
     <div class="reader-back-bar">
-        <button class="reader-back-btn" onclick="closeReader()">&#8592; Back to all articles</button>
+        <div class="reader-breadcrumb" id="readerBreadcrumb">
+            <a href="#" onclick="closeReader(); return false;">Blog</a>
+            <span class="separator">&#8250;</span>
+            <a href="#" id="breadcrumbCategory" data-topic="" onclick="closeReaderToCategory(); return false;">Category</a>
+            <span class="separator">&#8250;</span>
+            <span class="current-title" id="breadcrumbTitle">Article</span>
+        </div>
+        <div class="reader-category-nav" id="readerCategoryNav">
+            <button class="reader-category-pill" data-topic="market-research" onclick="goToCategory('market-research')">Market Research</button>
+            <button class="reader-category-pill" data-topic="business-development" onclick="goToCategory('business-development')">Business Development</button>
+            <button class="reader-category-pill" data-topic="linkedin-content" onclick="goToCategory('linkedin-content')">LinkedIn &amp; Content</button>
+            <button class="reader-category-pill" data-topic="teaming-subcontracting" onclick="goToCategory('teaming-subcontracting')">Teaming &amp; Subcontracting</button>
+            <button class="reader-category-pill" data-topic="contract-intelligence" onclick="goToCategory('contract-intelligence')">Contract Intelligence</button>
+        </div>
     </div>
     <div class="reader-layout">
         <div class="reader-body" id="readerBody">
@@ -1736,10 +1894,23 @@
         });
     });
 
-    // ── Full-Page Article Reader ──
+    // ── Article Reader ──
     var scrollPos = 0;
+    var allCards = Array.from(document.querySelectorAll('.article-card'));
+    var currentArticleIndex = -1;
 
-    // Map tool badge text to sidebar data-tool values
+    function slugify(text) {
+        return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').substring(0, 80);
+    }
+
+    var categoryNames = {
+        'market-research': 'Market Research',
+        'business-development': 'Business Development',
+        'linkedin-content': 'LinkedIn & Content',
+        'teaming-subcontracting': 'Teaming & Subcontracting',
+        'contract-intelligence': 'Contract Intelligence'
+    };
+
     var toolMap = {
         'Market Assassin': 'market-assassin',
         'Content Reaper': 'content-generator',
@@ -1750,29 +1921,43 @@
 
     function openReader(btn) {
         var card = btn.closest('.article-card');
+        currentArticleIndex = allCards.indexOf(card);
         var title = card.querySelector('.card-body h3').textContent;
         var badges = card.querySelector('.card-badges').innerHTML;
         var content = card.querySelector('.article-expanded .article-content').innerHTML;
-
-        // Build "more articles" links from other cards in same topic
         var topic = card.getAttribute('data-topic');
+
+        // Update breadcrumb
+        document.getElementById('breadcrumbCategory').textContent = categoryNames[topic] || topic;
+        document.getElementById('breadcrumbCategory').setAttribute('data-topic', topic);
+        document.getElementById('breadcrumbTitle').textContent = title;
+
+        // Highlight active category pill in reader
+        document.querySelectorAll('.reader-category-pill').forEach(function(p) {
+            p.classList.toggle('active', p.getAttribute('data-topic') === topic);
+        });
+
+        // Build "more in this topic" links
         var moreLinks = '';
-        document.querySelectorAll('.article-card[data-topic="' + topic + '"]').forEach(function(other) {
-            if (other !== card) {
+        allCards.forEach(function(other) {
+            if (other !== card && other.getAttribute('data-topic') === topic) {
                 var otherTitle = other.querySelector('.card-body h3').textContent;
                 moreLinks += '<a href="#" onclick="openReaderFromTitle(\'' + otherTitle.replace(/'/g, "\\'") + '\'); return false;">' + otherTitle + '</a>';
             }
         });
-
         var moreSection = moreLinks ? '<div class="reader-more-articles"><h3>More in this topic</h3><div class="reader-more-links">' + moreLinks + '</div></div>' : '';
+
+        // Build prev/next navigation
+        var navHtml = buildArticleNav();
 
         document.getElementById('readerBody').innerHTML =
             '<div class="reader-badges">' + badges + '</div>' +
             '<h1>' + title + '</h1>' +
             '<div class="article-content">' + content + '</div>' +
+            navHtml +
             moreSection;
 
-        // Highlight the related tool in sidebar
+        // Highlight sidebar tool
         document.querySelectorAll('.sidebar-tool').forEach(function(t) { t.classList.remove('active-tool'); });
         var toolBadge = card.querySelector('.tool-badge');
         if (toolBadge) {
@@ -1784,18 +1969,50 @@
             }
         }
 
+        // Set URL hash for sharing
+        history.pushState(null, '', '#' + slugify(title));
+
         scrollPos = window.scrollY;
-        document.getElementById('articleReader').classList.add('open');
-        document.getElementById('articleReader').scrollTop = 0;
+        var reader = document.getElementById('articleReader');
+        reader.classList.add('open');
+        reader.scrollTop = 0;
         document.body.style.overflow = 'hidden';
+        document.getElementById('readingProgress').style.width = '0%';
+    }
+
+    function buildArticleNav() {
+        var html = '<div class="article-nav">';
+        if (currentArticleIndex > 0) {
+            var prevTitle = allCards[currentArticleIndex - 1].querySelector('.card-body h3').textContent;
+            html += '<div class="article-nav-card" onclick="navigateArticle(-1)">' +
+                '<div class="article-nav-label">\u2190 Previous Article</div>' +
+                '<div class="article-nav-title">' + prevTitle + '</div></div>';
+        } else {
+            html += '<div></div>';
+        }
+        if (currentArticleIndex < allCards.length - 1) {
+            var nextTitle = allCards[currentArticleIndex + 1].querySelector('.card-body h3').textContent;
+            html += '<div class="article-nav-card next" onclick="navigateArticle(1)">' +
+                '<div class="article-nav-label">Next Article \u2192</div>' +
+                '<div class="article-nav-title">' + nextTitle + '</div></div>';
+        } else {
+            html += '<div></div>';
+        }
+        html += '</div>';
+        return html;
+    }
+
+    function navigateArticle(direction) {
+        var newIndex = currentArticleIndex + direction;
+        if (newIndex >= 0 && newIndex < allCards.length) {
+            openReader(allCards[newIndex].querySelector('.read-more-btn'));
+        }
     }
 
     function openReaderFromTitle(title) {
-        var cards = document.querySelectorAll('.article-card');
-        for (var i = 0; i < cards.length; i++) {
-            if (cards[i].querySelector('.card-body h3').textContent === title) {
-                var fakeBtn = cards[i].querySelector('.read-more-btn');
-                openReader(fakeBtn);
+        for (var i = 0; i < allCards.length; i++) {
+            if (allCards[i].querySelector('.card-body h3').textContent === title) {
+                openReader(allCards[i].querySelector('.read-more-btn'));
                 return;
             }
         }
@@ -1805,7 +2022,71 @@
         document.getElementById('articleReader').classList.remove('open');
         document.body.style.overflow = '';
         window.scrollTo(0, scrollPos);
+        document.getElementById('readingProgress').style.width = '0%';
+        history.pushState(null, '', window.location.pathname);
     }
+
+    function filterToCategory(topic) {
+        document.querySelectorAll('.filter-pill').forEach(function(p) { p.classList.remove('active'); });
+        var pill = document.querySelector('.filter-pill[data-topic="' + topic + '"]');
+        if (pill) pill.classList.add('active');
+        document.querySelectorAll('.article-card').forEach(function(card) {
+            card.style.display = (topic === 'all' || card.getAttribute('data-topic') === topic) ? '' : 'none';
+        });
+    }
+
+    function closeReaderToCategory() {
+        var topic = document.getElementById('breadcrumbCategory').getAttribute('data-topic');
+        closeReader();
+        filterToCategory(topic);
+        setTimeout(function() {
+            document.querySelector('.articles-section').scrollIntoView({ behavior: 'smooth' });
+        }, 50);
+    }
+
+    function goToCategory(topic) {
+        closeReader();
+        filterToCategory(topic);
+        setTimeout(function() {
+            document.querySelector('.articles-section').scrollIntoView({ behavior: 'smooth' });
+        }, 50);
+    }
+
+    // Reading progress bar
+    document.getElementById('articleReader').addEventListener('scroll', function() {
+        var scrollTop = this.scrollTop;
+        var scrollHeight = this.scrollHeight - this.clientHeight;
+        var progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        document.getElementById('readingProgress').style.width = progress + '%';
+    });
+
+    // Open article from URL hash (for shared links)
+    function openFromHash() {
+        var hash = window.location.hash.substring(1);
+        if (!hash) return;
+        for (var i = 0; i < allCards.length; i++) {
+            var title = allCards[i].querySelector('.card-body h3').textContent;
+            if (slugify(title) === hash) {
+                openReader(allCards[i].querySelector('.read-more-btn'));
+                return;
+            }
+        }
+    }
+    openFromHash();
+
+    // Handle browser back/forward
+    window.addEventListener('popstate', function() {
+        if (window.location.hash) {
+            openFromHash();
+        } else {
+            var reader = document.getElementById('articleReader');
+            if (reader.classList.contains('open')) {
+                reader.classList.remove('open');
+                document.body.style.overflow = '';
+                document.getElementById('readingProgress').style.width = '0%';
+            }
+        }
+    });
 
     // Close on Escape key
     document.addEventListener('keydown', function(e) {
