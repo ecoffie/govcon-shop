@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { MarketAssassinTier } from '@/lib/access-codes';
 
 type ContentGeneratorTier = 'content-engine' | 'full-fix';
@@ -312,7 +313,14 @@ export default function AdminDashboard() {
               <h1 className="text-3xl font-bold text-slate-900">Admin Dashboard</h1>
               <p className="text-slate-600 mt-1">Manage user access for all products</p>
             </div>
-            <button
+            <div className="flex items-center gap-3">
+              <Link
+                href="/admin/purchases-report"
+                className="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-800 border border-blue-300 rounded-lg hover:bg-blue-50 transition-colors"
+              >
+                Purchases Report
+              </Link>
+              <button
               onClick={() => {
                 sessionStorage.removeItem('adminAuth');
                 setAuthenticated(false);
@@ -322,6 +330,7 @@ export default function AdminDashboard() {
             >
               Logout
             </button>
+            </div>
           </div>
         </div>
 
