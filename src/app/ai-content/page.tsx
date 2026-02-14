@@ -45,6 +45,9 @@ export default function AIContentPage() {
           ],
         },
       ]}
+      videoUrl="https://youtu.be/vO420eQ97Dw"
+      videoTitle="GovCon Content Generator Demo"
+      videoSubtitle="See how to generate 10 LinkedIn posts in under 60 seconds"
       screenshots={[
         '/images/products/ai content generator/ai content generator home page.png',
         '/images/products/ai content generator/company profile .png',
