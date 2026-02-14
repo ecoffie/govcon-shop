@@ -1,4 +1,15 @@
+import type { Metadata } from 'next';
 import ProductPageAppSumo from '@/components/ProductPageAppSumo';
+
+export const metadata: Metadata = {
+  title: 'Free Tribal Contractor List - 500+ Native American-Owned Businesses',
+  description: 'Download free list of 500+ Native American-owned federal contractors for teaming and subcontracting. Contact information, NAICS codes, certifications, and CSV export included.',
+  openGraph: {
+    title: 'Free Tribal Contractor List - 500+ Native American-Owned Businesses | GovCon Giants',
+    description: 'Download free list of 500+ Native American-owned federal contractors for teaming and subcontracting. Contact information, NAICS codes, certifications.',
+    url: '/tribal-list',
+  },
+};
 
 export default function TribalListPage() {
   return (

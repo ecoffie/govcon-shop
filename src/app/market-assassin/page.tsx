@@ -1,8 +1,48 @@
+import type { Metadata } from 'next';
 import ProductPageAppSumo from '@/components/ProductPageAppSumo';
+
+export const metadata: Metadata = {
+  title: 'Federal Market Assassin - GovCon Market Intelligence',
+  description: 'Get 8 strategic reports in 5 minutes: agency spending, government buyers, OSBP contacts, subcontracting opportunities, and more. The market intelligence system for federal contractors. From $297 one-time.',
+  openGraph: {
+    title: 'Federal Market Assassin - GovCon Market Intelligence | GovCon Giants',
+    description: 'Get 8 strategic reports in 5 minutes: agency spending, government buyers, OSBP contacts, subcontracting opportunities. The market intelligence system for federal contractors.',
+    url: '/market-assassin',
+  },
+};
+
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Federal Market Assassin',
+  description: 'Market intelligence system for federal contractors. Get 8 strategic reports in 5 minutes: agency spending, government buyers, OSBP contacts, subcontracting opportunities.',
+  url: 'https://shop.govcongiants.org/market-assassin',
+  brand: { '@type': 'Organization', name: 'GovCon Giants' },
+  offers: [
+    {
+      '@type': 'Offer',
+      name: 'Standard',
+      price: '297',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      url: 'https://buy.stripe.com/3cI3cw9UOdns34V84UfnO0j',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Premium',
+      price: '497',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      url: 'https://buy.stripe.com/5kQdRaeb497cfRHdpefnO0f',
+    },
+  ],
+};
 
 export default function MarketAssassinProductPage() {
   return (
-    <ProductPageAppSumo
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
+      <ProductPageAppSumo
       title="Federal Market Assassin"
       tagline="Stop guessing. Start winning. Get the intel your competitors don't have."
       description="Stop spending weeks on market research that leads nowhere. Stop guessing which agencies to target. Stop losing to competitors who somehow always know more than you. Federal Market Assassin gives you the same market intelligence that $50K/year consultants charge for—in under 5 minutes. Enter 5 inputs, select your agencies, and instantly get 8 strategic reports that tell you exactly where to focus, who to contact, and how to win."
@@ -182,5 +222,6 @@ export default function MarketAssassinProductPage() {
         },
       ]}
     />
+    </>
   );
 }

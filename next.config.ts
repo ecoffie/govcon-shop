@@ -44,6 +44,17 @@ const nextConfig: NextConfig = {
         destination: '/content-reaper',
         permanent: true,
       },
+      // Blog migration: resources.html → /blog
+      {
+        source: '/resources.html',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/resources',
+        destination: '/blog',
+        permanent: true,
+      },
       // Checkout shortcut redirects
       {
         source: '/buy/opportunity-hunter',

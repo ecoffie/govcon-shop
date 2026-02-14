@@ -1,4 +1,15 @@
+import type { Metadata } from 'next';
 import ProductPageAppSumo from '@/components/ProductPageAppSumo';
+
+export const metadata: Metadata = {
+  title: 'Free GovCon Guides & Templates',
+  description: 'Download free federal contracting guides and templates: 2026 NDAA provisions, agency pain points framework, general contractor guide, decision matrices, and action plan checklists. Instant PDF download.',
+  openGraph: {
+    title: 'Free GovCon Guides & Templates | GovCon Giants',
+    description: 'Download free federal contracting guides and templates: 2026 NDAA provisions, agency pain points framework, general contractor guide, and decision matrices.',
+    url: '/guides-templates',
+  },
+};
 
 export default function GuidesTemplatesPage() {
   return (

@@ -133,7 +133,7 @@ export default function FreeResourcesPage() {
               <li><Link href="/#databases" className="text-gray-800 hover:text-blue-800 font-medium text-sm">Databases</Link></li>
               <li><Link href="/free-resources" className="text-blue-800 font-medium text-sm">Resources</Link></li>
               <li><Link href="/about" className="text-gray-800 hover:text-blue-800 font-medium text-sm">About</Link></li>
-              <li><a href="/resources.html" className="text-gray-800 hover:text-blue-800 font-medium text-sm">Blog</a></li>
+              <li><a href="/blog" className="text-gray-800 hover:text-blue-800 font-medium text-sm">Blog</a></li>
             </ul>
             <div className="flex items-center gap-4">
               <Link href="/activate" className="px-4 py-2 text-gray-800 border border-gray-200 rounded-lg font-semibold text-sm hover:bg-gray-50">
@@ -175,7 +175,7 @@ export default function FreeResourcesPage() {
 
         {/* Blog / Resource Center Banner */}
         <a
-          href="/resources.html"
+          href="/blog"
           className="block mb-16 rounded-2xl overflow-hidden bg-gradient-to-r from-blue-800 to-purple-600 hover:shadow-2xl transition-all hover:-translate-y-1"
         >
           <div className="flex flex-col md:flex-row items-center gap-6 p-8 md:p-10">
@@ -273,7 +273,7 @@ export default function FreeResourcesPage() {
               <ul className="space-y-3 text-sm">
                 <li><Link href="/free-resources" className="text-gray-400 hover:text-white">Free PDFs</Link></li>
                 <li><Link href="/opportunity-hunter" className="text-gray-400 hover:text-white">Opportunity Hunter</Link></li>
-                <li><a href="/resources.html" className="text-gray-400 hover:text-white">Blog</a></li>
+                <li><a href="/blog" className="text-gray-400 hover:text-white">Blog</a></li>
               </ul>
             </div>
             <div>

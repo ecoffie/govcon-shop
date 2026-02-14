@@ -1,8 +1,37 @@
+import type { Metadata } from 'next';
 import ProductPageAppSumo from '@/components/ProductPageAppSumo';
+
+export const metadata: Metadata = {
+  title: 'Recompete Contracts Tracker - Expiring Federal Contracts',
+  description: 'Track $221B+ in expiring federal contracts. Find recompete opportunities before competitors, contact primes early, filter by NAICS code, and export to CSV. $397 one-time, lifetime access.',
+  openGraph: {
+    title: 'Recompete Contracts Tracker - Expiring Federal Contracts | GovCon Giants',
+    description: 'Track $221B+ in expiring federal contracts. Find recompete opportunities before competitors, contact primes early, filter by NAICS code.',
+    url: '/expiring-contracts',
+  },
+};
+
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Recompete Contracts Tracker',
+  description: 'Track $221B+ in expiring federal contracts. Find recompete opportunities before competitors, contact primes early, filter by NAICS code, and export to CSV.',
+  url: 'https://shop.govcongiants.org/expiring-contracts',
+  brand: { '@type': 'Organization', name: 'GovCon Giants' },
+  offers: {
+    '@type': 'Offer',
+    price: '397',
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+    url: 'https://buy.stripe.com/7sYfZi9UOdnsaxnbh6fnO0k',
+  },
+};
 
 export default function ExpiringContractsPage() {
   return (
-    <ProductPageAppSumo
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
+      <ProductPageAppSumo
       title="Expiring Contracts Forecast"
       tagline="Be first in line when $221B in contracts get rebid."
       description="Stop chasing new contracts where you have no past performance. Stop competing against 50 other bidders. Recompetes are the easiest path to federal contracts—the government already knows they need the service, and the prime already proved it works. The only question is: will you be on the team when they rebid? This database tells you exactly which contracts are expiring, who the prime is, and when to reach out—months before your competitors even know the opportunity exists."
@@ -133,5 +162,6 @@ export default function ExpiringContractsPage() {
         },
       ]}
     />
+    </>
   );
 }

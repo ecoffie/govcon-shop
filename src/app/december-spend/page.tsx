@@ -1,4 +1,15 @@
+import type { Metadata } from 'next';
 import ProductPageAppSumo from '@/components/ProductPageAppSumo';
+
+export const metadata: Metadata = {
+  title: 'Free December Spend Forecast - Year-End Government Spending',
+  description: 'Capitalize on year-end federal spending with agency budget forecasts, hot spending categories, key deadline calendar, and positioning strategies. Free PDF download for government contractors.',
+  openGraph: {
+    title: 'Free December Spend Forecast - Year-End Government Spending | GovCon Giants',
+    description: 'Capitalize on year-end federal spending with agency budget forecasts, hot spending categories, key deadline calendar, and positioning strategies.',
+    url: '/december-spend',
+  },
+};
 
 export default function DecemberSpendPage() {
   return (

@@ -1,8 +1,37 @@
+import type { Metadata } from 'next';
 import BundleProductPage from '@/components/BundleProductPage';
+
+export const metadata: Metadata = {
+  title: 'Starter Bundle - $697 (Save $246)',
+  description: 'The essential GovCon starter kit: Opportunity Hunter Pro, Recompete Contracts Tracker, and Federal Contractor Database. Three tools for $697 one-time (normally $943). Lifetime access, no subscriptions.',
+  openGraph: {
+    title: 'Starter Bundle - $697 (Save $246) | GovCon Giants',
+    description: 'The essential GovCon starter kit: Opportunity Hunter Pro, Recompete Contracts Tracker, and Federal Contractor Database. Three tools for $697 one-time.',
+    url: '/bundles/starter',
+  },
+};
+
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'GovCon Starter Bundle',
+  description: 'The essential GovCon starter kit: Opportunity Hunter Pro, Recompete Contracts Tracker, and Federal Contractor Database. Three tools for $697 one-time.',
+  url: 'https://shop.govcongiants.org/bundles/starter',
+  brand: { '@type': 'Organization', name: 'GovCon Giants' },
+  offers: {
+    '@type': 'Offer',
+    price: '697',
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+    url: 'https://buy.stripe.com/6oU9AUeb46Z46h70CsfnO0s',
+  },
+};
 
 export default function StarterBundlePage() {
   return (
-    <BundleProductPage
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
+      <BundleProductPage
       title="GovCon Starter Bundle"
       tagline="Everything you need to start winning federal contracts"
       description="The perfect foundation for new government contractors. Get the essential tools to find opportunities, track expiring contracts, and connect with prime contractors—all at one unbeatable price."
@@ -91,5 +120,6 @@ export default function StarterBundlePage() {
         },
       ]}
     />
+    </>
   );
 }

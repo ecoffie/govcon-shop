@@ -1,8 +1,48 @@
+import type { Metadata } from 'next';
 import ProductPageAppSumo from '@/components/ProductPageAppSumo';
+
+export const metadata: Metadata = {
+  title: 'Content Reaper - AI LinkedIn Post Generator for GovCon',
+  description: 'Generate LinkedIn posts that resonate with government buyers. GovCon-tuned AI trained on 146 viral posts. 175 federal agencies, GEO Boost optimization, 10 posts per click. From $197 one-time.',
+  openGraph: {
+    title: 'Content Reaper - AI LinkedIn Post Generator | GovCon Giants',
+    description: 'Generate LinkedIn posts that resonate with government buyers. GovCon-tuned AI trained on 146 viral posts. 175 federal agencies, 10 posts per click.',
+    url: '/content-reaper',
+  },
+};
+
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Content Reaper',
+  description: 'AI-powered LinkedIn post generator for government contractors. GovCon-tuned AI trained on 146 viral posts. 250 federal agencies, GEO Boost optimization.',
+  url: 'https://shop.govcongiants.org/content-reaper',
+  brand: { '@type': 'Organization', name: 'GovCon Giants' },
+  offers: [
+    {
+      '@type': 'Offer',
+      name: 'Content Engine',
+      price: '197',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      url: 'https://buy.stripe.com/dRmcN64Au6Z4axn84UfnO0m',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Full Fix',
+      price: '397',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      url: 'https://buy.stripe.com/aFa9AU4Au1EKaxn5WMfnO0n',
+    },
+  ],
+};
 
 export default function ContentReaperPage() {
   return (
-    <ProductPageAppSumo
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
+      <ProductPageAppSumo
       title="Content Reaper"
       tagline="Create LinkedIn posts that resonate with government buyers"
       description="Stop staring at blank screens wondering what to post. Stop sounding like every other contractor on LinkedIn. Stop wasting hours trying to figure out what government buyers want to hear. Content Reaper creates LinkedIn posts specifically designed to resonate with government buyers and contracting officers. Our custom fine-tuned model was trained on 146 viral GovCon posts, so it writes in the authentic voice of successful GovCon thought leaders—not generic AI slop that gets ignored."
@@ -166,5 +206,6 @@ export default function ContentReaperPage() {
         },
       ]}
     />
+    </>
   );
 }

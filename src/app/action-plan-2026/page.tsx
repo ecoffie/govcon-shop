@@ -1,4 +1,15 @@
+import type { Metadata } from 'next';
 import ProductPageAppSumo from '@/components/ProductPageAppSumo';
+
+export const metadata: Metadata = {
+  title: 'Free 2026 GovCon Action Plan - 12-Month Roadmap',
+  description: 'Download your free 2026 federal contracting action plan with month-by-month milestones, weekly task checklists, key deadline calendar, and goal tracking worksheets. 25+ page PDF roadmap.',
+  openGraph: {
+    title: 'Free 2026 GovCon Action Plan - 12-Month Roadmap | GovCon Giants',
+    description: 'Download your free 2026 federal contracting action plan with month-by-month milestones, weekly task checklists, key deadline calendar.',
+    url: '/action-plan-2026',
+  },
+};
 
 export default function ActionPlan2026Page() {
   return (

@@ -1,4 +1,15 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'About GovCon Giants',
+  description: 'GovCon Giants levels the playing field for small businesses pursuing federal contracts. Data-driven intelligence tools with lifetime access pricing. Contact, mission, and team information.',
+  openGraph: {
+    title: 'About GovCon Giants | GovCon Giants',
+    description: 'GovCon Giants levels the playing field for small businesses pursuing federal contracts. Data-driven intelligence tools with lifetime access pricing.',
+    url: '/about',
+  },
+};
 
 export default function AboutPage() {
   return (

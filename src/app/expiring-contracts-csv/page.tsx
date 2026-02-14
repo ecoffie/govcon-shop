@@ -1,4 +1,15 @@
+import type { Metadata } from 'next';
 import ProductPageAppSumo from '@/components/ProductPageAppSumo';
+
+export const metadata: Metadata = {
+  title: 'Free Expiring Contracts CSV - Sample Federal Contract Data',
+  description: 'Download free sample of expiring federal contracts data in CSV format. Import into Excel, Google Sheets, or your CRM. Includes contract values, agencies, prime contractors, and expiration dates.',
+  openGraph: {
+    title: 'Free Expiring Contracts CSV | GovCon Giants',
+    description: 'Download free sample of expiring federal contracts data in CSV format. Import into Excel, Google Sheets, or your CRM.',
+    url: '/expiring-contracts-csv',
+  },
+};
 
 export default function ExpiringContractsCSVPage() {
   return (

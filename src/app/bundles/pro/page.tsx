@@ -1,8 +1,37 @@
+import type { Metadata } from 'next';
 import BundleProductPage from '@/components/BundleProductPage';
+
+export const metadata: Metadata = {
+  title: 'Pro Giant Bundle - $997 (Save $391)',
+  description: 'The complete GovCon toolkit: Federal Contractor Database, Recompete Tracker, Market Assassin Standard, and Content Reaper. Four tools for $997 one-time (normally $1,388). Most popular bundle.',
+  openGraph: {
+    title: 'Pro Giant Bundle - $997 (Save $391) | GovCon Giants',
+    description: 'The complete GovCon toolkit: Federal Contractor Database, Recompete Tracker, Market Assassin Standard, and Content Reaper. Four tools for $997 one-time.',
+    url: '/bundles/pro',
+  },
+};
+
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Pro Giant Bundle',
+  description: 'The complete GovCon toolkit: Federal Contractor Database, Recompete Tracker, Market Assassin Standard, and Content Reaper. Four tools for $997 one-time.',
+  url: 'https://shop.govcongiants.org/bundles/pro',
+  brand: { '@type': 'Organization', name: 'GovCon Giants' },
+  offers: {
+    '@type': 'Offer',
+    price: '997',
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+    url: 'https://buy.stripe.com/dRm7sMaYS0AG0WN5WMfnO0q',
+  },
+};
 
 export default function ProBundlePage() {
   return (
-    <BundleProductPage
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
+      <BundleProductPage
       title="Pro Giant Bundle"
       tagline="The complete toolkit for serious government contractors"
       description="Ready to take your GovCon business to the next level? The Pro Giant Bundle combines powerful market intelligence with content creation tools to help you find, analyze, and win more contracts."
@@ -116,5 +145,6 @@ export default function ProBundlePage() {
         },
       ]}
     />
+    </>
   );
 }

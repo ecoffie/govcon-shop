@@ -1,5 +1,16 @@
+import type { Metadata } from 'next';
 import Link from "next/link";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: 'GovCon Tools Store',
+  description: 'Browse all federal contracting tools, databases, and free resources. Market intelligence, contractor databases, expiring contracts tracker, AI content generator, and more. One-time payment, lifetime access.',
+  openGraph: {
+    title: 'GovCon Tools Store | GovCon Giants',
+    description: 'Browse all federal contracting tools, databases, and free resources. Market intelligence, contractor databases, expiring contracts tracker, AI content generator, and more.',
+    url: '/store',
+  },
+};
 
 export default function Home() {
   return (

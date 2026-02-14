@@ -1,4 +1,15 @@
+import type { Metadata } from 'next';
 import ProductPageAppSumo from '@/components/ProductPageAppSumo';
+
+export const metadata: Metadata = {
+  title: 'Free Tier-2 Subcontractor Directory - 50+ Prime Contractors',
+  description: 'Download free Tier-2 supplier directory with vendor registration portals at 50+ prime contractors. Get on supplier lists faster with direct portal links organized by NAICS code. Instant PDF download.',
+  openGraph: {
+    title: 'Free Tier-2 Subcontractor Directory | GovCon Giants',
+    description: 'Download free Tier-2 supplier directory with vendor registration portals at 50+ prime contractors. Direct portal links organized by NAICS code.',
+    url: '/tier2-directory',
+  },
+};
 
 export default function Tier2DirectoryPage() {
   return (

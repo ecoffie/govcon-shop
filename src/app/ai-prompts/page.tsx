@@ -1,4 +1,15 @@
+import type { Metadata } from 'next';
 import ProductPageAppSumo from '@/components/ProductPageAppSumo';
+
+export const metadata: Metadata = {
+  title: 'Free 75+ AI Prompts for Government Contractors',
+  description: 'Download 75+ battle-tested AI prompts for federal contractors. Proposal writing, capability statements, competitive analysis, BD strategy, and marketing content. Works with ChatGPT, Claude, and more.',
+  openGraph: {
+    title: 'Free 75+ AI Prompts for Government Contractors | GovCon Giants',
+    description: 'Download 75+ battle-tested AI prompts for federal contractors. Proposal writing, capability statements, competitive analysis, BD strategy.',
+    url: '/ai-prompts',
+  },
+};
 
 export default function AIPromptsPage() {
   return (

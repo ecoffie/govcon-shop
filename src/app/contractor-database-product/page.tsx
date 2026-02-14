@@ -1,8 +1,37 @@
+import type { Metadata } from 'next';
 import ProductPageAppSumo from '@/components/ProductPageAppSumo';
+
+export const metadata: Metadata = {
+  title: 'Federal Contractor Database - 3,500+ Prime Contractors',
+  description: 'Search 3,500+ federal prime contractors with SBLO contacts, vendor portal links, and teaming partner finder. 800+ email contacts, CSV export, advanced filtering. $497 one-time, lifetime access.',
+  openGraph: {
+    title: 'Federal Contractor Database - 3,500+ Prime Contractors | GovCon Giants',
+    description: 'Search 3,500+ federal prime contractors with SBLO contacts, vendor portal links, and teaming partner finder. 800+ email contacts, CSV export.',
+    url: '/contractor-database-product',
+  },
+};
+
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Federal Contractor Database',
+  description: 'Search 3,500+ federal prime contractors with SBLO contacts, vendor portal links, and teaming partner finder. 800+ email contacts, CSV export, advanced filtering.',
+  url: 'https://shop.govcongiants.org/contractor-database-product',
+  brand: { '@type': 'Organization', name: 'GovCon Giants' },
+  offers: {
+    '@type': 'Offer',
+    price: '497',
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+    url: 'https://buy.stripe.com/4gMaEY3wqcjo6h70CsfnO0g',
+  },
+};
 
 export default function ContractorDatabasePage() {
   return (
-    <ProductPageAppSumo
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
+      <ProductPageAppSumo
       title="Federal Contractor Database"
       tagline="Search 3,500+ federal contractors for teaming opportunities"
       description="Stop wasting hours searching for teaming partners. The Federal Contractor Database gives you instant access to over 3,500 verified federal prime contractors, complete with contact information, contract history, SBLO contacts, and supplier portal links. Find the perfect teaming partner in minutes, not days."
@@ -132,5 +161,6 @@ export default function ContractorDatabasePage() {
         },
       ]}
     />
+    </>
   );
 }

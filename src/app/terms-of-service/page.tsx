@@ -1,4 +1,15 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Terms of Service',
+  description: 'GovCon Giants terms of service. Lifetime access licensing, 30-day refund policy, acceptable use, payment terms, and data accuracy disclaimers for federal contracting tools.',
+  openGraph: {
+    title: 'Terms of Service | GovCon Giants',
+    description: 'GovCon Giants terms of service. Lifetime access licensing, 30-day refund policy, acceptable use, and payment terms.',
+    url: '/terms-of-service',
+  },
+};
 
 export default function TermsOfServicePage() {
   return (

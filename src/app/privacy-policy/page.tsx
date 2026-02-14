@@ -1,4 +1,15 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy',
+  description: 'GovCon Giants privacy policy. Learn how we collect, use, and protect your personal information. Payments processed securely through Stripe. Data stored in Supabase.',
+  openGraph: {
+    title: 'Privacy Policy | GovCon Giants',
+    description: 'GovCon Giants privacy policy. Learn how we collect, use, and protect your personal information.',
+    url: '/privacy-policy',
+  },
+};
 
 export default function PrivacyPolicyPage() {
   return (

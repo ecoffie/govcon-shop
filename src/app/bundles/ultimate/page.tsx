@@ -1,8 +1,37 @@
+import type { Metadata } from 'next';
 import BundleProductPage from '@/components/BundleProductPage';
+
+export const metadata: Metadata = {
+  title: 'Ultimate Giant Bundle - $1,497 (Save $291)',
+  description: 'Every premium GovCon tool at the highest tier: Market Assassin Premium, Content Reaper Full Fix, Federal Contractor Database, and Recompete Tracker. $1,497 one-time (normally $1,788). Best value.',
+  openGraph: {
+    title: 'Ultimate Giant Bundle - $1,497 (Save $291) | GovCon Giants',
+    description: 'Every premium GovCon tool at the highest tier: Market Assassin Premium, Content Reaper Full Fix, Federal Contractor Database, and Recompete Tracker. $1,497 one-time.',
+    url: '/bundles/ultimate',
+  },
+};
+
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Ultimate Giant Bundle',
+  description: 'Every premium GovCon tool at the highest tier: Market Assassin Premium, Content Reaper Full Fix, Federal Contractor Database, and Recompete Tracker. $1,497 one-time.',
+  url: 'https://shop.govcongiants.org/bundles/ultimate',
+  brand: { '@type': 'Organization', name: 'GovCon Giants' },
+  offers: {
+    '@type': 'Offer',
+    price: '1497',
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+    url: 'https://buy.stripe.com/6oU3cwff897ceND84UfnO0t',
+  },
+};
 
 export default function UltimateBundlePage() {
   return (
-    <BundleProductPage
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
+      <BundleProductPage
       title="Ultimate Giant Bundle"
       tagline="The complete arsenal for dominating federal contracting"
       description="Get EVERYTHING. Every premium tool, every database, every report—all at the highest tier. The Ultimate Bundle is for contractors who are serious about building a dominant GovCon business and want no limitations."
@@ -126,5 +155,6 @@ export default function UltimateBundlePage() {
         },
       ]}
     />
+    </>
   );
 }

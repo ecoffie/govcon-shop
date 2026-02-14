@@ -1,4 +1,15 @@
+import type { Metadata } from 'next';
 import ProductPageAppSumo from '@/components/ProductPageAppSumo';
+
+export const metadata: Metadata = {
+  title: 'Free SBLO Contact Directory - 225 Contacts at 76+ Agencies',
+  description: 'Download free SBLO contact list with 225 Small Business Liaison Officers across 76+ federal agencies. Direct emails, phone numbers, and prime contractor SBLO contacts included. Instant PDF download.',
+  openGraph: {
+    title: 'Free SBLO Contact Directory | GovCon Giants',
+    description: 'Download free SBLO contact list with 225 Small Business Liaison Officers across 76+ federal agencies. Direct emails, phone numbers, and prime contractor contacts.',
+    url: '/sblo-directory',
+  },
+};
 
 export default function SBLODirectoryPage() {
   return (
