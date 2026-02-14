@@ -133,6 +133,7 @@ export default function FreeResourcesPage() {
               <li><Link href="/#databases" className="text-gray-800 hover:text-blue-800 font-medium text-sm">Databases</Link></li>
               <li><Link href="/free-resources" className="text-blue-800 font-medium text-sm">Resources</Link></li>
               <li><Link href="/about" className="text-gray-800 hover:text-blue-800 font-medium text-sm">About</Link></li>
+              <li><a href="/resources.html" className="text-gray-800 hover:text-blue-800 font-medium text-sm">Blog</a></li>
             </ul>
             <div className="flex items-center gap-4">
               <Link href="/activate" className="px-4 py-2 text-gray-800 border border-gray-200 rounded-lg font-semibold text-sm hover:bg-gray-50">
@@ -171,6 +172,27 @@ export default function FreeResourcesPage() {
       </section>
 
       <main className="max-w-7xl mx-auto px-6 py-16">
+
+        {/* Blog / Resource Center Banner */}
+        <a
+          href="/resources.html"
+          className="block mb-16 rounded-2xl overflow-hidden bg-gradient-to-r from-blue-800 to-purple-600 hover:shadow-2xl transition-all hover:-translate-y-1"
+        >
+          <div className="flex flex-col md:flex-row items-center gap-6 p-8 md:p-10">
+            <div className="flex-1">
+              <span className="inline-block bg-white/20 text-white px-3 py-1 rounded-full text-xs font-bold mb-3 uppercase tracking-wide">New: GovCon Blog</span>
+              <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-2">GovCon Resource Center</h2>
+              <p className="text-white/85 text-lg">
+                15 free articles on market research, business development, LinkedIn strategy, teaming with primes, and contract intelligence. Real strategies — not sales pitches.
+              </p>
+            </div>
+            <div className="flex-shrink-0">
+              <span className="inline-flex items-center gap-2 px-6 py-3 bg-white text-blue-800 font-bold rounded-lg text-sm">
+                Read Articles &rarr;
+              </span>
+            </div>
+          </div>
+        </a>
 
         {/* Resources Grid */}
         <div className="text-center mb-12">
@@ -251,6 +273,7 @@ export default function FreeResourcesPage() {
               <ul className="space-y-3 text-sm">
                 <li><Link href="/free-resources" className="text-gray-400 hover:text-white">Free PDFs</Link></li>
                 <li><Link href="/opportunity-hunter" className="text-gray-400 hover:text-white">Opportunity Hunter</Link></li>
+                <li><a href="/resources.html" className="text-gray-400 hover:text-white">Blog</a></li>
               </ul>
             </div>
             <div>
