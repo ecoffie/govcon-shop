@@ -341,7 +341,7 @@ export const blogArticles: BlogArticle[] = [
     excerpt: 'Most contractors only search SAM.gov for opportunities. But roughly 95% of federal contract dollars never appear there as public solicitations. Here\'s where the rest of the market is hiding.',
     metaDescription: 'Roughly 95% of federal contract dollars never appear on SAM.gov as public solicitations. Here\'s where the rest of the market is hiding.',
     content: `<div style="text-align:center; margin-bottom:32px;">
-<svg viewBox="0 0 440 425" style="max-width:440px; width:100%;" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 440 500" style="max-width:440px; width:100%;" xmlns="http://www.w3.org/2000/svg">
 <circle cx="200" cy="140" r="90" fill="none" stroke="#1e40af" stroke-width="80" stroke-dasharray="565.5 565.5" stroke-dashoffset="141.4" transform="rotate(-90 200 140)" />
 <circle cx="200" cy="140" r="90" fill="none" stroke="#3b82f6" stroke-width="80" stroke-dasharray="169.7 395.8" stroke-dashoffset="-424.2" transform="rotate(-90 200 140)" />
 <circle cx="200" cy="140" r="90" fill="none" stroke="#93c5fd" stroke-width="80" stroke-dasharray="28.3 537.2" stroke-dashoffset="-254.6" transform="rotate(-90 200 140)" />
@@ -351,14 +351,14 @@ export const blogArticles: BlogArticle[] = [
 <circle cx="200" cy="140" r="48" fill="white" />
 <text x="200" y="135" text-anchor="middle" fill="#0f172a" font-size="14" font-weight="700" font-family="Inter,sans-serif">Only ~5%</text>
 <text x="200" y="153" text-anchor="middle" fill="#64748b" font-size="12" font-family="Inter,sans-serif">on SAM.gov</text>
-<rect x="40" y="310" width="14" height="14" rx="3" fill="#1e40af" />
-<text x="62" y="322" fill="#334155" font-size="13" font-weight="600" font-family="Inter,sans-serif">Task Orders on Contract Vehicles &mdash; 55%</text>
-<rect x="40" y="338" width="14" height="14" rx="3" fill="#3b82f6" />
-<text x="62" y="350" fill="#334155" font-size="13" font-weight="600" font-family="Inter,sans-serif">Sole Source Awards &mdash; 30%</text>
-<rect x="40" y="366" width="14" height="14" rx="3" fill="#93c5fd" />
-<text x="62" y="378" fill="#334155" font-size="13" font-weight="600" font-family="Inter,sans-serif">Micropurchases, DIBBS &amp; Other &mdash; 10%</text>
-<rect x="40" y="394" width="14" height="14" rx="3" fill="#0f172a" />
-<text x="62" y="406" fill="#334155" font-size="13" font-weight="600" font-family="Inter,sans-serif">Posted on SAM.gov &mdash; 5%</text>
+<rect x="40" y="370" width="14" height="14" rx="3" fill="#1e40af" />
+<text x="62" y="382" fill="#334155" font-size="13" font-weight="600" font-family="Inter,sans-serif">Task Orders on Contract Vehicles &mdash; 55%</text>
+<rect x="40" y="400" width="14" height="14" rx="3" fill="#3b82f6" />
+<text x="62" y="412" fill="#334155" font-size="13" font-weight="600" font-family="Inter,sans-serif">Sole Source Awards &mdash; 30%</text>
+<rect x="40" y="430" width="14" height="14" rx="3" fill="#93c5fd" />
+<text x="62" y="442" fill="#334155" font-size="13" font-weight="600" font-family="Inter,sans-serif">Micropurchases, DIBBS &amp; Other &mdash; 10%</text>
+<rect x="40" y="460" width="14" height="14" rx="3" fill="#0f172a" />
+<text x="62" y="472" fill="#334155" font-size="13" font-weight="600" font-family="Inter,sans-serif">Posted on SAM.gov &mdash; 5%</text>
 </svg>
 <p style="font-size:12px; color:#94a3b8; margin-top:8px;">Source: HigherGov analysis of federal award data, FY2023</p>
 </div>
