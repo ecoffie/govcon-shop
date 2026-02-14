@@ -95,6 +95,11 @@ When user says: "live shop", "production", "shop.govcongiants", "the real site"
 | `/tribal-list` | Tribal Contractor List |
 | `/expiring-contracts-csv` | Free Contracts CSV |
 
+### Blog / Resource Center
+| Route | Purpose |
+|-------|---------|
+| `/resources.html` | GovCon Resource Center — 15 articles with topic filtering, full-page reader, tools sidebar |
+
 ### Other Pages
 | Route | Purpose |
 |-------|---------|
@@ -120,6 +125,7 @@ When user says: "live shop", "production", "shop.govcongiants", "the real site"
 | `/src/app/api/activate-license/route.ts` | Email-based tool lookup (KV fallback when no Supabase profile) |
 | `/src/app/api/verify-access/route.ts` | Access verification for tools |
 | `/src/app/page.tsx` | Homepage |
+| `/public/resources.html` | Blog / Resource Center (static HTML, 15 articles) |
 
 ---
 
@@ -234,6 +240,20 @@ npm run build
 
 ## Recent Work History
 
+### February 14, 2026 (Session 6)
+- **Created GovCon Resource Center blog** — `public/resources.html`, static HTML page with 15 articles across 5 topics
+  - Topics: Market Research, Business Development, LinkedIn & Content, Teaming & Subcontracting, Contract Intelligence
+  - Full-page article reader with sticky tools sidebar (left side, like HigherGov)
+  - Topic filter bar with pill buttons
+  - Inline SVG donut chart (95% of contracts not on SAM.gov) and budget bar chart (FY2026 winners/losers)
+  - Featured recompete contract spotlight (Navancio LLC, $23M SBA, NAICS 541511)
+  - 5 real Tier-2 subcontractor spotlights for IT services (from tier2-contractors-database.json)
+  - Bootcamp lesson: Tier 1 vs Tier 2 subcontracting strategy
+  - FY2026 budget analysis with real data from agency-budget-data.json
+  - All tool links point to `tools.govcongiants.org` (absolute URLs)
+- **Added Blog link to homepage nav and footer** — `src/app/page.tsx`
+- **Added Blog banner + nav link to free-resources page** — gradient banner before "8 FREE RESOURCES" section
+
 ### February 8, 2026 (Session 5)
 - **Fixed fix-access-flags `continue` bug** — Supabase FK errors were skipping KV updates; only 2/33 customers got fixed. Removed Supabase insert (impossible due to FK), made KV granting unconditional
 - **Fixed Content Generator tier for Ultimate Bundle** — was "Content Engine", now "Full Fix" in KV for all 16 Ultimate Bundle customers
@@ -279,4 +299,4 @@ npm run build
 
 ---
 
-*Last Updated: February 8, 2026 (Session 5)*
+*Last Updated: February 14, 2026 (Session 6)*
