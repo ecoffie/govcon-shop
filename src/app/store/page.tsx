@@ -482,11 +482,42 @@ export default function Home() {
       <section className="py-20 px-6 bg-gray-50" id="bundles">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-4 text-gray-900">Bundle & Save</h2>
-          <p className="text-gray-500 text-center mb-12">Get everything you need at one unbeatable price</p>
+          <p className="text-gray-500 text-center mb-10">Get everything you need at one unbeatable price</p>
+
+          {/* Which bundle is right for me? */}
+          <div className="bg-white border border-gray-200 rounded-xl p-6 mb-10">
+            <h3 className="text-lg font-bold text-gray-900 text-center mb-6">Which bundle is right for me?</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <a href="#bundle-starter" className="flex items-start gap-3 p-4 rounded-lg bg-blue-50 border border-blue-100 hover:border-blue-300 transition cursor-pointer no-underline">
+                <span className="text-2xl mt-0.5">🌱</span>
+                <div>
+                  <p className="font-semibold text-gray-900 text-sm">Just starting out</p>
+                  <p className="text-xs text-gray-500 mt-0.5">New to GovCon? Get the essentials to find and track opportunities.</p>
+                  <p className="text-xs font-bold text-blue-600 mt-1.5">Starter Bundle →</p>
+                </div>
+              </a>
+              <a href="#bundle-pro" className="flex items-start gap-3 p-4 rounded-lg bg-amber-50 border border-amber-100 hover:border-amber-300 transition cursor-pointer no-underline">
+                <span className="text-2xl mt-0.5">🎯</span>
+                <div>
+                  <p className="font-semibold text-gray-900 text-sm">Actively pursuing contracts</p>
+                  <p className="text-xs text-gray-500 mt-0.5">Bidding on work? Add market intelligence and content to win.</p>
+                  <p className="text-xs font-bold text-amber-600 mt-1.5">Pro Giant Bundle →</p>
+                </div>
+              </a>
+              <a href="#bundle-ultimate" className="flex items-start gap-3 p-4 rounded-lg bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 hover:border-amber-400 transition cursor-pointer no-underline">
+                <span className="text-2xl mt-0.5">🏆</span>
+                <div>
+                  <p className="font-semibold text-gray-900 text-sm">Building a GovCon powerhouse</p>
+                  <p className="text-xs text-gray-500 mt-0.5">Go all-in with premium intelligence, content, and databases.</p>
+                  <p className="text-xs font-bold text-amber-700 mt-1.5">Ultimate Bundle →</p>
+                </div>
+              </a>
+            </div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Starter Bundle */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6 transition-all hover:-translate-y-1 hover:shadow-lg hover:border-blue-500">
+            <div id="bundle-starter" className="bg-white rounded-xl border border-gray-200 p-6 transition-all hover:-translate-y-1 hover:shadow-lg hover:border-blue-500">
               <div className="text-center mb-6">
                 <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold mb-3">STARTER</span>
                 <h3 className="text-2xl font-bold text-gray-900">Starter Bundle</h3>
@@ -507,7 +538,7 @@ export default function Home() {
             </div>
 
             {/* Pro Giant Bundle - Featured */}
-            <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border-2 border-amber-500 p-6 relative transition-all hover:-translate-y-1 hover:shadow-xl">
+            <div id="bundle-pro" className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border-2 border-amber-500 p-6 relative transition-all hover:-translate-y-1 hover:shadow-xl">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                 <span className="bg-amber-500 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg">MOST POPULAR</span>
               </div>
@@ -532,7 +563,7 @@ export default function Home() {
             </div>
 
             {/* Ultimate Giant Bundle */}
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl border-2 border-amber-500 p-6 text-white transition-all hover:-translate-y-1 hover:shadow-xl">
+            <div id="bundle-ultimate" className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl border-2 border-amber-500 p-6 text-white transition-all hover:-translate-y-1 hover:shadow-xl">
               <div className="text-center mb-6">
                 <span className="inline-block bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 px-3 py-1 rounded-full text-sm font-semibold mb-3">ULTIMATE</span>
                 <h3 className="text-2xl font-bold text-white">Ultimate Giant Bundle</h3>
