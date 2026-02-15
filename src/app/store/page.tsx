@@ -521,6 +521,7 @@ export default function Home() {
               <div className="text-center mb-6">
                 <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold mb-3">STARTER</span>
                 <h3 className="text-2xl font-bold text-gray-900">Starter Bundle</h3>
+                <p className="text-xs text-gray-500 mt-2">Best for: New to GovCon, building your first pipeline</p>
               </div>
               <div className="text-center mb-6">
                 <div className="text-4xl font-bold text-gray-900">$697</div>
@@ -545,6 +546,7 @@ export default function Home() {
               <div className="text-center mb-6 pt-2">
                 <span className="inline-block bg-amber-500 text-white px-3 py-1 rounded-full text-sm font-semibold mb-3">PRO GIANT</span>
                 <h3 className="text-2xl font-bold text-gray-900">Pro Giant Bundle</h3>
+                <p className="text-xs text-amber-700 mt-2">Best for: Actively pursuing contracts, need intel + visibility</p>
               </div>
               <div className="text-center mb-6">
                 <div className="text-4xl font-bold text-gray-900">$997</div>
@@ -567,6 +569,7 @@ export default function Home() {
               <div className="text-center mb-6">
                 <span className="inline-block bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 px-3 py-1 rounded-full text-sm font-semibold mb-3">ULTIMATE</span>
                 <h3 className="text-2xl font-bold text-white">Ultimate Giant Bundle</h3>
+                <p className="text-xs text-amber-300 mt-2">Best for: Scaling firms that want every competitive advantage</p>
               </div>
               <div className="text-center mb-6">
                 <div className="text-4xl font-bold text-amber-400">$1,497</div>
