@@ -343,8 +343,8 @@ export const blogArticles: BlogArticle[] = [
     content: `<div style="text-align:center; margin-bottom:32px;">
 <svg viewBox="0 0 440 500" style="max-width:440px; width:100%;" xmlns="http://www.w3.org/2000/svg">
 <circle cx="200" cy="140" r="90" fill="none" stroke="#1e40af" stroke-width="80" stroke-dasharray="565.5 565.5" stroke-dashoffset="141.4" transform="rotate(-90 200 140)" />
-<circle cx="200" cy="140" r="90" fill="none" stroke="#3b82f6" stroke-width="80" stroke-dasharray="169.7 395.8" stroke-dashoffset="-424.2" transform="rotate(-90 200 140)" />
-<circle cx="200" cy="140" r="90" fill="none" stroke="#93c5fd" stroke-width="80" stroke-dasharray="28.3 537.2" stroke-dashoffset="-254.6" transform="rotate(-90 200 140)" />
+<circle cx="200" cy="140" r="90" fill="none" stroke="#f59e0b" stroke-width="80" stroke-dasharray="169.7 395.8" stroke-dashoffset="-424.2" transform="rotate(-90 200 140)" />
+<circle cx="200" cy="140" r="90" fill="none" stroke="#10b981" stroke-width="80" stroke-dasharray="28.3 537.2" stroke-dashoffset="-254.6" transform="rotate(-90 200 140)" />
 <circle cx="200" cy="140" r="90" fill="none" stroke="#bfdbfe" stroke-width="80" stroke-dasharray="17.0 548.5" stroke-dashoffset="-226.3" transform="rotate(-90 200 140)" />
 <circle cx="200" cy="140" r="90" fill="none" stroke="#dbeafe" stroke-width="80" stroke-dasharray="11.3 554.2" stroke-dashoffset="-209.3" transform="rotate(-90 200 140)" />
 <circle cx="200" cy="140" r="90" fill="none" stroke="#0f172a" stroke-width="80" stroke-dasharray="28.3 537.2" stroke-dashoffset="-197.9" transform="rotate(-90 200 140)" />
@@ -353,9 +353,9 @@ export const blogArticles: BlogArticle[] = [
 <text x="200" y="153" text-anchor="middle" fill="#64748b" font-size="12" font-family="Inter,sans-serif">on SAM.gov</text>
 <rect x="40" y="370" width="14" height="14" rx="3" fill="#1e40af" />
 <text x="62" y="382" fill="#334155" font-size="13" font-weight="600" font-family="Inter,sans-serif">Task Orders on Contract Vehicles &mdash; 55%</text>
-<rect x="40" y="400" width="14" height="14" rx="3" fill="#3b82f6" />
+<rect x="40" y="400" width="14" height="14" rx="3" fill="#f59e0b" />
 <text x="62" y="412" fill="#334155" font-size="13" font-weight="600" font-family="Inter,sans-serif">Sole Source Awards &mdash; 30%</text>
-<rect x="40" y="430" width="14" height="14" rx="3" fill="#93c5fd" />
+<rect x="40" y="430" width="14" height="14" rx="3" fill="#10b981" />
 <text x="62" y="442" fill="#334155" font-size="13" font-weight="600" font-family="Inter,sans-serif">Micropurchases, DIBBS &amp; Other &mdash; 10%</text>
 <rect x="40" y="460" width="14" height="14" rx="3" fill="#0f172a" />
 <text x="62" y="472" fill="#334155" font-size="13" font-weight="600" font-family="Inter,sans-serif">Posted on SAM.gov &mdash; 5%</text>
