@@ -18,8 +18,11 @@ export default function BlogPage() {
     <div className="min-h-screen bg-slate-900">
       {/* Nav */}
       <nav className="bg-slate-900/95 backdrop-blur-lg border-b border-white/10 px-8 py-4 flex items-center justify-between sticky top-0 z-50">
-        <Link href="/" className="text-white text-xl font-extrabold no-underline tracking-tight">
-          GovCon <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Giants</span>
+        <Link href="/" className="flex items-center gap-3 no-underline">
+          <span className="text-white text-xl font-extrabold tracking-tight">
+            GovCon <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Giants</span>
+          </span>
+          <span className="hidden sm:inline text-[11px] text-white/40 font-mono border-l border-white/15 pl-3">shop.govcongiants.org</span>
         </Link>
         <div className="flex gap-7 items-center">
           <Link href="/store" className="text-white/75 no-underline text-sm font-medium hover:text-white transition-colors">Store</Link>
