@@ -349,7 +349,7 @@ export default function AdminDashboard() {
                   <option value="market-assassin">Market Assassin</option>
                   <option value="opportunity-hunter-pro">Opportunity Hunter Pro</option>
                   <option value="content-generator">Content Reaper</option>
-                  <option value="recompete">Recompete Contracts Tracker</option>
+                  <option value="recompete">Recompete Tracker</option>
                   <option value="database">Federal Contractor Database</option>
                 </select>
               </div>
@@ -455,7 +455,7 @@ export default function AdminDashboard() {
                 : 'bg-white text-slate-600 hover:bg-slate-100'
             }`}
           >
-            Content Generator ({cgRecords.length})
+            Content Reaper ({cgRecords.length})
           </button>
           <button
             onClick={() => setActiveTab('recompete')}
@@ -669,7 +669,7 @@ export default function AdminDashboard() {
                 {recompeteRecords.length === 0 ? (
                   <tr>
                     <td colSpan={4} className="px-6 py-8 text-center text-slate-500">
-                      No Recompete Contracts Tracker access records found
+                      No Recompete Tracker access records found
                     </td>
                   </tr>
                 ) : (
@@ -760,7 +760,7 @@ export default function AdminDashboard() {
           </div>
           <div className="bg-white rounded-xl shadow p-6">
             <div className="text-3xl font-bold text-purple-600">{cgRecords.length}</div>
-            <div className="text-sm text-slate-600">Content Gen Users</div>
+            <div className="text-sm text-slate-600">Content Reaper Users</div>
           </div>
           <div className="bg-white rounded-xl shadow p-6">
             <div className="text-3xl font-bold text-orange-600">{recompeteRecords.length}</div>

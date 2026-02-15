@@ -17,7 +17,7 @@ const ACCESS_FLAG_NAMES: Record<string, string> = {
   access_content_full_fix: 'Content Reaper (Full Fix)',
   access_assassin_standard: 'Federal Market Assassin (Standard)',
   access_assassin_premium: 'Federal Market Assassin (Premium)',
-  access_recompete: 'Recompete Contracts Tracker',
+  access_recompete: 'Recompete Tracker',
   access_contractor_db: 'Federal Contractor Database',
 };
 
@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
         }
       }
 
-      if (recompete) products.push('Recompete Contracts Tracker');
+      if (recompete) products.push('Recompete Tracker');
       if (db) products.push('Federal Contractor Database');
     }
 

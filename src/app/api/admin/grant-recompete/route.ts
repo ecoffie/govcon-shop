@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { grantRecompeteAccess } from '@/lib/access-codes';
 
-// Admin endpoint to manually grant Recompete Contracts Tracker access
+// Admin endpoint to manually grant Recompete Tracker access
 export async function POST(request: NextRequest) {
   try {
     const { email, customerName, adminPassword } = await request.json();

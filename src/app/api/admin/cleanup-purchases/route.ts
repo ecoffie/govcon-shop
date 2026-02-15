@@ -16,7 +16,7 @@ const KNOWN_PRODUCT_IDS = [
 // Legacy Stripe product IDs that are actual tool purchases (old product IDs before current ones)
 const LEGACY_PRODUCT_FIXES: Record<string, { product_id: string; product_name: string }> = {
   'prod_Tj4VbFiOz1VzyL': { product_id: 'contractor-database', product_name: 'Federal Contractor Database' },
-  'prod_TmMbpcfofGpDZd': { product_id: 'recompete-contracts', product_name: 'Recompete Contracts Tracker' },
+  'prod_TmMbpcfofGpDZd': { product_id: 'recompete-contracts', product_name: 'Recompete Tracker' },
 };
 
 function getSupabase() {

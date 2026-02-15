@@ -92,7 +92,7 @@ export default function UltimateBundlePage() {
           ],
         },
         {
-          name: 'Recompete Contracts Tracker',
+          name: 'Recompete Tracker',
           description: 'Track expiring federal contracts before they hit the market. Get ahead of the competition by knowing exactly when contracts are up for recompete.',
           price: 397,
           icon: '📅',
@@ -133,7 +133,7 @@ export default function UltimateBundlePage() {
           name: 'Jennifer T.',
           date: '2 weeks ago',
           rating: 5,
-          text: "Worth every penny. I was hesitant at the price, but the first contract we won using these tools was worth $1.2M. The ROI is insane. The Full Fix content generator alone has transformed our LinkedIn presence.",
+          text: "Worth every penny. I was hesitant at the price, but the first contract we won using these tools was worth $1.2M. The ROI is insane. The Full Fix Content Reaper alone has transformed our LinkedIn presence.",
         },
         {
           name: 'Anthony R.',
@@ -145,13 +145,13 @@ export default function UltimateBundlePage() {
           name: 'Lisa M.',
           date: '1 month ago',
           rating: 5,
-          text: "I bought the Pro bundle first, then upgraded to Ultimate within a week. The Premium Market Assassin reports and Full Fix content generator are on another level. Should have just gotten Ultimate from the start.",
+          text: "I bought the Pro bundle first, then upgraded to Ultimate within a week. The Premium Market Assassin reports and Full Fix Content Reaper are on another level. Should have just gotten Ultimate from the start.",
         },
         {
           name: 'Carlos D.',
           date: '1 month ago',
           rating: 5,
-          text: "Our BD team uses this daily. The combination of all tools working together is powerful. Find opportunities with Recompete Tracker, research with Market Assassin, find teammates with the Database, then promote with Content Generator. Complete workflow.",
+          text: "Our BD team uses this daily. The combination of all tools working together is powerful. Find opportunities with Recompete Tracker, research with Market Assassin, find teammates with the Database, then promote with Content Reaper. Complete workflow.",
         },
       ]}
     />

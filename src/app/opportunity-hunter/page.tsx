@@ -68,6 +68,7 @@ interface Agency {
 }
 
 const FREE_AGENCY_LIMIT = 10;
+const EMAIL_GATE_LIMIT = 3;
 
 interface PainPoint {
   point: string;
@@ -120,6 +121,12 @@ export default function OpportunityScoutPage() {
   const [verifyingAccess, setVerifyingAccess] = useState(false);
   const [accessError, setAccessError] = useState<string | null>(null);
 
+  // Email gate state
+  const [emailGateEmail, setEmailGateEmail] = useState('');
+  const [emailGatePassed, setEmailGatePassed] = useState(false);
+  const [emailGateLoading, setEmailGateLoading] = useState(false);
+  const [emailGateError, setEmailGateError] = useState<string | null>(null);
+
   const [formData, setFormData] = useState<SearchCriteria>({
     businessFormation: '',
     naicsCode: '',
@@ -127,6 +134,23 @@ export default function OpportunityScoutPage() {
     goodsOrServices: '',
     veteranStatus: '',
   });
+
+  // Check for email gate bypass on mount (returning visitors)
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('opportunityHunterEmail');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.email && parsed.expiresAt > Date.now()) {
+          setEmailGatePassed(true);
+        } else {
+          localStorage.removeItem('opportunityHunterEmail');
+        }
+      }
+    } catch {
+      localStorage.removeItem('opportunityHunterEmail');
+    }
+  }, []);
 
   // Check for Pro access on mount (from localStorage)
   useEffect(() => {
@@ -184,6 +208,50 @@ export default function OpportunityScoutPage() {
     } finally {
       setVerifyingAccess(false);
     }
+  };
+
+  // Email gate submission
+  const submitEmailGate = async () => {
+    if (!emailGateEmail) {
+      setEmailGateError('Please enter your email');
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailGateEmail)) {
+      setEmailGateError('Please enter a valid email');
+      return;
+    }
+
+    setEmailGateLoading(true);
+    setEmailGateError(null);
+
+    try {
+      // Fire-and-forget lead capture — never block access
+      fetch('/api/capture-opportunity-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: emailGateEmail,
+          context: results ? {
+            naicsCode: results.searchCriteria.naicsCode,
+            businessType: results.searchCriteria.businessFormation,
+            zipCode: results.searchCriteria.zipCode,
+            agencyCount: results.summary.totalAgencies,
+            totalSpending: results.summary.totalSpending,
+          } : null,
+        }),
+      }).catch(() => {}); // Silently ignore errors
+    } catch {
+      // Never block access
+    }
+
+    // Always grant access regardless of API result
+    setEmailGatePassed(true);
+    localStorage.setItem('opportunityHunterEmail', JSON.stringify({
+      email: emailGateEmail.toLowerCase().trim(),
+      expiresAt: Date.now() + 30 * 24 * 60 * 60 * 1000, // 30 days
+    }));
+    setEmailGateLoading(false);
   };
 
   const loadingMessages = [
@@ -705,7 +773,7 @@ export default function OpportunityScoutPage() {
                 {!isPro && results.agencies && results.agencies.length > FREE_AGENCY_LIMIT && (
                   <div className="text-right">
                     <span className="text-amber-400 text-sm">
-                      Showing {FREE_AGENCY_LIMIT} of {results.agencies.length} agencies
+                      Showing {emailGatePassed ? FREE_AGENCY_LIMIT : EMAIL_GATE_LIMIT} of {results.agencies.length} agencies
                     </span>
                   </div>
                 )}
@@ -739,60 +807,129 @@ export default function OpportunityScoutPage() {
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-200">
-                        {(isPro ? results.agencies : results.agencies.slice(0, FREE_AGENCY_LIMIT)).map((agency, index) => {
-                          const agencyIdStr = getAgencyId(agency);
-                          const agencyNameStr = getAgencyName(agency);
-                          const displayAgencyId = agency.searchableOfficeCode || agency.subAgencyCode || agency.agencyCode || agencyIdStr;
-                          const samSearchUrl = `https://sam.gov/search/?index=opp&page=1&pageSize=25&sort=-modifiedDate&sfm%5Bstatus%5D%5Bis_active%5D=true&sfm%5BsimpleSearch%5D%5BkeywordRadio%5D=ALL&q=${encodeURIComponent(agencyNameStr)}`;
+                        {(() => {
+                          const visibleAgencies = isPro
+                            ? results.agencies
+                            : emailGatePassed
+                              ? results.agencies.slice(0, FREE_AGENCY_LIMIT)
+                              : results.agencies.slice(0, EMAIL_GATE_LIMIT);
 
-                          const cityName = agency.primaryPlaceOfPerformance?.city_name || '';
-                          const locationDisplay = [cityName, agency.location].filter(Boolean).join(', ');
+                          return visibleAgencies.map((agency, index) => {
+                            const agencyIdStr = getAgencyId(agency);
+                            const agencyNameStr = getAgencyName(agency);
+                            const displayAgencyId = agency.searchableOfficeCode || agency.subAgencyCode || agency.agencyCode || agencyIdStr;
+                            const samSearchUrl = `https://sam.gov/search/?index=opp&page=1&pageSize=25&sort=-modifiedDate&sfm%5Bstatus%5D%5Bis_active%5D=true&sfm%5BsimpleSearch%5D%5BkeywordRadio%5D=ALL&q=${encodeURIComponent(agencyNameStr)}`;
 
-                          return (
-                            <tr
-                              key={index}
-                              className="hover:bg-blue-50 transition cursor-pointer"
-                              onClick={() => openAgencyModal(agency)}
-                            >
-                              <td className="px-4 py-4">
-                                <a
-                                  href={samSearchUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  onClick={(e) => e.stopPropagation()}
-                                  className="text-blue-600 hover:underline font-semibold text-sm"
-                                  title={`Search SAM.gov for opportunities from ${agencyNameStr}`}
-                                >
-                                  {displayAgencyId}
-                                </a>
-                              </td>
-                              <td className="px-4 py-4">
-                                <div className="font-semibold text-sm text-gray-900">{agencyNameStr}</div>
-                                {locationDisplay && (
-                                  <div className="text-xs text-gray-600 mt-1">{locationDisplay}</div>
-                                )}
-                              </td>
-                              <td className="px-4 py-4">
-                                <span className={`text-sm font-bold ${agency.setAsideSpending > 0 ? 'text-green-600' : 'text-gray-400'}`}>
-                                  ${(agency.setAsideSpending / 1000000).toFixed(2)}M
-                                </span>
-                                {agency.setAsideContractCount > 0 && (
-                                  <span className="block text-xs text-gray-600">{agency.setAsideContractCount} contracts</span>
-                                )}
-                              </td>
-                              <td className="px-4 py-4 text-sm font-semibold text-gray-600">
-                                ${(agency.totalSpending / 1000000).toFixed(2)}M
-                              </td>
-                              <td className="px-4 py-4 text-sm text-gray-900">{agency.contractCount}</td>
-                            </tr>
-                          );
-                        })}
+                            const cityName = agency.primaryPlaceOfPerformance?.city_name || '';
+                            const locationDisplay = [cityName, agency.location].filter(Boolean).join(', ');
+
+                            return (
+                              <tr
+                                key={index}
+                                className="hover:bg-blue-50 transition cursor-pointer"
+                                onClick={() => openAgencyModal(agency)}
+                              >
+                                <td className="px-4 py-4">
+                                  <a
+                                    href={samSearchUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={(e) => e.stopPropagation()}
+                                    className="text-blue-600 hover:underline font-semibold text-sm"
+                                    title={`Search SAM.gov for opportunities from ${agencyNameStr}`}
+                                  >
+                                    {displayAgencyId}
+                                  </a>
+                                </td>
+                                <td className="px-4 py-4">
+                                  <div className="font-semibold text-sm text-gray-900">{agencyNameStr}</div>
+                                  {locationDisplay && (
+                                    <div className="text-xs text-gray-600 mt-1">{locationDisplay}</div>
+                                  )}
+                                </td>
+                                <td className="px-4 py-4">
+                                  <span className={`text-sm font-bold ${agency.setAsideSpending > 0 ? 'text-green-600' : 'text-gray-400'}`}>
+                                    ${(agency.setAsideSpending / 1000000).toFixed(2)}M
+                                  </span>
+                                  {agency.setAsideContractCount > 0 && (
+                                    <span className="block text-xs text-gray-600">{agency.setAsideContractCount} contracts</span>
+                                  )}
+                                </td>
+                                <td className="px-4 py-4 text-sm font-semibold text-gray-600">
+                                  ${(agency.totalSpending / 1000000).toFixed(2)}M
+                                </td>
+                                <td className="px-4 py-4 text-sm text-gray-900">{agency.contractCount}</td>
+                              </tr>
+                            );
+                          });
+                        })()}
                       </tbody>
                     </table>
                   </div>
 
-                  {/* Upgrade CTA for free users when more agencies available */}
-                  {!isPro && results.agencies.length > FREE_AGENCY_LIMIT && (
+                  {/* Email Gate Overlay — shown when user hasn't entered email yet */}
+                  {!isPro && !emailGatePassed && results.agencies.length > EMAIL_GATE_LIMIT && (
+                    <div className="relative">
+                      {/* Blurred preview rows */}
+                      <div className="overflow-hidden" style={{ maxHeight: '120px' }}>
+                        <table className="w-full">
+                          <tbody className="divide-y divide-gray-200">
+                            {results.agencies.slice(EMAIL_GATE_LIMIT, EMAIL_GATE_LIMIT + 2).map((agency, index) => (
+                              <tr key={`blur-${index}`} className="blur-sm select-none pointer-events-none">
+                                <td className="px-4 py-4 text-sm text-gray-400">------</td>
+                                <td className="px-4 py-4">
+                                  <div className="text-sm text-gray-400">████████████████</div>
+                                </td>
+                                <td className="px-4 py-4 text-sm text-gray-400">
+                                  ${(agency.setAsideSpending / 1000000).toFixed(2)}M
+                                </td>
+                                <td className="px-4 py-4 text-sm text-gray-400">
+                                  ${(agency.totalSpending / 1000000).toFixed(2)}M
+                                </td>
+                                <td className="px-4 py-4 text-sm text-gray-400">{agency.contractCount}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                      {/* Email capture overlay */}
+                      <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center">
+                        <div className="bg-white rounded-xl shadow-lg border-2 border-blue-200 p-6 max-w-md w-full mx-4">
+                          <h3 className="text-lg font-bold text-gray-900 mb-1">
+                            {Math.min(results.agencies.length, FREE_AGENCY_LIMIT) - EMAIL_GATE_LIMIT} more agencies found
+                          </h3>
+                          <p className="text-sm text-gray-600 mb-4">
+                            Enter your email to see all {Math.min(results.agencies.length, FREE_AGENCY_LIMIT)} agencies matching your search.
+                          </p>
+                          <div className="space-y-3">
+                            <input
+                              type="email"
+                              placeholder="you@company.com"
+                              value={emailGateEmail}
+                              onChange={(e) => { setEmailGateEmail(e.target.value); setEmailGateError(null); }}
+                              onKeyDown={(e) => e.key === 'Enter' && submitEmailGate()}
+                              style={{ color: '#000000', backgroundColor: '#ffffff' }}
+                              className="w-full px-4 py-2.5 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                            />
+                            {emailGateError && (
+                              <p className="text-sm text-red-600">{emailGateError}</p>
+                            )}
+                            <button
+                              onClick={submitEmailGate}
+                              disabled={emailGateLoading}
+                              className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition disabled:opacity-50 text-sm"
+                            >
+                              {emailGateLoading ? 'Unlocking...' : 'Show My Results'}
+                            </button>
+                            <p className="text-xs text-gray-400 text-center">No spam. We only send GovCon tips.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Upgrade CTA for free users when more agencies available (shown after email gate passed) */}
+                  {!isPro && emailGatePassed && results.agencies.length > FREE_AGENCY_LIMIT && (
                     <div className="p-6 bg-gradient-to-r from-amber-50 to-orange-50 border-t-2 border-amber-200">
                       <div className="flex items-center justify-between flex-wrap gap-4">
                         <div>
@@ -824,6 +961,83 @@ export default function OpportunityScoutPage() {
                 </div>
               )}
             </div>
+
+            {/* Contextual Upsell Section — hidden for Pro users */}
+            {!isPro && emailGatePassed && results.agencies.length > 0 && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Recompete Tracker Card */}
+                <div className="bg-white border-2 border-cyan-200 rounded-xl p-6 hover:border-cyan-400 transition">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-8 h-8 bg-cyan-100 rounded-lg flex items-center justify-center">
+                      <svg className="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900">Recompete Tracker</h3>
+                    <span className="ml-auto text-lg font-bold text-cyan-600">$397</span>
+                  </div>
+                  <p className="text-sm text-gray-600 mb-4">
+                    Find {results.searchCriteria.naicsCode ? `NAICS ${results.searchCriteria.naicsCode} ` : ''}contracts expiring in the next 12 months.
+                    {results.agencies.length >= 2 && (
+                      <> Agencies like <strong>{getAgencyName(results.agencies[0])}</strong> and <strong>{getAgencyName(results.agencies[1])}</strong> have contracts up for recompete.</>
+                    )}
+                  </p>
+                  <a
+                    href="https://buy.stripe.com/7sYfZi9UOdnsaxnbh6fnO0k"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full py-2.5 bg-cyan-600 hover:bg-cyan-700 text-white font-semibold rounded-lg text-center text-sm transition"
+                  >
+                    Get Recompete Tracker
+                  </a>
+                </div>
+
+                {/* Starter Bundle Card */}
+                <div className="bg-white border-2 border-blue-200 rounded-xl p-6 hover:border-blue-400 transition">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                      <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900">Starter Bundle</h3>
+                    <span className="ml-auto">
+                      <span className="text-sm text-gray-400 line-through mr-1">$943</span>
+                      <span className="text-lg font-bold text-blue-600">$697</span>
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-600 mb-3">Get the full toolkit:</p>
+                  <ul className="text-sm text-gray-700 space-y-1.5 mb-4">
+                    <li className="flex items-center gap-2">
+                      <svg className="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      Opportunity Hunter Pro <span className="text-gray-400 text-xs">(you&apos;re using free)</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <svg className="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      Recompete Tracker <span className="text-gray-400 text-xs">($397)</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <svg className="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      Contractor Database <span className="text-gray-400 text-xs">($497)</span>
+                    </li>
+                  </ul>
+                  <a
+                    href="https://buy.stripe.com/6oU9AUeb46Z46h70CsfnO0s"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg text-center text-sm transition"
+                  >
+                    Save $246 with Starter Bundle
+                  </a>
+                </div>
+              </div>
+            )}
 
           </div>
         )}

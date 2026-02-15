@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { grantContentGeneratorAccess, ContentGeneratorTier } from '@/lib/access-codes';
 
-// Admin endpoint to manually grant GovCon Content Generator access
+// Admin endpoint to manually grant Content Reaper access
 export async function POST(request: NextRequest) {
   try {
     const { email, customerName, tier, adminPassword } = await request.json();
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error granting Content Generator access:', error);
+    console.error('Error granting Content Reaper access:', error);
     return NextResponse.json(
       { error: 'Failed to grant access' },
       { status: 500 }

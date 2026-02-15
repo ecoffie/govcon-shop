@@ -28,7 +28,7 @@ export const PRODUCTS = {
   },
   RECOMPETE_CONTRACTS: {
     id: 'recompete-contracts',
-    name: 'Recompete Contracts Tracker',
+    name: 'Recompete Tracker',
     price: 397,
   },
   MARKET_ASSASSIN_STANDARD: {
@@ -70,7 +70,7 @@ export const PRODUCTS = {
 export const PRODUCT_NAMES: Record<string, string> = {
   'ai-content-generator': 'Content Reaper',
   'contractor-database': 'Federal Contractor Database',
-  'recompete-contracts': 'Recompete Contracts Tracker',
+  'recompete-contracts': 'Recompete Tracker',
   'market-assassin-standard': 'Federal Market Assassin (Standard)',
   'market-assassin-premium': 'Federal Market Assassin (Premium)',
   'opportunity-hunter-pro': 'Opportunity Hunter Pro',

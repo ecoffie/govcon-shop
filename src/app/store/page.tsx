@@ -202,7 +202,7 @@ export default function Home() {
               </div>
               <div className="p-6">
                 <span className="inline-block bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">PREMIUM</span>
-                <h3 className="text-xl font-bold mb-2 text-gray-900">Expiring Contracts Database</h3>
+                <h3 className="text-xl font-bold mb-2 text-gray-900">Recompete Tracker</h3>
                 <p className="text-gray-500 text-sm mb-4">Track expiring federal contracts. Get ahead of competition with incumbent contractor details.</p>
                 <ul className="text-sm mb-5 space-y-1">
                   <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Contracts Expiring 12 Months</li>
@@ -497,7 +497,7 @@ export default function Home() {
               </div>
               <ul className="space-y-3 mb-6 text-sm">
                 <li className="flex items-center gap-2"><span className="text-emerald-500">✓</span> Opportunity Hunter Pro <span className="text-gray-400">($49)</span></li>
-                <li className="flex items-center gap-2"><span className="text-emerald-500">✓</span> Recompete Contracts Tracker <span className="text-gray-400">($397)</span></li>
+                <li className="flex items-center gap-2"><span className="text-emerald-500">✓</span> Recompete Tracker <span className="text-gray-400">($397)</span></li>
                 <li className="flex items-center gap-2"><span className="text-emerald-500">✓</span> Federal Contractor Database <span className="text-gray-400">($497)</span></li>
               </ul>
               <div className="text-center text-sm text-gray-400 mb-4 line-through">$943 if bought separately</div>
@@ -521,7 +521,7 @@ export default function Home() {
               </div>
               <ul className="space-y-3 mb-6 text-sm">
                 <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> Federal Contractor Database <span className="text-gray-400">($497)</span></li>
-                <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> Recompete Contracts Tracker <span className="text-gray-400">($397)</span></li>
+                <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> Recompete Tracker <span className="text-gray-400">($397)</span></li>
                 <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> Market Assassin Standard <span className="text-gray-400">($297)</span></li>
                 <li className="flex items-center gap-2"><span className="text-emerald-600">✓</span> Content Reaper <span className="text-gray-400">($197)</span></li>
               </ul>
@@ -545,7 +545,7 @@ export default function Home() {
                 <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Market Assassin Premium <span className="text-gray-400">($497)</span></li>
                 <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Content Reaper Full Fix <span className="text-gray-400">($397)</span></li>
                 <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Federal Contractor Database <span className="text-gray-400">($497)</span></li>
-                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Recompete Contracts Tracker <span className="text-gray-400">($397)</span></li>
+                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Recompete Tracker <span className="text-gray-400">($397)</span></li>
               </ul>
               <div className="text-center text-sm opacity-50 mb-4 line-through">$1,788 if bought separately</div>
               <a href="https://buy.stripe.com/6oU3cwff897ceND84UfnO0t" target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 text-center rounded-lg font-bold hover:from-amber-300 hover:to-amber-400 transition-all">

@@ -9,7 +9,7 @@ import type { NextConfig } from "next";
  * 3. API routes used by those pages
  *
  * Current proxied apps:
- * - GovCon Content Generator (govcon-content-generator.vercel.app)
+ * - Content Reaper (govcon-content-generator.vercel.app)
  *   - Pages: /content-generator/*, /library, /calendar
  *   - Assets: /js/*
  *   - APIs: handled via /content-generator/api/*

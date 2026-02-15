@@ -24,7 +24,7 @@ const TOOL_ACCESS_LINKS: Record<string, { url: string; label: string }> = {
   'market-assassin-standard': { url: 'https://shop.govcongiants.org/federal-market-assassin', label: 'Federal Market Assassin' },
   'market-assassin-premium': { url: 'https://shop.govcongiants.org/federal-market-assassin', label: 'Federal Market Assassin' },
   'ai-content-generator': { url: 'https://shop.govcongiants.org/content-reaper', label: 'Content Reaper' },
-  'recompete-contracts': { url: 'https://shop.govcongiants.org/recompete', label: 'Recompete Contracts Tracker' },
+  'recompete-contracts': { url: 'https://shop.govcongiants.org/recompete', label: 'Recompete Tracker' },
   'contractor-database': { url: 'https://shop.govcongiants.org/contractor-database', label: 'Federal Contractor Database' },
   'opportunity-hunter-pro': { url: 'https://shop.govcongiants.org/opportunity-hunter', label: 'Opportunity Hunter Pro' },
 };
@@ -517,7 +517,7 @@ export async function sendUltimateBundleEmail({
         <li><strong>Federal Market Assassin Premium</strong> - 8 Strategic Reports ($497 value)</li>
         <li><strong>Content Reaper (Full Fix)</strong> - Unlimited LinkedIn Posts ($397 value)</li>
         <li><strong>Federal Contractor Database</strong> - 3,500+ Contractors ($497 value)</li>
-        <li><strong>Recompete Contracts Tracker</strong> - Expiring Contracts ($397 value)</li>
+        <li><strong>Recompete Tracker</strong> - Expiring Contracts ($397 value)</li>
         <li><strong>Opportunity Hunter Pro</strong> - Agency Matching ($49 value)</li>
         <li><strong>1-on-1 Strategy Session</strong> - Personal Consultation</li>
         <li><strong>Priority Support</strong> - Direct Access to Our Team</li>
@@ -594,7 +594,7 @@ YOUR ULTIMATE BUNDLE INCLUDES:
 - Federal Market Assassin Premium - 8 Strategic Reports ($497 value)
 - Content Reaper (Full Fix) - Unlimited LinkedIn Posts ($397 value)
 - Federal Contractor Database - 3,500+ Contractors ($497 value)
-- Recompete Contracts Tracker - Expiring Contracts ($397 value)
+- Recompete Tracker - Expiring Contracts ($397 value)
 - Opportunity Hunter Pro - Agency Matching ($49 value)
 - 1-on-1 Strategy Session - Personal Consultation
 - Priority Support - Direct Access to Our Team

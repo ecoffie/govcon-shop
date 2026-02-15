@@ -3,10 +3,10 @@ import BundleProductPage from '@/components/BundleProductPage';
 
 export const metadata: Metadata = {
   title: 'Starter Bundle - $697 (Save $246)',
-  description: 'The essential GovCon starter kit: Opportunity Hunter Pro, Recompete Contracts Tracker, and Federal Contractor Database. Three tools for $697 one-time (normally $943). Lifetime access, no subscriptions.',
+  description: 'The essential GovCon starter kit: Opportunity Hunter Pro, Recompete Tracker, and Federal Contractor Database. Three tools for $697 one-time (normally $943). Lifetime access, no subscriptions.',
   openGraph: {
     title: 'Starter Bundle - $697 (Save $246) | GovCon Giants',
-    description: 'The essential GovCon starter kit: Opportunity Hunter Pro, Recompete Contracts Tracker, and Federal Contractor Database. Three tools for $697 one-time.',
+    description: 'The essential GovCon starter kit: Opportunity Hunter Pro, Recompete Tracker, and Federal Contractor Database. Three tools for $697 one-time.',
     url: '/bundles/starter',
   },
 };
@@ -15,7 +15,7 @@ const productSchema = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: 'GovCon Starter Bundle',
-  description: 'The essential GovCon starter kit: Opportunity Hunter Pro, Recompete Contracts Tracker, and Federal Contractor Database. Three tools for $697 one-time.',
+  description: 'The essential GovCon starter kit: Opportunity Hunter Pro, Recompete Tracker, and Federal Contractor Database. Three tools for $697 one-time.',
   url: 'https://shop.govcongiants.org/bundles/starter',
   brand: { '@type': 'Organization', name: 'GovCon Giants' },
   offers: {
@@ -59,7 +59,7 @@ export default function StarterBundlePage() {
           ],
         },
         {
-          name: 'Recompete Contracts Tracker',
+          name: 'Recompete Tracker',
           description: 'Track expiring federal contracts before they hit the market. Get ahead of the competition by knowing exactly when contracts are up for recompete.',
           price: 397,
           icon: '📅',

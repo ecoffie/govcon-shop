@@ -65,7 +65,7 @@ export default function TermsOfServicePage() {
             <ul className="list-disc pl-6 text-gray-600 space-y-2">
               <li>Federal Market Assassin - market intelligence reports</li>
               <li>Federal Contractor Database - searchable contractor information</li>
-              <li>Recompete Contracts Tracker - expiring contracts data</li>
+              <li>Recompete Tracker - expiring contracts data</li>
               <li>Content Reaper - AI-powered content creation</li>
               <li>Opportunity Hunter - agency discovery tool</li>
               <li>Free resources including PDFs, templates, and guides</li>

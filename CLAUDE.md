@@ -56,8 +56,8 @@ When user says: "live shop", "production", "shop.govcongiants", "the real site"
 |---------|-------|
 | Market Assassin Standard | $297 |
 | Market Assassin Premium | $497 |
-| Content Generator | $197 |
-| Content Generator Full Fix | $397 |
+| Content Reaper | $197 |
+| Content Reaper Full Fix | $397 |
 | Contractor Database | $497 |
 | Recompete Tracker | $397 |
 | Opportunity Hunter Pro | $49 |
@@ -77,9 +77,9 @@ When user says: "live shop", "production", "shop.govcongiants", "the real site"
 | Route | Tool |
 |-------|------|
 | `/market-assassin` | Federal Market Assassin |
-| `/content-generator` | GovCon Content Generator |
+| `/content-generator` | GovCon Content Reaper |
 | `/contractor-database` | Federal Contractor Database |
-| `/expiring-contracts` | Recompete Contracts Tracker |
+| `/expiring-contracts` | Recompete Tracker |
 | `/opportunity-hunter` | Opportunity Hunter |
 | `/planner` | Action Planner Dashboard |
 
@@ -136,7 +136,7 @@ When user says: "live shop", "production", "shop.govcongiants", "the real site"
 |-------------|------|
 | `ma:{email}` | Market Assassin |
 | `ospro:{email}` | Opportunity Hunter Pro |
-| `contentgen:{email}` | Content Generator |
+| `contentgen:{email}` | Content Reaper |
 | `dbaccess:{email}` | Contractor Database |
 | `recompete:{email}` | Recompete Tracker |
 
@@ -144,7 +144,7 @@ When user says: "live shop", "production", "shop.govcongiants", "the real site"
 | Flag | Products That Grant It |
 |------|------------------------|
 | `access_hunter_pro` | Opp Hunter Pro, Starter, Ultimate |
-| `access_content_standard` | Content Generator, Pro, Ultimate |
+| `access_content_standard` | Content Reaper, Pro, Ultimate |
 | `access_content_full_fix` | Content Full Fix, Ultimate |
 | `access_assassin_standard` | MA Standard, Pro, Ultimate |
 | `access_assassin_premium` | MA Premium, Ultimate |
@@ -256,7 +256,7 @@ npm run build
 
 ### February 8, 2026 (Session 5)
 - **Fixed fix-access-flags `continue` bug** — Supabase FK errors were skipping KV updates; only 2/33 customers got fixed. Removed Supabase insert (impossible due to FK), made KV granting unconditional
-- **Fixed Content Generator tier for Ultimate Bundle** — was "Content Engine", now "Full Fix" in KV for all 16 Ultimate Bundle customers
+- **Fixed Content Reaper tier for Ultimate Bundle** — was "Content Engine", now "Full Fix" in KV for all 16 Ultimate Bundle customers
 - **Fixed Market Assassin tier for Ultimate Bundle** — confirmed all 16 show "Premium" in KV
 - **All 33 customers KV-verified** — fix-access-flags ran successfully: 33/33 kv_fixed, 0 errors
 - **Confirmed MA Standard entries are correct** — Standard tier users on admin panel are $99/month students, not Ultimate Bundle customers
@@ -269,7 +269,7 @@ npm run build
 - **Created `/api/admin/fix-access-flags`** — sets Supabase flags + fills KV gaps based on purchases table
 - **Discovered `user_profiles` table has `user_id` FK to `auth.users`** — can't create profiles without Supabase Auth accounts. Only 16 profiles exist (test/internal users). Most customers don't have profiles.
 - **Rewrote `/api/activate-license`** — now checks Vercel KV as fallback when no Supabase profile exists. All 33 customers can see their tools on the activate page.
-- **Fixed Ultimate Bundle email** — Content Generator label updated to "Full Fix" version
+- **Fixed Ultimate Bundle email** — Content Reaper label updated to "Full Fix" version
 - **Revenue: $18,574** across 33 tool sales (16 Ultimate @ $1,000 promo, 14 Opp Hunter Pro @ $49, 3 Contractor DB @ $497)
 
 ### February 6, 2026 (Session 3)

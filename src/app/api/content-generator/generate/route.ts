@@ -222,7 +222,7 @@ export async function POST(request: NextRequest) {
       companyProfile = {}
     } = body;
 
-    console.log(`[Content Generator] Request for ${numPosts} posts, agencies:`, targetAgencies);
+    console.log(`[Content Reaper] Request for ${numPosts} posts, agencies:`, targetAgencies);
 
     if (!GROK_API_KEY) {
       return NextResponse.json({
@@ -414,7 +414,7 @@ Output ONLY the post text, followed by hashtags on separate lines.`;
       });
     }
 
-    console.log(`[Content Generator] Generated ${posts.length} posts`);
+    console.log(`[Content Reaper] Generated ${posts.length} posts`);
 
     return NextResponse.json({
       success: true,
@@ -428,7 +428,7 @@ Output ONLY the post text, followed by hashtags on separate lines.`;
     }, { headers: corsHeaders });
 
   } catch (error) {
-    console.error('[Content Generator] Error:', error);
+    console.error('[Content Reaper] Error:', error);
     return NextResponse.json({
       success: false,
       error: error instanceof Error ? error.message : 'Failed to generate content'

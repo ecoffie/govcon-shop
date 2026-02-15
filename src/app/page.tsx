@@ -203,7 +203,7 @@ export default function Home() {
               </div>
               <div className="p-6">
                 <span className="inline-block bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">PREMIUM</span>
-                <h3 className="text-xl font-bold mb-2 text-gray-900">Expiring Contracts Database</h3>
+                <h3 className="text-xl font-bold mb-2 text-gray-900">Recompete Tracker</h3>
                 <p className="text-gray-500 text-sm mb-4">Stop fighting 50 bidders on new contracts. Recompetes are easier—be first in line when $221B gets rebid.</p>
                 <ul className="text-sm mb-5 space-y-1">
                   <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Win with less competition</li>
@@ -520,17 +520,17 @@ export default function Home() {
               </div>
             </Link>
 
-            {/* Recompete Contracts Tracker */}
+            {/* Recompete Tracker */}
             <Link href="/expiring-contracts" className="group bg-white rounded-2xl border-2 border-gray-200 overflow-hidden transition-all hover:shadow-xl hover:border-cyan-500">
               <div className="h-48 bg-gradient-to-br from-cyan-500 to-blue-600 relative overflow-hidden">
-                <Image src="/images/products/expiring-contracts/home page expiring contracts.png" alt="Recompete Contracts Tracker" fill className="object-cover object-top group-hover:scale-105 transition-transform duration-300" />
+                <Image src="/images/products/expiring-contracts/home page expiring contracts.png" alt="Recompete Tracker" fill className="object-cover object-top group-hover:scale-105 transition-transform duration-300" />
               </div>
               <div className="p-6">
                 <div className="flex items-center justify-between mb-3">
                   <span className="inline-block bg-cyan-100 text-cyan-800 px-3 py-1 rounded-full text-xs font-semibold">$221B IN CONTRACTS</span>
                   <span className="text-2xl font-bold text-cyan-600">$397</span>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Recompete Contracts Tracker</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Recompete Tracker</h3>
                 <p className="text-gray-600 text-sm mb-4">Track expiring federal contracts and get ahead of the competition. Know when contracts are up for rebid.</p>
                 <ul className="space-y-2 mb-4">
                   <li className="flex items-center gap-2 text-sm text-gray-700">
@@ -590,7 +590,7 @@ export default function Home() {
               </div>
               <ul className="space-y-3 mb-6 text-sm text-gray-800">
                 <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> Opportunity Hunter Pro ($49)</li>
-                <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> Recompete Contracts Tracker ($397)</li>
+                <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> Recompete Tracker ($397)</li>
                 <li className="flex items-center gap-2"><span className="text-emerald-500 font-bold">✓</span> Federal Contractor Database ($497)</li>
               </ul>
               <div className="text-center text-sm text-gray-500 mb-4 line-through">$943 if bought separately</div>
@@ -622,7 +622,7 @@ export default function Home() {
               </div>
               <ul className="space-y-3 mb-6 text-sm text-gray-800">
                 <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Federal Contractor Database ($497)</li>
-                <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Recompete Contracts Tracker ($397)</li>
+                <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Recompete Tracker ($397)</li>
                 <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Market Assassin Standard ($297)</li>
                 <li className="flex items-center gap-2"><span className="text-emerald-600 font-bold">✓</span> Content Reaper ($197)</li>
               </ul>
@@ -655,7 +655,7 @@ export default function Home() {
                 <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Market Assassin Premium ($497)</li>
                 <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Content Reaper Full Fix ($397)</li>
                 <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Federal Contractor Database ($497)</li>
-                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Recompete Contracts Tracker ($397)</li>
+                <li className="flex items-center gap-2"><span className="text-amber-400">✓</span> Recompete Tracker ($397)</li>
               </ul>
               <div className="text-center text-sm opacity-50 mb-4 line-through">$1,788 if bought separately</div>
               <a

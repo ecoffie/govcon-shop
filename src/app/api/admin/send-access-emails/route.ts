@@ -25,7 +25,7 @@ const TOOL_CUSTOMERS: CustomerAccess[] = [
     'bonitascott15@hotmail.com', 'tblackella@yahoo.com', 'colinn.me@gmail.com',
     'obi@attendantsinc.com'].map(email => ({
     email,
-    products: ['Federal Market Assassin (Premium)', 'Content Reaper (Full Fix)', 'Recompete Contracts Tracker', 'Federal Contractor Database'],
+    products: ['Federal Market Assassin (Premium)', 'Content Reaper (Full Fix)', 'Recompete Tracker', 'Federal Contractor Database'],
   })),
   // Opportunity Hunter Pro customers
   ...['bill.hinkson@gmail.com', 'jonathan.nolan@getdunamis.com', 'kym@dallasorganizer.com',
@@ -37,7 +37,7 @@ const TOOL_CUSTOMERS: CustomerAccess[] = [
     products: ['Opportunity Hunter Pro'],
   })),
   // Recompete customer
-  { email: 'rhendricks@horrangi.com', products: ['Recompete Contracts Tracker'] },
+  { email: 'rhendricks@horrangi.com', products: ['Recompete Tracker'] },
   // Contractor Database customers
   ...['jsumrall@diamondscaffold.com', 'cnroofs@gmail.com', 'austin@durhambrandco.com'].map(email => ({
     email,
