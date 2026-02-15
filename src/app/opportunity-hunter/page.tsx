@@ -869,9 +869,9 @@ export default function OpportunityScoutPage() {
 
                   {/* Email Gate Overlay — shown when user hasn't entered email yet */}
                   {!isPro && !emailGatePassed && results.agencies.length > EMAIL_GATE_LIMIT && (
-                    <div className="relative">
+                    <div className="relative" style={{ minHeight: '280px' }}>
                       {/* Blurred preview rows */}
-                      <div className="overflow-hidden" style={{ maxHeight: '120px' }}>
+                      <div className="overflow-hidden h-full">
                         <table className="w-full">
                           <tbody className="divide-y divide-gray-200">
                             {results.agencies.slice(EMAIL_GATE_LIMIT, EMAIL_GATE_LIMIT + 2).map((agency, index) => (
