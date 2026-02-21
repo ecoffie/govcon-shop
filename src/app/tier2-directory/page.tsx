@@ -22,13 +22,13 @@ export default function Tier2DirectoryPage() {
       gradientTo="#a855f7"
       price="FREE"
       originalPrice="$697 value"
-      checkoutUrl="/free-resources"
+      checkoutUrl="/resources/tier2-supplier-directory.html"
       pricingTiers={[
         {
           name: 'Free Sample',
           price: 'FREE',
           originalPrice: '$697 value',
-          checkoutUrl: '/free-resources',
+          checkoutUrl: '/resources/tier2-supplier-directory.html',
           description: '50+ prime contractor contacts & portal links',
           features: [
             '50+ prime contractors',

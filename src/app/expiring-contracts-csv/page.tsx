@@ -22,7 +22,7 @@ export default function ExpiringContractsCSVPage() {
       gradientTo="#06b6d4"
       price="FREE"
       originalPrice="$697 value"
-      checkoutUrl="/free-resources"
+      checkoutUrl="/resources/expiring-contracts-sample.csv"
       videoTitle="Expiring Contracts Sample"
       videoSubtitle="Import into Excel or your CRM instantly"
       screenshots={[

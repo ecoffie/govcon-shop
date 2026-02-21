@@ -150,7 +150,7 @@ export default function Home() {
                 <p className="text-gray-500 text-sm mb-4">Create LinkedIn posts that resonate with government buyers. GovCon-tuned AI trained on 146 viral posts.</p>
                 <ul className="text-sm mb-5 space-y-1">
                   <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Generate 10 Posts Per Click</li>
-                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> 175 Federal Agencies</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> 250 Federal Agencies</li>
                   <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> GovCon-Tuned AI Model</li>
                   <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> GEO Boost Optimization</li>
                 </ul>
