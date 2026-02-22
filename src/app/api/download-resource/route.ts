@@ -19,22 +19,22 @@ const RESOURCES: Record<string, { file: string; type: string; name: string }> = 
   },
   'ai-prompts': {
     file: 'ai-prompts-govcon',
-    type: 'html',
+    type: 'pdf',
     name: 'AI Prompts for GovCon',
   },
   'action-plan-2026': {
     file: 'action-plan-2026',
-    type: 'html',
+    type: 'pdf',
     name: '2026 GovCon Action Plan',
   },
   'december-spend': {
     file: 'december-spend-forecast',
-    type: 'html',
+    type: 'pdf',
     name: 'December Spend Forecast',
   },
   'guides-templates': {
     file: 'govcon-guides-templates',
-    type: 'html',
+    type: 'pdf',
     name: 'GovCon Guides & Templates',
   },
   'expiring-contracts-csv': {
