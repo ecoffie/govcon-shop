@@ -44,7 +44,7 @@ const RESOURCES: Record<string, { file: string; type: string; name: string }> = 
   },
   'tribal-list': {
     file: 'tribal-contractor-list',
-    type: 'html',
+    type: 'csv',
     name: 'Tribal Contractor List',
   },
 };
