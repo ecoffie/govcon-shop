@@ -8,17 +8,27 @@ import {
   getMarketAssassinAccess,
   hasRecompeteAccess,
   hasEmailDatabaseAccess,
+  hasBriefingAccess,
 } from '@/lib/access-codes';
 
-// Map access flags to friendly product names
-const ACCESS_FLAG_NAMES: Record<string, string> = {
-  access_hunter_pro: 'Opportunity Hunter Pro',
-  access_content_standard: 'Content Reaper',
-  access_content_full_fix: 'Content Reaper (Full Fix)',
-  access_assassin_standard: 'Federal Market Assassin (Standard)',
-  access_assassin_premium: 'Federal Market Assassin (Premium)',
-  access_recompete: 'Recompete Tracker',
-  access_contractor_db: 'Federal Contractor Database',
+// Tool definitions with URLs (tools are on tools.govcongiants.org)
+const TOOLS_BASE = 'https://tools.govcongiants.org';
+
+interface ToolInfo {
+  name: string;
+  url: string;
+  key: string;
+}
+
+const ACCESS_FLAG_TO_TOOL: Record<string, ToolInfo> = {
+  access_hunter_pro: { name: 'Opportunity Hunter Pro', url: `${TOOLS_BASE}/opportunity-hunter`, key: 'access_hunter_pro' },
+  access_content_standard: { name: 'Content Reaper', url: `${TOOLS_BASE}/content-generator`, key: 'access_content_standard' },
+  access_content_full_fix: { name: 'Content Reaper (Full Fix)', url: `${TOOLS_BASE}/content-generator`, key: 'access_content_full_fix' },
+  access_assassin_standard: { name: 'Federal Market Assassin', url: `${TOOLS_BASE}/market-assassin`, key: 'access_assassin_standard' },
+  access_assassin_premium: { name: 'Federal Market Assassin (Premium)', url: `${TOOLS_BASE}/market-assassin`, key: 'access_assassin_premium' },
+  access_recompete: { name: 'Recompete Tracker', url: `${TOOLS_BASE}/recompete`, key: 'access_recompete' },
+  access_contractor_db: { name: 'Federal Contractor Database', url: `${TOOLS_BASE}/contractor-database`, key: 'access_contractor_db' },
+  access_briefings: { name: 'Daily Briefings', url: `${TOOLS_BASE}/briefings`, key: 'access_briefings' },
 };
 
 export async function POST(request: NextRequest) {
@@ -33,56 +43,59 @@ export async function POST(request: NextRequest) {
     }
 
     const normalizedEmail = email.trim().toLowerCase();
-    const products: string[] = [];
+    const tools: ToolInfo[] = [];
 
     // Primary: check Supabase user_profiles flags
     const profile = await getProfileByEmail(normalizedEmail);
 
     if (profile) {
-      for (const [flag, name] of Object.entries(ACCESS_FLAG_NAMES)) {
+      for (const [flag, toolInfo] of Object.entries(ACCESS_FLAG_TO_TOOL)) {
         if (profile[flag as keyof typeof profile] === true) {
+          // Skip standard if premium exists (avoid duplicates)
           if (flag === 'access_assassin_standard' && profile.access_assassin_premium) continue;
           if (flag === 'access_content_standard' && profile.access_content_full_fix) continue;
-          products.push(name);
+          tools.push(toolInfo);
         }
       }
     }
 
     // Fallback: check Vercel KV access (covers customers without user_profiles rows)
-    if (products.length === 0) {
-      const [ospro, contentgen, ma, recompete, db] = await Promise.all([
+    if (tools.length === 0) {
+      const [ospro, contentgen, ma, recompete, db, briefings] = await Promise.all([
         hasOpportunityHunterProAccess(normalizedEmail),
         hasContentGeneratorAccess(normalizedEmail),
         hasMarketAssassinAccess(normalizedEmail),
         hasRecompeteAccess(normalizedEmail),
         hasEmailDatabaseAccess(normalizedEmail),
+        hasBriefingAccess(normalizedEmail),
       ]);
 
-      if (ospro) products.push('Opportunity Hunter Pro');
+      if (ospro) tools.push(ACCESS_FLAG_TO_TOOL.access_hunter_pro);
 
       if (contentgen) {
         const cgAccess = await getContentGeneratorAccess(normalizedEmail);
         if (cgAccess?.tier === 'full-fix') {
-          products.push('Content Reaper (Full Fix)');
+          tools.push(ACCESS_FLAG_TO_TOOL.access_content_full_fix);
         } else {
-          products.push('Content Reaper');
+          tools.push(ACCESS_FLAG_TO_TOOL.access_content_standard);
         }
       }
 
       if (ma) {
         const maAccess = await getMarketAssassinAccess(normalizedEmail);
         if (maAccess?.tier === 'premium') {
-          products.push('Federal Market Assassin (Premium)');
+          tools.push(ACCESS_FLAG_TO_TOOL.access_assassin_premium);
         } else {
-          products.push('Federal Market Assassin (Standard)');
+          tools.push(ACCESS_FLAG_TO_TOOL.access_assassin_standard);
         }
       }
 
-      if (recompete) products.push('Recompete Tracker');
-      if (db) products.push('Federal Contractor Database');
+      if (recompete) tools.push(ACCESS_FLAG_TO_TOOL.access_recompete);
+      if (db) tools.push(ACCESS_FLAG_TO_TOOL.access_contractor_db);
+      if (briefings) tools.push(ACCESS_FLAG_TO_TOOL.access_briefings);
     }
 
-    if (products.length === 0) {
+    if (tools.length === 0) {
       return NextResponse.json(
         { error: 'No account found for this email. Please use the same email you used at checkout.' },
         { status: 404 }
@@ -92,7 +105,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       message: 'Your tools are activated! You have access to the following products.',
-      products,
+      tools,
+      // Keep products array for backwards compatibility
+      products: tools.map(t => t.name),
       email: normalizedEmail,
     });
 

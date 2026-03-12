@@ -3,12 +3,18 @@
 import { useState } from "react";
 import Link from "next/link";
 
+interface Tool {
+  name: string;
+  url: string;
+  key: string;
+}
+
 export default function ActivatePage() {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState<{
-    products: string[];
+    tools: Tool[];
     message: string;
   } | null>(null);
 
@@ -33,7 +39,7 @@ export default function ActivatePage() {
       }
 
       setSuccess({
-        products: data.products || [],
+        tools: data.tools || [],
         message: data.message || "Your tools are ready!",
       });
     } catch {
@@ -129,18 +135,24 @@ export default function ActivatePage() {
               <h1 className="text-3xl font-bold text-gray-900 mb-4">You&apos;re All Set!</h1>
               <p className="text-gray-600 mb-8">{success.message}</p>
 
-              {success.products.length > 0 && (
+              {success.tools.length > 0 && (
                 <div className="mb-8">
                   <h2 className="text-lg font-semibold text-gray-900 mb-4">Your Unlocked Tools:</h2>
                   <div className="space-y-3">
-                    {success.products.map((product, index) => (
-                      <div
-                        key={index}
-                        className="flex items-center justify-between bg-gray-50 px-4 py-3 rounded-lg border border-gray-200"
+                    {success.tools.map((tool) => (
+                      <a
+                        key={tool.key}
+                        href={tool.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between bg-gray-50 hover:bg-blue-50 px-4 py-3 rounded-lg border border-gray-200 hover:border-blue-300 transition-all group"
                       >
-                        <span className="font-medium text-gray-900">{product}</span>
-                        <span className="text-emerald-600 font-bold">✓ Unlocked</span>
-                      </div>
+                        <div>
+                          <span className="font-medium text-gray-900 group-hover:text-blue-800">{tool.name}</span>
+                          <span className="block text-xs text-gray-500 mt-0.5">Click to open tool</span>
+                        </div>
+                        <span className="text-blue-600 font-bold group-hover:translate-x-1 transition-transform">→</span>
+                      </a>
                     ))}
                   </div>
                 </div>
