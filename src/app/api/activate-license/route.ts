@@ -8,8 +8,10 @@ import {
   getMarketAssassinAccess,
   hasRecompeteAccess,
   hasEmailDatabaseAccess,
-  hasBriefingAccess,
 } from '@/lib/access-codes';
+
+// Note: hasBriefingAccess is in market-assassin project, not here
+// Briefings are checked via user_profiles table instead
 
 // Tool definitions with URLs (tools are on tools.govcongiants.org)
 const TOOLS_BASE = 'https://tools.govcongiants.org';
@@ -61,13 +63,12 @@ export async function POST(request: NextRequest) {
 
     // Fallback: check Vercel KV access (covers customers without user_profiles rows)
     if (tools.length === 0) {
-      const [ospro, contentgen, ma, recompete, db, briefings] = await Promise.all([
+      const [ospro, contentgen, ma, recompete, db] = await Promise.all([
         hasOpportunityHunterProAccess(normalizedEmail),
         hasContentGeneratorAccess(normalizedEmail),
         hasMarketAssassinAccess(normalizedEmail),
         hasRecompeteAccess(normalizedEmail),
         hasEmailDatabaseAccess(normalizedEmail),
-        hasBriefingAccess(normalizedEmail),
       ]);
 
       if (ospro) tools.push(ACCESS_FLAG_TO_TOOL.access_hunter_pro);
@@ -92,7 +93,7 @@ export async function POST(request: NextRequest) {
 
       if (recompete) tools.push(ACCESS_FLAG_TO_TOOL.access_recompete);
       if (db) tools.push(ACCESS_FLAG_TO_TOOL.access_contractor_db);
-      if (briefings) tools.push(ACCESS_FLAG_TO_TOOL.access_briefings);
+      // Note: briefings checked via user_profiles only (KV key is in market-assassin project)
     }
 
     if (tools.length === 0) {
