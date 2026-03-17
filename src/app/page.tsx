@@ -204,7 +204,7 @@ export default function Home() {
               <div className="p-6">
                 <span className="inline-block bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">PREMIUM</span>
                 <h3 className="text-xl font-bold mb-2 text-gray-900">Recompete Tracker</h3>
-                <p className="text-gray-500 text-sm mb-4">Stop fighting 50 bidders on new contracts. Recompetes are easier—be first in line when $221B gets rebid.</p>
+                <p className="text-gray-500 text-sm mb-4">Stop fighting 50 bidders on new contracts. Recompetes are easier—be first in line when $77T gets rebid.</p>
                 <ul className="text-sm mb-5 space-y-1">
                   <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Win with less competition</li>
                   <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Contact primes early</li>
@@ -527,7 +527,7 @@ export default function Home() {
               </div>
               <div className="p-6">
                 <div className="flex items-center justify-between mb-3">
-                  <span className="inline-block bg-cyan-100 text-cyan-800 px-3 py-1 rounded-full text-xs font-semibold">$221B IN CONTRACTS</span>
+                  <span className="inline-block bg-cyan-100 text-cyan-800 px-3 py-1 rounded-full text-xs font-semibold">$77T IN CONTRACTS</span>
                   <span className="text-2xl font-bold text-cyan-600">$397</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Recompete Tracker</h3>
