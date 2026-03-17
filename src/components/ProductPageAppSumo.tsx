@@ -259,8 +259,20 @@ export default function ProductPageAppSumo({
           <div className="mb-10">
             {/* Main Image/Video Display */}
             <div className="w-full rounded-xl aspect-video mb-4 relative overflow-hidden border-2 border-gray-200">
-              {videoUrl && selectedImage === 0 ? (
-                // YouTube embed
+              {videos.length > 0 ? (
+                // Show selected video from videos array
+                <iframe
+                  className="w-full h-full"
+                  src={videos[selectedVideo].url.includes('vimeo.com')
+                    ? videos[selectedVideo].url.replace('vimeo.com/', 'player.vimeo.com/video/')
+                    : videos[selectedVideo].url.replace('watch?v=', 'embed/').replace('youtu.be/', 'youtube.com/embed/')}
+                  title={videos[selectedVideo].title}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : videoUrl && selectedImage === 0 ? (
+                // YouTube embed (legacy single video)
                 <iframe
                   className="w-full h-full"
                   src={videoUrl.replace('watch?v=', 'embed/').replace('youtu.be/', 'youtube.com/embed/')}
@@ -340,28 +352,6 @@ export default function ProductPageAppSumo({
             </div>
           </div>
 
-          {/* Selected Video Display - Full width when a video is selected */}
-          {videos.length > 0 && (
-            <div className="mb-10">
-              <div className="rounded-xl overflow-hidden border-2 border-gray-200">
-                <div className="aspect-video">
-                  <iframe
-                    className="w-full h-full"
-                    src={videos[selectedVideo].url.includes('vimeo.com')
-                      ? videos[selectedVideo].url.replace('vimeo.com/', 'player.vimeo.com/video/')
-                      : videos[selectedVideo].url.replace('watch?v=', 'embed/').replace('youtu.be/', 'youtube.com/embed/')}
-                    title={videos[selectedVideo].title}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-                <div className="p-4 bg-gray-50">
-                  <p className="font-semibold text-gray-900">{videos[selectedVideo].title}</p>
-                </div>
-              </div>
-            </div>
-          )}
 
           {/* Description */}
           <div className="text-lg leading-relaxed mb-8 text-gray-700">
