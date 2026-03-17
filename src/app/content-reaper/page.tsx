@@ -89,8 +89,8 @@ export default function ContentReaperPage() {
       videoTitle="Content Reaper Demo"
       videoSubtitle="See how to generate 10 LinkedIn posts in under 60 seconds"
       videos={[
-        { url: 'https://vimeo.com/1172276564', title: 'Content Reaper Overview' },
-        { url: 'https://vimeo.com/1172271123', title: 'Creating GovCon Content' },
+        { url: 'https://vimeo.com/1172276564', title: 'Content Reaper Overview', thumbnail: 'https://vumbnail.com/1172276564.jpg' },
+        { url: 'https://vimeo.com/1172271123', title: 'Creating GovCon Content', thumbnail: 'https://vumbnail.com/1172271123.jpg' },
       ]}
       screenshots={[
         '/images/products/ai content generator/ai content generator home page.png',

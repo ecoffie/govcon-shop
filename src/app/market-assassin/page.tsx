@@ -91,9 +91,9 @@ export default function MarketAssassinProductPage() {
       videoTitle="Federal Market Assassin Demo"
       videoSubtitle="See 8 strategic reports generated in under 2 minutes"
       videos={[
-        { url: 'https://vimeo.com/1172274821', title: 'Getting Started with Market Assassin' },
-        { url: 'https://vimeo.com/1172283325', title: 'Selecting Target Agencies' },
-        { url: 'https://vimeo.com/1172272239', title: 'Understanding Your Reports' },
+        { url: 'https://vimeo.com/1172274821', title: 'Getting Started with Market Assassin', thumbnail: 'https://vumbnail.com/1172274821.jpg' },
+        { url: 'https://vimeo.com/1172283325', title: 'Selecting Target Agencies', thumbnail: 'https://vumbnail.com/1172283325.jpg' },
+        { url: 'https://vimeo.com/1172272239', title: 'Understanding Your Reports', thumbnail: 'https://vumbnail.com/1172272239.jpg' },
       ]}
       mainImage="/images/products/market-assassin/home page.png"
       screenshots={[
