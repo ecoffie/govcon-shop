@@ -118,6 +118,7 @@ export default function ProductPageAppSumo({
   upgradeProduct,
 }: ProductPageProps) {
   const [selectedImage, setSelectedImage] = useState(0);
+  const [selectedVideo, setSelectedVideo] = useState(0);
   const [selectedTier, setSelectedTier] = useState(0);
 
   // Email gate state
@@ -289,9 +290,31 @@ export default function ProductPageAppSumo({
               )}
             </div>
 
-            {/* Thumbnail Gallery - Only show first 4 */}
-            <div className="grid grid-cols-4 gap-3">
-              {screenshots.length > 0 ? (
+            {/* Thumbnail Gallery - Show videos if available, otherwise screenshots */}
+            <div className={`grid gap-3 ${videos.length > 0 ? (videos.length <= 3 ? `grid-cols-${videos.length}` : 'grid-cols-4') : 'grid-cols-4'}`}>
+              {videos.length > 0 ? (
+                // Show video thumbnails
+                videos.slice(0, 4).map((video, i) => (
+                  <div
+                    key={i}
+                    onClick={() => setSelectedVideo(i)}
+                    className={`aspect-video rounded-lg overflow-hidden cursor-pointer transition-all border-2 ${
+                      selectedVideo === i ? 'border-blue-500 ring-2 ring-blue-200' : 'border-gray-200 hover:border-gray-400'
+                    }`}
+                  >
+                    <div className="w-full h-full bg-gray-900 flex flex-col items-center justify-center relative">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center">
+                          <svg className="w-5 h-5 text-gray-900 ml-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                          </svg>
+                        </div>
+                      </div>
+                      <p className="absolute bottom-2 left-2 right-2 text-white text-xs font-medium truncate">{video.title}</p>
+                    </div>
+                  </div>
+                ))
+              ) : screenshots.length > 0 ? (
                 screenshots.slice(0, 4).map((screenshot, i) => (
                   <div
                     key={i}
@@ -317,30 +340,25 @@ export default function ProductPageAppSumo({
             </div>
           </div>
 
-          {/* Additional Videos Section */}
+          {/* Selected Video Display - Full width when a video is selected */}
           {videos.length > 0 && (
             <div className="mb-10">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Watch How It Works</h3>
-              <div className="space-y-6">
-                {videos.map((video, i) => (
-                  <div key={i} className="rounded-xl overflow-hidden border-2 border-gray-200 hover:border-gray-400 transition-all">
-                    <div className="aspect-video">
-                      <iframe
-                        className="w-full h-full"
-                        src={video.url.includes('vimeo.com')
-                          ? video.url.replace('vimeo.com/', 'player.vimeo.com/video/')
-                          : video.url.replace('watch?v=', 'embed/').replace('youtu.be/', 'youtube.com/embed/')}
-                        title={video.title}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                    </div>
-                    <div className="p-4 bg-gray-50">
-                      <p className="font-semibold text-gray-900">{video.title}</p>
-                    </div>
-                  </div>
-                ))}
+              <div className="rounded-xl overflow-hidden border-2 border-gray-200">
+                <div className="aspect-video">
+                  <iframe
+                    className="w-full h-full"
+                    src={videos[selectedVideo].url.includes('vimeo.com')
+                      ? videos[selectedVideo].url.replace('vimeo.com/', 'player.vimeo.com/video/')
+                      : videos[selectedVideo].url.replace('watch?v=', 'embed/').replace('youtu.be/', 'youtube.com/embed/')}
+                    title={videos[selectedVideo].title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+                <div className="p-4 bg-gray-50">
+                  <p className="font-semibold text-gray-900">{videos[selectedVideo].title}</p>
+                </div>
               </div>
             </div>
           )}
