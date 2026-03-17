@@ -27,27 +27,37 @@ const quotes = [
   },
 ];
 
-// YouTube video placeholders (replace with actual bootcamp video IDs)
+// GovCon Giants YouTube videos
 const bootcampVideos = [
   {
-    id: 'dQw4w9WgXcQ', // Placeholder - replace with actual video ID
-    title: 'How to Create Your SAM.gov Profile',
-    description: 'Step-by-step guide to registering in SAM.gov and setting up your federal contractor profile.',
+    id: 'g0NsG4SogDM',
+    title: 'SBA Profile Setup & Certifications',
+    description: 'Complete guide to setting up your SBA profile and understanding small business certification options.',
   },
   {
-    id: 'dQw4w9WgXcQ', // Placeholder - replace with actual video ID
-    title: 'Writing Winning Capability Statements',
-    description: 'Learn how to create compelling capability statements that stand out to government buyers.',
+    id: 'Ko1N0TMAAs0',
+    title: 'Finding Contract Opportunities',
+    description: 'Master SAM.gov navigation, opportunity sources, and search strategies to find the right contracts.',
   },
   {
-    id: 'dQw4w9WgXcQ', // Placeholder - replace with actual video ID
-    title: 'Finding and Responding to Opportunities',
-    description: 'Master the art of finding government contracting opportunities and crafting winning proposals.',
+    id: 'JAa1qkOrtic',
+    title: 'Market Research for GovCon',
+    description: 'How to conduct market research to find the right federal opportunities that match your business.',
   },
   {
-    id: 'dQw4w9WgXcQ', // Placeholder - replace with actual video ID
-    title: 'Networking with Government Buyers',
-    description: 'Strategies for building relationships with contracting officers and program managers.',
+    id: 'eCtnAM0j5gY',
+    title: 'Understanding PSC Codes',
+    description: 'Complete guide to Product Service Codes (PSC) and how to use them to find relevant opportunities.',
+  },
+  {
+    id: 'ke5RmuRQN_8',
+    title: 'Agency Pain Points with Lori Smith',
+    description: 'Learn how to identify and address federal agency pain points to position your solutions effectively.',
+  },
+  {
+    id: 'uR8vdTtvuyU',
+    title: 'Getting Started in Government Contracting',
+    description: 'Essential first steps for new contractors entering the federal marketplace.',
   },
 ];
 
@@ -55,27 +65,63 @@ const bootcampVideos = [
 const templates = [
   {
     name: 'Capability Statement Template',
-    description: 'Professional one-page capability statement template with sections for core competencies, past performance, and differentiators.',
+    description: 'Professional one-page capability statement with sections for core competencies, past performance, and differentiators.',
     file: '/templates/capability-statement-template.pdf',
     icon: '📄',
   },
   {
-    name: 'Email Scripts for SBLO Outreach',
-    description: 'Ready-to-use email templates for reaching out to Small Business Liaison Officers and contracting officers.',
-    file: '/templates/email-scripts-sblo.pdf',
-    icon: '✉️',
-  },
-  {
-    name: 'Proposal Response Checklist',
-    description: 'Comprehensive checklist to ensure your proposal responses are complete and compliant.',
-    file: '/templates/proposal-checklist.pdf',
+    name: 'SAM.gov Registration Checklist',
+    description: 'Step-by-step guide to registering in SAM.gov with all required documents and information.',
+    file: '/templates/sam-gov-registration-checklist.pdf',
     icon: '✅',
   },
   {
-    name: 'Past Performance Questionnaire',
-    description: 'Template for collecting past performance information from previous clients and prime contractors.',
-    file: '/templates/past-performance-questionnaire.pdf',
+    name: 'Bid/No-Bid Decision Matrix',
+    description: 'Weighted scoring matrix to evaluate opportunities and make data-driven pursuit decisions.',
+    file: '/templates/bid-no-bid-decision-matrix.pdf',
+    icon: '⚖️',
+  },
+  {
+    name: 'Compliance Matrix Template',
+    description: 'Track RFP requirements, assign responsibilities, and ensure 100% proposal compliance.',
+    file: '/templates/compliance-matrix-template.pdf',
+    icon: '📋',
+  },
+  {
+    name: 'CPARS Management Guide',
+    description: 'Best practices for managing contractor performance assessments and maintaining excellent ratings.',
+    file: '/templates/cpars-management-guide.pdf',
+    icon: '⭐',
+  },
+  {
+    name: 'Opportunity Pipeline Tracker',
+    description: 'Track opportunities from identification through award with status, Pwin, and key dates.',
+    file: '/templates/opportunity-tracking-template.pdf',
     icon: '📊',
+  },
+  {
+    name: 'Teaming Agreement Template',
+    description: 'Non-binding teaming arrangement template for federal contract pursuits with prime/sub roles.',
+    file: '/templates/teaming-agreement-template.pdf',
+    icon: '🤝',
+  },
+  {
+    name: 'Past Performance Questionnaire',
+    description: 'Document contract performance with quantified results for proposal submissions.',
+    file: '/templates/past-performance-template.pdf',
+    icon: '📈',
+  },
+  {
+    name: 'Elevator Pitch Worksheet',
+    description: 'Build your 30-second company introduction with the WHO + WHAT + WHY formula.',
+    file: '/templates/elevator-pitch-template.pdf',
+    icon: '🎤',
+  },
+  {
+    name: 'Debriefing Request Guide',
+    description: 'Request post-award debriefings, prepare questions, and capture lessons learned.',
+    file: '/templates/debriefing-request-template.pdf',
+    icon: '📝',
   },
 ];
 
