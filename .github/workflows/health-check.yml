@@ -1,0 +1,133 @@
+name: Daily Health Check
+
+on:
+  schedule:
+    # Run daily at 8 AM EST (1 PM UTC)
+    - cron: '0 13 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Health Check
+        id: health
+        run: |
+          BASE_URL="https://shop.govcongiants.org"
+          FAILED=0
+          RESULTS=""
+
+          # Critical product pages
+          PAGES=(
+            "/|Homepage"
+            "/market-assassin|Market Assassin"
+            "/content-reaper|Content Reaper"
+            "/contractor-database-product|Contractor Database"
+            "/expiring-contracts|Recompete Tracker"
+            "/opportunity-hunter|Opportunity Hunter"
+            "/sblo-directory|SBLO Directory"
+            "/december-spend|December Spend"
+            "/ai-prompts|AI Prompts"
+            "/action-plan-2026|Action Plan"
+            "/guides-templates|Guides Templates"
+            "/tier2-directory|Tier-2 Directory"
+            "/expiring-contracts-csv|Expiring CSV"
+            "/tribal-list|Tribal List"
+            "/bundles/starter|Starter Bundle"
+            "/bundles/pro|Pro Bundle"
+            "/bundles/ultimate|Ultimate Bundle"
+            "/about|About"
+            "/blog|Blog"
+            "/free-resources|Free Resources"
+            "/activate|Activate"
+            "/api/health|API Health"
+          )
+
+          echo "## GovCon Shop Health Check" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Page | Status | Response Time |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|--------|---------------|" >> $GITHUB_STEP_SUMMARY
+
+          for item in "${PAGES[@]}"; do
+            path=$(echo "$item" | cut -d'|' -f1)
+            name=$(echo "$item" | cut -d'|' -f2)
+            url="${BASE_URL}${path}"
+
+            response=$(curl -s -o /dev/null -w "%{http_code}|%{time_total}" "$url" --max-time 15 2>/dev/null || echo "000|0")
+            status=$(echo "$response" | cut -d'|' -f1)
+            time=$(echo "$response" | cut -d'|' -f2)
+
+            if [ "$status" = "200" ]; then
+              echo "| $name | ✅ $status | ${time}s |" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "| $name | ❌ $status | ${time}s |" >> $GITHUB_STEP_SUMMARY
+              FAILED=$((FAILED + 1))
+              RESULTS="${RESULTS}${name} (${path}): HTTP ${status}\n"
+            fi
+          done
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ $FAILED -gt 0 ]; then
+            echo "### ❌ $FAILED pages failed" >> $GITHUB_STEP_SUMMARY
+            echo "failed=true" >> $GITHUB_OUTPUT
+            echo "failed_count=$FAILED" >> $GITHUB_OUTPUT
+            echo "failed_pages<<EOF" >> $GITHUB_OUTPUT
+            echo -e "$RESULTS" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          else
+            echo "### ✅ All pages healthy" >> $GITHUB_STEP_SUMMARY
+            echo "failed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Send Slack Alert on Failure
+        if: steps.health.outputs.failed == 'true'
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_HEALTH_WEBHOOK_URL }}
+        run: |
+          if [ -n "$SLACK_WEBHOOK" ]; then
+            curl -X POST "$SLACK_WEBHOOK" \
+              -H "Content-Type: application/json" \
+              -d '{
+                "text": "🚨 GovCon Shop Health Check Failed",
+                "blocks": [
+                  {
+                    "type": "header",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "🚨 GovCon Shop Health Check Failed"
+                    }
+                  },
+                  {
+                    "type": "section",
+                    "text": {
+                      "type": "mrkdwn",
+                      "text": "*${{ steps.health.outputs.failed_count }} pages are down:*\n```${{ steps.health.outputs.failed_pages }}```"
+                    }
+                  },
+                  {
+                    "type": "actions",
+                    "elements": [
+                      {
+                        "type": "button",
+                        "text": {"type": "plain_text", "text": "View Workflow"},
+                        "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                      },
+                      {
+                        "type": "button",
+                        "text": {"type": "plain_text", "text": "View Shop"},
+                        "url": "https://shop.govcongiants.org"
+                      }
+                    ]
+                  }
+                ]
+              }'
+          fi
+
+      - name: Fail workflow if pages down
+        if: steps.health.outputs.failed == 'true'
+        run: exit 1
