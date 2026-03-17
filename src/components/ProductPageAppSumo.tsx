@@ -321,7 +321,7 @@ export default function ProductPageAppSumo({
           {videos.length > 0 && (
             <div className="mb-10">
               <h3 className="text-xl font-bold text-gray-900 mb-4">Watch How It Works</h3>
-              <div className={`grid gap-4 ${videos.length === 1 ? 'grid-cols-1 max-w-2xl mx-auto' : videos.length === 2 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 md:grid-cols-3'}`}>
+              <div className="space-y-6">
                 {videos.map((video, i) => (
                   <div key={i} className="rounded-xl overflow-hidden border-2 border-gray-200 hover:border-gray-400 transition-all">
                     <div className="aspect-video">
@@ -336,8 +336,8 @@ export default function ProductPageAppSumo({
                         allowFullScreen
                       />
                     </div>
-                    <div className="p-3 bg-gray-50">
-                      <p className="font-medium text-gray-800 text-sm">{video.title}</p>
+                    <div className="p-4 bg-gray-50">
+                      <p className="font-semibold text-gray-900">{video.title}</p>
                     </div>
                   </div>
                 ))}
