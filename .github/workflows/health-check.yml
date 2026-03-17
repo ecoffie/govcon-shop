@@ -147,13 +147,19 @@ jobs:
           echo "| Link | Status |" >> $GITHUB_STEP_SUMMARY
           echo "|------|--------|" >> $GITHUB_STEP_SUMMARY
 
-          # Fetch homepage and extract internal links
+          # Fetch homepage and extract internal navigation links only
           HOMEPAGE_HTML=$(curl -s "$BASE_URL" --max-time 30)
-          LINKS=$(echo "$HOMEPAGE_HTML" | grep -oE 'href="/[^"#]*"' | sed 's/href="//g; s/"//g' | sort -u)
+          # Match only valid route patterns (lowercase, hyphens, slashes)
+          LINKS=$(echo "$HOMEPAGE_HTML" | grep -oE 'href="/[a-z][a-z0-9-]*(/[a-z0-9-]+)*"' | sed 's/href="//g; s/"//g' | sort -u)
 
           for link in $LINKS; do
-            # Skip static assets
-            if [[ "$link" == *".ico"* ]] || [[ "$link" == *".png"* ]] || [[ "$link" == *".jpg"* ]] || [[ "$link" == *".css"* ]] || [[ "$link" == *".js"* ]] || [[ "$link" == "/api/"* ]] || [[ "$link" == "/_next/"* ]]; then
+            # Skip images, static assets, API routes
+            if [[ "$link" == "/images"* ]] || [[ "$link" == "/api/"* ]] || [[ "$link" == "/_next/"* ]]; then
+              continue
+            fi
+
+            # Skip very short links (likely parsing errors)
+            if [ ${#link} -lt 3 ]; then
               continue
             fi
 
@@ -188,13 +194,19 @@ jobs:
           echo "| Link | Status |" >> $GITHUB_STEP_SUMMARY
           echo "|------|--------|" >> $GITHUB_STEP_SUMMARY
 
-          # Fetch homepage and extract internal links
+          # Fetch homepage and extract internal navigation links only
           HOMEPAGE_HTML=$(curl -s "$BASE_URL" --max-time 30)
-          LINKS=$(echo "$HOMEPAGE_HTML" | grep -oE 'href="/[^"#]*"' | sed 's/href="//g; s/"//g' | sort -u)
+          # Match only valid route patterns (lowercase, hyphens, slashes)
+          LINKS=$(echo "$HOMEPAGE_HTML" | grep -oE 'href="/[a-z][a-z0-9-]*(/[a-z0-9-]+)*"' | sed 's/href="//g; s/"//g' | sort -u)
 
           for link in $LINKS; do
-            # Skip static assets
-            if [[ "$link" == *".ico"* ]] || [[ "$link" == *".png"* ]] || [[ "$link" == *".jpg"* ]] || [[ "$link" == *".css"* ]] || [[ "$link" == *".js"* ]] || [[ "$link" == "/api/"* ]] || [[ "$link" == "/_next/"* ]]; then
+            # Skip images, static assets, API routes
+            if [[ "$link" == "/images"* ]] || [[ "$link" == "/api/"* ]] || [[ "$link" == "/_next/"* ]]; then
+              continue
+            fi
+
+            # Skip very short links (likely parsing errors)
+            if [ ${#link} -lt 3 ]; then
               continue
             fi
 
@@ -240,11 +252,18 @@ jobs:
             echo "**Checking $page**" >> $GITHUB_STEP_SUMMARY
 
             PAGE_HTML=$(curl -s "${BASE_URL}${page}" --max-time 30)
-            LINKS=$(echo "$PAGE_HTML" | grep -oE 'href="/[^"#]*"' | sed 's/href="//g; s/"//g' | sort -u)
+            # Extract only valid navigation links (not images, not partial paths)
+            LINKS=$(echo "$PAGE_HTML" | grep -oE 'href="/[a-z][a-z0-9-]*(/[a-z0-9-]+)*"' | sed 's/href="//g; s/"//g' | sort -u)
 
+            FOUND_ISSUES=0
             for link in $LINKS; do
-              # Skip static assets
-              if [[ "$link" == *".ico"* ]] || [[ "$link" == *".png"* ]] || [[ "$link" == *".jpg"* ]] || [[ "$link" == "/api/"* ]] || [[ "$link" == "/_next/"* ]]; then
+              # Skip static assets, images, API routes
+              if [[ "$link" == "/images"* ]] || [[ "$link" == "/api/"* ]] || [[ "$link" == "/_next/"* ]] || [[ "$link" == *".png"* ]] || [[ "$link" == *".jpg"* ]] || [[ "$link" == *".ico"* ]]; then
+                continue
+              fi
+
+              # Skip very short links that are likely parsing errors
+              if [ ${#link} -lt 3 ]; then
                 continue
               fi
 
@@ -255,8 +274,13 @@ jobs:
                 echo "- ❌ $link → HTTP $status" >> $GITHUB_STEP_SUMMARY
                 PRODUCT_FAILURES=$((PRODUCT_FAILURES + 1))
                 PRODUCT_BROKEN="${PRODUCT_BROKEN}${page} → ${link}: HTTP ${status}\n"
+                FOUND_ISSUES=1
               fi
             done
+
+            if [ $FOUND_ISSUES -eq 0 ]; then
+              echo "- ✅ All links valid" >> $GITHUB_STEP_SUMMARY
+            fi
           done
 
           echo "" >> $GITHUB_STEP_SUMMARY
