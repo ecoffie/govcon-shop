@@ -50,6 +50,7 @@ interface UpgradeProduct {
 interface VideoItem {
   url: string;
   title: string;
+  thumbnail?: string;
 }
 
 interface ProductPageProps {
@@ -314,29 +315,43 @@ export default function ProductPageAppSumo({
             {/* Thumbnail Gallery - Show videos first, then remaining screenshots */}
             <div className="grid gap-3 grid-cols-4">
               {/* Video thumbnails first */}
-              {videos.slice(0, 4).map((video, i) => (
-                <div
-                  key={`video-${i}`}
-                  onClick={() => {
-                    setSelectedVideo(i);
-                    setShowingVideo(true);
-                  }}
-                  className={`aspect-video rounded-lg overflow-hidden cursor-pointer transition-all border-2 ${
-                    showingVideo && selectedVideo === i ? 'border-blue-500 ring-2 ring-blue-200' : 'border-gray-200 hover:border-gray-400'
-                  }`}
-                >
-                  <div className="w-full h-full bg-gray-900 flex flex-col items-center justify-center relative">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center">
-                        <svg className="w-5 h-5 text-gray-900 ml-0.5" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-                        </svg>
+              {videos.slice(0, 4).map((video, i) => {
+                // Extract Vimeo ID for thumbnail
+                const vimeoMatch = video.url.match(/vimeo\.com\/(\d+)/);
+                const vimeoId = vimeoMatch ? vimeoMatch[1] : null;
+                const thumbnailUrl = video.thumbnail || (vimeoId ? `https://vumbnail.com/${vimeoId}.jpg` : null);
+
+                return (
+                  <div
+                    key={`video-${i}`}
+                    onClick={() => {
+                      setSelectedVideo(i);
+                      setShowingVideo(true);
+                    }}
+                    className={`aspect-video rounded-lg overflow-hidden cursor-pointer transition-all border-2 ${
+                      showingVideo && selectedVideo === i ? 'border-blue-500 ring-2 ring-blue-200' : 'border-gray-200 hover:border-gray-400'
+                    }`}
+                  >
+                    <div className="w-full h-full bg-gray-900 flex flex-col items-center justify-center relative">
+                      {thumbnailUrl && (
+                        <img
+                          src={thumbnailUrl}
+                          alt={video.title}
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
+                      )}
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                        <div className="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center">
+                          <svg className="w-5 h-5 text-gray-900 ml-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                          </svg>
+                        </div>
                       </div>
+                      <p className="absolute bottom-2 left-2 right-2 text-white text-xs font-medium truncate drop-shadow-lg">{video.title}</p>
                     </div>
-                    <p className="absolute bottom-2 left-2 right-2 text-white text-xs font-medium truncate">{video.title}</p>
                   </div>
-                </div>
-              ))}
+                );
+              })}
               {/* Fill remaining slots with screenshots */}
               {screenshots.slice(0, Math.max(0, 4 - videos.length)).map((screenshot, i) => (
                 <div
