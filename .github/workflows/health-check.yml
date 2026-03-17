@@ -14,13 +14,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run Health Check
-        id: health
+      - name: Check Shop Pages
+        id: shop
         run: |
           BASE_URL="https://shop.govcongiants.org"
           FAILED=0
           RESULTS=""
-          BROKEN_LINKS=""
 
           # Critical product pages
           PAGES=(
@@ -48,9 +47,9 @@ jobs:
             "/api/health|API Health"
           )
 
-          echo "## GovCon Shop Health Check" >> $GITHUB_STEP_SUMMARY
+          echo "## GovCon Health Check" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Page Status" >> $GITHUB_STEP_SUMMARY
+          echo "### Shop Pages (shop.govcongiants.org)" >> $GITHUB_STEP_SUMMARY
           echo "| Page | Status | Response Time |" >> $GITHUB_STEP_SUMMARY
           echo "|------|--------|---------------|" >> $GITHUB_STEP_SUMMARY
 
@@ -68,33 +67,92 @@ jobs:
             else
               echo "| $name | ❌ $status | ${time}s |" >> $GITHUB_STEP_SUMMARY
               FAILED=$((FAILED + 1))
-              RESULTS="${RESULTS}${name} (${path}): HTTP ${status}\n"
+              RESULTS="${RESULTS}[SHOP] ${name} (${path}): HTTP ${status}\n"
             fi
           done
 
           echo "" >> $GITHUB_STEP_SUMMARY
 
-      - name: Check Homepage Links
-        id: links
+          echo "shop_failed=$FAILED" >> $GITHUB_OUTPUT
+          if [ $FAILED -gt 0 ]; then
+            echo "shop_results<<EOF" >> $GITHUB_OUTPUT
+            echo -e "$RESULTS" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check Funnel Pages
+        id: funnels
+        run: |
+          BASE_URL="https://govcongiants.org"
+          FAILED=0
+          RESULTS=""
+
+          # Funnel pages
+          PAGES=(
+            "/|Homepage"
+            "/bootcamp|Bootcamp"
+            "/surge|Surge Bootcamp"
+            "/free-course|Free Course"
+            "/opp|Opportunity Hunter Funnel"
+            "/resources|Resources"
+            "/training|Training Hub"
+            "/premium|Premium Membership"
+            "/dashboard|Dashboard"
+            "/encore|Encore Funding"
+            "/proposal-bootcamp|Proposal Bootcamp"
+            "/proposal-bootcamp/2-upsell.html|PB Upsell"
+            "/proposal-bootcamp/3-downsell.html|PB Downsell"
+            "/proposal-bootcamp/4-thank-you.html|PB Thank You"
+          )
+
+          echo "### Funnel Pages (govcongiants.org)" >> $GITHUB_STEP_SUMMARY
+          echo "| Page | Status | Response Time |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|--------|---------------|" >> $GITHUB_STEP_SUMMARY
+
+          for item in "${PAGES[@]}"; do
+            path=$(echo "$item" | cut -d'|' -f1)
+            name=$(echo "$item" | cut -d'|' -f2)
+            url="${BASE_URL}${path}"
+
+            response=$(curl -s -o /dev/null -w "%{http_code}|%{time_total}" "$url" --max-time 15 2>/dev/null || echo "000|0")
+            status=$(echo "$response" | cut -d'|' -f1)
+            time=$(echo "$response" | cut -d'|' -f2)
+
+            if [ "$status" = "200" ]; then
+              echo "| $name | ✅ $status | ${time}s |" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "| $name | ❌ $status | ${time}s |" >> $GITHUB_STEP_SUMMARY
+              FAILED=$((FAILED + 1))
+              RESULTS="${RESULTS}[FUNNEL] ${name} (${path}): HTTP ${status}\n"
+            fi
+          done
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          echo "funnel_failed=$FAILED" >> $GITHUB_OUTPUT
+          if [ $FAILED -gt 0 ]; then
+            echo "funnel_results<<EOF" >> $GITHUB_OUTPUT
+            echo -e "$RESULTS" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check Shop Homepage Links
+        id: shop_links
         run: |
           BASE_URL="https://shop.govcongiants.org"
           BROKEN_LINKS=""
           LINK_FAILURES=0
 
-          echo "### Homepage Link Verification" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-          # Fetch homepage and extract internal links
-          HOMEPAGE_HTML=$(curl -s "$BASE_URL" --max-time 30)
-
-          # Extract href links (internal only, starting with /)
-          LINKS=$(echo "$HOMEPAGE_HTML" | grep -oE 'href="/[^"#]*"' | sed 's/href="//g; s/"//g' | sort -u)
-
+          echo "### Shop Homepage Links" >> $GITHUB_STEP_SUMMARY
           echo "| Link | Status |" >> $GITHUB_STEP_SUMMARY
           echo "|------|--------|" >> $GITHUB_STEP_SUMMARY
 
+          # Fetch homepage and extract internal links
+          HOMEPAGE_HTML=$(curl -s "$BASE_URL" --max-time 30)
+          LINKS=$(echo "$HOMEPAGE_HTML" | grep -oE 'href="/[^"#]*"' | sed 's/href="//g; s/"//g' | sort -u)
+
           for link in $LINKS; do
-            # Skip static assets, API routes, and anchors
+            # Skip static assets
             if [[ "$link" == *".ico"* ]] || [[ "$link" == *".png"* ]] || [[ "$link" == *".jpg"* ]] || [[ "$link" == *".css"* ]] || [[ "$link" == *".js"* ]] || [[ "$link" == "/api/"* ]] || [[ "$link" == "/_next/"* ]]; then
               continue
             fi
@@ -107,21 +165,57 @@ jobs:
             else
               echo "| $link | ❌ $status |" >> $GITHUB_STEP_SUMMARY
               LINK_FAILURES=$((LINK_FAILURES + 1))
-              BROKEN_LINKS="${BROKEN_LINKS}${link}: HTTP ${status}\n"
+              BROKEN_LINKS="${BROKEN_LINKS}[SHOP] ${link}: HTTP ${status}\n"
             fi
           done
 
           echo "" >> $GITHUB_STEP_SUMMARY
-
+          echo "shop_link_failures=$LINK_FAILURES" >> $GITHUB_OUTPUT
           if [ $LINK_FAILURES -gt 0 ]; then
-            echo "### ❌ $LINK_FAILURES broken links found" >> $GITHUB_STEP_SUMMARY
-            echo "link_failures=$LINK_FAILURES" >> $GITHUB_OUTPUT
-            echo "broken_links<<EOF" >> $GITHUB_OUTPUT
+            echo "shop_broken_links<<EOF" >> $GITHUB_OUTPUT
             echo -e "$BROKEN_LINKS" >> $GITHUB_OUTPUT
             echo "EOF" >> $GITHUB_OUTPUT
-          else
-            echo "### ✅ All homepage links valid" >> $GITHUB_STEP_SUMMARY
-            echo "link_failures=0" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check Funnel Homepage Links
+        id: funnel_links
+        run: |
+          BASE_URL="https://govcongiants.org"
+          BROKEN_LINKS=""
+          LINK_FAILURES=0
+
+          echo "### Funnel Homepage Links" >> $GITHUB_STEP_SUMMARY
+          echo "| Link | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|--------|" >> $GITHUB_STEP_SUMMARY
+
+          # Fetch homepage and extract internal links
+          HOMEPAGE_HTML=$(curl -s "$BASE_URL" --max-time 30)
+          LINKS=$(echo "$HOMEPAGE_HTML" | grep -oE 'href="/[^"#]*"' | sed 's/href="//g; s/"//g' | sort -u)
+
+          for link in $LINKS; do
+            # Skip static assets
+            if [[ "$link" == *".ico"* ]] || [[ "$link" == *".png"* ]] || [[ "$link" == *".jpg"* ]] || [[ "$link" == *".css"* ]] || [[ "$link" == *".js"* ]] || [[ "$link" == "/api/"* ]] || [[ "$link" == "/_next/"* ]]; then
+              continue
+            fi
+
+            url="${BASE_URL}${link}"
+            status=$(curl -s -o /dev/null -w "%{http_code}" "$url" --max-time 10 2>/dev/null || echo "000")
+
+            if [ "$status" = "200" ] || [ "$status" = "307" ] || [ "$status" = "308" ]; then
+              echo "| $link | ✅ $status |" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "| $link | ❌ $status |" >> $GITHUB_STEP_SUMMARY
+              LINK_FAILURES=$((LINK_FAILURES + 1))
+              BROKEN_LINKS="${BROKEN_LINKS}[FUNNEL] ${link}: HTTP ${status}\n"
+            fi
+          done
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "funnel_link_failures=$LINK_FAILURES" >> $GITHUB_OUTPUT
+          if [ $LINK_FAILURES -gt 0 ]; then
+            echo "funnel_broken_links<<EOF" >> $GITHUB_OUTPUT
+            echo -e "$BROKEN_LINKS" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
           fi
 
       - name: Check Product Page Links
@@ -180,18 +274,27 @@ jobs:
       - name: Determine Overall Status
         id: overall
         run: |
-          PAGE_FAILED=${{ steps.health.outputs.failed_count || 0 }}
-          LINK_FAILED=${{ steps.links.outputs.link_failures || 0 }}
-          PRODUCT_FAILED=${{ steps.product_links.outputs.product_failures || 0 }}
+          SHOP_PAGES=${{ steps.shop.outputs.shop_failed || 0 }}
+          FUNNEL_PAGES=${{ steps.funnels.outputs.funnel_failed || 0 }}
+          SHOP_LINKS=${{ steps.shop_links.outputs.shop_link_failures || 0 }}
+          FUNNEL_LINKS=${{ steps.funnel_links.outputs.funnel_link_failures || 0 }}
+          PRODUCT_LINKS=${{ steps.product_links.outputs.product_failures || 0 }}
 
-          TOTAL_ISSUES=$((PAGE_FAILED + LINK_FAILED + PRODUCT_FAILED))
+          TOTAL_ISSUES=$((SHOP_PAGES + FUNNEL_PAGES + SHOP_LINKS + FUNNEL_LINKS + PRODUCT_LINKS))
 
           echo "total_issues=$TOTAL_ISSUES" >> $GITHUB_OUTPUT
+          echo "shop_pages=$SHOP_PAGES" >> $GITHUB_OUTPUT
+          echo "funnel_pages=$FUNNEL_PAGES" >> $GITHUB_OUTPUT
+          echo "shop_links=$SHOP_LINKS" >> $GITHUB_OUTPUT
+          echo "funnel_links=$FUNNEL_LINKS" >> $GITHUB_OUTPUT
+          echo "product_links=$PRODUCT_LINKS" >> $GITHUB_OUTPUT
 
           if [ $TOTAL_ISSUES -gt 0 ]; then
             echo "has_issues=true" >> $GITHUB_OUTPUT
+            echo "### ❌ Total Issues: $TOTAL_ISSUES" >> $GITHUB_STEP_SUMMARY
           else
             echo "has_issues=false" >> $GITHUB_OUTPUT
+            echo "### ✅ All checks passed!" >> $GITHUB_STEP_SUMMARY
           fi
 
       - name: Send Slack Alert on Failure
@@ -200,39 +303,33 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_HEALTH_WEBHOOK_URL }}
         run: |
           if [ -n "$SLACK_WEBHOOK" ]; then
-            # Build issue summary
-            ISSUES=""
-
-            if [ "${{ steps.health.outputs.failed_count || 0 }}" -gt 0 ]; then
-              ISSUES="${ISSUES}*Pages Down:*\n\`\`\`${{ steps.health.outputs.failed_pages }}\`\`\`\n"
-            fi
-
-            if [ "${{ steps.links.outputs.link_failures || 0 }}" -gt 0 ]; then
-              ISSUES="${ISSUES}*Broken Homepage Links:*\n\`\`\`${{ steps.links.outputs.broken_links }}\`\`\`\n"
-            fi
-
-            if [ "${{ steps.product_links.outputs.product_failures || 0 }}" -gt 0 ]; then
-              ISSUES="${ISSUES}*Broken Product Page Links:*\n\`\`\`${{ steps.product_links.outputs.product_broken }}\`\`\`\n"
-            fi
-
             curl -X POST "$SLACK_WEBHOOK" \
               -H "Content-Type: application/json" \
               -d "{
-                \"text\": \"🚨 GovCon Shop Health Check Failed\",
+                \"text\": \"🚨 GovCon Health Check Failed\",
                 \"blocks\": [
                   {
                     \"type\": \"header\",
                     \"text\": {
                       \"type\": \"plain_text\",
-                      \"text\": \"🚨 GovCon Shop Health Check Failed\"
+                      \"text\": \"🚨 GovCon Health Check Failed\"
+                    }
+                  },
+                  {
+                    \"type\": \"section\",
+                    \"text\": {
+                      \"type\": \"mrkdwn\",
+                      \"text\": \"*${{ steps.overall.outputs.total_issues }} issues found*\"
                     }
                   },
                   {
                     \"type\": \"section\",
                     \"fields\": [
-                      {\"type\": \"mrkdwn\", \"text\": \"*Pages Down:* ${{ steps.health.outputs.failed_count || 0 }}\"},
-                      {\"type\": \"mrkdwn\", \"text\": \"*Broken Links:* ${{ steps.links.outputs.link_failures || 0 }}\"},
-                      {\"type\": \"mrkdwn\", \"text\": \"*Product Link Issues:* ${{ steps.product_links.outputs.product_failures || 0 }}\"}
+                      {\"type\": \"mrkdwn\", \"text\": \"*Shop Pages:* ${{ steps.overall.outputs.shop_pages }}\"},
+                      {\"type\": \"mrkdwn\", \"text\": \"*Funnel Pages:* ${{ steps.overall.outputs.funnel_pages }}\"},
+                      {\"type\": \"mrkdwn\", \"text\": \"*Shop Links:* ${{ steps.overall.outputs.shop_links }}\"},
+                      {\"type\": \"mrkdwn\", \"text\": \"*Funnel Links:* ${{ steps.overall.outputs.funnel_links }}\"},
+                      {\"type\": \"mrkdwn\", \"text\": \"*Product Links:* ${{ steps.overall.outputs.product_links }}\"}
                     ]
                   },
                   {
@@ -240,13 +337,18 @@ jobs:
                     \"elements\": [
                       {
                         \"type\": \"button\",
-                        \"text\": {\"type\": \"plain_text\", \"text\": \"View Details\"},
+                        \"text\": {\"type\": \"plain_text\", \"text\": \"View Report\"},
                         \"url\": \"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"
                       },
                       {
                         \"type\": \"button\",
-                        \"text\": {\"type\": \"plain_text\", \"text\": \"View Shop\"},
+                        \"text\": {\"type\": \"plain_text\", \"text\": \"Shop\"},
                         \"url\": \"https://shop.govcongiants.org\"
+                      },
+                      {
+                        \"type\": \"button\",
+                        \"text\": {\"type\": \"plain_text\", \"text\": \"Funnels\"},
+                        \"url\": \"https://govcongiants.org\"
                       }
                     ]
                   }
@@ -258,4 +360,10 @@ jobs:
         if: steps.overall.outputs.has_issues == 'true'
         run: |
           echo "❌ Health check found ${{ steps.overall.outputs.total_issues }} issues"
+          echo ""
+          echo "Shop Pages Down: ${{ steps.overall.outputs.shop_pages }}"
+          echo "Funnel Pages Down: ${{ steps.overall.outputs.funnel_pages }}"
+          echo "Shop Broken Links: ${{ steps.overall.outputs.shop_links }}"
+          echo "Funnel Broken Links: ${{ steps.overall.outputs.funnel_links }}"
+          echo "Product Page Links: ${{ steps.overall.outputs.product_links }}"
           exit 1
