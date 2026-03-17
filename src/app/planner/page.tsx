@@ -389,9 +389,21 @@ export default function PlannerPage() {
                   <h1 className="text-3xl font-bold text-gray-900 mb-2">
                     You&apos;re {progress?.overall || 0}% through your 2026 GovCon Action Plan
                   </h1>
-                  <p className="text-lg text-gray-600 mb-6">
+                  <p className="text-lg text-gray-600 mb-4">
                     {progress?.completedTasks || 0} of {progress?.totalTasks || 36} tasks completed
                   </p>
+
+                  {/* Overdue Tasks Badge */}
+                  {(progress?.overdueTasks ?? 0) > 0 && (
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-50 border border-red-200 rounded-lg mb-4">
+                      <svg className="h-5 w-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="text-red-700 font-medium">
+                        {progress?.overdueTasks} overdue {progress?.overdueTasks === 1 ? 'task' : 'tasks'}
+                      </span>
+                    </div>
+                  )}
 
                   {/* Motivational Quote Card */}
                   <div className="bg-gradient-to-r from-[#1e40af] to-blue-600 rounded-lg p-4 text-white shadow-md">

@@ -40,6 +40,7 @@ export interface ProgressSummary {
   overall: number; // overall percentage
   totalTasks: number;
   completedTasks: number;
+  overdueTasks: number; // count of overdue incomplete tasks
   phases: PhaseProgress[];
 }
 
@@ -161,6 +162,7 @@ function getDefaultProgress(): ProgressSummary {
     overall: 0,
     totalTasks: SEED_TASKS.length,
     completedTasks: 0,
+    overdueTasks: 0,
     phases,
   };
 }
@@ -177,13 +179,22 @@ function calculateProgress(userTasks: any[]): ProgressSummary {
     phaseMap.set(phase.id, { completed: 0, total: 0, phaseName: phase.name });
   });
 
-  // Count tasks per phase
+  // Count tasks per phase and overdue tasks
+  const now = new Date();
+  let overdueTasks = 0;
+
   userTasks.forEach(task => {
     const phase = phaseMap.get(task.phase_id);
     if (phase) {
       phase.total++;
       if (task.completed) {
         phase.completed++;
+      } else if (task.due_date) {
+        // Check if task is overdue (not completed and past due date)
+        const dueDate = new Date(task.due_date);
+        if (dueDate < now) {
+          overdueTasks++;
+        }
       }
     }
   });
@@ -212,6 +223,7 @@ function calculateProgress(userTasks: any[]): ProgressSummary {
     overall,
     totalTasks,
     completedTasks,
+    overdueTasks,
     phases: phases.sort((a, b) => a.phaseId - b.phaseId),
   };
 }
