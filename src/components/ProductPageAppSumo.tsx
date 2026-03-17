@@ -120,6 +120,8 @@ export default function ProductPageAppSumo({
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedVideo, setSelectedVideo] = useState(0);
   const [selectedTier, setSelectedTier] = useState(0);
+  // Track if we're showing a video or image - default to video if videos exist
+  const [showingVideo, setShowingVideo] = useState(true);
 
   // Email gate state
   const [showEmailModal, setShowEmailModal] = useState(false);
@@ -259,7 +261,7 @@ export default function ProductPageAppSumo({
           <div className="mb-10">
             {/* Main Image/Video Display */}
             <div className="w-full rounded-xl aspect-video mb-4 relative overflow-hidden border-2 border-gray-200">
-              {videos.length > 0 ? (
+              {showingVideo && videos.length > 0 ? (
                 // Show selected video from videos array
                 <iframe
                   className="w-full h-full"
@@ -270,6 +272,13 @@ export default function ProductPageAppSumo({
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
+                />
+              ) : !showingVideo && screenshots.length > 0 ? (
+                // Display selected screenshot
+                <img
+                  src={screenshots[selectedImage]}
+                  alt={`${title} screenshot ${selectedImage + 1}`}
+                  className="w-full h-full object-contain bg-gray-100"
                 />
               ) : videoUrl && selectedImage === 0 ? (
                 // YouTube embed (legacy single video)
@@ -302,53 +311,57 @@ export default function ProductPageAppSumo({
               )}
             </div>
 
-            {/* Thumbnail Gallery - Show videos if available, otherwise screenshots */}
-            <div className={`grid gap-3 ${videos.length > 0 ? (videos.length <= 3 ? `grid-cols-${videos.length}` : 'grid-cols-4') : 'grid-cols-4'}`}>
-              {videos.length > 0 ? (
-                // Show video thumbnails
-                videos.slice(0, 4).map((video, i) => (
-                  <div
-                    key={i}
-                    onClick={() => setSelectedVideo(i)}
-                    className={`aspect-video rounded-lg overflow-hidden cursor-pointer transition-all border-2 ${
-                      selectedVideo === i ? 'border-blue-500 ring-2 ring-blue-200' : 'border-gray-200 hover:border-gray-400'
-                    }`}
-                  >
-                    <div className="w-full h-full bg-gray-900 flex flex-col items-center justify-center relative">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center">
-                          <svg className="w-5 h-5 text-gray-900 ml-0.5" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-                          </svg>
-                        </div>
+            {/* Thumbnail Gallery - Show videos first, then remaining screenshots */}
+            <div className="grid gap-3 grid-cols-4">
+              {/* Video thumbnails first */}
+              {videos.slice(0, 4).map((video, i) => (
+                <div
+                  key={`video-${i}`}
+                  onClick={() => {
+                    setSelectedVideo(i);
+                    setShowingVideo(true);
+                  }}
+                  className={`aspect-video rounded-lg overflow-hidden cursor-pointer transition-all border-2 ${
+                    showingVideo && selectedVideo === i ? 'border-blue-500 ring-2 ring-blue-200' : 'border-gray-200 hover:border-gray-400'
+                  }`}
+                >
+                  <div className="w-full h-full bg-gray-900 flex flex-col items-center justify-center relative">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center">
+                        <svg className="w-5 h-5 text-gray-900 ml-0.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                        </svg>
                       </div>
-                      <p className="absolute bottom-2 left-2 right-2 text-white text-xs font-medium truncate">{video.title}</p>
                     </div>
+                    <p className="absolute bottom-2 left-2 right-2 text-white text-xs font-medium truncate">{video.title}</p>
                   </div>
-                ))
-              ) : screenshots.length > 0 ? (
-                screenshots.slice(0, 4).map((screenshot, i) => (
-                  <div
-                    key={i}
-                    onClick={() => setSelectedImage(i)}
-                    className={`aspect-video rounded-lg overflow-hidden cursor-pointer transition-all border-2 ${
-                      selectedImage === i ? 'border-blue-500 ring-2 ring-blue-200' : 'border-gray-200 hover:border-gray-400'
-                    }`}
-                  >
-                    <img
-                      src={screenshot}
-                      alt={`${title} thumbnail ${i + 1}`}
-                      className="w-full h-full object-contain bg-gray-100"
-                    />
-                  </div>
-                ))
-              ) : (
-                thumbnails.slice(0, 4).map((thumb, i) => (
-                  <div key={i} className="aspect-video bg-gray-100 border-2 border-gray-200 rounded-lg flex items-center justify-center text-sm font-medium text-gray-500 cursor-pointer hover:border-gray-400 transition-all">
-                    {thumb}
-                  </div>
-                ))
-              )}
+                </div>
+              ))}
+              {/* Fill remaining slots with screenshots */}
+              {screenshots.slice(0, Math.max(0, 4 - videos.length)).map((screenshot, i) => (
+                <div
+                  key={`screenshot-${i}`}
+                  onClick={() => {
+                    setSelectedImage(i);
+                    setShowingVideo(false);
+                  }}
+                  className={`aspect-video rounded-lg overflow-hidden cursor-pointer transition-all border-2 ${
+                    !showingVideo && selectedImage === i ? 'border-blue-500 ring-2 ring-blue-200' : 'border-gray-200 hover:border-gray-400'
+                  }`}
+                >
+                  <img
+                    src={screenshot}
+                    alt={`${title} thumbnail ${i + 1}`}
+                    className="w-full h-full object-contain bg-gray-100"
+                  />
+                </div>
+              ))}
+              {/* Fallback placeholders if no videos or screenshots */}
+              {videos.length === 0 && screenshots.length === 0 && thumbnails.slice(0, 4).map((thumb, i) => (
+                <div key={i} className="aspect-video bg-gray-100 border-2 border-gray-200 rounded-lg flex items-center justify-center text-sm font-medium text-gray-500 cursor-pointer hover:border-gray-400 transition-all">
+                  {thumb}
+                </div>
+              ))}
             </div>
           </div>
 
