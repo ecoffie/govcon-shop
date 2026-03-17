@@ -47,6 +47,11 @@ interface UpgradeProduct {
   linkUrl: string;
 }
 
+interface VideoItem {
+  url: string;
+  title: string;
+}
+
 interface ProductPageProps {
   title: string;
   tagline: string;
@@ -67,6 +72,7 @@ interface ProductPageProps {
   videoTitle?: string;
   videoSubtitle?: string;
   videoUrl?: string;
+  videos?: VideoItem[];
   mainImage?: string;
   screenshots?: string[];
   screenshotFeatures?: ScreenshotFeature[];
@@ -101,6 +107,7 @@ export default function ProductPageAppSumo({
   videoTitle,
   videoSubtitle,
   videoUrl,
+  videos = [],
   mainImage,
   screenshots = [],
   screenshotFeatures = [],
@@ -309,6 +316,34 @@ export default function ProductPageAppSumo({
               )}
             </div>
           </div>
+
+          {/* Additional Videos Section */}
+          {videos.length > 0 && (
+            <div className="mb-10">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Watch How It Works</h3>
+              <div className={`grid gap-4 ${videos.length === 1 ? 'grid-cols-1 max-w-2xl mx-auto' : videos.length === 2 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 md:grid-cols-3'}`}>
+                {videos.map((video, i) => (
+                  <div key={i} className="rounded-xl overflow-hidden border-2 border-gray-200 hover:border-gray-400 transition-all">
+                    <div className="aspect-video">
+                      <iframe
+                        className="w-full h-full"
+                        src={video.url.includes('vimeo.com')
+                          ? video.url.replace('vimeo.com/', 'player.vimeo.com/video/')
+                          : video.url.replace('watch?v=', 'embed/').replace('youtu.be/', 'youtube.com/embed/')}
+                        title={video.title}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                    <div className="p-3 bg-gray-50">
+                      <p className="font-medium text-gray-800 text-sm">{video.title}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Description */}
           <div className="text-lg leading-relaxed mb-8 text-gray-700">
