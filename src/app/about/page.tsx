@@ -77,7 +77,7 @@ export default function AboutPage() {
                 <p className="text-sm text-gray-600">Free agency discovery tool to find your best-fit agencies</p>
               </div>
             </Link>
-            <Link href="/contractor-database" className="flex items-start gap-3 p-4 rounded-lg hover:bg-gray-50 transition-colors">
+            <Link href="/contractor-database-product" className="flex items-start gap-3 p-4 rounded-lg hover:bg-gray-50 transition-colors">
               <span className="text-3xl">🏢</span>
               <div>
                 <h3 className="font-bold text-gray-900">Contractor Database</h3>

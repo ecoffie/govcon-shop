@@ -246,7 +246,7 @@ export default function FreeResourcesPage() {
               </p>
             </div>
             <Link
-              href="/contractor-database"
+              href="/contractor-database-product"
               className="px-8 py-4 bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 font-bold rounded-lg transition-all hover:shadow-xl hover:-translate-y-0.5 whitespace-nowrap"
             >
               View Full Database - $497
