@@ -8,7 +8,12 @@ import {
   getPhaseTasksWithDetails,
   updateTaskCompletion,
   getPhaseSeedTasks,
+  getTaskAttachments,
+  saveAttachmentMetadata,
+  deleteAttachmentMetadata,
+  type TaskAttachment,
 } from '@/lib/supabase/planner';
+import { uploadFile, deleteFile } from '@/lib/supabase/storage';
 import { useAuth } from '@/lib/supabase/AuthContext';
 
 // Phase data mapping
@@ -25,6 +30,14 @@ const phaseDataMap: Record<string, { id: number; name: string; icon: string }> =
   'contract-management': { id: 5, name: 'Contract Management', icon: '📋' },
 };
 
+// Attachment interface for display
+interface AttachmentDisplay {
+  id: string;
+  name: string;
+  path: string;
+  url?: string;
+}
+
 // Task interface for display
 interface Task {
   id: string;
@@ -33,7 +46,7 @@ interface Task {
   completed: boolean;
   dueDate?: string;
   notes: string;
-  attachments: string[];
+  attachments: AttachmentDisplay[];
 }
 
 // Accordion Item Component
@@ -49,6 +62,7 @@ function AccordionItem({
   const [isOpen, setIsOpen] = useState(false);
   const [localTask, setLocalTask] = useState(task);
   const [isSaving, setIsSaving] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
 
   // Update local task when prop changes
   useEffect(() => {
@@ -83,7 +97,7 @@ function AccordionItem({
     }
   };
 
-  const handleFieldUpdate = async (field: keyof Task, value: string | string[]) => {
+  const handleFieldUpdate = async (field: keyof Task, value: string | AttachmentDisplay[]) => {
     const updatedTask = { ...localTask, [field]: value };
     setLocalTask(updatedTask);
 
@@ -105,18 +119,75 @@ function AccordionItem({
     onUpdate(updatedTask);
   };
 
-  const handleFileUpload = () => {
-    // Mock file upload
+  const handleFileUpload = async () => {
     const input = document.createElement('input');
     input.type = 'file';
-    input.onchange = (e) => {
+    input.accept = '.pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg';
+    input.onchange = async (e) => {
       const file = (e.target as HTMLInputElement).files?.[0];
       if (file) {
-        const newAttachments = [...localTask.attachments, file.name];
-        handleFieldUpdate('attachments', newAttachments);
+        // Validate file size (10MB max)
+        if (file.size > 10 * 1024 * 1024) {
+          alert('File size must be less than 10MB');
+          return;
+        }
+
+        setIsUploading(true);
+        try {
+          // Upload file to Supabase Storage
+          const uploadedFile = await uploadFile(userId, localTask.id, file);
+
+          if (uploadedFile) {
+            // Save attachment metadata to database
+            const metadata = await saveAttachmentMetadata(
+              userId,
+              localTask.id,
+              uploadedFile.name,
+              uploadedFile.path,
+              uploadedFile.size,
+              file.type
+            );
+
+            if (metadata) {
+              // Update local state with new attachment
+              const newAttachment: AttachmentDisplay = {
+                id: metadata.id,
+                name: uploadedFile.name,
+                path: uploadedFile.path,
+                url: uploadedFile.url,
+              };
+              const newAttachments = [...localTask.attachments, newAttachment];
+              handleFieldUpdate('attachments', newAttachments);
+            }
+          }
+        } catch (error) {
+          console.error('Failed to upload file:', error);
+          alert('Failed to upload file. Please try again.');
+        } finally {
+          setIsUploading(false);
+        }
       }
     };
     input.click();
+  };
+
+  const handleDeleteAttachment = async (attachment: AttachmentDisplay) => {
+    if (!confirm(`Delete "${attachment.name}"?`)) return;
+
+    try {
+      // Delete from storage
+      await deleteFile(attachment.path);
+
+      // Delete metadata from database
+      await deleteAttachmentMetadata(userId, attachment.id);
+
+      // Update local state
+      const newAttachments = localTask.attachments.filter(a => a.id !== attachment.id);
+      handleFieldUpdate('attachments', newAttachments);
+    } catch (error) {
+      console.error('Failed to delete attachment:', error);
+      alert('Failed to delete file. Please try again.');
+    }
   };
 
   return (
@@ -201,21 +272,55 @@ function AccordionItem({
                     e.stopPropagation();
                     handleFileUpload();
                   }}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors text-sm text-gray-700 flex items-center justify-center gap-2"
+                  disabled={isUploading}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors text-sm text-gray-700 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                  </svg>
-                  Attach File
+                  {isUploading ? (
+                    <>
+                      <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                      </svg>
+                      Uploading...
+                    </>
+                  ) : (
+                    <>
+                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                      </svg>
+                      Attach File
+                    </>
+                  )}
                 </button>
+                <p className="text-xs text-gray-400 mt-1">PDF, Word, Excel, or images (max 10MB)</p>
                 {localTask.attachments.length > 0 && (
-                  <div className="mt-2 space-y-1">
-                    {localTask.attachments.map((file, idx) => (
-                      <div key={idx} className="text-xs text-gray-600 flex items-center gap-2">
-                        <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        {file}
+                  <div className="mt-2 space-y-2">
+                    {localTask.attachments.map((attachment) => (
+                      <div key={attachment.id} className="flex items-center justify-between p-2 bg-gray-50 rounded border border-gray-200">
+                        <a
+                          href={attachment.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-xs text-blue-600 hover:text-blue-800 flex items-center gap-2 truncate flex-1"
+                        >
+                          <svg className="h-4 w-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                          </svg>
+                          <span className="truncate">{attachment.name}</span>
+                        </a>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDeleteAttachment(attachment);
+                          }}
+                          className="text-gray-400 hover:text-red-500 p-1 ml-2 flex-shrink-0"
+                          title="Delete attachment"
+                        >
+                          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                        </button>
                       </div>
                     ))}
                   </div>
@@ -244,7 +349,7 @@ function AccordionItem({
 }
 
 // Add Custom Task Modal
-function AddTaskModal({ isOpen, onClose, onAdd }: { isOpen: boolean; onClose: () => void; onAdd: (task: Omit<Task, 'id'>) => void }) {
+function AddTaskModal({ isOpen, onClose, onAdd }: { isOpen: boolean; onClose: () => void; onAdd: (task: { title: string; description: string; completed: boolean; dueDate?: string; notes: string; attachments: AttachmentDisplay[] }) => void }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState('');
@@ -379,16 +484,34 @@ export default function PhaseDetailPage() {
         // Get tasks with user progress from Supabase
         const tasksWithDetails = await getPhaseTasksWithDetails(user.id, phase.id);
 
-        // Map to display format
-        const displayTasks: Task[] = tasksWithDetails.map((t) => ({
-          id: t.id,
-          title: t.title,
-          description: t.description,
-          completed: t.userTask?.completed || false,
-          dueDate: t.userTask?.dueDate || undefined,
-          notes: t.userTask?.notes || '',
-          attachments: [],
-        }));
+        // Map to display format and load attachments
+        const displayTasks: Task[] = await Promise.all(
+          tasksWithDetails.map(async (t) => {
+            // Load attachments for each task
+            let attachments: AttachmentDisplay[] = [];
+            try {
+              const taskAttachments = await getTaskAttachments(user.id, t.id);
+              attachments = taskAttachments.map((a) => ({
+                id: a.id,
+                name: a.fileName,
+                path: a.filePath,
+                url: undefined, // Will be populated if needed
+              }));
+            } catch {
+              // Ignore attachment loading errors
+            }
+
+            return {
+              id: t.id,
+              title: t.title,
+              description: t.description,
+              completed: t.userTask?.completed || false,
+              dueDate: t.userTask?.dueDate || undefined,
+              notes: t.userTask?.notes || '',
+              attachments,
+            };
+          })
+        );
 
         setTasks(displayTasks);
       } catch (err) {

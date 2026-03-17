@@ -460,3 +460,145 @@ export function getPhaseSeedTasks(phaseId: number): Task[] {
     }));
 }
 
+// =====================================================
+// Attachment Functions
+// =====================================================
+
+export interface TaskAttachment {
+  id: string;
+  userId: string;
+  taskId: string;
+  fileName: string;
+  filePath: string;
+  fileSize: number | null;
+  fileType: string | null;
+  createdAt: string;
+}
+
+/**
+ * Save attachment metadata to database
+ */
+export async function saveAttachmentMetadata(
+  userId: string,
+  taskId: string,
+  fileName: string,
+  filePath: string,
+  fileSize: number,
+  fileType: string
+): Promise<TaskAttachment | null> {
+  const supabase = getSupabase();
+
+  if (!supabase) {
+    console.warn('Supabase not configured - attachment metadata will not persist');
+    return null;
+  }
+
+  try {
+    const { data, error } = await supabase
+      .from('task_attachments')
+      .insert({
+        user_id: userId,
+        task_id: taskId,
+        file_name: fileName,
+        file_path: filePath,
+        file_size: fileSize,
+        file_type: fileType,
+      })
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Error saving attachment metadata:', error);
+      throw error;
+    }
+
+    return {
+      id: data.id,
+      userId: data.user_id,
+      taskId: data.task_id,
+      fileName: data.file_name,
+      filePath: data.file_path,
+      fileSize: data.file_size,
+      fileType: data.file_type,
+      createdAt: data.created_at,
+    };
+  } catch (error) {
+    console.error('Error in saveAttachmentMetadata:', error);
+    throw error;
+  }
+}
+
+/**
+ * Get all attachments for a task
+ */
+export async function getTaskAttachments(
+  userId: string,
+  taskId: string
+): Promise<TaskAttachment[]> {
+  const supabase = getSupabase();
+
+  if (!supabase) {
+    return [];
+  }
+
+  try {
+    const { data, error } = await supabase
+      .from('task_attachments')
+      .select('*')
+      .eq('user_id', userId)
+      .eq('task_id', taskId)
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching attachments:', error);
+      throw error;
+    }
+
+    return (data || []).map((row: any) => ({
+      id: row.id,
+      userId: row.user_id,
+      taskId: row.task_id,
+      fileName: row.file_name,
+      filePath: row.file_path,
+      fileSize: row.file_size,
+      fileType: row.file_type,
+      createdAt: row.created_at,
+    }));
+  } catch (error) {
+    console.error('Error in getTaskAttachments:', error);
+    return [];
+  }
+}
+
+/**
+ * Delete attachment metadata from database
+ */
+export async function deleteAttachmentMetadata(
+  userId: string,
+  attachmentId: string
+): Promise<boolean> {
+  const supabase = getSupabase();
+
+  if (!supabase) {
+    return false;
+  }
+
+  try {
+    const { error } = await supabase
+      .from('task_attachments')
+      .delete()
+      .eq('id', attachmentId)
+      .eq('user_id', userId);
+
+    if (error) {
+      console.error('Error deleting attachment metadata:', error);
+      throw error;
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Error in deleteAttachmentMetadata:', error);
+    return false;
+  }
+}
+

@@ -59,5 +59,80 @@ CREATE TRIGGER update_user_plans_updated_at
   FOR EACH ROW
   EXECUTE FUNCTION update_updated_at_column();
 
+-- =====================================================
+-- Task Attachments Table
+-- =====================================================
+
+-- Create task_attachments table to store file metadata
+CREATE TABLE IF NOT EXISTS task_attachments (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id TEXT NOT NULL,
+  task_id TEXT NOT NULL,
+  file_name TEXT NOT NULL,
+  file_path TEXT NOT NULL,
+  file_size INTEGER,
+  file_type TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+
+  -- Foreign key reference to user_plans
+  CONSTRAINT fk_user_task
+    FOREIGN KEY (user_id, task_id)
+    REFERENCES user_plans(user_id, task_id)
+    ON DELETE CASCADE
+);
+
+-- Create indexes for task_attachments
+CREATE INDEX IF NOT EXISTS idx_task_attachments_user_id ON task_attachments(user_id);
+CREATE INDEX IF NOT EXISTS idx_task_attachments_task_id ON task_attachments(task_id);
+CREATE INDEX IF NOT EXISTS idx_task_attachments_user_task ON task_attachments(user_id, task_id);
+
+-- Enable RLS on task_attachments
+ALTER TABLE task_attachments ENABLE ROW LEVEL SECURITY;
+
+-- Create policies for task_attachments
+CREATE POLICY "Users can view their own attachments"
+  ON task_attachments FOR SELECT
+  USING (auth.uid()::text = user_id);
+
+CREATE POLICY "Users can insert their own attachments"
+  ON task_attachments FOR INSERT
+  WITH CHECK (auth.uid()::text = user_id);
+
+CREATE POLICY "Users can delete their own attachments"
+  ON task_attachments FOR DELETE
+  USING (auth.uid()::text = user_id);
+
+-- =====================================================
+-- Storage Bucket Setup
+-- =====================================================
+-- Run this in your Supabase dashboard > Storage > Create bucket
+-- Bucket name: planner-attachments
+-- Public: false (for private access with signed URLs)
+-- File size limit: 10MB
+-- Allowed MIME types: application/pdf, image/*, application/msword,
+--   application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+--   application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+
+-- Storage RLS policies (run in SQL editor after creating bucket):
+-- CREATE POLICY "Users can upload to their own folder"
+--   ON storage.objects FOR INSERT
+--   WITH CHECK (
+--     bucket_id = 'planner-attachments' AND
+--     auth.uid()::text = (storage.foldername(name))[1]
+--   );
+
+-- CREATE POLICY "Users can view their own files"
+--   ON storage.objects FOR SELECT
+--   USING (
+--     bucket_id = 'planner-attachments' AND
+--     auth.uid()::text = (storage.foldername(name))[1]
+--   );
+
+-- CREATE POLICY "Users can delete their own files"
+--   ON storage.objects FOR DELETE
+--   USING (
+--     bucket_id = 'planner-attachments' AND
+--     auth.uid()::text = (storage.foldername(name))[1]
+--   );
 
 
