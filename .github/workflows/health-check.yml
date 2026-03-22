@@ -147,19 +147,18 @@ jobs:
           echo "| Link | Status |" >> $GITHUB_STEP_SUMMARY
           echo "|------|--------|" >> $GITHUB_STEP_SUMMARY
 
-          # Fetch homepage and extract internal navigation links only
+          # Fetch homepage and extract <a href="..."> links only
           HOMEPAGE_HTML=$(curl -s "$BASE_URL" --max-time 30)
-          # Match only valid route patterns (lowercase, hyphens, slashes)
-          LINKS=$(echo "$HOMEPAGE_HTML" | grep -oE 'href="/[a-z][a-z0-9-]*(/[a-z0-9-]+)*"' | sed 's/href="//g; s/"//g' | sort -u)
+          LINKS=$(echo "$HOMEPAGE_HTML" | grep -oE '<a[^>]+href="/[a-z][a-z0-9/-]*"' | grep -oE 'href="/[^"]*"' | sed 's/href="//g; s/"//g' | sort -u)
 
           for link in $LINKS; do
-            # Skip images, static assets, API routes
-            if [[ "$link" == "/images"* ]] || [[ "$link" == "/api/"* ]] || [[ "$link" == "/_next/"* ]]; then
+            # Skip images, static assets, API routes, and files with extensions
+            if [[ "$link" == "/images"* ]] || [[ "$link" == "/api/"* ]] || [[ "$link" == "/_next/"* ]] || [[ "$link" == *".png"* ]] || [[ "$link" == *".jpg"* ]] || [[ "$link" == *".pdf"* ]] || [[ "$link" == *".csv"* ]] || [[ "$link" == *".html"* ]]; then
               continue
             fi
 
             # Skip very short links (likely parsing errors)
-            if [ ${#link} -lt 3 ]; then
+            if [ ${#link} -lt 4 ]; then
               continue
             fi
 
@@ -194,19 +193,18 @@ jobs:
           echo "| Link | Status |" >> $GITHUB_STEP_SUMMARY
           echo "|------|--------|" >> $GITHUB_STEP_SUMMARY
 
-          # Fetch homepage and extract internal navigation links only
+          # Fetch homepage and extract <a href="..."> links only
           HOMEPAGE_HTML=$(curl -s "$BASE_URL" --max-time 30)
-          # Match only valid route patterns (lowercase, hyphens, slashes)
-          LINKS=$(echo "$HOMEPAGE_HTML" | grep -oE 'href="/[a-z][a-z0-9-]*(/[a-z0-9-]+)*"' | sed 's/href="//g; s/"//g' | sort -u)
+          LINKS=$(echo "$HOMEPAGE_HTML" | grep -oE '<a[^>]+href="/[a-z][a-z0-9/-]*"' | grep -oE 'href="/[^"]*"' | sed 's/href="//g; s/"//g' | sort -u)
 
           for link in $LINKS; do
-            # Skip images, static assets, API routes
-            if [[ "$link" == "/images"* ]] || [[ "$link" == "/api/"* ]] || [[ "$link" == "/_next/"* ]]; then
+            # Skip images, static assets, API routes, and files with extensions
+            if [[ "$link" == "/images"* ]] || [[ "$link" == "/api/"* ]] || [[ "$link" == "/_next/"* ]] || [[ "$link" == *".png"* ]] || [[ "$link" == *".jpg"* ]] || [[ "$link" == *".pdf"* ]] || [[ "$link" == *".csv"* ]] || [[ "$link" == *".html"* ]]; then
               continue
             fi
 
             # Skip very short links (likely parsing errors)
-            if [ ${#link} -lt 3 ]; then
+            if [ ${#link} -lt 4 ]; then
               continue
             fi
 
@@ -252,18 +250,19 @@ jobs:
             echo "**Checking $page**" >> $GITHUB_STEP_SUMMARY
 
             PAGE_HTML=$(curl -s "${BASE_URL}${page}" --max-time 30)
-            # Extract only valid navigation links (not images, not partial paths)
-            LINKS=$(echo "$PAGE_HTML" | grep -oE 'href="/[a-z][a-z0-9-]*(/[a-z0-9-]+)*"' | sed 's/href="//g; s/"//g' | sort -u)
+            # Extract only <a href="..."> links, not src or other attributes
+            # Match href="/path" where path is a valid route (not images, not fragments)
+            LINKS=$(echo "$PAGE_HTML" | grep -oE '<a[^>]+href="/[a-z][a-z0-9/-]*"' | grep -oE 'href="/[^"]*"' | sed 's/href="//g; s/"//g' | sort -u)
 
             FOUND_ISSUES=0
             for link in $LINKS; do
-              # Skip static assets, images, API routes
-              if [[ "$link" == "/images"* ]] || [[ "$link" == "/api/"* ]] || [[ "$link" == "/_next/"* ]] || [[ "$link" == *".png"* ]] || [[ "$link" == *".jpg"* ]] || [[ "$link" == *".ico"* ]]; then
+              # Skip static assets, images, API routes, and any path with file extensions
+              if [[ "$link" == "/images"* ]] || [[ "$link" == "/api/"* ]] || [[ "$link" == "/_next/"* ]] || [[ "$link" == *".png"* ]] || [[ "$link" == *".jpg"* ]] || [[ "$link" == *".ico"* ]] || [[ "$link" == *".pdf"* ]] || [[ "$link" == *".csv"* ]] || [[ "$link" == *".html"* ]]; then
                 continue
               fi
 
               # Skip very short links that are likely parsing errors
-              if [ ${#link} -lt 3 ]; then
+              if [ ${#link} -lt 4 ]; then
                 continue
               fi
 
