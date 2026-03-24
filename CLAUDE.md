@@ -370,6 +370,26 @@ npm run build
 - Updated 13 files: ai-content, contractor-database (x2), database-locked, expiring-contracts, opportunity-hunter, opportunity-scout, recompete, sblo-directory, tier2-directory, all-free-resources, tribal HTML, next.config.ts
 - LemonSqueezy fully canceled — all payments now through Stripe directly
 
+### March 24, 2026 (Session 8)
+- **Blog Meta Description Optimization:**
+  - Optimized all 15 blog article meta descriptions for CTR
+  - Techniques: tool mentions, specificity, actionable language
+  - Added tool badge to article #3 ("5 Steps to Build BD Pipeline") — was missing one
+- **Cross-Domain Linking to govcongiants.org:**
+  - Added "Free guides" cross-links to all 15 blog articles
+  - Links to relevant educational content on main site:
+    - Articles 1-2: SAM registration, finding contracts, market research
+    - Articles 3-4: SAM, capability statements, NAICS codes, certifications
+    - Articles 5-6: GovCon for beginners, finding contracts
+    - Articles 7-8: Subcontracting, capability statements, VOSB
+    - Articles 9-13: Finding contracts, proposals, NAICS, GSA Schedule
+    - Articles 14-15: Subcontracting, certifications, HUBZone
+  - SEO benefit: Cross-domain authority building between shop and main site
+- **Content Strategy Differentiation:**
+  - Confirmed shop blog = tool-focused (how to use tools)
+  - Main site = educational guides (how to do GovCon)
+  - Minimal overlap, distinct value propositions
+
 ---
 
-*Last Updated: February 22, 2026 (Session 7)*
+*Last Updated: March 24, 2026 (Session 8)*
