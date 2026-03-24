@@ -34,7 +34,7 @@ export const blogArticles: BlogArticle[] = [
     topicLabel: 'Market Research',
     toolBadge: 'Market Assassin',
     excerpt: 'Walking into an agency meeting unprepared is the fastest way to lose credibility. Here\'s a 5-step process to research any federal agency so you show up informed and ready to win.',
-    metaDescription: 'Walking into an agency meeting unprepared is the fastest way to lose credibility. Here\'s a 5-step process to research any federal agency.',
+    metaDescription: 'Research any federal agency in 15 minutes: spending data, pain points, OSBP contacts. The 5-step process (+ the tool that automates it).',
     content: `<h4>Why Agency Research Matters</h4>
 <p>Federal buyers meet dozens of contractors every month. The ones who stand out are the ones who understand the agency's mission, challenges, and current priorities before the first handshake. If you walk in with a generic capability statement and a vague pitch, you're forgettable. If you walk in referencing their latest audit findings and budget shifts, you're a contender.</p>
 
@@ -66,7 +66,7 @@ export const blogArticles: BlogArticle[] = [
     topicLabel: 'Market Research',
     toolBadge: 'Market Assassin',
     excerpt: 'The best GovCon proposals don\'t just respond to requirements — they demonstrate you understand the agency\'s deepest challenges. Here\'s how to find and use pain points to win.',
-    metaDescription: 'The best GovCon proposals demonstrate you understand the agency\'s deepest challenges. Here\'s how to find and use pain points to win.',
+    metaDescription: 'Win proposals by showing you understand agency pain points. Where to find GAO reports, IG audits, and budget data — and how to use them.',
     content: `<h4>What Are Agency Pain Points?</h4>
 <p>Pain points are the operational, technical, and strategic challenges that federal agencies face. These aren't theoretical problems — they're documented failures, backlogs, and risks identified by the Government Accountability Office (GAO), agency Inspectors General, and Congressional oversight committees. When an agency's IT system appears on the GAO High Risk List for the fifth year in a row, that's a pain point. When an IG report cites a 40% cybersecurity compliance gap, that's a pain point.</p>
 
@@ -95,8 +95,9 @@ export const blogArticles: BlogArticle[] = [
     title: '5 Steps to Build a GovCon BD Pipeline from Scratch',
     topic: 'business-development',
     topicLabel: 'Business Development',
+    toolBadge: 'Opportunity Hunter',
     excerpt: 'Starting in government contracting with zero pipeline? This step-by-step guide walks you through building a business development engine that generates real opportunities.',
-    metaDescription: 'Starting in government contracting with zero pipeline? This step-by-step guide walks you through building a BD engine that generates real opportunities.',
+    metaDescription: 'Build your GovCon BD pipeline in 5 steps. Find target agencies, track opportunities, and start winning — with tools that automate the research.',
     content: `<h4>Step 1: Get Your SAM Registration Right</h4>
 <p>Before anything else, register on SAM.gov. This is your federal contractor ID. Make sure your NAICS codes accurately reflect your services — not just one code, but every code where you have legitimate experience. Your capability narrative should read like a positioning statement, not a laundry list. Include your socioeconomic certifications (8(a), HUBZone, WOSB, SDVOSB) because these open doors to set-aside contracts.</p>
 
@@ -125,7 +126,7 @@ export const blogArticles: BlogArticle[] = [
     topicLabel: 'Business Development',
     toolBadge: 'Market Assassin',
     excerpt: 'Capability briefings are your chance to get face time with government buyers. Most contractors don\'t know how to request them or what to bring. Here\'s the playbook.',
-    metaDescription: 'Capability briefings are your chance to get face time with government buyers. Here\'s the playbook for requesting and preparing for them.',
+    metaDescription: 'Get 15-minute meetings with federal program managers. Email templates, what to prepare, and how to follow up. The capability briefing playbook.',
     content: `<h4>What Is a Capability Briefing?</h4>
 <p>A capability briefing is a short meeting (usually 15-30 minutes) where you present your company's capabilities to an agency's program office or contracting team. It's not a sales pitch — it's a professional introduction that shows the agency what you can do and how it aligns with their needs. These meetings are how relationships get built in GovCon.</p>
 
@@ -158,7 +159,7 @@ export const blogArticles: BlogArticle[] = [
     topicLabel: 'LinkedIn & Content',
     toolBadge: 'Content Reaper',
     excerpt: 'Government buyers are on LinkedIn. Program managers are on LinkedIn. Your next teaming partner is on LinkedIn. If you\'re not posting, you\'re invisible to the people who award contracts.',
-    metaDescription: 'Government buyers are on LinkedIn. If you\'re not posting, you\'re invisible to the people who award contracts. Here\'s why LinkedIn matters in GovCon.',
+    metaDescription: 'Program managers and COs use LinkedIn to research contractors. 3 small businesses that won teaming deals from LinkedIn posts. Your visibility strategy.',
     content: `<h4>Government Buyers Use LinkedIn</h4>
 <p>There's a persistent myth in GovCon that federal employees don't use social media for work. It's wrong. Contracting officers, program managers, and agency leadership actively use LinkedIn to research contractors, share industry information, and stay current on trends. When a CO is evaluating proposals and Googles your company, your LinkedIn presence (or lack of it) shapes their first impression.</p>
 
@@ -187,7 +188,7 @@ export const blogArticles: BlogArticle[] = [
     topicLabel: 'LinkedIn & Content',
     toolBadge: 'Content Reaper',
     excerpt: 'Sales pitches get ignored. Thought leadership gets meetings. Here\'s how to write LinkedIn posts that make federal program managers want to learn more about your company.',
-    metaDescription: 'Sales pitches get ignored. Thought leadership gets meetings. Here\'s how to write LinkedIn posts that attract federal program managers.',
+    metaDescription: 'LinkedIn post formulas that work: pain point hooks, agency-specific insights, 3-4x/week frequency. Stop selling, start attracting government buyers.',
     content: `<h4>Thought Leadership vs. Sales Pitches</h4>
 <p>There's a line between "we can help you modernize your IT" and "here's what agencies are getting wrong about IT modernization." The first is a sales pitch — it gets scrolled past. The second is thought leadership — it makes people stop and read. Government buyers don't want to be sold to on LinkedIn. They want to learn from people who understand their world.</p>
 
@@ -221,7 +222,7 @@ export const blogArticles: BlogArticle[] = [
     topicLabel: 'Teaming & Subcontracting',
     toolBadge: 'Contractor Database',
     excerpt: 'Teaming is how small businesses break into GovCon. But finding the right partner isn\'t luck — it\'s a systematic process. Here\'s where to look and what primes actually want.',
-    metaDescription: 'Teaming is how small businesses break into GovCon. Here\'s where to look for teaming partners and what prime contractors actually want.',
+    metaDescription: 'Find teaming partners: SBA SubNet, SAM.gov directory, industry days, and contractor databases. What primes actually want from small business subs.',
     content: `<h4>Why Teaming Matters</h4>
 <p>Most large federal contracts require past performance and resources that small businesses don't have on day one. Teaming with a prime contractor gives you access to larger opportunities, past performance credit, and mentorship — all while the prime gets to meet their small business subcontracting goals. It's a genuine win-win when done right.</p>
 
@@ -252,7 +253,7 @@ export const blogArticles: BlogArticle[] = [
     topicLabel: 'Teaming & Subcontracting',
     toolBadge: 'Contractor Database',
     excerpt: 'Cold-emailing a prime contractor rarely works. Here\'s the strategic approach that actually gets responses and leads to real subcontracting relationships.',
-    metaDescription: 'Cold-emailing a prime contractor rarely works. Here\'s the strategic approach that actually gets responses and leads to subcontracting relationships.',
+    metaDescription: 'Stop cold-emailing primes. Find their SBLO, research their contracts, and pitch specific opportunities. The outreach strategy that gets responses.',
     content: `<h4>Do Your Research First</h4>
 <p>Before you contact a prime, know everything about their federal contracts. Which agencies do they work with? What are their largest contracts? What NAICS codes do they operate under? Check USASpending.gov for their contract portfolio and FPDS for recent awards. When you reach out and reference their specific $50M VA IT modernization contract, they know you're serious — not just mass-emailing every contractor in the database.</p>
 
@@ -281,7 +282,7 @@ export const blogArticles: BlogArticle[] = [
     topicLabel: 'Contract Intelligence',
     toolBadge: 'Recompete Tracker',
     excerpt: 'Every federal contract expires. When it does, someone wins the recompete. If you start preparing 12 months out, that someone could be you. Here\'s how the recompete game works.',
-    metaDescription: 'Every federal contract expires. If you start preparing 12 months out, you could win the recompete. Here\'s how the recompete game works.',
+    metaDescription: 'Win recompetes by starting 12 months early. How to find expiring contracts, analyze incumbents, and time your BD. The recompete playbook.',
     content: `<h4>What Is a Recompete?</h4>
 <p>When a federal contract reaches its final option year, the agency has to decide: extend, recompete, or cancel. Most contracts get recompeted — the agency puts the work out for a new competition. This is an enormous opportunity because you already know the scope, the budget, and the incumbent. Unlike a brand-new requirement, a recompete has a proven track record of funding and agency commitment.</p>
 
@@ -310,7 +311,7 @@ export const blogArticles: BlogArticle[] = [
     topicLabel: 'Contract Intelligence',
     toolBadge: 'Opportunity Hunter',
     excerpt: 'Federal contract data isn\'t just numbers — it\'s a roadmap of where agencies are investing, what they\'re worried about, and where opportunities are growing. Here\'s how to read it.',
-    metaDescription: 'Federal contract data is a roadmap of where agencies are investing and where opportunities are growing. Here\'s how to read it.',
+    metaDescription: 'Read contract data like a BD pro: spending trends, set-aside patterns, NAICS concentrations, seasonal timing. The signals hiding in FPDS.',
     content: `<h4>Spending Trends Reveal Strategy</h4>
 <p>When an agency increases spending in a NAICS code by 30% year over year, that's not random — it's a strategic priority. When they decrease spending in another area, that work might be going in-house or being consolidated under a larger contract. Track 3-5 years of spending by NAICS code for your target agencies. The trend matters more than any single year's number.</p>
 
@@ -339,7 +340,7 @@ export const blogArticles: BlogArticle[] = [
     topicLabel: 'Contract Intelligence',
     toolBadge: 'Recompete Tracker',
     excerpt: 'Most contractors only search SAM.gov for opportunities. But roughly 95% of federal contract dollars never appear there as public solicitations. Here\'s where the rest of the market is hiding.',
-    metaDescription: 'Roughly 95% of federal contract dollars never appear on SAM.gov as public solicitations. Here\'s where the rest of the market is hiding.',
+    metaDescription: '95% of federal dollars never hit SAM.gov. Task orders, sole source, micropurchases, DIBBS — where the real opportunities are hiding.',
     content: `<div style="text-align:center; margin-bottom:32px;">
 <svg viewBox="0 0 440 590" style="max-width:440px; width:100%;" xmlns="http://www.w3.org/2000/svg">
 <circle cx="200" cy="140" r="90" fill="none" stroke="#1e40af" stroke-width="80" stroke-dasharray="311.0 254.5" stroke-dashoffset="0" transform="rotate(-90 200 140)" />
@@ -418,7 +419,7 @@ export const blogArticles: BlogArticle[] = [
     topicLabel: 'Contract Intelligence',
     toolBadge: 'Recompete Tracker',
     excerpt: 'Each month we spotlight an expiring federal contract worth watching. This month: a $23M IT services contract at the Small Business Administration that\'s ripe for recompete.',
-    metaDescription: 'Monthly spotlight: a $23M IT services contract at the SBA expiring Sept 2026. Here\'s what small businesses should do to prepare.',
+    metaDescription: '$23M SBA IT contract expiring Sept 2026. Incumbent analysis, timeline, and BD steps. Plus 3 more recompetes under $25M worth watching.',
     content: `<h4>Contract Snapshot</h4>
 <ul>
 <li><strong>Agency:</strong> Small Business Administration &mdash; Office of Performance Management and CFO</li>
@@ -464,7 +465,7 @@ export const blogArticles: BlogArticle[] = [
     topicLabel: 'Contract Intelligence',
     toolBadge: 'Market Assassin',
     excerpt: 'The President\'s FY2026 budget request shifts billions between agencies. Defense and VA are surging. Education, Agriculture, and Treasury are getting cut. Here\'s what it means for contractors.',
-    metaDescription: 'The FY2026 budget shifts billions between agencies. Defense and VA surge while Education and Agriculture get cut. What it means for contractors.',
+    metaDescription: 'FY2026 budget: DoD +$113B, VA +$27B, Education -$12B. Where federal dollars are moving and which agencies to target (or avoid).',
     content: `<div style="margin-bottom:32px; background:#f8fafc; border-radius:12px; padding:24px; border:1px solid #e2e8f0;">
 <div style="font-size:15px; font-weight:700; color:#0f172a; margin-bottom:4px;">FY2026 vs FY2025 Discretionary Budget Change</div>
 <div style="font-size:12px; color:#94a3b8; margin-bottom:20px;">Source: OMB FY2026 Discretionary Budget Request (May 2025)</div>
@@ -590,7 +591,7 @@ export const blogArticles: BlogArticle[] = [
     topicLabel: 'Teaming & Subcontracting',
     toolBadge: 'Contractor Database',
     excerpt: 'Everyone chases Booz Allen and Leidos for subcontracting. But Tier-2 contractors are more responsive, easier to reach, and actively looking for small business partners. Here are 5 to contact this week.',
-    metaDescription: 'Tier-2 contractors are more responsive and actively looking for small business partners. Here are 5 IT services firms to contact this week.',
+    metaDescription: '5 IT services primes you\'ve never heard of — with SBLO emails. Skip the Booz Allen inbox. These Tier-2 firms actually respond.',
     content: `<h4>Why Tier 2 Beats Tier 1 for Small Businesses</h4>
 <p>When most new GovCon companies think "subcontracting," they think of the biggest names: Lockheed Martin, Booz Allen Hamilton, SAIC, Leidos. These are Tier 1 primes &mdash; companies with billions in federal contracts and thousands of small businesses emailing their SBLOs every week. Your email lands in a pile of hundreds. You might hear back in 3 months. You might never hear back at all.</p>
 <p>Tier 2 subcontractors are different. These are mid-size firms that hold federal contracts in the $10M-$500M range. They need small business partners just as much as the big primes do &mdash; they have the same subcontracting plan requirements &mdash; but they get a fraction of the inbound interest. That means your email actually gets read. Your phone call actually gets returned. And when they need someone with your NAICS code and certifications, they remember you because you weren't one of 500 emails that month.</p>
@@ -646,7 +647,7 @@ export const blogArticles: BlogArticle[] = [
     topicLabel: 'Teaming & Subcontracting',
     toolBadge: 'Contractor Database',
     excerpt: 'Bootcamp lesson: Everyone wants to sub under Lockheed. But the fastest path to your first federal subcontract is through Tier 2 contractors you\'ve never heard of. Here\'s why responsiveness matters more than size.',
-    metaDescription: 'The fastest path to your first federal subcontract is through Tier 2 contractors. Here\'s why responsiveness matters more than size.',
+    metaDescription: 'Tier 1 primes ignore your emails. Tier 2 primes call you back. Why mid-size contractors are your fastest path to a federal subcontract.',
     content: `<h4>The Tier 1 Trap</h4>
 <p>Here's a pattern we see in every bootcamp: a small business owner registers on SAM.gov, gets their certifications, builds a capability statement, and then immediately starts emailing Booz Allen, Leidos, SAIC, Lockheed Martin, and Raytheon. These are Tier 1 prime contractors &mdash; the largest federal contractors in the world. And contacting them first is almost always a mistake.</p>
 <p>Tier 1 contractors have dedicated small business programs with full-time staff. That sounds great until you realize they're managing relationships with thousands of small businesses simultaneously. Their SBLOs receive hundreds of capability statements per week. Even if your company is a perfect fit, you're competing for attention with hundreds of other small businesses sending the same kind of email.</p>
