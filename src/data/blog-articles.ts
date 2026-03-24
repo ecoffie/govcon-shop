@@ -55,7 +55,9 @@ export const blogArticles: BlogArticle[] = [
 
 <div class="tool-callout">
 &#128161; Try this with <a href="/market-assassin">Market Assassin</a> &rarr; Automates agency research across USASpending, pain points, OSBP contacts, and spending data in one report.
-</div>`,
+</div>
+
+<p class="learn-more"><strong>Free guides:</strong> <a href="https://govcongiants.org/guides/sam-gov-registration" target="_blank" rel="noopener">SAM.gov Registration</a> | <a href="https://govcongiants.org/guides/finding-government-contracts" target="_blank" rel="noopener">Finding Contracts</a> | <a href="https://govcongiants.org/guides/market-research" target="_blank" rel="noopener">Market Research</a></p>`,
   },
 
   // ── Article 2 ──
@@ -86,7 +88,9 @@ export const blogArticles: BlogArticle[] = [
 
 <div class="tool-callout">
 &#128161; Try this with <a href="/market-assassin">Market Assassin</a> &rarr; Cross-references 250 agencies' pain points with your NAICS code to find high-opportunity matches.
-</div>`,
+</div>
+
+<p class="learn-more"><strong>Free guides:</strong> <a href="https://govcongiants.org/guides/proposal-writing" target="_blank" rel="noopener">Proposal Writing</a> | <a href="https://govcongiants.org/guides/capability-statement" target="_blank" rel="noopener">Capability Statements</a></p>`,
   },
 
   // ── Article 3 ──
@@ -115,7 +119,9 @@ export const blogArticles: BlogArticle[] = [
 
 <div class="tool-callout">
 &#128161; Try <a href="/opportunity-hunter">Opportunity Hunter</a> &rarr; Identifies agencies spending in your NAICS codes and shows exactly where the budget is flowing.
-</div>`,
+</div>
+
+<p class="learn-more"><strong>New to GovCon?</strong> Read our free guides: <a href="https://govcongiants.org/guides/sam-gov-registration" target="_blank" rel="noopener">SAM.gov Registration</a> | <a href="https://govcongiants.org/guides/capability-statement" target="_blank" rel="noopener">Capability Statements</a> | <a href="https://govcongiants.org/guides/naics-codes" target="_blank" rel="noopener">NAICS Codes</a></p>`,
   },
 
   // ── Article 4 ──
@@ -148,7 +154,9 @@ export const blogArticles: BlogArticle[] = [
 
 <div class="tool-callout">
 &#128161; Try this with <a href="/market-assassin">Market Assassin</a> &rarr; Generates OSBP contact lists, agency pain points, and spending data to prepare for capability briefings.
-</div>`,
+</div>
+
+<p class="learn-more"><strong>Free guides:</strong> <a href="https://govcongiants.org/guides/capability-statement" target="_blank" rel="noopener">Capability Statement Guide</a> | <a href="https://govcongiants.org/guides/8a-certification" target="_blank" rel="noopener">8(a) Certification</a> | <a href="https://govcongiants.org/guides/sba-certifications" target="_blank" rel="noopener">All SBA Certifications</a></p>`,
   },
 
   // ── Article 5 ──
@@ -177,7 +185,9 @@ export const blogArticles: BlogArticle[] = [
 
 <div class="tool-callout">
 &#128161; Try this with <a href="/content-reaper">Content Reaper</a> &rarr; Generate agency-specific LinkedIn posts powered by real pain points data from 250 federal agencies.
-</div>`,
+</div>
+
+<p class="learn-more"><strong>Free guides:</strong> <a href="https://govcongiants.org/guides/beginners" target="_blank" rel="noopener">GovCon for Beginners</a> | <a href="https://govcongiants.org/guides/market-research" target="_blank" rel="noopener">Market Research</a></p>`,
   },
 
   // ── Article 6 ──
@@ -211,7 +221,9 @@ export const blogArticles: BlogArticle[] = [
 
 <div class="tool-callout">
 &#128161; Try this with <a href="/content-reaper">Content Reaper</a> &rarr; Creates thought leadership posts using real agency pain points, spending priorities, and budget data.
-</div>`,
+</div>
+
+<p class="learn-more"><strong>Free guides:</strong> <a href="https://govcongiants.org/guides/beginners" target="_blank" rel="noopener">GovCon for Beginners</a> | <a href="https://govcongiants.org/guides/finding-government-contracts" target="_blank" rel="noopener">Finding Contracts</a></p>`,
   },
 
   // ── Article 7 ──
@@ -242,7 +254,9 @@ export const blogArticles: BlogArticle[] = [
 
 <div class="tool-callout">
 &#128161; Try this with <a href="/contractor-database">Federal Contractor Database</a> &rarr; Search 3,500+ federal contractors with SBLO contacts, vendor portals, and teaming partner data.
-</div>`,
+</div>
+
+<p class="learn-more"><strong>Free guides:</strong> <a href="https://govcongiants.org/guides/subcontracting" target="_blank" rel="noopener">Subcontracting Guide</a> | <a href="https://govcongiants.org/guides/capability-statement" target="_blank" rel="noopener">Capability Statements</a> | <a href="https://govcongiants.org/guides/vosb-certification" target="_blank" rel="noopener">VOSB/SDVOSB</a></p>`,
   },
 
   // ── Article 8 ──
@@ -271,7 +285,9 @@ export const blogArticles: BlogArticle[] = [
 
 <div class="tool-callout">
 &#128161; Try this with <a href="/contractor-database">Federal Contractor Database</a> &rarr; Find SBLO contacts, vendor portal links, and subcontracting plan data for 3,500+ primes.
-</div>`,
+</div>
+
+<p class="learn-more"><strong>Free guides:</strong> <a href="https://govcongiants.org/guides/subcontracting" target="_blank" rel="noopener">Subcontracting Guide</a> | <a href="https://govcongiants.org/guides/8a-certification" target="_blank" rel="noopener">8(a) Certification</a></p>`,
   },
 
   // ── Article 9 ──
@@ -300,7 +316,9 @@ export const blogArticles: BlogArticle[] = [
 
 <div class="tool-callout">
 &#128161; Try this with <a href="/expiring-contracts">Recompete Tracker</a> &rarr; Track expiring federal contracts by NAICS, agency, and set-aside type with incumbent and performance data.
-</div>`,
+</div>
+
+<p class="learn-more"><strong>Free guides:</strong> <a href="https://govcongiants.org/guides/finding-government-contracts" target="_blank" rel="noopener">Finding Contracts</a> | <a href="https://govcongiants.org/guides/proposal-writing" target="_blank" rel="noopener">Proposal Writing</a></p>`,
   },
 
   // ── Article 10 ──
@@ -329,7 +347,9 @@ export const blogArticles: BlogArticle[] = [
 
 <div class="tool-callout">
 &#128161; Try this with <a href="/opportunity-hunter">Opportunity Hunter</a> &rarr; Analyzes agency spending by NAICS code, shows budget trends, and identifies where your dollars are growing.
-</div>`,
+</div>
+
+<p class="learn-more"><strong>Free guides:</strong> <a href="https://govcongiants.org/guides/naics-codes" target="_blank" rel="noopener">NAICS Codes</a> | <a href="https://govcongiants.org/guides/market-research" target="_blank" rel="noopener">Market Research</a> | <a href="https://govcongiants.org/guides/gsa-schedule" target="_blank" rel="noopener">GSA Schedule</a></p>`,
   },
 
   // ── Article 11 ──
@@ -408,7 +428,9 @@ export const blogArticles: BlogArticle[] = [
 
 <div class="tool-callout">
 &#128161; Try <a href="/expiring-contracts">Recompete Tracker</a> to find expiring contract vehicles and <a href="/opportunity-hunter">Opportunity Hunter</a> to identify agency spending patterns beyond what's posted on SAM.gov.
-</div>`,
+</div>
+
+<p class="learn-more"><strong>Free guides:</strong> <a href="https://govcongiants.org/guides/sam-gov-registration" target="_blank" rel="noopener">SAM.gov Registration</a> | <a href="https://govcongiants.org/guides/subcontracting" target="_blank" rel="noopener">Subcontracting</a> | <a href="https://govcongiants.org/guides/gsa-schedule" target="_blank" rel="noopener">GSA Schedule</a></p>`,
   },
 
   // ── Article 12 ──
@@ -454,7 +476,9 @@ export const blogArticles: BlogArticle[] = [
 
 <div class="tool-callout">
 &#128161; Find more contracts like this with <a href="/expiring-contracts">Recompete Tracker</a> &rarr; Search 6,900+ expiring contracts by NAICS, agency, value, and expiration date.
-</div>`,
+</div>
+
+<p class="learn-more"><strong>Free guides:</strong> <a href="https://govcongiants.org/guides/proposal-writing" target="_blank" rel="noopener">Proposal Writing</a> | <a href="https://govcongiants.org/guides/8a-certification" target="_blank" rel="noopener">8(a) Certification</a></p>`,
   },
 
   // ── Article 13 ──
@@ -580,7 +604,9 @@ export const blogArticles: BlogArticle[] = [
 
 <div class="tool-callout">
 &#128161; See budget trends for your target agencies with <a href="/market-assassin">Market Assassin</a> &rarr; Budget Checkup report shows FY2025 vs FY2026 data with growth indicators for every agency.
-</div>`,
+</div>
+
+<p class="learn-more"><strong>Free guides:</strong> <a href="https://govcongiants.org/guides/beginners" target="_blank" rel="noopener">GovCon for Beginners</a> | <a href="https://govcongiants.org/guides/finding-government-contracts" target="_blank" rel="noopener">Finding Contracts</a></p>`,
   },
 
   // ── Article 14 ──
@@ -636,7 +662,9 @@ export const blogArticles: BlogArticle[] = [
 
 <div class="tool-callout">
 &#128161; Find more Tier-2 partners with <a href="/contractor-database">Federal Contractor Database</a> &rarr; Search 3,500+ contractors by NAICS code with SBLO contacts, vendor portals, and subcontracting data.
-</div>`,
+</div>
+
+<p class="learn-more"><strong>Free guides:</strong> <a href="https://govcongiants.org/guides/subcontracting" target="_blank" rel="noopener">Subcontracting Guide</a> | <a href="https://govcongiants.org/guides/capability-statement" target="_blank" rel="noopener">Capability Statements</a> | <a href="https://govcongiants.org/guides/vosb-certification" target="_blank" rel="noopener">VOSB/SDVOSB</a></p>`,
   },
 
   // ── Article 15 ──
@@ -680,6 +708,8 @@ export const blogArticles: BlogArticle[] = [
 
 <div class="tool-callout">
 &#128161; Find Tier-2 partners with <a href="/contractor-database">Federal Contractor Database</a> &rarr; Search by NAICS code, contract value, and agency to find responsive mid-size primes with SBLO contacts.
-</div>`,
+</div>
+
+<p class="learn-more"><strong>Free guides:</strong> <a href="https://govcongiants.org/guides/subcontracting" target="_blank" rel="noopener">Subcontracting Guide</a> | <a href="https://govcongiants.org/guides/8a-certification" target="_blank" rel="noopener">8(a) Certification</a> | <a href="https://govcongiants.org/guides/hubzone-certification" target="_blank" rel="noopener">HUBZone</a></p>`,
   },
 ];
