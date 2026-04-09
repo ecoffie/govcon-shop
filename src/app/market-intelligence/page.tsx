@@ -52,52 +52,74 @@ export default function MarketIntelligenceProductPage() {
         price="$49/mo"
         originalPrice="$588 annualized"
         checkoutUrl="https://buy.stripe.com/00wfZigjc97ceND3OEfnO0z"
-        mainImage="/images/products/market-intelligence/briefing-email.png"
+        mainImage="/images/products/market-intelligence/daily-market-intel.png"
         screenshots={[
-          '/images/products/market-intelligence/briefing-email.png',
-          '/images/products/market-intelligence/weekly-deep-dive.png',
-          '/images/products/market-intelligence/briefings-dashboard.png',
-          '/images/products/market-intelligence/preferences-page.png',
+          '/images/products/market-intelligence/daily-market-intel.png',
+          '/images/products/market-intelligence/daily-brief-deadlines.png',
+          '/images/products/market-intelligence/weekly-deep-dive-header.png',
+          '/images/products/market-intelligence/weekly-deep-dive-analysis.png',
+          '/images/products/market-intelligence/briefings-dashboard-new.png',
+          '/images/products/market-intelligence/email-preferences.png',
         ]}
         screenshotFeatures={[
           {
-            image: '/images/products/market-intelligence/briefing-email.png',
-            title: 'Daily Brief delivered to your inbox',
-            description: 'Every morning you receive prioritized opportunities with fit scores, deadlines, and teaming plays tailored to your NAICS codes.',
+            image: '/images/products/market-intelligence/daily-market-intel.png',
+            title: 'Daily Market Intel delivered to your inbox',
+            description: 'Every morning you receive ranked recompete opportunities with contract values, incumbents, and displacement angles tailored to your NAICS codes.',
             bullets: [
-              'Win probability scoring (87% fit shown)',
-              'Teaming opportunities from prime contractors',
-              'Action-ready intel, not just notifications',
+              'Top recompete opportunities ranked by value',
+              'Incumbent info and contract expiration windows',
+              'Displacement angles to identify vulnerabilities',
             ],
           },
           {
-            image: '/images/products/market-intelligence/weekly-deep-dive.png',
-            title: 'Weekly Deep Dive for strategic context',
-            description: 'Each week you get a comprehensive analysis of market movements, agency signals, teaming angles, and where to focus your BD efforts.',
+            image: '/images/products/market-intelligence/daily-brief-deadlines.png',
+            title: 'Deadlines and action tips at a glance',
+            description: 'See what is due this week with RFP/RFQ/Sources Sought labels and days remaining. Action tips tell you exactly what to prioritize.',
             bullets: [
-              'Agency budget and spending trends',
-              'Teaming partner recommendations',
-              'Strategic capture priorities',
+              'Deadline countdown for each opportunity',
+              'Notice type badges (RFP, Sources Sought)',
+              'Personalized action tips based on your profile',
             ],
           },
           {
-            image: '/images/products/market-intelligence/briefings-dashboard.png',
-            title: 'Briefings workspace',
-            description: 'Access your daily, weekly, and pursuit briefings in one dashboard. Review history, track follow-ups, and never miss a capture opportunity.',
+            image: '/images/products/market-intelligence/weekly-deep-dive-header.png',
+            title: 'Weekly Deep Dive with full opportunity analysis',
+            description: 'Each week you get comprehensive analysis of top opportunities including agency, incumbent, contract value, and recompete windows.',
             bullets: [
-              'All 3 briefing types in one place',
-              'Briefing history and archives',
-              'Designed for BD and capture teams',
+              'Multi-billion dollar opportunities analyzed',
+              'Incumbent performance and schedule issues',
+              'Displacement angle assessment',
             ],
           },
           {
-            image: '/images/products/market-intelligence/preferences-page.png',
-            title: 'Personalization that improves over time',
-            description: 'Set your NAICS codes, target agencies, and geography. The system learns what you click and tunes future briefings automatically.',
+            image: '/images/products/market-intelligence/weekly-deep-dive-analysis.png',
+            title: 'Competitive landscape and recommended approach',
+            description: 'Deep dives include competitive intelligence, key dates, and specific teaming recommendations you can act on immediately.',
             bullets: [
-              'NAICS and PSC targeting',
-              'Agency and geography filters',
-              'Smart profile learning',
+              'Competitive landscape analysis',
+              'Key dates: contract end, RFP, industry day, proposal due',
+              'Recommended approach with teaming strategies',
+            ],
+          },
+          {
+            image: '/images/products/market-intelligence/briefings-dashboard-new.png',
+            title: 'Briefings dashboard with full history',
+            description: 'Access all your past briefings, see opportunities identified, teaming plays surfaced, and urgent alerts in one place.',
+            bullets: [
+              'Past briefings organized by date',
+              'Opportunity and teaming play counts',
+              'Urgent alerts highlighted',
+            ],
+          },
+          {
+            image: '/images/products/market-intelligence/email-preferences.png',
+            title: 'Control your alert frequency',
+            description: 'Choose daily or weekly delivery, pause anytime, and fine-tune what you receive based on your BD capacity.',
+            bullets: [
+              'Daily, weekly, or paused delivery options',
+              'One-click frequency changes',
+              'Profile-based personalization',
             ],
           },
         ]}
