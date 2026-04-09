@@ -55,6 +55,7 @@ export default function MarketIntelligenceProductPage() {
         mainImage="/images/products/market-intelligence/briefing-email.png"
         screenshots={[
           '/images/products/market-intelligence/briefing-email.png',
+          '/images/products/market-intelligence/weekly-deep-dive.png',
           '/images/products/market-intelligence/briefings-dashboard.png',
           '/images/products/market-intelligence/preferences-page.png',
         ]}
@@ -67,6 +68,16 @@ export default function MarketIntelligenceProductPage() {
               'Win probability scoring (87% fit shown)',
               'Teaming opportunities from prime contractors',
               'Action-ready intel, not just notifications',
+            ],
+          },
+          {
+            image: '/images/products/market-intelligence/weekly-deep-dive.png',
+            title: 'Weekly Deep Dive for strategic context',
+            description: 'Each week you get a comprehensive analysis of market movements, agency signals, teaming angles, and where to focus your BD efforts.',
+            bullets: [
+              'Agency budget and spending trends',
+              'Teaming partner recommendations',
+              'Strategic capture priorities',
             ],
           },
           {
