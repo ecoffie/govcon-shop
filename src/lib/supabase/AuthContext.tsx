@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { getSupabase } from './client';
+import { syncPlannerRegistration } from './planner-registration';
 
 interface AuthContextType {
   user: User | null;
@@ -21,20 +22,24 @@ const AuthContext = createContext<AuthContextType>({
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(() => getSupabase() !== null);
 
   useEffect(() => {
     const supabase = getSupabase();
 
     if (!supabase) {
-      setIsLoading(false);
       return;
     }
 
     // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
+
+      if (session?.user) {
+        await syncPlannerRegistration(session.user);
+      }
+
       setIsLoading(false);
     });
 
@@ -44,6 +49,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setSession(session);
         setUser(session?.user ?? null);
         setIsLoading(false);
+
+        if (session?.user) {
+          void syncPlannerRegistration(session.user);
+        }
       }
     );
 

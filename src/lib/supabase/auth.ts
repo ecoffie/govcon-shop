@@ -13,7 +13,11 @@ export interface AuthResult {
 /**
  * Sign up with email and password
  */
-export async function signUp(email: string, password: string): Promise<AuthResult> {
+export async function signUp(
+  email: string,
+  password: string,
+  fullName?: string
+): Promise<AuthResult> {
   const supabase = getSupabase();
 
   if (!supabase) {
@@ -24,9 +28,31 @@ export async function signUp(email: string, password: string): Promise<AuthResul
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        emailRedirectTo:
+          typeof window !== 'undefined'
+            ? `${window.location.origin}/planner/login?confirmed=1`
+            : undefined,
+        data: {
+          full_name: fullName?.trim() || '',
+        },
+      },
     });
 
     if (error) {
+      const normalizedMessage = error.message.toLowerCase();
+
+      if (
+        normalizedMessage.includes('already registered') ||
+        normalizedMessage.includes('already been registered') ||
+        normalizedMessage.includes('user already registered')
+      ) {
+        return {
+          success: false,
+          error: 'An account with this email already exists. Try signing in instead.',
+        };
+      }
+
       return { success: false, error: error.message };
     }
 
@@ -35,7 +61,7 @@ export async function signUp(email: string, password: string): Promise<AuthResul
       user: data.user ?? undefined,
       session: data.session ?? undefined,
     };
-  } catch (err) {
+  } catch {
     return { success: false, error: 'An unexpected error occurred' };
   }
 }
@@ -65,7 +91,7 @@ export async function signIn(email: string, password: string): Promise<AuthResul
       user: data.user,
       session: data.session,
     };
-  } catch (err) {
+  } catch {
     return { success: false, error: 'An unexpected error occurred' };
   }
 }
@@ -88,7 +114,7 @@ export async function signOut(): Promise<{ success: boolean; error?: string }> {
     }
 
     return { success: true };
-  } catch (err) {
+  } catch {
     return { success: false, error: 'An unexpected error occurred' };
   }
 }
@@ -106,7 +132,7 @@ export async function getCurrentUser(): Promise<User | null> {
   try {
     const { data: { user } } = await supabase.auth.getUser();
     return user;
-  } catch (err) {
+  } catch {
     return null;
   }
 }
@@ -124,7 +150,7 @@ export async function getSession(): Promise<Session | null> {
   try {
     const { data: { session } } = await supabase.auth.getSession();
     return session;
-  } catch (err) {
+  } catch {
     return null;
   }
 }
@@ -141,7 +167,7 @@ export async function resetPassword(email: string): Promise<{ success: boolean; 
 
   try {
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/planner/reset-password`,
+      redirectTo: `${window.location.origin}/planner/login?reset=success`,
     });
 
     if (error) {
@@ -149,7 +175,7 @@ export async function resetPassword(email: string): Promise<{ success: boolean; 
     }
 
     return { success: true };
-  } catch (err) {
+  } catch {
     return { success: false, error: 'An unexpected error occurred' };
   }
 }

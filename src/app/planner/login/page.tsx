@@ -1,19 +1,36 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { Suspense, useEffect, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { signIn, signUp } from '@/lib/supabase/auth';
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [isLogin, setIsLogin] = useState(true);
+  const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const confirmed = searchParams.get('confirmed');
+    const reset = searchParams.get('reset');
+
+    if (confirmed === '1') {
+      setIsLogin(true);
+      setSuccess('Your email is confirmed. You can sign in now.');
+      setError('');
+    } else if (reset === 'success') {
+      setIsLogin(true);
+      setSuccess('Your password was updated. Sign in with your new password.');
+      setError('');
+    }
+  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,6 +41,12 @@ export default function LoginPage() {
     // Validation
     if (!email || !password) {
       setError('Please fill in all fields');
+      setIsLoading(false);
+      return;
+    }
+
+    if (!isLogin && !fullName.trim()) {
+      setError('Please enter your full name');
       setIsLoading(false);
       return;
     }
@@ -49,9 +72,12 @@ export default function LoginPage() {
           setError(result.error || 'Login failed');
         }
       } else {
-        const result = await signUp(email, password);
+        const normalizedEmail = email.trim().toLowerCase();
+        const trimmedName = fullName.trim();
+        const result = await signUp(normalizedEmail, password, trimmedName);
         if (result.success) {
-          setSuccess('Account created! Check your email to confirm your account.');
+          setSuccess('Account created! Check your email to confirm your account, then sign in.');
+          setFullName('');
           setEmail('');
           setPassword('');
           setConfirmPassword('');
@@ -59,13 +85,180 @@ export default function LoginPage() {
           setError(result.error || 'Signup failed');
         }
       }
-    } catch (err) {
+    } catch {
       setError('An unexpected error occurred');
     } finally {
       setIsLoading(false);
     }
   };
 
+  return (
+    <div className="w-full max-w-md">
+      {/* Card */}
+      <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-8">
+        {/* Title */}
+        <div className="text-center mb-8">
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">
+            {isLogin ? 'Welcome Back' : 'Create Account'}
+          </h1>
+          <p className="text-gray-600">
+            {isLogin
+              ? 'Sign in to access your action plan'
+              : 'Create your free planner account and save your progress'}
+          </p>
+        </div>
+
+        {/* Error/Success Messages */}
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">
+            {error}
+          </div>
+        )}
+        {success && (
+          <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg mb-6">
+            {success}
+          </div>
+        )}
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {!isLogin && (
+            <div>
+              <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
+                Full Name
+              </label>
+              <input
+                id="fullName"
+                type="text"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e40af] focus:border-transparent outline-none transition-all"
+                placeholder="Jane Smith"
+                disabled={isLoading}
+              />
+            </div>
+          )}
+
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              Email Address
+            </label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e40af] focus:border-transparent outline-none transition-all"
+              placeholder="you@example.com"
+              disabled={isLoading}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e40af] focus:border-transparent outline-none transition-all"
+              placeholder="••••••••"
+              disabled={isLoading}
+            />
+          </div>
+
+          {!isLogin && (
+            <div className="rounded-lg border border-blue-100 bg-blue-50 px-4 py-3 text-sm text-blue-900">
+              Your email becomes your planner login. One planner account is allowed per email address.
+            </div>
+          )}
+
+          {!isLogin && (
+            <div>
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
+                Confirm Password
+              </label>
+              <input
+                id="confirmPassword"
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e40af] focus:border-transparent outline-none transition-all"
+                placeholder="••••••••"
+                disabled={isLoading}
+              />
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="w-full bg-[#1e40af] text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isLoading ? (
+              <span className="flex items-center justify-center gap-2">
+                <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                    fill="none"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  />
+                </svg>
+                {isLogin ? 'Signing in...' : 'Creating account...'}
+              </span>
+            ) : (
+              <>{isLogin ? 'Sign In' : 'Create Account'}</>
+            )}
+          </button>
+        </form>
+
+        {/* Toggle Login/Signup */}
+        <div className="mt-6 text-center">
+          <button
+            onClick={() => {
+              setIsLogin(!isLogin);
+              setError('');
+              setSuccess('');
+            }}
+            className="text-[#1e40af] hover:underline font-medium"
+          >
+            {isLogin ? "Don't have an account? Sign up" : 'Already have an account? Sign in'}
+          </button>
+        </div>
+
+        {/* Forgot Password (only for login) */}
+        {isLogin && (
+          <div className="mt-4 text-center">
+            <Link
+              href="/planner/forgot-password"
+              className="text-gray-500 hover:text-gray-700 text-sm"
+            >
+              Forgot your password?
+            </Link>
+          </div>
+        )}
+      </div>
+
+      {/* Footer */}
+      <p className="text-center text-gray-500 text-sm mt-6">
+        By signing up, you agree to our Terms of Service and Privacy Policy
+      </p>
+    </div>
+  );
+}
+
+export default function LoginPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
@@ -82,145 +275,9 @@ export default function LoginPage() {
 
       {/* Main Content */}
       <div className="flex-1 flex items-center justify-center px-4 py-12">
-        <div className="w-full max-w-md">
-          {/* Card */}
-          <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-8">
-            {/* Title */}
-            <div className="text-center mb-8">
-              <h1 className="text-2xl font-bold text-gray-900 mb-2">
-                {isLogin ? 'Welcome Back' : 'Create Account'}
-              </h1>
-              <p className="text-gray-600">
-                {isLogin
-                  ? 'Sign in to access your action plan'
-                  : 'Start your GovCon journey today'}
-              </p>
-            </div>
-
-            {/* Error/Success Messages */}
-            {error && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">
-                {error}
-              </div>
-            )}
-            {success && (
-              <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg mb-6">
-                {success}
-              </div>
-            )}
-
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  Email Address
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e40af] focus:border-transparent outline-none transition-all"
-                  placeholder="you@example.com"
-                  disabled={isLoading}
-                />
-              </div>
-
-              <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e40af] focus:border-transparent outline-none transition-all"
-                  placeholder="••••••••"
-                  disabled={isLoading}
-                />
-              </div>
-
-              {!isLogin && (
-                <div>
-                  <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
-                    Confirm Password
-                  </label>
-                  <input
-                    id="confirmPassword"
-                    type="password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1e40af] focus:border-transparent outline-none transition-all"
-                    placeholder="••••••••"
-                    disabled={isLoading}
-                  />
-                </div>
-              )}
-
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="w-full bg-[#1e40af] text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isLoading ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                        fill="none"
-                      />
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      />
-                    </svg>
-                    {isLogin ? 'Signing in...' : 'Creating account...'}
-                  </span>
-                ) : (
-                  <>{isLogin ? 'Sign In' : 'Create Account'}</>
-                )}
-              </button>
-            </form>
-
-            {/* Toggle Login/Signup */}
-            <div className="mt-6 text-center">
-              <button
-                onClick={() => {
-                  setIsLogin(!isLogin);
-                  setError('');
-                  setSuccess('');
-                }}
-                className="text-[#1e40af] hover:underline font-medium"
-              >
-                {isLogin ? "Don't have an account? Sign up" : 'Already have an account? Sign in'}
-              </button>
-            </div>
-
-            {/* Forgot Password (only for login) */}
-            {isLogin && (
-              <div className="mt-4 text-center">
-                <Link
-                  href="/planner/forgot-password"
-                  className="text-gray-500 hover:text-gray-700 text-sm"
-                >
-                  Forgot your password?
-                </Link>
-              </div>
-            )}
-          </div>
-
-          {/* Footer */}
-          <p className="text-center text-gray-500 text-sm mt-6">
-            By signing up, you agree to our Terms of Service and Privacy Policy
-          </p>
-        </div>
+        <Suspense fallback={<div className="text-center">Loading...</div>}>
+          <LoginForm />
+        </Suspense>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { MarketAssassinTier } from '@/lib/access-codes';
 
@@ -43,6 +43,14 @@ interface DatabaseRecord {
   token: string;
 }
 
+interface PlannerRecord {
+  email: string;
+  name?: string;
+  createdAt: string;
+  emailVerified: boolean;
+  verifiedAt?: string | null;
+}
+
 export default function AdminDashboard() {
   const [authenticated, setAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
@@ -54,6 +62,7 @@ export default function AdminDashboard() {
   const [cgRecords, setCgRecords] = useState<ContentGeneratorRecord[]>([]);
   const [recompeteRecords, setRecompeteRecords] = useState<RecompeteRecord[]>([]);
   const [databaseRecords, setDatabaseRecords] = useState<DatabaseRecord[]>([]);
+  const [plannerRecords, setPlannerRecords] = useState<PlannerRecord[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -67,7 +76,7 @@ export default function AdminDashboard() {
   const [grantMessage, setGrantMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
   // Active tab
-  const [activeTab, setActiveTab] = useState<'market-assassin' | 'opportunity-hunter-pro' | 'content-generator' | 'recompete' | 'database'>('market-assassin');
+  const [activeTab, setActiveTab] = useState<'market-assassin' | 'opportunity-hunter-pro' | 'content-generator' | 'recompete' | 'database' | 'planner'>('market-assassin');
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -123,13 +132,7 @@ export default function AdminDashboard() {
     checkAuth();
   }, []);
 
-  useEffect(() => {
-    if (authenticated) {
-      fetchRecords();
-    }
-  }, [authenticated]);
-
-  const fetchRecords = async () => {
+  const fetchRecords = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
@@ -147,12 +150,19 @@ export default function AdminDashboard() {
       setCgRecords(data.contentGenerator || []);
       setRecompeteRecords(data.recompete || []);
       setDatabaseRecords(data.database || []);
+      setPlannerRecords(data.planner || []);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch records');
     } finally {
       setLoading(false);
     }
-  };
+  }, [password]);
+
+  useEffect(() => {
+    if (authenticated) {
+      fetchRecords();
+    }
+  }, [authenticated, fetchRecords]);
 
   const handleGrantAccess = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -478,6 +488,16 @@ export default function AdminDashboard() {
             Database ({databaseRecords.length})
           </button>
           <button
+            onClick={() => setActiveTab('planner')}
+            className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
+              activeTab === 'planner'
+                ? 'bg-cyan-600 text-white'
+                : 'bg-white text-slate-600 hover:bg-slate-100'
+            }`}
+          >
+            Planner ({plannerRecords.length})
+          </button>
+          <button
             onClick={fetchRecords}
             disabled={loading}
             className="ml-auto px-4 py-2 text-sm text-slate-600 hover:text-slate-800 border border-slate-300 rounded-lg hover:bg-white transition-colors disabled:opacity-50"
@@ -734,10 +754,55 @@ export default function AdminDashboard() {
               </tbody>
             </table>
           )}
+
+          {activeTab === 'planner' && (
+            <table className="w-full">
+              <thead className="bg-cyan-50 border-b border-cyan-200">
+                <tr>
+                  <th className="text-left px-6 py-4 text-sm font-semibold text-slate-700">Email</th>
+                  <th className="text-left px-6 py-4 text-sm font-semibold text-slate-700">Name</th>
+                  <th className="text-left px-6 py-4 text-sm font-semibold text-slate-700">Status</th>
+                  <th className="text-left px-6 py-4 text-sm font-semibold text-slate-700">Signed Up</th>
+                  <th className="text-left px-6 py-4 text-sm font-semibold text-slate-700">Verified</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {plannerRecords.length === 0 ? (
+                  <tr>
+                    <td colSpan={5} className="px-6 py-8 text-center text-slate-500">
+                      No planner registrations found
+                    </td>
+                  </tr>
+                ) : (
+                  plannerRecords.map((record) => (
+                    <tr key={record.email} className="hover:bg-slate-50">
+                      <td className="px-6 py-4 text-sm text-slate-900">{record.email}</td>
+                      <td className="px-6 py-4 text-sm text-slate-600">{record.name || '-'}</td>
+                      <td className="px-6 py-4">
+                        <span className={`inline-flex px-2 py-1 text-xs font-bold rounded-full ${
+                          record.emailVerified
+                            ? 'bg-emerald-100 text-emerald-800'
+                            : 'bg-amber-100 text-amber-800'
+                        }`}>
+                          {record.emailVerified ? 'Verified' : 'Pending'}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-sm text-slate-600">
+                        {new Date(record.createdAt).toLocaleDateString()}
+                      </td>
+                      <td className="px-6 py-4 text-sm text-slate-600">
+                        {record.verifiedAt ? new Date(record.verifiedAt).toLocaleDateString() : '-'}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          )}
         </div>
 
         {/* Summary Stats */}
-        <div className="grid md:grid-cols-7 gap-4 mt-8">
+        <div className="grid md:grid-cols-8 gap-4 mt-8">
           <div className="bg-white rounded-xl shadow p-6">
             <div className="text-3xl font-bold text-blue-600">{maRecords.length}</div>
             <div className="text-sm text-slate-600">Total MA Users</div>
@@ -769,6 +834,10 @@ export default function AdminDashboard() {
           <div className="bg-white rounded-xl shadow p-6">
             <div className="text-3xl font-bold text-emerald-600">{databaseRecords.length}</div>
             <div className="text-sm text-slate-600">Database Users</div>
+          </div>
+          <div className="bg-white rounded-xl shadow p-6">
+            <div className="text-3xl font-bold text-cyan-600">{plannerRecords.length}</div>
+            <div className="text-sm text-slate-600">Planner Signups</div>
           </div>
         </div>
       </div>

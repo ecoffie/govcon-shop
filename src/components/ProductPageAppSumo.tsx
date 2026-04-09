@@ -47,6 +47,14 @@ interface UpgradeProduct {
   linkUrl: string;
 }
 
+interface PricingCallout {
+  eyebrow?: string;
+  title: string;
+  description: string;
+  href: string;
+  ctaLabel: string;
+}
+
 interface VideoItem {
   url: string;
   title: string;
@@ -82,6 +90,7 @@ interface ProductPageProps {
   categoriesTitle?: string;
   pricingTiers?: PricingTier[];
   upgradeProduct?: UpgradeProduct;
+  pricingCallout?: PricingCallout;
 }
 
 function isResourceUrl(url: string) {
@@ -117,6 +126,7 @@ export default function ProductPageAppSumo({
   categoriesTitle,
   pricingTiers,
   upgradeProduct,
+  pricingCallout,
 }: ProductPageProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedVideo, setSelectedVideo] = useState(0);
@@ -604,6 +614,24 @@ export default function ProductPageAppSumo({
               >
                 {currentPrice === 'FREE' ? 'Get Free Access' : 'Buy now'}
               </a>
+            )}
+
+            {pricingCallout && (
+              <div className="mb-6 rounded-xl border border-amber-300 bg-gradient-to-r from-amber-50 to-orange-50 p-4">
+                {pricingCallout.eyebrow ? (
+                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-700 mb-1">
+                    {pricingCallout.eyebrow}
+                  </p>
+                ) : null}
+                <p className="font-bold text-gray-900">{pricingCallout.title}</p>
+                <p className="text-sm text-gray-700 mt-1">{pricingCallout.description}</p>
+                <Link
+                  href={pricingCallout.href}
+                  className="mt-3 inline-flex items-center text-sm font-bold text-amber-700 hover:text-amber-800"
+                >
+                  {pricingCallout.ctaLabel}
+                </Link>
+              </div>
             )}
 
             {/* Trust Badges */}

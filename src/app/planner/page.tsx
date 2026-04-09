@@ -62,7 +62,7 @@ function CircularProgress({ percentage, size = 200 }: { percentage: number; size
 }
 
 // User Avatar Dropdown Component
-function UserDropdown({ email }: { email?: string }) {
+function UserDropdown({ email, fullName }: { email?: string; fullName?: string | null }) {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
@@ -71,8 +71,8 @@ function UserDropdown({ email }: { email?: string }) {
     router.push('/planner/login');
   };
 
-  // Get initials from email
-  const initials = email ? email.charAt(0).toUpperCase() : 'U';
+  const displayName = fullName?.trim() || email || 'User';
+  const initials = displayName.charAt(0).toUpperCase();
 
   return (
     <div className="relative">
@@ -100,7 +100,10 @@ function UserDropdown({ email }: { email?: string }) {
           />
           <div className="absolute right-0 mt-2 w-56 rounded-lg bg-white shadow-lg border border-gray-200 z-20">
             <div className="p-3 border-b border-gray-100">
-              <p className="text-sm font-medium text-gray-900 truncate">{email || 'User'}</p>
+              <p className="text-sm font-medium text-gray-900 truncate">{displayName}</p>
+              {fullName && email && (
+                <p className="text-xs text-gray-500 truncate">{email}</p>
+              )}
             </div>
             <div className="p-2">
               <button
@@ -258,6 +261,8 @@ const quotes = [
 export default function PlannerPage() {
   const router = useRouter();
   const { user, isLoading: authLoading, isAuthenticated } = useAuth();
+  const fullName =
+    typeof user?.user_metadata?.full_name === 'string' ? user.user_metadata.full_name : null;
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [progress, setProgress] = useState<ProgressSummary | null>(null);
   const [phases, setPhases] = useState<PhaseDisplay[]>([]);
@@ -356,7 +361,7 @@ export default function PlannerPage() {
                 <span className="text-xl font-bold text-gray-700">Planner</span>
               </Link>
             </div>
-            <UserDropdown email={user?.email} />
+            <UserDropdown email={user?.email} fullName={fullName} />
           </div>
         </div>
       </nav>

@@ -27,7 +27,7 @@ export default function Home() {
               <li><a href="#databases" className="text-gray-800 hover:text-blue-800 font-medium text-sm">Databases</a></li>
               <li><Link href="/free-resources" className="text-gray-800 hover:text-blue-800 font-medium text-sm">Resources</Link></li>
               <li><Link href="/about" className="text-gray-800 hover:text-blue-800 font-medium text-sm">About</Link></li>
-              <li><a href="/blog" className="text-gray-800 hover:text-blue-800 font-medium text-sm">Blog</a></li>
+              <li><Link href="/blog" className="text-gray-800 hover:text-blue-800 font-medium text-sm">Blog</Link></li>
             </ul>
             <div className="flex items-center gap-4">
               <Link href="/activate" className="px-4 py-2 text-gray-800 border border-gray-200 rounded-lg font-semibold text-sm hover:bg-gray-50">
@@ -160,6 +160,46 @@ export default function Home() {
                     <div className="text-sm text-gray-400 line-through">$588/year value</div>
                     <div className="text-2xl font-bold text-blue-800">From $197</div>
                     <div className="text-xs text-gray-500">one-time</div>
+                  </div>
+                  <span className="px-5 py-2 bg-blue-800 text-white rounded-md font-semibold text-sm">
+                    View Details
+                  </span>
+                </div>
+              </div>
+            </Link>
+
+            {/* Market Intelligence */}
+            <Link href="/market-intelligence" className="block bg-white border border-gray-200 rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg hover:border-violet-500 cursor-pointer">
+              <div className="h-48 bg-gradient-to-br from-violet-700 via-indigo-700 to-slate-900 relative overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.16),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.12),transparent_30%)]" />
+                <div className="relative flex h-full flex-col justify-between p-6 text-white">
+                  <span className="inline-flex w-fit rounded-full bg-white/15 px-3 py-1 text-xs font-semibold backdrop-blur">
+                    SUBSCRIPTION
+                  </span>
+                  <div>
+                    <p className="text-sm font-medium text-violet-200">Daily + Weekly + Pursuit</p>
+                    <h3 className="mt-2 text-3xl font-bold leading-tight">Market Intelligence</h3>
+                    <p className="mt-2 max-w-xs text-sm text-slate-200">
+                      Personalized briefings built around your NAICS, agencies, and capture priorities.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="p-6">
+                <span className="inline-block bg-violet-600 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">NEW</span>
+                <h3 className="text-xl font-bold mb-2 text-gray-900">Market Intelligence</h3>
+                <p className="text-gray-500 text-sm mb-4">Stop reacting too late. Get daily briefs, weekly deep dives, and pursuit guidance in one subscription.</p>
+                <ul className="text-sm mb-5 space-y-1">
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Daily opportunity prioritization</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Weekly market and teaming analysis</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Pursuit-specific action briefs</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Ultimate includes lifetime access</li>
+                </ul>
+                <div className="flex justify-between items-center pt-4 border-t border-gray-200">
+                  <div>
+                    <div className="text-sm text-gray-400">$49/mo or $497/yr</div>
+                    <div className="text-2xl font-bold text-blue-800">Subscription</div>
+                    <div className="text-xs text-gray-500">Or included with Ultimate</div>
                   </div>
                   <span className="px-5 py-2 bg-blue-800 text-white rounded-md font-semibold text-sm">
                     View Details
@@ -692,7 +732,7 @@ export default function Home() {
               <ul className="space-y-3 text-sm">
                 <li><Link href="/free-resources" className="text-gray-400 hover:text-white">Free PDFs</Link></li>
                 <li><Link href="/opportunity-hunter" className="text-gray-400 hover:text-white">Opportunity Hunter</Link></li>
-                <li><a href="/blog" className="text-gray-400 hover:text-white">Blog</a></li>
+                <li><Link href="/blog" className="text-gray-400 hover:text-white">Blog</Link></li>
               </ul>
             </div>
             <div>
