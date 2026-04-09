@@ -52,6 +52,12 @@ export default function MarketIntelligenceProductPage() {
         price="$49/mo"
         originalPrice="$588 annualized"
         checkoutUrl="https://buy.stripe.com/00wfZigjc97ceND3OEfnO0z"
+        videos={[
+          {
+            url: 'https://vimeo.com/1181485401',
+            title: 'Market Intelligence Overview',
+          },
+        ]}
         mainImage="/images/products/market-intelligence/daily-market-intel.png"
         screenshots={[
           '/images/products/market-intelligence/daily-market-intel.png',
