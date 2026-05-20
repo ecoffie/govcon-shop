@@ -15,7 +15,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://shop.govcongiants.org'),
+  metadataBase: new URL('https://shop.govcongiants.com'),
   title: {
     default: 'GovCon Giants | Federal Contracting Tools & Intelligence',
     template: '%s | GovCon Giants',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://shop.govcongiants.org',
+    url: 'https://shop.govcongiants.com',
     siteName: 'GovCon Giants',
     title: 'GovCon Giants | Federal Contracting Tools & Intelligence',
     description: 'Win more federal contracts with AI-powered market intelligence, agency research, content generation, and contractor databases.',
@@ -55,16 +55,16 @@ const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'GovCon Giants',
-  url: 'https://shop.govcongiants.org',
+  url: 'https://shop.govcongiants.com',
   contactPoint: {
     '@type': 'ContactPoint',
     telephone: '+1-786-477-0477',
     contactType: 'customer service',
-    email: 'service@govcongiants.com',
+    email: 'hello@govconedu.com',
   },
   sameAs: [
     'https://govcongiants.com',
-    'https://tools.govcongiants.org',
+    'https://mi.govcongiants.com',
   ],
 };
 

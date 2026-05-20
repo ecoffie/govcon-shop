@@ -13,8 +13,8 @@ import {
 // Note: hasBriefingAccess is in market-assassin project, not here
 // Briefings are checked via user_profiles table instead
 
-// Tool definitions with URLs (tools are on tools.govcongiants.org)
-const TOOLS_BASE = 'https://tools.govcongiants.org';
+// Tool definitions with URLs (tools are on mi.govcongiants.com)
+const TOOLS_BASE = 'https://mi.govcongiants.com';
 
 interface ToolInfo {
   name: string;
@@ -115,7 +115,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Activation error:', error);
     return NextResponse.json(
-      { error: 'Failed to look up your access. Please try again or contact support at service@govcongiants.com' },
+      { error: 'Failed to look up your access. Please try again or contact support at hello@govconedu.com' },
       { status: 500 }
     );
   }

@@ -121,7 +121,7 @@ export default function ActivatePage() {
               <div className="mt-8 pt-6 border-t border-gray-200">
                 <p className="text-center text-sm text-gray-600">
                   Need help?{" "}
-                  <a href="mailto:service@govcongiants.com" className="text-blue-600 hover:underline font-medium">
+                  <a href="mailto:hello@govconedu.com" className="text-blue-600 hover:underline font-medium">
                     Contact Support
                   </a>
                 </p>

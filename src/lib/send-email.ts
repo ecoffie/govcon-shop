@@ -21,12 +21,12 @@ interface SendPurchaseConfirmationEmailParams {
 
 // Tool access links by product
 const TOOL_ACCESS_LINKS: Record<string, { url: string; label: string }> = {
-  'market-assassin-standard': { url: 'https://shop.govcongiants.org/federal-market-assassin', label: 'Federal Market Assassin' },
-  'market-assassin-premium': { url: 'https://shop.govcongiants.org/federal-market-assassin', label: 'Federal Market Assassin' },
-  'ai-content-generator': { url: 'https://shop.govcongiants.org/content-reaper', label: 'Content Reaper' },
-  'recompete-contracts': { url: 'https://shop.govcongiants.org/recompete', label: 'Recompete Tracker' },
-  'contractor-database': { url: 'https://shop.govcongiants.org/contractor-database', label: 'Federal Contractor Database' },
-  'opportunity-hunter-pro': { url: 'https://shop.govcongiants.org/opportunity-hunter', label: 'Opportunity Hunter Pro' },
+  'market-assassin-standard': { url: 'https://shop.govcongiants.com/federal-market-assassin', label: 'Federal Market Assassin' },
+  'market-assassin-premium': { url: 'https://shop.govcongiants.com/federal-market-assassin', label: 'Federal Market Assassin' },
+  'ai-content-generator': { url: 'https://shop.govcongiants.com/content-reaper', label: 'Content Reaper' },
+  'recompete-contracts': { url: 'https://shop.govcongiants.com/recompete', label: 'Recompete Tracker' },
+  'contractor-database': { url: 'https://shop.govcongiants.com/contractor-database', label: 'Federal Contractor Database' },
+  'opportunity-hunter-pro': { url: 'https://shop.govcongiants.com/opportunity-hunter', label: 'Opportunity Hunter Pro' },
 };
 
 export async function sendPurchaseConfirmationEmail({
@@ -35,7 +35,7 @@ export async function sendPurchaseConfirmationEmail({
   productName,
   licenseKey,
 }: SendPurchaseConfirmationEmailParams): Promise<boolean> {
-  const activateUrl = 'https://shop.govcongiants.org/activate';
+  const activateUrl = 'https://shop.govcongiants.com/activate';
 
   const licenseKeyBlock = licenseKey ? `
     <div style="background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%); border: 2px solid #3b82f6; border-radius: 12px; padding: 25px; margin: 25px 0; text-align: center;">
@@ -90,7 +90,7 @@ export async function sendPurchaseConfirmationEmail({
 
     <p style="color: #6b7280; font-size: 12px; text-align: center;">
       <strong>Keep this email safe!</strong> It's your proof of purchase.<br>
-      Questions? Contact us at <a href="mailto:service@govcongiants.com" style="color: #3b82f6;">service@govcongiants.com</a> or call 786-477-0477
+      Questions? Contact us at <a href="mailto:hello@govconedu.com" style="color: #3b82f6;">hello@govconedu.com</a> or call 786-477-0477
     </p>
 
     <p style="text-align: center; color: #9ca3af; font-size: 12px;">
@@ -121,7 +121,7 @@ How to Access Your Tools:
 Your registered email: ${to}
 
 Keep this email safe! It's your proof of purchase.
-Questions? Contact us at service@govcongiants.com or call 786-477-0477
+Questions? Contact us at hello@govconedu.com or call 786-477-0477
 
 - GovCon Giants Team`,
     });
@@ -529,27 +529,27 @@ export async function sendUltimateBundleEmail({
 
     <div style="background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px; padding: 15px; margin: 15px 0;">
       <p style="margin: 0; color: #166534;"><strong>1. Federal Market Assassin Premium</strong></p>
-      <p style="margin: 5px 0 0 0; color: #15803d;">Visit <a href="https://shop.govcongiants.org/market-assassin" style="color: #166534;">shop.govcongiants.org/market-assassin</a> and click "I Have Access"</p>
+      <p style="margin: 5px 0 0 0; color: #15803d;">Visit <a href="https://shop.govcongiants.com/market-assassin" style="color: #166534;">shop.govcongiants.com/market-assassin</a> and click "I Have Access"</p>
     </div>
 
     <div style="background: #eff6ff; border: 1px solid #93c5fd; border-radius: 8px; padding: 15px; margin: 15px 0;">
       <p style="margin: 0; color: #1e40af;"><strong>2. Content Reaper</strong></p>
-      <p style="margin: 5px 0 0 0; color: #3b82f6;">Visit <a href="https://shop.govcongiants.org/content-reaper" style="color: #1e40af;">shop.govcongiants.org/content-reaper</a> and enter your email</p>
+      <p style="margin: 5px 0 0 0; color: #3b82f6;">Visit <a href="https://shop.govcongiants.com/content-reaper" style="color: #1e40af;">shop.govcongiants.com/content-reaper</a> and enter your email</p>
     </div>
 
     <div style="background: #fdf4ff; border: 1px solid #e879f9; border-radius: 8px; padding: 15px; margin: 15px 0;">
       <p style="margin: 0; color: #86198f;"><strong>3. Federal Contractor Database</strong></p>
-      <p style="margin: 5px 0 0 0; color: #a855f7;">Visit <a href="https://shop.govcongiants.org/contractor-database" style="color: #86198f;">shop.govcongiants.org/contractor-database</a></p>
+      <p style="margin: 5px 0 0 0; color: #a855f7;">Visit <a href="https://shop.govcongiants.com/contractor-database" style="color: #86198f;">shop.govcongiants.com/contractor-database</a></p>
     </div>
 
     <div style="background: #ecfeff; border: 1px solid #67e8f9; border-radius: 8px; padding: 15px; margin: 15px 0;">
       <p style="margin: 0; color: #0e7490;"><strong>4. Recompete Contracts</strong></p>
-      <p style="margin: 5px 0 0 0; color: #06b6d4;">Visit <a href="https://shop.govcongiants.org/recompete" style="color: #0e7490;">shop.govcongiants.org/recompete</a></p>
+      <p style="margin: 5px 0 0 0; color: #06b6d4;">Visit <a href="https://shop.govcongiants.com/recompete" style="color: #0e7490;">shop.govcongiants.com/recompete</a></p>
     </div>
 
     <div style="background: #fef3c7; border: 1px solid #fcd34d; border-radius: 8px; padding: 15px; margin: 15px 0;">
       <p style="margin: 0; color: #92400e;"><strong>5. Opportunity Hunter Pro</strong></p>
-      <p style="margin: 5px 0 0 0; color: #d97706;">Visit <a href="https://shop.govcongiants.org/opportunity-hunter" style="color: #92400e;">shop.govcongiants.org/opportunity-hunter</a></p>
+      <p style="margin: 5px 0 0 0; color: #d97706;">Visit <a href="https://shop.govcongiants.com/opportunity-hunter" style="color: #92400e;">shop.govcongiants.com/opportunity-hunter</a></p>
     </div>
 
     <div style="background: linear-gradient(135deg, #1f2937 0%, #374151 100%); border-radius: 12px; padding: 20px; margin: 25px 0; text-align: center;">
@@ -603,19 +603,19 @@ YOUR ULTIMATE BUNDLE INCLUDES:
 HOW TO ACCESS YOUR TOOLS:
 
 1. Federal Market Assassin Premium
-   Visit: https://shop.govcongiants.org/market-assassin
+   Visit: https://shop.govcongiants.com/market-assassin
 
 2. Content Reaper
-   Visit: https://shop.govcongiants.org/content-reaper
+   Visit: https://shop.govcongiants.com/content-reaper
 
 3. Federal Contractor Database
-   Visit: https://shop.govcongiants.org/contractor-database
+   Visit: https://shop.govcongiants.com/contractor-database
 
 4. Recompete Contracts
-   Visit: https://shop.govcongiants.org/recompete
+   Visit: https://shop.govcongiants.com/recompete
 
 5. Opportunity Hunter Pro
-   Visit: https://shop.govcongiants.org/opportunity-hunter
+   Visit: https://shop.govcongiants.com/opportunity-hunter
 
 STRATEGY SESSION:
 Reply to this email to schedule your 1-on-1 strategy session!
@@ -641,7 +641,7 @@ export async function sendOpportunityHunterProEmail({
   to,
   customerName,
 }: SendOpportunityHunterProEmailParams): Promise<boolean> {
-  const accessLink = 'https://tools.govcongiants.org/opportunity-hunter';
+  const accessLink = 'https://mi.govcongiants.com/opportunity-hunter';
 
   const htmlContent = `
 <!DOCTYPE html>

@@ -80,14 +80,14 @@ function buildEmail(customer: CustomerAccess): string {
     <div style="background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%); border: 2px solid #3b82f6; border-radius: 12px; padding: 25px; margin: 25px 0;">
       <h3 style="color: #1e40af; margin: 0 0 15px 0; text-align: center;">How to Access Your Tools:</h3>
       <ol style="color: #1e40af; margin: 0; padding-left: 20px;">
-        <li style="padding: 5px 0;">Go to <a href="https://shop.govcongiants.org/activate" style="color: #1e40af; font-weight: bold;">shop.govcongiants.org/activate</a></li>
+        <li style="padding: 5px 0;">Go to <a href="https://shop.govcongiants.com/activate" style="color: #1e40af; font-weight: bold;">shop.govcongiants.com/activate</a></li>
         <li style="padding: 5px 0;">Enter your purchase email: <strong>${customer.email}</strong></li>
         <li style="padding: 5px 0;">You'll see all your unlocked tools — click to start using them!</li>
       </ol>
     </div>
 
     <div style="text-align: center; margin: 30px 0;">
-      <a href="https://shop.govcongiants.org/activate" style="background: linear-gradient(135deg, #3b82f6 0%, #7c3aed 100%); color: white; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block; font-size: 18px;">Access Your Tools Now</a>
+      <a href="https://shop.govcongiants.com/activate" style="background: linear-gradient(135deg, #3b82f6 0%, #7c3aed 100%); color: white; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block; font-size: 18px;">Access Your Tools Now</a>
     </div>
 
     <p style="background: #f3f4f6; border-radius: 8px; padding: 15px; color: #4b5563;">
@@ -98,7 +98,7 @@ function buildEmail(customer: CustomerAccess): string {
     <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
 
     <p style="color: #6b7280; font-size: 12px; text-align: center;">
-      Questions? Contact us at <a href="mailto:service@govcongiants.com" style="color: #3b82f6;">service@govcongiants.com</a> or call 786-477-0477
+      Questions? Contact us at <a href="mailto:hello@govconedu.com" style="color: #3b82f6;">hello@govconedu.com</a> or call 786-477-0477
     </p>
 
     <p style="text-align: center; color: #9ca3af; font-size: 12px;">

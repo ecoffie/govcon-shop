@@ -46,11 +46,11 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
     '@type': 'Article',
     headline: article.title,
     description: article.metaDescription,
-    url: `https://shop.govcongiants.org/blog/${article.slug}`,
+    url: `https://shop.govcongiants.com/blog/${article.slug}`,
     publisher: {
       '@type': 'Organization',
       name: 'GovCon Giants',
-      url: 'https://shop.govcongiants.org',
+      url: 'https://shop.govcongiants.com',
     },
     author: {
       '@type': 'Organization',
@@ -60,11 +60,11 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
   };
 
   const sidebarTools = [
-    { key: 'market-assassin', icon: '\u{1F3AF}', name: 'Market Assassin', desc: 'Agency research, pain points, OSBP contacts & spending analysis', href: 'https://tools.govcongiants.org/market-assassin' },
-    { key: 'content-generator', icon: '\u{270D}\u{FE0F}', name: 'Content Reaper', desc: 'AI LinkedIn posts from 250 agencies\' pain points & priorities', href: 'https://tools.govcongiants.org/content-generator' },
-    { key: 'contractor-database', icon: '\u{1F4DA}', name: 'Contractor Database', desc: '3,500+ primes with SBLO contacts & vendor portals', href: 'https://tools.govcongiants.org/contractor-database' },
-    { key: 'recompete-tracker', icon: '\u{1F551}', name: 'Recompete Tracker', desc: 'Expiring contracts by NAICS, agency & set-aside type', href: 'https://tools.govcongiants.org/expiring-contracts' },
-    { key: 'opportunity-hunter', icon: '\u{1F50D}', name: 'Opportunity Hunter', desc: 'Find agencies spending in your NAICS codes', href: 'https://tools.govcongiants.org/opportunity-hunter' },
+    { key: 'market-assassin', icon: '\u{1F3AF}', name: 'Market Assassin', desc: 'Agency research, pain points, OSBP contacts & spending analysis', href: 'https://mi.govcongiants.com/market-assassin' },
+    { key: 'content-generator', icon: '\u{270D}\u{FE0F}', name: 'Content Reaper', desc: 'AI LinkedIn posts from 250 agencies\' pain points & priorities', href: 'https://mi.govcongiants.com/content-generator' },
+    { key: 'contractor-database', icon: '\u{1F4DA}', name: 'Contractor Database', desc: '3,500+ primes with SBLO contacts & vendor portals', href: 'https://mi.govcongiants.com/contractor-database' },
+    { key: 'recompete-tracker', icon: '\u{1F551}', name: 'Recompete Tracker', desc: 'Expiring contracts by NAICS, agency & set-aside type', href: 'https://mi.govcongiants.com/expiring-contracts' },
+    { key: 'opportunity-hunter', icon: '\u{1F50D}', name: 'Opportunity Hunter', desc: 'Find agencies spending in your NAICS codes', href: 'https://mi.govcongiants.com/opportunity-hunter' },
   ];
 
   const activeToolKey = article.toolBadge ? (toolLinks[article.toolBadge] || '').split('/').pop() || '' : '';
@@ -92,12 +92,12 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
           <span className="text-white text-xl font-extrabold tracking-tight">
             GovCon <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Giants</span>
           </span>
-          <span className="hidden sm:inline text-[11px] text-white/40 font-mono border-l border-white/15 pl-3">shop.govcongiants.org</span>
+          <span className="hidden sm:inline text-[11px] text-white/40 font-mono border-l border-white/15 pl-3">shop.govcongiants.com</span>
         </Link>
         <div className="flex gap-7 items-center">
           <Link href="/store" className="text-white/75 no-underline text-sm font-medium hover:text-white transition-colors">Store</Link>
-          <Link href="https://tools.govcongiants.org/market-assassin" className="text-white/75 no-underline text-sm font-medium hover:text-white transition-colors">Tools</Link>
-          <Link href="https://tools.govcongiants.org/free-resources" className="text-white/75 no-underline text-sm font-medium hover:text-white transition-colors">Free Resources</Link>
+          <Link href="https://mi.govcongiants.com/market-assassin" className="text-white/75 no-underline text-sm font-medium hover:text-white transition-colors">Tools</Link>
+          <Link href="https://mi.govcongiants.com/free-resources" className="text-white/75 no-underline text-sm font-medium hover:text-white transition-colors">Free Resources</Link>
           <Link href="/blog" className="text-white no-underline text-sm font-semibold">Blog</Link>
         </div>
       </nav>
@@ -224,7 +224,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
 
       {/* Footer */}
       <footer className="bg-slate-900 text-center py-8 text-white/40 text-[13px]">
-        <p>&copy; 2026 GovCon Giants. All rights reserved. | <a href="mailto:service@govcongiants.com" className="text-white/50 no-underline hover:text-white/80">service@govcongiants.com</a> | 786-477-0477</p>
+        <p>&copy; 2026 GovCon Giants. All rights reserved. | <a href="mailto:hello@govconedu.com" className="text-white/50 no-underline hover:text-white/80">hello@govconedu.com</a> | 786-477-0477</p>
       </footer>
     </div>
   );

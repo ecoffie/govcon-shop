@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from "next/link";
 import Image from "next/image";
+import MarketIntelligenceCardGraphic from "@/components/MarketIntelligenceCardGraphic";
+import DailyAlertsCardGraphic from "@/components/DailyAlertsCardGraphic";
 
 export const metadata: Metadata = {
   title: 'Federal Contracting Tools & Intelligence',
@@ -170,20 +172,8 @@ export default function Home() {
 
             {/* Market Intelligence */}
             <Link href="/market-intelligence" className="block bg-white border border-gray-200 rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg hover:border-violet-500 cursor-pointer">
-              <div className="h-48 bg-gradient-to-br from-violet-700 via-indigo-700 to-slate-900 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.16),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.12),transparent_30%)]" />
-                <div className="relative flex h-full flex-col justify-between p-6 text-white">
-                  <span className="inline-flex w-fit rounded-full bg-white/15 px-3 py-1 text-xs font-semibold backdrop-blur">
-                    SUBSCRIPTION
-                  </span>
-                  <div>
-                    <p className="text-sm font-medium text-violet-200">Daily + Weekly + Pursuit</p>
-                    <h3 className="mt-2 text-3xl font-bold leading-tight">Market Intelligence</h3>
-                    <p className="mt-2 max-w-xs text-sm text-slate-200">
-                      Personalized briefings built around your NAICS, agencies, and capture priorities.
-                    </p>
-                  </div>
-                </div>
+              <div className="relative h-48 overflow-hidden">
+                <MarketIntelligenceCardGraphic />
               </div>
               <div className="p-6">
                 <span className="inline-block bg-violet-600 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">NEW</span>
@@ -200,6 +190,34 @@ export default function Home() {
                     <div className="text-sm text-gray-400">$49/mo or $497/yr</div>
                     <div className="text-2xl font-bold text-blue-800">Subscription</div>
                     <div className="text-xs text-gray-500">Or included with Ultimate</div>
+                  </div>
+                  <span className="px-5 py-2 bg-blue-800 text-white rounded-md font-semibold text-sm">
+                    View Details
+                  </span>
+                </div>
+              </div>
+            </Link>
+
+            {/* Daily Alerts */}
+            <Link href="/daily-alerts" className="block bg-white border border-gray-200 rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg hover:border-blue-500 cursor-pointer">
+              <div className="relative h-48 overflow-hidden">
+                <DailyAlertsCardGraphic />
+              </div>
+              <div className="p-6">
+                <span className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">FREE BETA</span>
+                <h3 className="text-xl font-bold mb-2 text-gray-900">Daily Alerts</h3>
+                <p className="text-gray-500 text-sm mb-4">Saved-search opportunity monitoring for contractors who do not want to miss new matching bids.</p>
+                <ul className="text-sm mb-5 space-y-1">
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Daily SAM.gov opportunity matches</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> NAICS, set-aside, and agency filters</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Deadline and notice-type badges</li>
+                  <li className="flex items-center gap-2 text-gray-700"><span className="text-emerald-500 font-bold">✓</span> Upgrade path into Market Intelligence</li>
+                </ul>
+                <div className="flex justify-between items-center pt-4 border-t border-gray-200">
+                  <div>
+                    <div className="text-sm text-gray-400">$19/mo after beta</div>
+                    <div className="text-2xl font-bold text-blue-800">Free Beta</div>
+                    <div className="text-xs text-gray-500">Monitoring, not deep analysis</div>
                   </div>
                   <span className="px-5 py-2 bg-blue-800 text-white rounded-md font-semibold text-sm">
                     View Details
@@ -739,7 +757,7 @@ export default function Home() {
               <h4 className="font-bold mb-4 text-white">Company</h4>
               <ul className="space-y-3 text-sm">
                 <li><Link href="/about" className="text-gray-400 hover:text-white">About Us</Link></li>
-                <li><a href="mailto:service@govcongiants.com" className="text-gray-400 hover:text-white">Contact</a></li>
+                <li><a href="mailto:hello@govconedu.com" className="text-gray-400 hover:text-white">Contact</a></li>
               </ul>
             </div>
             <div>

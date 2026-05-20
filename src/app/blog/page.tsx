@@ -22,12 +22,12 @@ export default function BlogPage() {
           <span className="text-white text-xl font-extrabold tracking-tight">
             GovCon <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Giants</span>
           </span>
-          <span className="hidden sm:inline text-[11px] text-white/40 font-mono border-l border-white/15 pl-3">shop.govcongiants.org</span>
+          <span className="hidden sm:inline text-[11px] text-white/40 font-mono border-l border-white/15 pl-3">shop.govcongiants.com</span>
         </Link>
         <div className="flex gap-7 items-center">
           <Link href="/store" className="text-white/75 no-underline text-sm font-medium hover:text-white transition-colors">Store</Link>
-          <Link href="https://tools.govcongiants.org/market-assassin" className="text-white/75 no-underline text-sm font-medium hover:text-white transition-colors">Tools</Link>
-          <Link href="https://tools.govcongiants.org/free-resources" className="text-white/75 no-underline text-sm font-medium hover:text-white transition-colors">Free Resources</Link>
+          <Link href="https://mi.govcongiants.com/market-assassin" className="text-white/75 no-underline text-sm font-medium hover:text-white transition-colors">Tools</Link>
+          <Link href="https://mi.govcongiants.com/free-resources" className="text-white/75 no-underline text-sm font-medium hover:text-white transition-colors">Free Resources</Link>
           <Link href="/blog" className="text-white no-underline text-sm font-semibold">Blog</Link>
         </div>
       </nav>
@@ -58,11 +58,11 @@ export default function BlogPage() {
             <p className="text-lg text-white/85 mb-10">Our tools automate the research, analysis, and outreach that win federal contracts.</p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-[900px] mx-auto mb-8">
               {[
-                { href: 'https://tools.govcongiants.org/market-assassin', name: 'Market Assassin', desc: 'Agency research, pain points, OSBP contacts & spending analysis' },
-                { href: 'https://tools.govcongiants.org/content-generator', name: 'Content Reaper', desc: 'AI-powered LinkedIn posts from 250 agencies' },
-                { href: 'https://tools.govcongiants.org/contractor-database', name: 'Contractor Database', desc: '3,500+ federal contractors with SBLO contacts' },
-                { href: 'https://tools.govcongiants.org/expiring-contracts', name: 'Recompete Tracker', desc: 'Track expiring contracts for recompete opportunities' },
-                { href: 'https://tools.govcongiants.org/opportunity-hunter', name: 'Opportunity Hunter', desc: 'Find agencies spending in your NAICS codes' },
+                { href: 'https://mi.govcongiants.com/market-assassin', name: 'Market Assassin', desc: 'Agency research, pain points, OSBP contacts & spending analysis' },
+                { href: 'https://mi.govcongiants.com/content-generator', name: 'Content Reaper', desc: 'AI-powered LinkedIn posts from 250 agencies' },
+                { href: 'https://mi.govcongiants.com/contractor-database', name: 'Contractor Database', desc: '3,500+ federal contractors with SBLO contacts' },
+                { href: 'https://mi.govcongiants.com/expiring-contracts', name: 'Recompete Tracker', desc: 'Track expiring contracts for recompete opportunities' },
+                { href: 'https://mi.govcongiants.com/opportunity-hunter', name: 'Opportunity Hunter', desc: 'Find agencies spending in your NAICS codes' },
               ].map(tool => (
                 <a key={tool.name} href={tool.href} className="bg-white/10 backdrop-blur border border-white/20 rounded-xl p-5 no-underline hover:bg-white/20 hover:-translate-y-0.5 transition-all">
                   <h4 className="text-white text-[15px] font-bold mb-1.5">{tool.name}</h4>
@@ -79,7 +79,7 @@ export default function BlogPage() {
 
       {/* Footer */}
       <footer className="text-center py-8 text-white/40 text-[13px]">
-        <p>&copy; 2026 GovCon Giants. All rights reserved. | <a href="mailto:service@govcongiants.com" className="text-white/50 no-underline hover:text-white/80">service@govcongiants.com</a> | 786-477-0477</p>
+        <p>&copy; 2026 GovCon Giants. All rights reserved. | <a href="mailto:hello@govconedu.com" className="text-white/50 no-underline hover:text-white/80">hello@govconedu.com</a> | 786-477-0477</p>
       </footer>
     </div>
   );
