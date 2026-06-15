@@ -16,7 +16,7 @@ const productSchema = {
   '@type': 'Product',
   name: 'Recompete Tracker',
   description: 'Track $77T+ in expiring federal contracts. Find recompete opportunities before competitors, contact primes early, filter by NAICS code, and export to CSV.',
-  url: 'https://shop.govcongiants.org/expiring-contracts',
+  url: 'https://shop.govcongiants.com/expiring-contracts',
   brand: { '@type': 'Organization', name: 'GovCon Giants' },
   offers: {
     '@type': 'Offer',

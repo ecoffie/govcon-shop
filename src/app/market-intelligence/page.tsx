@@ -16,7 +16,7 @@ const productSchema = {
   '@type': 'Product',
   name: 'Market Intelligence',
   description: 'Personalized GovCon market intelligence delivered through daily briefs, weekly deep dives, and pursuit briefs.',
-  url: 'https://shop.govcongiants.org/market-intelligence',
+  url: 'https://shop.govcongiants.com/market-intelligence',
   brand: { '@type': 'Organization', name: 'GovCon Giants' },
   offers: [
     {
@@ -50,7 +50,7 @@ export default function MarketIntelligenceProductPage() {
         gradientFrom="#7c3aed"
         gradientTo="#1e293b"
         price="$49/mo"
-        originalPrice="$588 annualized"
+        originalPrice="$199/mo value"
         checkoutUrl="https://buy.stripe.com/00wfZigjc97ceND3OEfnO0z"
         videos={[
           {
@@ -61,11 +61,11 @@ export default function MarketIntelligenceProductPage() {
         mainImage="/images/products/market-intelligence/daily-market-intel.png"
         screenshots={[
           '/images/products/market-intelligence/daily-market-intel.png',
-          '/images/products/market-intelligence/daily-brief-deadlines.png',
           '/images/products/market-intelligence/weekly-deep-dive-header.png',
-          '/images/products/market-intelligence/weekly-deep-dive-analysis.png',
-          '/images/products/market-intelligence/briefings-dashboard-new.png',
-          '/images/products/market-intelligence/email-preferences.png',
+          '/images/products/market-intelligence/dashboard-overview.png',
+          '/images/products/market-intelligence/briefings-tab.png',
+          '/images/products/market-intelligence/top-intelligence.png',
+          '/images/products/market-intelligence/grants.png',
         ]}
         screenshotFeatures={[
           {
@@ -79,16 +79,6 @@ export default function MarketIntelligenceProductPage() {
             ],
           },
           {
-            image: '/images/products/market-intelligence/daily-brief-deadlines.png',
-            title: 'Deadlines and action tips at a glance',
-            description: 'See what is due this week with RFP/RFQ/Sources Sought labels and days remaining. Action tips tell you exactly what to prioritize.',
-            bullets: [
-              'Deadline countdown for each opportunity',
-              'Notice type badges (RFP, Sources Sought)',
-              'Personalized action tips based on your profile',
-            ],
-          },
-          {
             image: '/images/products/market-intelligence/weekly-deep-dive-header.png',
             title: 'Weekly Deep Dive with full opportunity analysis',
             description: 'Each week you get comprehensive analysis of top opportunities including agency, incumbent, contract value, and recompete windows.',
@@ -99,33 +89,43 @@ export default function MarketIntelligenceProductPage() {
             ],
           },
           {
-            image: '/images/products/market-intelligence/weekly-deep-dive-analysis.png',
-            title: 'Competitive landscape and recommended approach',
-            description: 'Deep dives include competitive intelligence, key dates, and specific teaming recommendations you can act on immediately.',
+            image: '/images/products/market-intelligence/dashboard-overview.png',
+            title: 'Full market visibility in one dashboard',
+            description: 'See 10,000+ active opportunities at a glance with breakdowns by notice type and top buying agencies. Filter by urgency, set-asides, NAICS, or state.',
             bullets: [
-              'Competitive landscape analysis',
-              'Key dates: contract end, RFP, industry day, proposal due',
-              'Recommended approach with teaming strategies',
+              '10,000+ active opportunities tracked',
+              'Notice type breakdown: Solicitations, Sources Sought, Pre-Sol',
+              'Top 8 buying agencies ranked by volume',
             ],
           },
           {
-            image: '/images/products/market-intelligence/briefings-dashboard-new.png',
-            title: 'Briefings dashboard with full history',
-            description: 'Access all your past briefings, see opportunities identified, teaming plays surfaced, and urgent alerts in one place.',
+            image: '/images/products/market-intelligence/briefings-tab.png',
+            title: 'Daily briefings with urgent alerts',
+            description: 'Every day you get a prioritized view of opportunities matched to your profile. See what needs attention now with urgent alerts and deadline counts.',
             bullets: [
-              'Past briefings organized by date',
-              'Opportunity and teaming play counts',
-              'Urgent alerts highlighted',
+              'Daily briefing history organized by date',
+              'Urgent alerts highlighted in red',
+              'Filter by All, Urgent, Opportunities, or Teaming',
             ],
           },
           {
-            image: '/images/products/market-intelligence/email-preferences.png',
-            title: 'Control your alert frequency',
-            description: 'Choose daily or weekly delivery, pause anytime, and fine-tune what you receive based on your BD capacity.',
+            image: '/images/products/market-intelligence/top-intelligence.png',
+            title: 'Top Intelligence with action windows',
+            description: 'See presolicitation positioning windows and action recommendations for each opportunity. Know exactly when to engage and what approach to take.',
             bullets: [
-              'Daily, weekly, or paused delivery options',
-              'One-click frequency changes',
-              'Profile-based personalization',
+              'Presolicitation positioning windows identified',
+              'Related NAICS matches surfaced automatically',
+              'Combined synopsis alerts for immediate action',
+            ],
+          },
+          {
+            image: '/images/products/market-intelligence/grants.png',
+            title: 'Federal grants search included',
+            description: 'Access $700B+ in annual federal grant funding from Grants.gov. Search by keyword, agency, category, and status to find non-contract funding.',
+            bullets: [
+              '$700B+ in annual federal grants',
+              '14+ federal agencies covered',
+              'Filter by category, agency, and open status',
             ],
           },
         ]}
@@ -133,7 +133,7 @@ export default function MarketIntelligenceProductPage() {
           {
             name: 'Monthly',
             price: '$49/mo',
-            originalPrice: '$588 annualized',
+            originalPrice: '$199/mo value',
             checkoutUrl: 'https://buy.stripe.com/00wfZigjc97ceND3OEfnO0z',
             description: 'Start fast and keep briefings running month to month.',
             features: [
@@ -141,14 +141,14 @@ export default function MarketIntelligenceProductPage() {
               'Weekly deep dive every week',
               'Weekly pursuit brief coverage',
               'Tailored by NAICS, agencies, and geography',
-              'Direct access on tools.govcongiants.org/briefings',
+              'Direct access on mi.govcongiants.com/briefings',
               'Cancel anytime',
             ],
           },
           {
             name: 'Annual',
             price: '$497/yr',
-            originalPrice: '$588 annualized',
+            originalPrice: '$2,388/yr value',
             checkoutUrl: 'https://buy.stripe.com/aFa6oI6ICdns0WN5WMfnO0A',
             description: 'Best value for teams that want the full program all year.',
             features: [
@@ -179,7 +179,7 @@ export default function MarketIntelligenceProductPage() {
           { label: 'Cadence', value: 'Daily + weekly + pursuit' },
           { label: 'Best for', value: 'Active BD and capture teams' },
           { label: 'Personalization', value: 'NAICS, agencies, geography' },
-          { label: 'Access', value: 'tools.govcongiants.org/briefings' },
+          { label: 'Access', value: 'mi.govcongiants.com/briefings' },
         ]}
         categoriesTitle="What the program includes"
         categories={[

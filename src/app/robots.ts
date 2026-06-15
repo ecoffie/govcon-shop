@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/admin/', '/api/', '/purchase/', '/verify-email', '/access/'],
       },
     ],
-    sitemap: 'https://shop.govcongiants.org/sitemap.xml',
+    sitemap: 'https://shop.govcongiants.com/sitemap.xml',
   };
 }

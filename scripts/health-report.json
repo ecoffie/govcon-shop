@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-05-11 10:19:30",
+  "base_url": "https://shop.govcongiants.org",
+  "total": 27,
+  "passed": 0,
+  "warnings": 0,
+  "failed": 27,
+  "issues": [
+    "FAILED: Federal Market Assassin (/market-assassin) returns HTTP 000 (expected 200)"
+,
+    "FAILED: Content Reaper (/content-reaper) returns HTTP 000 (expected 200)",
+    "FAILED: Contractor Database (Product) (/contractor-database-product) returns HTTP 000 (expected 200)",
+    "FAILED: Recompete Tracker (/expiring-contracts) returns HTTP 000 (expected 200)",
+    "FAILED: Opportunity Hunter (/opportunity-hunter) returns HTTP 000 (expected 200)",
+    "FAILED: SBLO Contact List (/sblo-directory) returns HTTP 000 (expected 200)",
+    "FAILED: December Spend Forecast (/december-spend) returns HTTP 000 (expected 200)",
+    "FAILED: 75+ AI Prompts (/ai-prompts) returns HTTP 000 (expected 200)",
+    "FAILED: 2026 Action Plan (/action-plan-2026) returns HTTP 000 (expected 200)",
+    "FAILED: Guides & Templates (/guides-templates) returns HTTP 000 (expected 200)",
+    "FAILED: Tier-2 Supplier List (/tier2-directory) returns HTTP 000 (expected 200)",
+    "FAILED: Expiring Contracts CSV (/expiring-contracts-csv) returns HTTP 000 (expected 200)",
+    "FAILED: Tribal Contractor List (/tribal-list) returns HTTP 000 (expected 200)",
+    "FAILED: Starter Bundle (/bundles/starter) returns HTTP 000 (expected 200)",
+    "FAILED: Pro Bundle (/bundles/pro) returns HTTP 000 (expected 200)",
+    "FAILED: Ultimate Bundle (/bundles/ultimate) returns HTTP 000 (expected 200)",
+    "FAILED: Homepage (/) returns HTTP 000 (expected 200)",
+    "FAILED: About (/about) returns HTTP 000 (expected 200)",
+    "FAILED: Blog (/blog) returns HTTP 000 (expected 200)",
+    "FAILED: Store (/store) returns HTTP 000 (expected 200)",
+    "FAILED: Free Resources (/free-resources) returns HTTP 000 (expected 200)",
+    "FAILED: Activate License (/activate) returns HTTP 000 (expected 200)",
+    "FAILED: Privacy Policy (/privacy-policy) returns HTTP 000 (expected 200)",
+    "FAILED: Terms of Service (/terms-of-service) returns HTTP 000 (expected 200)",
+    "FAILED: Contractor Database (Gated) (/contractor-database) returns HTTP 000 (expected 307)",
+    "FAILED: Market Assassin (Gated) (/federal-market-assassin) returns HTTP 000 (expected 307)",
+    "FAILED: API: Health (/api/health) returns HTTP 000 (expected 200)"
+  ]
+}

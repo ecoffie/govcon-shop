@@ -98,7 +98,7 @@ function buildEmail(customer: CustomerAccess): string {
     <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
 
     <p style="color: #6b7280; font-size: 12px; text-align: center;">
-      Questions? Contact us at <a href="mailto:hello@govconedu.com" style="color: #3b82f6;">hello@govconedu.com</a> or call 786-477-0477
+      Questions? Contact us at <a href="mailto:hello@govconedu.com" style="color: #3b82f6;">hello@govconedu.com</a> or call 508-290-6692
     </p>
 
     <p style="text-align: center; color: #9ca3af; font-size: 12px;">

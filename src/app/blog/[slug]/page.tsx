@@ -224,7 +224,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
 
       {/* Footer */}
       <footer className="bg-slate-900 text-center py-8 text-white/40 text-[13px]">
-        <p>&copy; 2026 GovCon Giants. All rights reserved. | <a href="mailto:hello@govconedu.com" className="text-white/50 no-underline hover:text-white/80">hello@govconedu.com</a> | 786-477-0477</p>
+        <p>&copy; 2026 GovCon Giants. All rights reserved. | <a href="mailto:hello@govconedu.com" className="text-white/50 no-underline hover:text-white/80">hello@govconedu.com</a> | 508-290-6692</p>
       </footer>
     </div>
   );

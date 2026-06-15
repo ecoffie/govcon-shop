@@ -16,7 +16,7 @@ const productSchema = {
   '@type': 'Product',
   name: 'GovCon Starter Bundle',
   description: 'The essential GovCon starter kit: Opportunity Hunter Pro, Recompete Tracker, and Federal Contractor Database. Three tools for $697 one-time.',
-  url: 'https://shop.govcongiants.org/bundles/starter',
+  url: 'https://shop.govcongiants.com/bundles/starter',
   brand: { '@type': 'Organization', name: 'GovCon Giants' },
   offers: {
     '@type': 'Offer',

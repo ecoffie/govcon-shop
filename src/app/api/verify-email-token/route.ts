@@ -94,6 +94,6 @@ export async function GET(request: NextRequest) {
   }
 
   // Redirect to the verification page with the token
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://shop.govcongiants.org';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://shop.govcongiants.com';
   return NextResponse.redirect(`${baseUrl}/verify-email?token=${token}`);
 }

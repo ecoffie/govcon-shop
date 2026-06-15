@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "shop.govcongiants.org" }],
+      "destination": "https://shop.govcongiants.com/:path*",
+      "permanent": true
+    }
+  ]
+}

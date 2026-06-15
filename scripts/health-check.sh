@@ -12,7 +12,7 @@
 set -e
 
 # Configuration
-BASE_URL="https://shop.govcongiants.org"
+BASE_URL="https://shop.govcongiants.com"
 SLACK_WEBHOOK="${SLACK_HEALTH_WEBHOOK_URL:-}"
 LOG_FILE="/Users/ericcoffie/govcon-shop/scripts/health-check.log"
 REPORT_FILE="/Users/ericcoffie/govcon-shop/scripts/health-report.json"

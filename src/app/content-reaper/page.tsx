@@ -16,7 +16,7 @@ const productSchema = {
   '@type': 'Product',
   name: 'Content Reaper',
   description: 'AI-powered LinkedIn post generator for government contractors. GovCon-tuned AI trained on 146 viral posts. 250 federal agencies, GEO Boost optimization.',
-  url: 'https://shop.govcongiants.org/content-reaper',
+  url: 'https://shop.govcongiants.com/content-reaper',
   brand: { '@type': 'Organization', name: 'GovCon Giants' },
   offers: [
     {

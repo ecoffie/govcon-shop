@@ -16,7 +16,7 @@ const productSchema = {
   '@type': 'Product',
   name: 'Pro Giant Bundle',
   description: 'The complete GovCon toolkit: Federal Contractor Database, Recompete Tracker, Market Assassin Standard, and Content Reaper. Four tools for $997 one-time.',
-  url: 'https://shop.govcongiants.org/bundles/pro',
+  url: 'https://shop.govcongiants.com/bundles/pro',
   brand: { '@type': 'Organization', name: 'GovCon Giants' },
   offers: {
     '@type': 'Offer',

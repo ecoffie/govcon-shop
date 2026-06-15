@@ -58,7 +58,7 @@ const organizationSchema = {
   url: 'https://shop.govcongiants.com',
   contactPoint: {
     '@type': 'ContactPoint',
-    telephone: '+1-786-477-0477',
+    telephone: '+1-508-290-6692',
     contactType: 'customer service',
     email: 'hello@govconedu.com',
   },

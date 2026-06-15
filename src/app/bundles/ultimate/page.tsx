@@ -16,7 +16,7 @@ const productSchema = {
   '@type': 'Product',
   name: 'Ultimate Giant Bundle',
   description: 'Every premium GovCon tool at the highest tier: Market Assassin Premium, Content Reaper Full Fix, Federal Contractor Database, and Recompete Tracker. $1,497 one-time.',
-  url: 'https://shop.govcongiants.org/bundles/ultimate',
+  url: 'https://shop.govcongiants.com/bundles/ultimate',
   brand: { '@type': 'Organization', name: 'GovCon Giants' },
   offers: {
     '@type': 'Offer',

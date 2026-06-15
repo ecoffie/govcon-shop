@@ -90,7 +90,7 @@ export async function sendPurchaseConfirmationEmail({
 
     <p style="color: #6b7280; font-size: 12px; text-align: center;">
       <strong>Keep this email safe!</strong> It's your proof of purchase.<br>
-      Questions? Contact us at <a href="mailto:hello@govconedu.com" style="color: #3b82f6;">hello@govconedu.com</a> or call 786-477-0477
+      Questions? Contact us at <a href="mailto:hello@govconedu.com" style="color: #3b82f6;">hello@govconedu.com</a> or call 508-290-6692
     </p>
 
     <p style="text-align: center; color: #9ca3af; font-size: 12px;">
@@ -121,7 +121,7 @@ How to Access Your Tools:
 Your registered email: ${to}
 
 Keep this email safe! It's your proof of purchase.
-Questions? Contact us at hello@govconedu.com or call 786-477-0477
+Questions? Contact us at hello@govconedu.com or call 508-290-6692
 
 - GovCon Giants Team`,
     });

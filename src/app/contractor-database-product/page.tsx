@@ -16,7 +16,7 @@ const productSchema = {
   '@type': 'Product',
   name: 'Federal Contractor Database',
   description: 'Search 3,500+ federal prime contractors with SBLO contacts, vendor portal links, and teaming partner finder. 800+ email contacts, CSV export, advanced filtering.',
-  url: 'https://shop.govcongiants.org/contractor-database-product',
+  url: 'https://shop.govcongiants.com/contractor-database-product',
   brand: { '@type': 'Organization', name: 'GovCon Giants' },
   offers: {
     '@type': 'Offer',

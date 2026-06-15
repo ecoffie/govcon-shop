@@ -16,7 +16,7 @@ const productSchema = {
   '@type': 'Product',
   name: 'Federal Market Assassin',
   description: 'Market intelligence system for federal contractors. Get 8 strategic reports in 5 minutes: agency spending, government buyers, OSBP contacts, subcontracting opportunities.',
-  url: 'https://shop.govcongiants.org/market-assassin',
+  url: 'https://shop.govcongiants.com/market-assassin',
   brand: { '@type': 'Organization', name: 'GovCon Giants' },
   offers: [
     {

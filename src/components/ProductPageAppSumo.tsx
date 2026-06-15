@@ -91,6 +91,7 @@ interface ProductPageProps {
   pricingTiers?: PricingTier[];
   upgradeProduct?: UpgradeProduct;
   pricingCallout?: PricingCallout;
+  heroGraphic?: React.ReactNode;
 }
 
 function isResourceUrl(url: string) {
@@ -127,6 +128,7 @@ export default function ProductPageAppSumo({
   pricingTiers,
   upgradeProduct,
   pricingCallout,
+  heroGraphic,
 }: ProductPageProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedVideo, setSelectedVideo] = useState(0);
@@ -272,7 +274,11 @@ export default function ProductPageAppSumo({
           <div className="mb-10">
             {/* Main Image/Video Display */}
             <div className="w-full rounded-xl aspect-video mb-4 relative overflow-hidden border-2 border-gray-200">
-              {showingVideo && videos.length > 0 ? (
+              {heroGraphic ? (
+                <div className="h-full w-full">
+                  {heroGraphic}
+                </div>
+              ) : showingVideo && videos.length > 0 ? (
                 // Show selected video from videos array
                 <iframe
                   className="w-full h-full"
@@ -382,7 +388,7 @@ export default function ProductPageAppSumo({
                 </div>
               ))}
               {/* Fallback placeholders if no videos or screenshots */}
-              {videos.length === 0 && screenshots.length === 0 && thumbnails.slice(0, 4).map((thumb, i) => (
+              {!heroGraphic && videos.length === 0 && screenshots.length === 0 && thumbnails.slice(0, 4).map((thumb, i) => (
                 <div key={i} className="aspect-video bg-gray-100 border-2 border-gray-200 rounded-lg flex items-center justify-center text-sm font-medium text-gray-500 cursor-pointer hover:border-gray-400 transition-all">
                   {thumb}
                 </div>

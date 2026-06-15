@@ -1,7 +1,7 @@
 # GovCon Shop - Claude Project Context
 
 ## Quick Identifier
-**This is the LIVE PRODUCTION shop at shop.govcongiants.org**
+**This is the LIVE PRODUCTION shop at shop.govcongiants.com**
 
 When user says: "live shop", "production", "shop.govcongiants", "the real site"
 → This is the project. **Handle with care - this is live!**
@@ -71,7 +71,7 @@ When user says: "live shop", "production", "shop.govcongiants", "the real site"
 ## Project Overview
 **Name:** GovCon Shop (Production)
 **Purpose:** Live production shop for GovCon Giants tools
-**Live URL:** shop.govcongiants.org
+**Live URL:** shop.govcongiants.com
 **Framework:** Next.js 16 with Turbopack
 **Database:** Supabase
 **Payments:** Stripe

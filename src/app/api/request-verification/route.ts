@@ -109,7 +109,7 @@ export async function POST(request: NextRequest) {
 
     // Generate new verification token
     const verificationToken = generateVerificationToken();
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://shop.govcongiants.org';
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://shop.govcongiants.com';
     const verificationLink = `${baseUrl}/verify-email?token=${verificationToken}`;
 
     if (existingLead) {

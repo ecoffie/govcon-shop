@@ -42,7 +42,7 @@ async function grantKVAccess(productId: string, email: string, customerName?: st
   switch (productId) {
     case 'contractor-database': {
       const dbToken = await createDatabaseToken(email, customerName);
-      const accessLink = `https://tools.govcongiants.org/api/database-access/${dbToken.token}`;
+      const accessLink = `https://mi.govcongiants.com/api/database-access/${dbToken.token}`;
       await sendDatabaseAccessEmail({ to: email, customerName, accessLink });
       break;
     }

@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { blogArticles } from '@/data/blog-articles';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://shop.govcongiants.org';
+  const baseUrl = 'https://shop.govcongiants.com';
 
   const staticPages: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'] }[] = [
     // Core
